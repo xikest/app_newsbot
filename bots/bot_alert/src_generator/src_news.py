@@ -25,33 +25,34 @@ class SrcNews:
               SrcNews.HanKyungEconomy.hk_wallstreet_now,
               SrcNews.HanKyungEconomy.hk_global_video_top,
               SrcNews.HanKyungEconomy.hk_jipconomy_video]
-      bw_gen = [SrcNews.BridgeWater.bridgewater_insight]
+      # bw_gen = [SrcNews.BridgeWater.bridgewater_insight]
       efm_gen = [SrcNews.EinFoMax.efmax_cn_economy,
               SrcNews.EinFoMax.efmax_f_stocks,
               SrcNews.EinFoMax.efmax_fx_bond,
-              SrcNews.EinFoMax.efmax_f_stocks,
+              # SrcNews.EinFoMax.efmax_f_stocks,
               SrcNews.EinFoMax.efmax_g_economy,    
-              SrcNews.EinFoMax.efmax_politics_finance,
+              # SrcNews.EinFoMax.efmax_politics_finance,
               SrcNews.EinFoMax.efmax_top]
       rss_gen = [SrcNews.Rss.eia_thisweek_petroleum_rss,
               SrcNews.Rss.eia_today_energy_rss,
-              SrcNews.Rss.gdpnow_fed_of_atlanta_rss,
-              SrcNews.Rss.pf_damodaran_rss]
+              # SrcNews.Rss.gdpnow_fed_of_atlanta_rss,
+              # SrcNews.Rss.pf_damodaran_rss
+              ]
       rss_google = [SrcNews.RssGoogle.cen_east_news_google_rss, 
-                  SrcNews.RssGoogle.cnhk_news_google_rss,
-                  SrcNews.NBER.nber_economic_indicators_releases]
+                  SrcNews.RssGoogle.cnhk_news_google_rss
+                  ]
       rss_nber = [SrcNews.NBER.nber_economic_indicators_releases]
-      rss_imf = [SrcNews.IMF.imf_blog_chart]
+      # rss_imf = [SrcNews.IMF.imf_blog_chart]
       
               
       list_news.extend(mail_gen)
       list_news.extend(hke_gen)
-      list_news.extend(bw_gen)
+      # list_news.extend(bw_gen)
       list_news.extend(efm_gen)
       list_news.extend(rss_gen)
       list_news.extend(rss_google)
       list_news.extend(rss_nber)
-      list_news.extend(rss_imf)
+      # list_news.extend(rss_imf)
       yield from list_news
         
 
