@@ -1,0 +1,17 @@
+import asyncio
+import platform
+
+from bots.bot_alert.bot_news_alert import NewsAlert
+from bots.bot_alert.src_generator.src_news import SrcNews
+from info.bot_info import BotInfo
+
+# #beta testing
+TOKEN =BotInfo.AlertBot.get_token()
+SrcNews.setChatId(BotInfo.AlertBot.get_chanel('news_chat_id'))
+SrcNews.NBER.setChatId(BotInfo.AlertBot.get_chanel('nber_chat_id'))
+
+
+if platform.system()=='Windows':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+asyncio.run(NewsAlert(TOKEN).start(SrcNews.gen_news))
+

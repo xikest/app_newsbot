@@ -2,7 +2,7 @@ import quandl
 
 import pandas as pd
 from tools.time.time import Periods
-from ids import Ids
+from info.ids import Ids
 
 def get_keys(key_list, pos=0):
     category = key_list[pos].split('_')[0]

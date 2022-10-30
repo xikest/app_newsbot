@@ -1,5 +1,7 @@
-ids.py
-test.py
-xstm_bot.py
+
 bot_scheduler.py
+info/bot_info.py
+info/ids.py
+test.py
 test2.py
+xstm_bot.py

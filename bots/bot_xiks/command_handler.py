@@ -1,4 +1,5 @@
 from typing import Generator
+import asyncio
 from bots.bot_alert.src_generator.src_macro import SrcMacro
 from bots.bot_alert.src_generator.src_stocks import SrcStocks
 
@@ -24,6 +25,7 @@ class CmdHandler:
                     # update.message.reply_text(text="잠시만 기다려 주세요.")
                     for context_ex in genContent():
                         while len(context_ex.content) > 0: 
+                            await asyncio.sleep(1)
                             await    update.message.reply_photo(photo=context_ex.content.pop(0))
                 
 # =================================================================================================================================
@@ -132,11 +134,3 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.gdp)
             return CommandHandler('gdp', _gdp)
 
-        
-# text = "shiller_ratio - 쉴러 PE Ratio\n
-#              market_pattern - market pattern\n
-#              cpi - 소비자 물가 지수 \n reatail_sales - 소매 판매 보고서\n
-#              new_residential_sales - 신규 주택 판매\n
-#              durable_goods - 내구주 수주 \n pce - 개인 소비 지출\n
-#              employment_cost_index - 고용 비용 지수\n
-#              gdp -gdp"

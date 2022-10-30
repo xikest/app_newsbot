@@ -1,7 +1,7 @@
 from xml.etree.ElementInclude import default_loader
 from bots.bot_alert.src_generator.src_generator import SrcGenerator
 from typing import Optional
-from ids import Ids
+from info.ids import Ids
 
 class SrcNews:
   _defaultChatID:Optional[str]=None
