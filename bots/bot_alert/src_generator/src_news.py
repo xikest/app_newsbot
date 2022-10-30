@@ -74,8 +74,8 @@ class SrcNews:
     
     @staticmethod
     def naver_mailbox_wsj():
-      usr= Ids.nav_ids().usr
-      pid= Ids.nav_ids().pid
+      usr= Ids.nav_ids().get('usr')
+      pid= Ids.nav_ids().get('pid')
       return  SrcGenerator.MailBox.wsj_news_from_mailbox(usr=usr, pid=pid, botChatId=SrcNews.Mailbox.getChatId())
     
   # ============================================
