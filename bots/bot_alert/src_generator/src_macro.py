@@ -14,6 +14,12 @@ from market.macro.new_residential_sales import  NewResidentialSales
 from market.macro.durable_goods import  DurableGoods
 from market.macro.employment_cost_index import EmploymentCostIndex
 from market.macro.gdp import GDP
+from market.macro.jolt import Jolt
+from market.macro.adp_employment_report import AdpNationalEmploymentReport
+from market.macro.diffusion_Index_philadelphia import DiffusionIndexphiladelphia
+from market.macro.busines_inventories import InventoriesSalesRatio
+
+
 
 class SrcMacro:
       class ShillerRatio:    
@@ -119,6 +125,63 @@ class SrcMacro:
                                             GDP.netExports(),
                                             GDP.governmentConsumptionExpenditures_GrossInvestment(),
                                           ], dtype='img')
+                    
+            @staticmethod
+            def jolt():
+                  yield Context(content = [Jolt.jobOpenings_Nonfarm(),
+                                            Jolt.jobOpenings_Private(),
+                                            Jolt.jobOpenings_Government(),
+                                            Jolt.hires_Nonfarm(),
+                                            Jolt.hires_Private(),
+                                            Jolt.hires_Government(),
+                                            Jolt.separations_Nonfarm(),
+                                            Jolt.separations_Private(),
+                                            Jolt.separations_Government(),
+                                            Jolt.quits_Nonfarm(),
+                                            Jolt.quits_Private(),
+                                            Jolt.quits_Government(),
+                                          ], dtype='img')
+                    
+            @staticmethod
+            def adpNationalEmploymentReport():
+                  yield Context(content = [AdpNationalEmploymentReport.nonfarmPrivatePayrollEmployment(),
+                                            AdpNationalEmploymentReport.nonfarmPrivateManufacturingPayrollEmployment(),
+                                            AdpNationalEmploymentReport.nonfarmPrivateSmallPayrollEmployment(),
+                                            AdpNationalEmploymentReport.nonfarmPrivateMediumPayrollEmployment(),
+                                            AdpNationalEmploymentReport.nonfarmPrivateLargePayrollEmployment(),
+                                          ], dtype='img')
 
-    
-              
+                    
+                    
+            @staticmethod
+            def diffusionIndexphiladelphia():
+                  yield Context(content = [DiffusionIndexphiladelphia.currentGeneralActivity(),
+                                            DiffusionIndexphiladelphia.futureEmployment(),
+                                            DiffusionIndexphiladelphia.futureCapitalExpenditures(),
+                                          ], dtype='img')
+
+                    
+            @staticmethod
+            def inventoriesSalesRatio():
+                  yield Context(content = [InventoriesSalesRatio.totalBusiness(),
+                                            InventoriesSalesRatio.retailers(),
+                                            InventoriesSalesRatio.retailTradeExcludingVehicle(),
+                                            InventoriesSalesRatio.motorVehicle(),
+                                            InventoriesSalesRatio.furniture_home_furnishings(),
+                                            InventoriesSalesRatio.buildingMaterials(),
+                                            InventoriesSalesRatio.clothing(),
+                                            InventoriesSalesRatio.food_beverage(),
+                                            InventoriesSalesRatio.generalMrchandise(),
+                                            InventoriesSalesRatio.department(),
+                                            InventoriesSalesRatio.merchantWholesalers(),
+                                            InventoriesSalesRatio.manufacturers(),
+                                            InventoriesSalesRatio.businessInventories(),
+                                            InventoriesSalesRatio.retailersInventories(),
+                                            InventoriesSalesRatio.merchantWholesalersInventories(),
+                                            InventoriesSalesRatio.manufacturersInventories(),
+
+                                          ], dtype='img')
+
+
+
+

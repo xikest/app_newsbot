@@ -49,7 +49,7 @@ class CmdHandler:
                 return 0
             async   def _bs_stock(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 symbol = update.message.text
-                await   update.message.reply_text(symbol)
+                await   update.message.reply_text(f'입력한 ticker는 {symbol} 입니다.')
                 await   CmdHandler._sentPhoto(update, context, SrcStocks.Stock_bs(symbol).ratio_incomes)
             async   def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
                 await   update.message.reply_text(
@@ -134,3 +134,31 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.gdp)
             return CommandHandler('gdp', _gdp)
 
+        # jolt reply function
+        @staticmethod
+        def jolt():
+            async   def _jolt(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.jolt)
+            return CommandHandler('jolt', _jolt)
+
+        # adp reply function
+        @staticmethod
+        def adpNationalEmploymentReport():
+            async   def _adpNationalEmploymentReport(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.adpNationalEmploymentReport)
+            return CommandHandler('adp_employment_report', _adpNationalEmploymentReport)
+        
+        # DiffusionIndexphiladelphia reply function
+        @staticmethod
+        def diffusionIndexphiladelphia():
+            async   def _diffusionIndexphiladelphia(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.diffusionIndexphiladelphia)
+            return CommandHandler('diffusion_index_philadelphia', _diffusionIndexphiladelphia)
+
+        # DiffusionIndexphiladelphia reply function
+        @staticmethod
+        def inventoriesSalesRatio():
+            async   def _inventoriesSalesRatio(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.inventoriesSalesRatio)
+            return CommandHandler('inventories_sales_ratio', _inventoriesSalesRatio)   
+        

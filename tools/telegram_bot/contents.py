@@ -45,7 +45,7 @@ class Contents(list):
     def saveContents(self, context:Context, fileName:str='contents_list'):
         sent_list=list(self.loadContents())
         sent_list.append(context)
-        if len(sent_list)> 1000 : sent_list.pop()  # 버퍼 1000개로 제한
+        if len(sent_list)> 10000 : sent_list.pop()  # 버퍼 10000개로 제한
         FilesF.Pickle.save_to_pickle(sent_list, f'{fileName}')
         # return print('saved backup')
 

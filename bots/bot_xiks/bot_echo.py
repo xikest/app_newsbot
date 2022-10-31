@@ -40,8 +40,14 @@ class Echobot():
             application.add_handler(CmdHandler.pce()) 
             application.add_handler(CmdHandler.employmentCostIndex())    
             application.add_handler(CmdHandler.gdp())  
+            application.add_handler(CmdHandler.jolt())    
+            application.add_handler(CmdHandler.adpNationalEmploymentReport())  
+            application.add_handler(CmdHandler.diffusionIndexphiladelphia())   
+            application.add_handler(CmdHandler.inventoriesSalesRatio())         
             
             application.add_handler(CmdHandler.bs_stock()) 
             
             application.run_polling(timeout=3)
 
+            
+ 
