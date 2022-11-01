@@ -18,7 +18,7 @@ from market.macro.jolt import Jolt
 from market.macro.adp_employment_report import AdpNationalEmploymentReport
 from market.macro.diffusion_Index_philadelphia import DiffusionIndexphiladelphia
 from market.macro.busines_inventories import InventoriesSalesRatio
-
+from market.macro.fed import Fed
 
 
 class SrcMacro:
@@ -47,6 +47,13 @@ class SrcMacro:
                         yield context
                   
       class Macro:
+            @staticmethod
+            def fed():
+                  yield Context(content = [Fed.totalAssets()
+                                          ], dtype='img')
+        
+   
+        
             @staticmethod
             def cpi():
                   yield Context(content = [CPI.headLine(),

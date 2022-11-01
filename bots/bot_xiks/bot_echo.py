@@ -44,6 +44,7 @@ class Echobot():
             application.add_handler(CmdHandler.adpNationalEmploymentReport())  
             application.add_handler(CmdHandler.diffusionIndexphiladelphia())   
             application.add_handler(CmdHandler.inventoriesSalesRatio())         
+            application.add_handler(CmdHandler.fed())    
             
             application.add_handler(CmdHandler.bs_stock()) 
             

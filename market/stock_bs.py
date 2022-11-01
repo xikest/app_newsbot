@@ -178,8 +178,8 @@ class BalanceSheet():
         elif plot_type == 'bar_line_pair':
             fig = (PlotViz(self.plot_data['data']).bar(col_idx=0).line(col_idx=1, secondary_y=True)
                                     .update_layout(title= f'{title}', width=500, height=700)
-                                    .update_yaxes(title_text=y_title)
-                                    .update_yaxes(title_text=second_y_title, secondary_y=True)
+                                    .update_yaxes(title_text=y_title, range=[0, 150])
+                                    .update_yaxes(title_text=second_y_title, secondary_y=True, range=[-10, 10])
                                     .update_xaxes())
 
 

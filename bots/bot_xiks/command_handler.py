@@ -71,7 +71,14 @@ class CmdHandler:
 # =================================================================================================================================
 # Macro
 # =================================================================================================================================
-        # shri reply function
+        # fed reply function
+        @staticmethod
+        def fed():
+            async   def _fed(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.fed)
+            return CommandHandler('fed', _fed)
+
+		# shri reply function
         @staticmethod
         def shillerRatio():
             async   def _shillerRatio(update: Update, context: ContextTypes.DEFAULT_TYPE):
