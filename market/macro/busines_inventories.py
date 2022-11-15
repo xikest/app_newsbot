@@ -1,6 +1,6 @@
 from market.macro.plotviz_economic_indicator import PlotEconomicIdx
 
-class inventoriesSalesRatio:
+class InventoriesSalesRatio:
     @staticmethod
     def descr():
         return ""
