@@ -49,7 +49,8 @@ class SrcMacro:
       class Macro:
             @staticmethod
             def fed():
-                  yield Context(content = [Fed.totalAssets()
+                  yield Context(content = [Fed.totalAssets(),
+                                           Fed.fed_effective_rate()
                                           ], dtype='img')
         
    
