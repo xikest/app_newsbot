@@ -26,7 +26,7 @@ class PlotEconomicIdx:
 
 
     def plotWithMa(self, window=3, title:str=' ',  mode:str='binary', y1_title:str=''): #이동평균
-        data = self._ds.rolling(window).mean().dropna()
+        data = self._ds.rolling(window).mean().dropna().applymap(lambda x: round(x,1))
         return PlotvizBasic.plotWithPctchage(data,  title,  mode, y1_title)
     
     # def plotBar(self, periods:str='M'): #막대 그래프
