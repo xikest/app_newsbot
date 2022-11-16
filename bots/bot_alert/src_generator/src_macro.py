@@ -19,7 +19,7 @@ from market.macro.adp_employment_report import AdpNationalEmploymentReport
 from market.macro.diffusion_Index_philadelphia import DiffusionIndexphiladelphia
 from market.macro.busines_inventories import InventoriesSalesRatio
 from market.macro.fed import Fed
-
+from market.macro.ppi import PPI
 
 class SrcMacro:
       class ShillerRatio:    
@@ -60,8 +60,8 @@ class SrcMacro:
                   yield Context(content = [CPI.headLine(),
                                             CPI.core(),
                                             CPI.ma3month(),
-                                            CPI.ma3month(),
-                                            CPI.ma3month(),
+                                            CPI.ma6month(),
+                                            CPI.ma12month(),
                                             CPI.medicalCare(),
                                             CPI.shelter(),
                                             CPI.rent()], dtype='img')
@@ -76,8 +76,8 @@ class SrcMacro:
                                             ReatailSales.retailSales_Gasoline(),
                                             ReatailSales.advanceRetailSales_NonstoreRetailers(),
                                             ReatailSales.retailSales_NonstoreRetailers(),
-                                            ReatailSales.advanceRetailSales_NonstoreRetailers(),
-                                            ReatailSales.retailSales_NonstoreRetailers(),                                        
+                                            ReatailSales.advanceRetailSales_food_drinking(),
+                                            ReatailSales.retailSales_food_drinking(),                                        
                                             ], dtype='img')
 
                     
@@ -189,7 +189,14 @@ class SrcMacro:
                                             InventoriesSalesRatio.manufacturersInventories(),
 
                                           ], dtype='img')
-
-
-
-
+            @staticmethod
+            def ppi():
+                  yield Context(content = [PPI.finalDemand(),
+                                            PPI.finalDemand_yoy(),
+                                            PPI.finalDemand_less_foods_energy(),
+                                            PPI.finalDemand_less_foods_energy_yoy(),
+                                            PPI.processed_goods_Intermediate_yoy(),
+                                            PPI.processed_goods_Intermediate_core(),
+                                            PPI.unprocessed_goods_Intermediate_yoy(),
+                                            PPI.unprocessed_goods_Intermediate_core(),
+                                          ], dtype='img')

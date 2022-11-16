@@ -162,10 +162,17 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.diffusionIndexphiladelphia)
             return CommandHandler('diffusion_index_philadelphia', _diffusionIndexphiladelphia)
 
-        # DiffusionIndexphiladelphia reply function
+        # inventoriesSalesRatio reply function
         @staticmethod
         def inventoriesSalesRatio():
             async   def _inventoriesSalesRatio(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.inventoriesSalesRatio)
             return CommandHandler('inventories_sales_ratio', _inventoriesSalesRatio)   
+        
+        # PPI reply function
+        @staticmethod
+        def ppi():
+            async   def _ppi(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ppi)
+            return CommandHandler('ppi', _ppi)   
         

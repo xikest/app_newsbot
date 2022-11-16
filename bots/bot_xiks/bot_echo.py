@@ -34,6 +34,7 @@ class Echobot():
             application.add_handler(CmdHandler.shillerRatio())
             application.add_handler(CmdHandler.mkPtn())
             application.add_handler(CmdHandler.cpi())
+            application.add_handler(CmdHandler.ppi())
             application.add_handler(CmdHandler.reatailSales())
             application.add_handler(CmdHandler.newResidentialSales())
             application.add_handler(CmdHandler.durableGoods())    
