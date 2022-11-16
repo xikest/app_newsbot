@@ -17,4 +17,4 @@ class EmploymentCostIndex:
     @staticmethod    
     def productivity_nonfarm(mode='binary'):
         return (PlotEconomicIdx('PRS85006091').renameColumn('비농업 경제 부문: 생산성, 연간')
-                .plot(title='비농업 경제 부문: 생산성, 연간', mode=mode, y1_title=''))
+                .plot(title='비농업 경제 부문: 생산성, 연간', mode=mode))
