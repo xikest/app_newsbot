@@ -12,7 +12,7 @@ class PlotEconomicIdx:
 
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
         start, end = Periods.make_period(periods=5)
-        self._ds = web.DataReader(colKey, 'fred', start, end).applymap(lambda x: round(x,1))
+        self._ds = web.DataReader(colKey, 'fred', start, end)
     
     def renameColumn(self, colName:Optional[str]=None): # 데이터 이름 변경
         self._colName=colName
@@ -20,7 +20,7 @@ class PlotEconomicIdx:
         return self
 
     def plot(self, title:str=' ',  mode:str='binary', y1_title:Optional[str]=None):  #변화율을 표시
-        data = self._ds
+        data = self._ds.applymap(lambda x: round(x,1))
         if y1_title  is None:   return PlotvizBasic.plot(data, title,  mode)
         else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title)
 
