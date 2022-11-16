@@ -81,10 +81,10 @@ class PlotViz:
     self.fig.add_vrect(x0=x0, x1=x1, line_width=line_width, fillcolor=fillcolor, opacity=opacity, **kwargs)
     return self
   
-  def add_annotation(self, text=None, col_idx:int=0, x=None, y=None, pos=None, showarrow=True, xshift=0, yshift=2, pct_change=False,**kwargs):
+  def add_annotation(self, text=None, col_idx:int=0, x=None, y=None, pos=None, showarrow=True, xshift=0, yshift=2, **kwargs):
     
-    if pct_change is True: ds = self.df.iloc[:,col_idx].pct_change()
-    else: ds = self.df.iloc[:,col_idx]
+
+    ds = self.df.iloc[:,col_idx]
 
     
     if pos == 'min':  x = ds.index[ds.argmin()]
