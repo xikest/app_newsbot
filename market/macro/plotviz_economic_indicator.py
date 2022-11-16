@@ -12,7 +12,7 @@ class PlotEconomicIdx:
 
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
         start, end = Periods.make_period(periods=5)
-        self._ds = web.DataReader(colKey, 'fred', start, end)
+        self._ds = web.DataReader(colKey, 'fred', start, end).applymap(lambda x: round(x,1))
     
     def renameColumn(self, colName:Optional[str]=None): # 데이터 이름 변경
         self._colName=colName
@@ -35,6 +35,6 @@ class PlotEconomicIdx:
         
     def plot_div(self, colKey2:str, column_name:str='0',title:str=' ',  mode:str='binary', y1_title:str=''): # 두개의 데이터를 받아서 표시
         
-        df = self._ds.join(self.load_data_from_fred(colKey2))
+        df = self._ds.join(self.load_data_from_fred(colKey2).applymap(lambda x: round(x,1)))
         ds = pd.DataFrame(df.iloc[:,0] / df.iloc[:,1], columns=column_name)
         return PlotvizBasic.plotWithPctchage(ds, title,  mode, y1_title)

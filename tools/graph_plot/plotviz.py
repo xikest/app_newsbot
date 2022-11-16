@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 import plotly.io as pio
 from .plot_func import make_trace, check_instance_for_df
-
+from typing import Union
 
 import numpy as np
 from numpy import ndarray
@@ -81,10 +81,11 @@ class PlotViz:
     self.fig.add_vrect(x0=x0, x1=x1, line_width=line_width, fillcolor=fillcolor, opacity=opacity, **kwargs)
     return self
   
-  def add_annotation(self, text=None, col_idx:int or str=0, x=None, y=None, pos=None, showarrow=True, xshift=0, yshift=2,**kwargs):
+  def add_annotation(self, text=None, col_idx:int=0, x=None, y=None, pos=None, showarrow=True, xshift=0, yshift=2, pct_change=False,**kwargs):
     
-    if isinstance(col_idx, int):ds = self.df.iloc[:,col_idx]
-    elif isinstance(col_idx, str):ds = self.df.loc[:,col_idx]
+    if pct_change is True: ds = self.df.iloc[:,col_idx].pct_change()
+    else: ds = self.df.iloc[:,col_idx]
+
     
     if pos == 'min':  x = ds.index[ds.argmin()]
     elif pos == 'max':x = ds.index[ds.argmax()]

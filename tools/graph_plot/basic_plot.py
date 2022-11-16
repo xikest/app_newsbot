@@ -17,6 +17,7 @@ class PlotvizBasic:
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True)
                                 .add_annotation( pos='max').add_annotation( pos='min').add_annotation( pos='recent')
+                                .add_annotation( pos='recent',pct_change=True)
                                 .update_layout(title= f'{title}', width=500, height=700)
                                 .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[-5, 5])
                                 .update_xaxes())
@@ -45,3 +46,6 @@ class PlotvizBasic:
                                 .update_xaxes())
         if mode == 'binary': return fig.trx_to_byte()
         elif mode == 'show': return fig.show()
+        
+        
+        
