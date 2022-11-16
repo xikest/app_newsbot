@@ -16,12 +16,22 @@ class PlotvizBasic:
     def plotWithPctchage(ds, title:str=' ',  mode:str='show', y1_title:str=''):  #변화율을 표시
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True)
+                                .add_annotation( pos='max').add_annotation( pos='min').add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', width=500, height=700)
                                 .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[-5, 5])
                                 .update_xaxes())
         if mode == 'binary': return fig.trx_to_byte()
         elif mode == 'show': return fig.show()
-   
+        
+    @staticmethod
+    def plot(ds, title:str=' ',  mode:str='show'):  #변화율을 표시
+        fig = (PlotViz(ds).line()
+                                .add_annotation( pos='max').add_annotation( pos='min').add_annotation( pos='recent')
+                                .update_layout(title= f'{title}', width=500, height=700)
+                                .update_xaxes())
+        if mode == 'binary': return fig.trx_to_byte()
+        elif mode == 'show': return fig.show()
+        
     @staticmethod
     def plotForShiller(ds, reference='Shiller PE Ratio by Month', compare_with='S&P 500 Real Price by Month', mode='binary'):
         fig = (PlotViz(ds).line(col_idx=reference)
