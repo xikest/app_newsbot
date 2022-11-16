@@ -28,16 +28,16 @@ class PPI:
     @staticmethod
     def finalDemand(mode='binary'):
         return (PlotEconomicIdx('PPIFIS').renameColumn('Final Demand')
-                        .plot(title='PPI_모든 품목, total', mode=mode, y1_title=''))
+                        .plot(title='PPI_Final Demand, total', mode=mode, y1_title=''))
             
     @staticmethod
     def finalDemand_yoy(mode='binary'):
-        return (PlotEconomicIdx('PPIFIS').renameColumn('Final Demand_yoy')
-                        .plotWithMa(window=12, title='PPI_모든 품목, total, YoY', mode=mode, y1_title=''))
+        return (PlotEconomicIdx('PPIFIS').renameColumn('Final Demand, YoY')
+                        .plotWithMa(window=12, title='PPI_Final Demand, total, YoY', mode=mode, y1_title=''))
             
     @staticmethod
     def finalDemand_less_foods_energy(mode='binary'):
-        return (PlotEconomicIdx('PPIFES').renameColumn('less_foods_energy')
+        return (PlotEconomicIdx('PPIFES').renameColumn('식량과 에너지 제외')
                         .plot(title='PPI_모든 품목, 식량과 에너지 제외', mode=mode, y1_title=''))
             
     @staticmethod

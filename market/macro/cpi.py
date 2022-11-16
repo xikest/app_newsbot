@@ -31,7 +31,7 @@ class CPI:
     @staticmethod    
     def shelter(mode='binary'):
         return (PlotEconomicIdx('CUSR0000SAH1').renameColumn('CPI 주거비')
-                .plot(title='CPI 의료', mode=mode, y1_title=''))
+                .plot(title='CPI 주거비', mode=mode, y1_title=''))
     
     def rent(mode='binary'):
         return (PlotEconomicIdx('CUSR0000SEHA').renameColumn('CPI 주택 렌트')
