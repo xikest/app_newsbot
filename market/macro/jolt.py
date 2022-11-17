@@ -35,7 +35,7 @@ class Jolt:
     @staticmethod    
     def separations_Nonfarm(mode='binary'):
         return (PlotEconomicIdx('JTSTSL').renameColumn('이직건수 - 비농업')
-                .plot(title='비농업 이직건수', mode=mode, y1_title=''))
+                .plot(title='비농업 이직건수', mode=mode))
     
     @staticmethod    
     def separations_Private(mode='binary'):
