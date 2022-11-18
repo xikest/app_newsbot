@@ -202,7 +202,7 @@ class CmdHandler:
         def empireStateManufacturingSurvey():
             async   def _empireStateManufacturingSurvey(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.empireStateManufacturingSurvey)
-            return CommandHandler('empireState_manufacturing', _empireStateManufacturingSurvey)   
+            return CommandHandler('empirestate_manufacturing', _empireStateManufacturingSurvey)   
        
         # existingHomeSales reply function
         @staticmethod
