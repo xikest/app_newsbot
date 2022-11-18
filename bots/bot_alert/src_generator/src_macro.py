@@ -33,8 +33,12 @@ class SrcMacro:
             
       class Market:
             @staticmethod
-            def pattern():
-                  yield Context(content = [MarketPattern.plot()], dtype='img')
+            def pattern_w():
+                  yield Context(content = [MarketPattern.plot(period='w')], dtype='img')
+                    
+            @staticmethod
+            def pattern_m():
+                  yield Context(content = [MarketPattern.plot(period='m')], dtype='img')
             
       
       class EconomicIdx:

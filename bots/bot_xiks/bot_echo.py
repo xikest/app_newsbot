@@ -32,7 +32,9 @@ class Echobot():
             application.add_handler(BasicHandler.inline_caps())
             
             application.add_handler(CmdHandler.shillerRatio())
-            application.add_handler(CmdHandler.mkPtn())
+            application.add_handler(CmdHandler.mkPtn_m())
+            application.add_handler(CmdHandler.mkPtn_w())
+            
             application.add_handler(CmdHandler.cpi())
             application.add_handler(CmdHandler.ppi())
             application.add_handler(CmdHandler.reatailSales())

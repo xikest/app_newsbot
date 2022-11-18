@@ -69,14 +69,9 @@ class CmdHandler:
        
         
 # =================================================================================================================================
-# Macro
+# market
 # =================================================================================================================================
-        # fed reply function
-        @staticmethod
-        def fed():
-            async   def _fed(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.fed)
-            return CommandHandler('fed', _fed)
+
 
 		# shri reply function
         @staticmethod
@@ -87,10 +82,28 @@ class CmdHandler:
 
         # mkptn reply function
         @staticmethod
-        def mkPtn():
-            async   def _mkPtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern)
-            return CommandHandler('market_pattern', _mkPtn)
+        def mkPtn_w():
+            async   def _mkPtn_w(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern_w)
+            return CommandHandler('market_pattern_w', _mkPtn_w)
+        
+        # mkptn reply function
+        @staticmethod
+        def mkPtn_m():
+            async   def _mkPtn_m(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern_m)
+            return CommandHandler('market_pattern_m', _mkPtn_m)
+        
+# =================================================================================================================================
+# Macro
+# =================================================================================================================================
+
+        # fed reply function
+        @staticmethod
+        def fed():
+            async   def _fed(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.fed)
+            return CommandHandler('fed', _fed)
         
         # cpi reply function
         @staticmethod

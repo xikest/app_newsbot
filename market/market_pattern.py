@@ -53,5 +53,5 @@ class MarketPattern:
     elif mode == 'show': return fig.show()
   
   @staticmethod
-  def plot(mode='binary'):
-    return MarketPattern()._plot(mode)
+  def plot(mode='binary', period='w'):
+    return MarketPattern(period)._plot(mode)
