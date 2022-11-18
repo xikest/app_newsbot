@@ -27,6 +27,6 @@ class ExistingHomeSales:
                         .plot(title='주택 구매력 지수, 100', mode=mode, y1_title=''))
             
 
-    @staticmethod
-    def pendingHomeSalesIndex():
-        return "https://www.nar.realtor/research-and-statistics/housing-statistics/pending-home-sales"
+    # @staticmethod
+    # def pendingHomeSalesIndex():
+    #     return "https://www.nar.realtor/research-and-statistics/housing-statistics/pending-home-sales"

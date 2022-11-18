@@ -14,11 +14,13 @@ from typing import Optional
 class PlotvizBasic:
     @staticmethod
     def plotWithPctchage(ds, title:str=' ',  mode:str='show', y1_title:str=''):  #변화율을 표시
+        
+        
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
                                 .add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', width=500, height=700)
-                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[-5, 5])
+                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[ds.pct_change().min()*100 - 5 , ds.pct_change().max()*100+5 ])
                                 .update_xaxes())
         if mode == 'binary': return fig.trx_to_byte()
         elif mode == 'show': return fig.show()
