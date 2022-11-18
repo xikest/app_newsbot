@@ -20,6 +20,18 @@ from market.macro.diffusion_Index_philadelphia import DiffusionIndexphiladelphia
 from market.macro.busines_inventories import InventoriesSalesRatio
 from market.macro.fed import Fed
 from market.macro.ppi import PPI
+from market.macro.cfnai import CFNAI
+from market.macro.empire_state_manufacturing import EmpireStateManufacturingSurvey
+from market.macro.existing_home_sales import ExistingHomeSales
+from market.macro.industrial_production import IndustrialProduction
+from market.macro.ism import ISM
+from market.macro.productivity import Productivity
+
+
+
+
+
+
 
 class SrcMacro:
       class ShillerRatio:    
@@ -204,3 +216,64 @@ class SrcMacro:
                                             PPI.unprocessed_goods_Intermediate_yoy(),
                                             PPI.unprocessed_goods_Intermediate_core(),
                                           ], dtype='img')
+                  
+            @staticmethod
+            def cfnai():
+                  yield Context(content = [CFNAI.chicagoFedNationalActivityIndex()
+                                          ], dtype='img')
+
+            @staticmethod
+            def empireStateManufacturingSurvey():
+                  yield Context(content = [EmpireStateManufacturingSurvey.report()
+                                          ], dtype='msg')
+            @staticmethod
+            def existingHomeSales():
+                  yield Context(content = [ExistingHomeSales.existingHomeSales(),
+                                          ExistingHomeSales.housingInventory(),
+                                          ExistingHomeSales.monthsSupply(),
+                                          ExistingHomeSales.medianSalesPrice(),
+                                          ExistingHomeSales.medHousingAffordabilityIndexianSalesPrice()
+                                          ], dtype='img')
+
+            @staticmethod
+            def industrialProduction():
+                  yield Context(content = [IndustrialProduction.industrialProduction(),
+                                          IndustrialProduction.industrialProduction_ExcludingSelected(),
+                                          IndustrialProduction.industrialProduction_ConsumerGoods(),
+                                          IndustrialProduction.industrialProduction_BusinessEquipment(),
+                                          IndustrialProduction.industrialProduction_Defense_Space_Equipment(),
+                                          IndustrialProduction.industrialProduction_Manufacturing(),
+                                          IndustrialProduction.industrialProduction_Motor_VehiclesParts(),
+                                          IndustrialProduction.industrialProduction_Communications_Equipment(),
+                                          IndustrialProduction.industrialProduction_Semiconductor(),
+                                          IndustrialProduction.industrialProduction_Computer_Electronic(),
+                                          IndustrialProduction.industrialProduction_ExcludingMotorVehicles(),
+                                          IndustrialProduction.industrialProduction_ExcludingHi_Tech(),
+                                          IndustrialProduction.capacityUtilization(),
+                                          IndustrialProduction.capacityUtilization_Manufacturing(),
+                                          IndustrialProduction.capacityUtilization_Manufacturing_hi_tech(),
+                                          IndustrialProduction.capacityUtilization_Manufacturing_Computers(),
+                                          IndustrialProduction.capacityUtilization_Manufacturing_Communications(),
+                                          IndustrialProduction.capacityUtilization_Vehicles(),
+                                          IndustrialProduction.capacityUtilization_PrimaryMetal()
+                                          ], dtype='img')
+
+
+
+            @staticmethod
+            def ism():
+                  yield Context(content = [ISM.ism_ReportOnBusiness(),
+                                          ], dtype='msg')
+
+
+            @staticmethod
+            def productivity():
+                  yield Context(content = [Productivity.laborProductivity(),
+                                          Productivity.hourlyCompensation(),
+                                          Productivity.unitLaborCosts(),
+                                          Productivity.importPriceIndex(),
+                                          Productivity.exportPriceIndex_AllCommodities(),
+                                          Productivity.exportPriceIndex_NonagriculturalCommodities(),
+                                          ], dtype='img')
+
+

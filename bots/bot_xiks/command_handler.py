@@ -188,4 +188,47 @@ class CmdHandler:
             async   def _ppi(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ppi)
             return CommandHandler('ppi', _ppi)   
+
+       
+        # cfnai reply function
+        @staticmethod
+        def cfnai():
+            async   def _cfnai(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cfnai)
+            return CommandHandler('cfnai', _cfnai)   
+       
+        # empireStateManufacturingSurvey reply function
+        @staticmethod
+        def empireStateManufacturingSurvey():
+            async   def _empireStateManufacturingSurvey(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.empireStateManufacturingSurvey)
+            return CommandHandler('empireState_Manufacturing', _empireStateManufacturingSurvey)   
+       
+        # existingHomeSales reply function
+        @staticmethod
+        def existingHomeSales():
+            async   def _existingHomeSales(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.existingHomeSales)
+            return CommandHandler('existing_home_sales', _existingHomeSales) 
+        
+        # industrialProduction reply function
+        @staticmethod
+        def industrialProduction():
+            async   def _industrialProduction(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.industrialProduction)
+            return CommandHandler('industrial_production_capacity', _industrialProduction)   
+       
+        # # empireStateManufacturingSurvey reply function
+        # @staticmethod
+        # def ism():
+        #     async   def _ism(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        #         await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ism)
+        #     return CommandHandler('ism', _ism)   
+       
+        # existingHomeSales reply function
+        @staticmethod
+        def productivity():
+            async   def _productivity(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.productivity)
+            return CommandHandler('productivity', _productivity)   
         

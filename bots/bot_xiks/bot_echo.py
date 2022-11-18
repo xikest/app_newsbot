@@ -34,9 +34,8 @@ class Echobot():
             application.add_handler(CmdHandler.shillerRatio())
             application.add_handler(CmdHandler.mkPtn_m())
             application.add_handler(CmdHandler.mkPtn_w())
-            
+            application.add_handler(CmdHandler.fed())  
             application.add_handler(CmdHandler.cpi())
-            application.add_handler(CmdHandler.ppi())
             application.add_handler(CmdHandler.reatailSales())
             application.add_handler(CmdHandler.newResidentialSales())
             application.add_handler(CmdHandler.durableGoods())    
@@ -47,10 +46,14 @@ class Echobot():
             application.add_handler(CmdHandler.adpNationalEmploymentReport())  
             application.add_handler(CmdHandler.diffusionIndexphiladelphia())   
             application.add_handler(CmdHandler.inventoriesSalesRatio())         
-            application.add_handler(CmdHandler.fed())    
-            
-            application.add_handler(CmdHandler.bs_stock()) 
-            
+            application.add_handler(CmdHandler.ppi())
+            application.add_handler(CmdHandler.cfnai())    
+            application.add_handler(CmdHandler.empireStateManufacturingSurvey())  
+            application.add_handler(CmdHandler.existingHomeSales())   
+            application.add_handler(CmdHandler.industrialProduction())         
+            # application.add_handler(CmdHandler.ism())  
+            application.add_handler(CmdHandler.productivity())         
+
             application.run_polling(timeout=3)
 
             
