@@ -9,6 +9,7 @@ import pandas_datareader.data as web
 from tools.graph_plot.plotviz import PlotViz
 from tools.time.time import Periods
 from typing import Optional
+import numpy as np
 
 
 class PlotvizBasic:
@@ -20,7 +21,7 @@ class PlotvizBasic:
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
                                 .add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', width=500, height=700)
-                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[int(ds.pct_change().min()*100*2) , int(ds.pct_change().max()*100*2) ])
+                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[int(ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna().min()*100*2) , int(ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna().max()*100*2) ])
                                 .update_xaxes())
         if mode == 'binary': return fig.trx_to_byte()
         elif mode == 'show': return fig.show()
