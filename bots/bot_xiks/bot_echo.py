@@ -51,7 +51,7 @@ class Echobot():
             application.add_handler(CmdHandler.empireStateManufacturingSurvey())  
             application.add_handler(CmdHandler.existingHomeSales())   
             application.add_handler(CmdHandler.industrialProduction())         
-            # application.add_handler(CmdHandler.ism())  
+            application.add_handler(CmdHandler.ism())  
             application.add_handler(CmdHandler.productivity())         
 
             application.run_polling(timeout=3)

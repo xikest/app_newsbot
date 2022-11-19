@@ -277,7 +277,9 @@ class SrcMacro:
                                           Productivity.exportPriceIndex_AllCommodities(),
                                           Productivity.exportPriceIndex_NonagriculturalCommodities(),
                                           ], dtype='img'),
+                              
                               Context(content = [Productivity.upward_usd(),
+                                                 Productivity.downward_usd(),
                                                 ], dtype='msg')
                               ]
                         
