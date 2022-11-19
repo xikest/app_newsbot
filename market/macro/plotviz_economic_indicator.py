@@ -6,13 +6,16 @@ from typing import Optional
 
 class PlotEconomicIdx:
     def __init__(self, colKey:str):
-        self._ds:pd.Series
         self._colName:Optional[str]= None
-        self.load_data_from_fred(colKey)
+        self._ds:pd.Series = self.load_data_from_fred(colKey)
 
+    def sub(self, colKey):
+        self._ds = self._ds - self.load_data_from_fred(colKey)
+        return self
+        
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
         start, end = Periods.make_period(periods=5)
-        self._ds = web.DataReader(colKey, 'fred', start, end)
+        return web.DataReader(colKey, 'fred', start, end)
     
     def renameColumn(self, colName:Optional[str]=None): # 데이터 이름 변경
         self._colName=colName

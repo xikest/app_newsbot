@@ -18,5 +18,5 @@ MA 값이 2년 이상 0.7 이상까지 상승하며 경제성장이 이어진다
     @staticmethod
     def chicagoFedNationalActivityIndex(mode='binary'):
         return (PlotEconomicIdx('CFNAIMA3').renameColumn('시카고 연방은행_국가활동지수')
-                        .plot(title='시카고 연방은행_국가활동지수_MA3', mode=mode, y1_title=''))
+                        .plot(title='시카고 연방은행_국가활동지수_MA3', mode=mode))
             

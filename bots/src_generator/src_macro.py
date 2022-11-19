@@ -116,14 +116,30 @@ class SrcMacro:
 
             @staticmethod
             def durableGoods():
-                  yield Context(content = [DurableGoods.newOrder_durableGoods(),
-                                            DurableGoods.newOrder_durableGoodsExcludingTransportation(),
-                                            DurableGoods.newOrder_durableGoodsExcludingDefence(),
-                                            DurableGoods.primaryMetals(),
-                                            DurableGoods.capitalGoods(),
-                                            DurableGoods.capitalGoodsExcludingDefence(),
-                                            DurableGoods.UnfilledOrdersDurableGoods(),
-                                          ], dtype='img')
+                  yield from  [Context(content = [DurableGoods.descr(),
+                                                  DurableGoods.newOrder_durableGoods_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.newOrder_durableGoods()], dtype='img'),
+                              Context(content = [DurableGoods.newOrder_durableGoodsExcludingTransportation_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.newOrder_durableGoodsExcludingTransportation()], dtype='img'),
+                              
+                              Context(content = [DurableGoods.newOrder_durableGoodsExcludingDefence_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.newOrder_durableGoodsExcludingDefence()], dtype='img'),
+                              
+                              Context(content = [DurableGoods.newOrder_excludingDefense_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.newOrder_excludingDefense()], dtype='img'),
+                              
+                              Context(content = [DurableGoods.primaryMetals_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.primaryMetals()], dtype='img'),           
+                              
+                              Context(content = [DurableGoods.capitalGoods_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.capitalGoods()], dtype='img'),           
+                              
+                              Context(content = [DurableGoods.capitalGoodsExcludingDefence_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.capitalGoodsExcludingDefence()], dtype='img'),   
+                              
+                              Context(content = [DurableGoods.unfilledOrdersDurableGoods_descr()], dtype='msg'),
+                              Context(content = [DurableGoods.unfilledOrdersDurableGoods()], dtype='img')
+                              ]
 
 
             @staticmethod
@@ -140,9 +156,13 @@ class SrcMacro:
 
             @staticmethod
             def employmentCostIndex():
-                  yield Context(content = [EmploymentCostIndex.wages(),
-                                            EmploymentCostIndex.productivity_nonfarm(),
-                                          ], dtype='img')
+                  yield from  [Context(content = [EmploymentCostIndex.descr(), 
+                                            EmploymentCostIndex.wages_descr()], dtype='msg'),
+                              Context(content = [EmploymentCostIndex.wages(), 
+                                                EmploymentCostIndex.wages_yearly(),
+                                                EmploymentCostIndex.productivity_nonfarm()], dtype='img')
+                              ]
+                    
                     
             @staticmethod
             def gdp():
@@ -247,16 +267,31 @@ class SrcMacro:
 
             @staticmethod
             def empireStateManufacturingSurvey():
-                  yield Context(content = [EmpireStateManufacturingSurvey.report()
-                                          ], dtype='msg')
+                  yield Context(content = [EmpireStateManufacturingSurvey.descr(),
+                                           EmpireStateManufacturingSurvey.report_descr(),
+                                           EmpireStateManufacturingSurvey.report()], dtype='msg')
+                  
             @staticmethod
             def existingHomeSales():
-                  yield Context(content = [ExistingHomeSales.existingHomeSales(),
-                                          ExistingHomeSales.housingInventory(),
-                                          ExistingHomeSales.monthsSupply(),
-                                          ExistingHomeSales.medianSalesPrice(),
-                                          ExistingHomeSales.medHousingAffordabilityIndexianSalesPrice()
-                                          ], dtype='img')
+                  yield from  [Context(content = [ExistingHomeSales.descr(),
+                                                  ExistingHomeSales.existingHomeSales_descr()], dtype='msg'),
+                         
+                              Context(content = [ExistingHomeSales.existingHomeSales(),
+                                                ExistingHomeSales.housingInventory() ], dtype='img'),
+                        
+                              Context(content = [ExistingHomeSales.monthsSupply_descr()], dtype='msg'),
+                              Context(content = [ExistingHomeSales.monthsSupply()], dtype='img')
+                              
+                              Context(content = [ExistingHomeSales.medianSalesPrice_descr()], dtype='msg'),
+                              Context(content = [ExistingHomeSales.medianSalesPrice()], dtype='img'),
+                              
+                              Context(content = [ExistingHomeSales.medHousingAffordabilityIndexianSalesPrice_descr()], dtype='msg'),
+                              Context(content = [ExistingHomeSales.medHousingAffordabilityIndexianSalesPrice()], dtype='img'),
+                              
+                              Context(content = [ExistingHomeSales.pendingHomeSalesIndex()], dtype='msg')]
+
+
+
 
             @staticmethod
             def industrialProduction():
