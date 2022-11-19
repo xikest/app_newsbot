@@ -209,13 +209,13 @@ class SrcMacro:
             @staticmethod
             def diffusionIndexphiladelphia():
                   
-                  yield [Context(content = [DiffusionIndexphiladelphia.descr(),
+                  yield from  [Context(content = [DiffusionIndexphiladelphia.descr(),
                                             DiffusionIndexphiladelphia.currentGeneralActivity_descr()], dtype='msg'),
-                        Context(content = [DiffusionIndexphiladelphia.currentGeneralActivity()], dtype='img'),
-                        Context(content = [DiffusionIndexphiladelphia.futureEmployment_descr()], dtype='msg'),
-                        Context(content = [DiffusionIndexphiladelphia.futureEmployment()], dtype='img'), 
-                        Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures_descr()], dtype='msg'),
-                        Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures()], dtype='img')]
+                              Context(content = [DiffusionIndexphiladelphia.currentGeneralActivity()], dtype='img'),
+                              Context(content = [DiffusionIndexphiladelphia.futureEmployment_descr()], dtype='msg'),
+                              Context(content = [DiffusionIndexphiladelphia.futureEmployment()], dtype='img'), 
+                              Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures_descr()], dtype='msg'),
+                              Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures()], dtype='img')]
 
 
                     
