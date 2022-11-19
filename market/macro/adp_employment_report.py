@@ -33,7 +33,7 @@ class AdpNationalEmploymentReport:
     @staticmethod
     def nonfarmPrivateSmallPayrollEmployment_descr():
         return """[소규모 기업 고용 (1 - 49)]
-소규모 생산 업체들은 대기업에 비해 고용과 해고에 더욱 민첨하게 움직이는 경향이 있다.
+소규모 생산 업체들은 대기업에 비해 고용과 해고에 더욱 민첩하게 움직이는 경향이 있다.
 이들의 고용 패턴 변화는 경제의 터닝 포인트를 예측하게 해주는 중요한 선행지표로 간주될 수 있다."""   
 
     @staticmethod    

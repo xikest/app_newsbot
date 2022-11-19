@@ -75,14 +75,20 @@ class SrcMacro:
         
             @staticmethod
             def cpi():
-                  yield Context(content = [CPI.headLine(),
-                                            CPI.core(),
-                                            CPI.ma3month(),
-                                            CPI.ma6month(),
-                                            CPI.ma12month(),
-                                            CPI.medicalCare(),
-                                            CPI.shelter(),
-                                            CPI.rent()], dtype='img')
+                  yield from [Context(content = [CPI.descr()], dtype='msg'),
+                              Context(content = [CPI.headLine()], dtype='img'),
+                              Context(content = [CPI.core_descr()], dtype='msg'),
+                              Context(content = [CPI.core()], dtype='img'),
+                              Context(content = [CPI.ma_descr()], dtype='msg'),
+                              Context(content = [CPI.ma3month(),
+                                                CPI.ma6month(),
+                                                CPI.ma12month()], dtype='img'),
+                              Context(content = [CPI.medicalCare_descr()], dtype='msg'),
+                              Context(content = [CPI.medicalCare(),
+                                                CPI.shelter(),
+                                                CPI.rent()], dtype='img')
+                              ]
+                  
                   
             @staticmethod
             def reatailSales():
@@ -182,10 +188,15 @@ class SrcMacro:
                     
             @staticmethod
             def diffusionIndexphiladelphia():
-                  yield Context(content = [DiffusionIndexphiladelphia.currentGeneralActivity(),
-                                            DiffusionIndexphiladelphia.futureEmployment(),
-                                            DiffusionIndexphiladelphia.futureCapitalExpenditures(),
-                                          ], dtype='img')
+                  
+                  yield [Context(content = [DiffusionIndexphiladelphia.descr(),
+                                            DiffusionIndexphiladelphia.currentGeneralActivity_descr()], dtype='msg'),
+                        Context(content = [DiffusionIndexphiladelphia.currentGeneralActivity()], dtype='img'),
+                        Context(content = [DiffusionIndexphiladelphia.futureEmployment_descr()], dtype='msg'),
+                        Context(content = [DiffusionIndexphiladelphia.futureEmployment()], dtype='img'), 
+                        Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures_descr()], dtype='msg'),
+                        Context(content = [DiffusionIndexphiladelphia.futureCapitalExpenditures()], dtype='img')]
+
 
                     
             @staticmethod
@@ -215,24 +226,7 @@ class SrcMacro:
                                                 InventoriesSalesRatio.retailersInventories(),
                                                 InventoriesSalesRatio.merchantWholesalersInventories(),
                                                 InventoriesSalesRatio.manufacturersInventories()], dtype='img')]
-                  
-            
-                  # yield Context(content = [InventoriesSalesRatio.descr(),
-                  #                         InventoriesSalesRatio.business_descr(),
-                  #                         InventoriesSalesRatio.totalBusiness(),
-                                          
-                  #                         InventoriesSalesRatio.saleInventory_descr(),
-                  #                         InventoriesSalesRatio.retailers_descr(),
-                                          
-                                          
-                  #                         InventoriesSalesRatio.retailers(),
-                  #                         InventoriesSalesRatio.retailers_descr(),
-                                          
-                                          
-                  #                         ,
-                  #                         ,
 
-                  #                         ], dtype='img')
             @staticmethod
             def ppi():
                   yield Context(content = [PPI.finalDemand(),
@@ -247,8 +241,9 @@ class SrcMacro:
                   
             @staticmethod
             def cfnai():
-                  yield Context(content = [CFNAI.chicagoFedNationalActivityIndex()
-                                          ], dtype='img')
+                  yield from [Context(content = [CFNAI.descr(), CFNAI.chicagoFedNationalActivityIndex_descr()], dtype='msg'),
+                              Context(content = [CFNAI.chicagoFedNationalActivityIndex()], dtype='img')
+                              ]
 
             @staticmethod
             def empireStateManufacturingSurvey():
