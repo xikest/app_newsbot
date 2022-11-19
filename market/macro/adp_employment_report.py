@@ -44,7 +44,7 @@ class AdpNationalEmploymentReport:
     @staticmethod
     def nonfarmPrivateMediumPayrollEmployment_descr():
         return """[중규모 기업 고용 (50 - 499)]
-중규모 생산 업체들은 대기업에 비해 고용과 해고에 더욱 민첨하게 움직이는 경향이 있다."""   
+중규모 생산 업체들은 대기업에 비해 고용과 해고에 더욱 민첩하게 움직이는 경향이 있다."""   
         
     @staticmethod    
     def nonfarmPrivateMediumPayrollEmployment(mode='binary'):
