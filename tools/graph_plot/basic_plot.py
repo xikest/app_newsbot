@@ -16,12 +16,16 @@ class PlotvizBasic:
     @staticmethod
     def plotWithPctchage(ds, title:str=' ',  mode:str='show', y1_title:str=''):  #변화율을 표시
         
-        
+        ds_pct = ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna()
+        max = abs(ds_pct.max())
+        min = abs(ds_pct.min())
+        range_secondary_y = int(np.where(max > min, max, min)*100*2)
+         
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
                                 .add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', width=500, height=700)
-                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[int(ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna().min()*100*2) , int(ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna().max()*100*2) ])
+                                .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent_change', secondary_y=True, range=[0-range_secondary_y,  range_secondary_y])
                                 .update_xaxes())
         if mode == 'binary': return fig.trx_to_byte()
         elif mode == 'show': return fig.show()

@@ -11,5 +11,12 @@ class Fed:
         return (PlotEconomicIdx('DFF').renameColumn('Federal Funds Effective Rate')
                         .plot(title='Federal Funds Effective Rate', mode=mode, y1_title=''))
             
+    @staticmethod
+    def m2v(mode='binary'):
+        return (PlotEconomicIdx('M2V').renameColumn('Velocity of M2 Money Stock')
+                        .plot(title='Velocity of M2 Money Stock', mode=mode, y1_title=''))
+            
+
+
 
 

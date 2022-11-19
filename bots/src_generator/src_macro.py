@@ -1,6 +1,7 @@
 from datetime import timedelta
-from bots.bot_alert.src_generator.src_generator import SrcGenerator
-from bots.bot_alert.src_generator.src_news import SrcNews
+
+from .src_generator import SrcGenerator
+from .src_news import SrcNews
 from tools.time.time import Timer
 from tools.telegram_bot.contents import Context
 
@@ -66,7 +67,8 @@ class SrcMacro:
             @staticmethod
             def fed():
                   yield Context(content = [Fed.totalAssets(),
-                                           Fed.fed_effective_rate()
+                                           Fed.fed_effective_rate(),
+                                           Fed.m2v()
                                           ], dtype='img')
         
    
@@ -268,12 +270,16 @@ class SrcMacro:
 
             @staticmethod
             def productivity():
-                  yield Context(content = [Productivity.laborProductivity(),
+                  yield from [Context(content = [Productivity.laborProductivity(),
                                           Productivity.hourlyCompensation(),
                                           Productivity.unitLaborCosts(),
                                           Productivity.importPriceIndex(),
                                           Productivity.exportPriceIndex_AllCommodities(),
                                           Productivity.exportPriceIndex_NonagriculturalCommodities(),
-                                          ], dtype='img')
+                                          ], dtype='img'),
+                              Context(content = [Productivity.upward_usd(),
+                                                ], dtype='msg')
+                              ]
+                        
 
 

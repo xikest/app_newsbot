@@ -1,7 +1,8 @@
 from typing import Generator
 import asyncio
-from bots.bot_alert.src_generator.src_macro import SrcMacro
-from bots.bot_alert.src_generator.src_stocks import SrcStocks
+from ..src_generator.src_macro import SrcMacro
+from ..src_generator.src_stocks import SrcStocks
+from ...tools.telegram_bot.contents import Context
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
@@ -20,13 +21,18 @@ from telegram.ext import (
     
 class CmdHandler:
         @staticmethod
-        async   def _sentPhoto(update: Update, context: ContextTypes.DEFAULT_TYPE, genContent:Generator):
+        async   def _sentPhoto(update: Update, context: ContextTypes.DEFAULT_TYPE, genContents:Generator):
+                    context_ex:Context
                     await   update.message.reply_text(text="잠시만 기다려 주세요.")
                     # update.message.reply_text(text="잠시만 기다려 주세요.")
-                    for context_ex in genContent():
+                    
+                    for context_ex in genContents():
                         while len(context_ex.content) > 0: 
                             await asyncio.sleep(1)
-                            await    update.message.reply_photo(photo=context_ex.content.pop(0))
+                            if context_ex.dtype == 'img': 
+                                await    update.message.reply_photo(photo=context_ex.content.pop(0))
+                            if context_ex.dtype == 'msg': 
+                                await    update.message.reply_text(text=context_ex.content.pop(0))      
                 
 # =================================================================================================================================
 # stocks

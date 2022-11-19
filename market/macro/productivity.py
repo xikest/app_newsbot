@@ -4,17 +4,17 @@ class Productivity:
     @staticmethod
     def laborProductivity(mode='binary'):
         return (PlotEconomicIdx('PRS85006091').renameColumn('비농업 경제 부문: 생산성')
-                        .plot(title='비농업 경제 부문: 생산성', mode=mode))
+                        .plot(title='비농업 경제 부문: 생산성', mode=mode, y1_title=''))
             
     @staticmethod
     def hourlyCompensation(mode='binary'):
         return (PlotEconomicIdx('PRS85006101').renameColumn('비농업 경제 부문: 시간당 급여금')
-                        .plot(title='비농업 경제 부문: 시간당 급여금', mode=mode))
+                        .plot(title='비농업 경제 부문: 시간당 급여금', mode=mode, y1_title=''))
             
     @staticmethod
     def unitLaborCosts(mode='binary'):
         return (PlotEconomicIdx('PRS85006111').renameColumn('비농업 경제 부문: 단위노동비용 및 가격')
-                        .plot(title='비농업 경제 부문: 단위노동비용 및 가격', mode=mode))
+                        .plot(title='비농업 경제 부문: 단위노동비용 및 가격', mode=mode, y1_title=''))
             
     @staticmethod
     def importPriceIndex(mode='binary'):

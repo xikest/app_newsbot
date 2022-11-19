@@ -1,8 +1,8 @@
 import asyncio
 import platform
 
-from bots.bot_alert.bot_news_alert import NewsAlert
-from bots.bot_alert.src_generator.src_news import SrcNews
+from .bots.bot_alert.bot_news_alert import NewsAlert
+from .bots.src_generator.src_news import SrcNews
 from info.bot_info import BotInfo
 
 # #beta testing

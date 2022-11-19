@@ -4,16 +4,16 @@ class DurableGoods:
     @staticmethod
     def newOrder_durableGoods(mode='binary'):
         return (PlotEconomicIdx('DGORDER').renameColumn('내구재 신규 주문')
-                .plot(title='내구재 신규 주문', mode=mode))
+                .plot(title='내구재 신규 주문', mode=mode, y1_title=''))
     @staticmethod    
     def newOrder_durableGoodsExcludingTransportation(mode='binary'):
         return (PlotEconomicIdx('ADXTNO').renameColumn('운송 제외 내구재 신규 주문')
-                .plot(title='운송 제외 내구재 신규 주문', mode=mode))
+                .plot(title='운송 제외 내구재 신규 주문', mode=mode, y1_title=''))
         
     @staticmethod    
     def newOrder_durableGoodsExcludingDefence(mode='binary'):
         return (PlotEconomicIdx('AMTUNO').renameColumn('방산재 제외 내구재 신규 주문')
-                .plot(title='방산재 제외 내구재 신규 주문', mode=mode))
+                .plot(title='방산재 제외 내구재 신규 주문', mode=mode, y1_title=''))
     
 # #### 방산재 및 운송을 제외한 신규 내구재 주문, 
 
@@ -31,15 +31,15 @@ class DurableGoods:
     @staticmethod    
     def primaryMetals(mode='binary'):
         return (PlotEconomicIdx('A31SNO').renameColumn('1차 금속 신규 주문')
-                .plot(title='1차 금속 신규 주문', mode=mode))
+                .plot(title='1차 금속 신규 주문', mode=mode, y1_title=''))
     @staticmethod    
     def capitalGoods(mode='binary'):
         return (PlotEconomicIdx('ATCGNO').renameColumn('자본재 신규 주문')
-                .plot(title='자본재 신규 주문', mode=mode))
+                .plot(title='자본재 신규 주문', mode=mode, y1_title=''))
     @staticmethod    
     def capitalGoodsExcludingDefence(mode='binary'):
         return (PlotEconomicIdx('NEWORDER').renameColumn('비군수용 자본재(항공기 제외) 신규 주문')
-                .plot(title='비군수용 자본재(항공기 제외) 신규 주문', mode=mode))
+                .plot(title='비군수용 자본재(항공기 제외) 신규 주문', mode=mode, y1_title=''))
     @staticmethod    
     def UnfilledOrdersDurableGoods(mode='binary'):
         return (PlotEconomicIdx('AMDMUO').renameColumn('수주 잔량')
