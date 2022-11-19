@@ -10,15 +10,18 @@ class PlotEconomicIdx:
         self._ds:pd.Series = self.load_data_from_fred(colKey)
 
     def sub(self, colKey):
-        data = self._ds.values - self.load_data_from_fred(colKey).values
+        data = self.load_data_from_fred(colKey)
+        data = self._ds.values - self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values
         self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
     
     def div(self, colKey):
-        data = self._ds.values / self.load_data_from_fred(colKey).values
+        data = self.load_data_from_fred(colKey)
+        data = self._ds.values / self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values #계산하기 위해 self._ds와 인덱스를 맞춰줌
         self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
     
+ds.merge(ds1, left_index=True, right_index=True).ffill()
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
         start, end = Periods.make_period(periods=5)
         return web.DataReader(colKey, 'fred', start, end)
