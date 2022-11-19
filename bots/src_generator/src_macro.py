@@ -166,17 +166,75 @@ class SrcMacro:
                     
             @staticmethod
             def gdp():
-                  yield Context(content = [GDP.gdp(),
-                                            GDP.personalConsumptionExpenditures(),
-                                            GDP.durableGoods(),
-                                            GDP.non_durableGoods(),
-                                            GDP.services(),
-                                            GDP.domesticInvestment(),
-                                            GDP.fixedInvestment(),
-                                            GDP.changeInventories(),
-                                            GDP.netExports(),
-                                            GDP.governmentConsumptionExpenditures_GrossInvestment(),
-                                          ], dtype='img')
+                  yield from  [Context(content = [GDP.descr()], dtype='msg'),
+                              
+                              Context(content = [GDP.gdp_descr()], dtype='msg'),
+                              Context(content = [GDP.gdp()], dtype='img'),
+                              
+                              Context(content = [GDP.pce_descr()], dtype='msg'),
+                              Context(content = [GDP.pce()], dtype='img'),
+                              
+                              Context(content = [GDP.durableGoods_descr()], dtype='msg'),
+                              Context(content = [GDP.durableGoods()], dtype='img'),
+                    
+                              Context(content = [GDP.services_descr()], dtype='msg'),
+                              Context(content = [GDP.services()], dtype='img'),
+                              
+                              Context(content = [GDP.domesticInvestment_descr()], dtype='msg'),
+                              Context(content = [GDP.domesticInvestment()], dtype='img'),
+                              
+                              Context(content = [GDP.fixedInvestment_descr()], dtype='msg'),
+                              Context(content = [GDP.fixedInvestment()], dtype='img'),
+                    
+                              Context(content = [GDP.changeInventories_descr()], dtype='msg'),
+                              Context(content = [GDP.changeInventories()], dtype='img'),
+                              
+                              Context(content = [GDP.netExports_descr()], dtype='msg'),
+                              Context(content = [GDP.netExports()], dtype='img'),
+                              
+                              Context(content = [GDP.governmentConsumptionExpenditures_GrossInvestment_descr()], dtype='msg'),
+                              Context(content = [GDP.governmentConsumptionExpenditures_GrossInvestment()], dtype='img'),
+                    
+                              Context(content = [GDP.finalSalesofDomesticProduct_descr()], dtype='msg'),
+                              Context(content = [GDP.finalSalesofDomesticProduct()], dtype='img'),
+                              
+                              Context(content = [GDP.grossDomesticPurchases_descr()], dtype='msg'),
+                              Context(content = [GDP.grossDomesticPurchases()], dtype='img'),
+                              
+                              Context(content = [GDP.gDPImplicitPriceDeflator_descr()], dtype='msg'),
+                              Context(content = [GDP.gDPImplicitPriceDeflator()], dtype='img'),
+                              
+                              Context(content = [GDP.gNPImplicitPriceDeflator_descr()], dtype='msg'),
+                              Context(content = [GDP.gNPImplicitPriceDeflator()], dtype='img'),
+                              
+                              Context(content = [GDP.pCeDeflator_descr()], dtype='msg'),
+                              Context(content = [GDP.pCeDeflator()], dtype='img'),
+                              
+                              Context(content = [GDP.realGrossDomesticProduct_descr()], dtype='msg'),
+                              Context(content = [GDP.realGrossDomesticProduct()], dtype='img'),  
+                              
+                              Context(content = [GDP.realNetExportsofGoodsandServices_descr()], dtype='msg'),
+                              Context(content = [GDP.realNetExportsofGoodsandServices()], dtype='img'),
+                              
+                              Context(content = [GDP.realFinalSalestoPrivateDomesticPurchasers_descr()], dtype='msg'),
+                              Context(content = [GDP.realFinalSalestoPrivateDomesticPurchasers()], dtype='img'),
+                              
+                              Context(content = [GDP.rGDPdivRealFinalSales_descr()], dtype='msg'),
+                              Context(content = [GDP.rGDPdivRealFinalSales()], dtype='img'),  
+                              
+                              Context(content = [GDP.gDPdivGNP_descr()], dtype='msg'),
+                              Context(content = [GDP.gDPdivGNP()], dtype='img'),
+                              
+                              Context(content = [GDP.realGDP_Computers_descr()], dtype='msg'),
+                              Context(content = [GDP.realGDP_Computers()], dtype='img'),
+                              
+                              Context(content = [GDP.realGDP_Vehicle_descr()], dtype='msg'),
+                              Context(content = [GDP.realGDP_Vehicle()], dtype='img'),                          
+                              
+                              Context(content = [GDP.rPCE_excludingfood_energy_descr()], dtype='msg'),
+                              Context(content = [GDP.rPCE_excludingfood_energy()], dtype='img')
+                              ]
+                                         
                     
             @staticmethod
             def jolt():

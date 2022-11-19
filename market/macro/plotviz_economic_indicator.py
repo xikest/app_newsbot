@@ -13,7 +13,12 @@ class PlotEconomicIdx:
         data = self._ds.values - self.load_data_from_fred(colKey).values
         self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
-        
+    
+    def div(self, colKey):
+        data = self._ds.values / self.load_data_from_fred(colKey).values
+        self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
+        return self
+    
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
         start, end = Periods.make_period(periods=5)
         return web.DataReader(colKey, 'fred', start, end)
