@@ -10,15 +10,18 @@ class PlotEconomicIdx:
         self._ds:pd.Series = self.load_data_from_fred(colKey)
 
     def sub(self, colKey):
-        data = self.load_data_from_fred(colKey)
-        data = self._ds.values.squeeze() - self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values.squeeze()#계산하기 위해 self._ds와 인덱스를 맞춰줌
-        self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
+        df = self.load_data_from_fred(colKey)
+        df_merged = self._ds.merge(data, left_index=True, right_index=True).ffill() #계산하기 위해 self._ds와 인덱스를 맞춰줌
+        df = df_merged.iloc[:,0].values.squeeze() - df_merged.iloc[:,1].values.squeeze()
+        self._ds = pd.DataFrame(df, index=df_merged.index, columns=self._ds.columns)
         return self
     
+    
     def div(self, colKey):
-        data = self.load_data_from_fred(colKey)
-        data = self._ds.values.squeeze() / self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values.squeeze() #계산하기 위해 self._ds와 인덱스를 맞춰줌
-        self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
+        df = self.load_data_from_fred(colKey)
+        df_merged = self._ds.merge(data, left_index=True, right_index=True).ffill() #계산하기 위해 self._ds와 인덱스를 맞춰줌
+        df = df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze()
+        self._ds = pd.DataFrame(df, index=df_merged.index, columns=self._ds.columns)
         return self
     
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
