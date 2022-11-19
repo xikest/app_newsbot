@@ -280,7 +280,7 @@ class SrcMacro:
                                                 ExistingHomeSales.housingInventory() ], dtype='img'),
                         
                               Context(content = [ExistingHomeSales.monthsSupply_descr()], dtype='msg'),
-                              Context(content = [ExistingHomeSales.monthsSupply()], dtype='img')
+                              Context(content = [ExistingHomeSales.monthsSupply()], dtype='img'),
                               
                               Context(content = [ExistingHomeSales.medianSalesPrice_descr()], dtype='msg'),
                               Context(content = [ExistingHomeSales.medianSalesPrice()], dtype='img'),
