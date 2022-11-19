@@ -34,7 +34,7 @@ class PlotEconomicIdx:
         return self
 
     def plot(self, title:str=' ',  mode:str='binary', y1_title:Optional[str]=None):  #변화율을 표시
-        self._ds.applymap(lambda x: round(x,1)) #ds 값이 모두 0보다 크면 반올림 함
+        data=self._ds.applymap(lambda x: round(x,1)) #ds 값이 모두 0보다 크면 반올림 함
         # if ((self._ds > 0).sum() > 0).values:  data = self._ds.applymap(lambda x: round(x,1)) #ds 값이 모두 0보다 크면 반올림 함
         if y1_title  is None:   return PlotvizBasic.plot(data, title,  mode)
         else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title)
