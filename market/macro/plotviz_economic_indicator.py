@@ -20,7 +20,7 @@ class PlotEconomicIdx:
     def div(self, colKey):
         df = self.load_data_from_fred(colKey)
         df_merged = self._ds.merge(df, left_index=True, right_index=True).ffill() #계산하기 위해 self._ds와 인덱스를 맞춰줌
-        df = df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze() - 1 
+        df = (df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze()) - 1 
         self._ds = pd.DataFrame(df, index=df_merged.index, columns=self._ds.columns)
         return self
     
@@ -34,7 +34,7 @@ class PlotEconomicIdx:
         return self
 
     def plot(self, title:str=' ',  mode:str='binary', y1_title:Optional[str]=None):  #변화율을 표시
-        data = self._ds.applymap(lambda x: round(x,1))
+        if (self._ds > 0).sum() > 0:  data = self._ds.applymap(lambda x: round(x,1)) #ds 값이 모두 0보다 크면 반올림 함
         if y1_title  is None:   return PlotvizBasic.plot(data, title,  mode)
         else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title)
 
