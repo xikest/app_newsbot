@@ -1,5 +1,5 @@
 from xml.etree.ElementInclude import default_loader
-from bots.bot_alert.src_generator.src_generator import SrcGenerator
+from ..src_generator.src_generator import SrcGenerator
 from typing import Optional
 from info.ids import Ids
 
