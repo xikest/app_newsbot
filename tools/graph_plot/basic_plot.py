@@ -19,7 +19,7 @@ class PlotvizBasic:
         ds_pct = ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna()
         max = abs(ds_pct.quantile(q=0.9).max())
         min = abs(ds_pct.quantile(q=0.9).min())
-        range_secondary_y = int(np.where(max > min, max, min)*100*1.5+5)
+        range_secondary_y = int(np.where(max > min, max, min)*100*1.5+2)
          
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
