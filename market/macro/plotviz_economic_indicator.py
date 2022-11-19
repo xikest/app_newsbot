@@ -11,13 +11,13 @@ class PlotEconomicIdx:
 
     def sub(self, colKey):
         data = self.load_data_from_fred(colKey)
-        data = self._ds.values - self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values
+        data = self._ds.values.squeeze() - self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values.squeeze()#계산하기 위해 self._ds와 인덱스를 맞춰줌
         self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
     
     def div(self, colKey):
         data = self.load_data_from_fred(colKey)
-        data = self._ds.values / self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values #계산하기 위해 self._ds와 인덱스를 맞춰줌
+        data = self._ds.values.squeeze() / self._ds.merge(data, left_index=True, right_index=True).ffill().iloc[:,1].values.squeeze() #계산하기 위해 self._ds와 인덱스를 맞춰줌
         self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
     
