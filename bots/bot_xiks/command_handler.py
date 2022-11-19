@@ -225,12 +225,12 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.industrialProduction)
             return CommandHandler('industrial_production_capacity', _industrialProduction)   
        
-        # # empireStateManufacturingSurvey reply function
-        # @staticmethod
-        # def ism():
-        #     async   def _ism(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        #         await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ism)
-        #     return CommandHandler('ism', _ism)   
+        # ISM reply function
+        @staticmethod
+        def ism():
+            async   def _ism(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ism)
+            return CommandHandler('ism', _ism)   
        
         # existingHomeSales reply function
         @staticmethod
