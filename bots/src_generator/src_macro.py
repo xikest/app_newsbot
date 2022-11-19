@@ -170,14 +170,15 @@ class SrcMacro:
                     
             @staticmethod
             def adpNationalEmploymentReport():
-                  yield Context(content = [AdpNationalEmploymentReport.nonfarmPrivatePayrollEmployment(),
-                                            AdpNationalEmploymentReport.nonfarmPrivateManufacturingPayrollEmployment(),
-                                            AdpNationalEmploymentReport.nonfarmPrivateSmallPayrollEmployment(),
-                                            AdpNationalEmploymentReport.nonfarmPrivateMediumPayrollEmployment(),
-                                            AdpNationalEmploymentReport.nonfarmPrivateLargePayrollEmployment(),
-                                          ], dtype='img')
-
-                    
+                  yield from [Context(content = [AdpNationalEmploymentReport.descr()], dtype='msg'),
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivatePayrollEmployment()], dtype='img'),
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateManufacturingPayrollEmployment_descr()], dtype='msg'),
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateManufacturingPayrollEmployment()], dtype='img'),
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateSmallPayrollEmployment_descr()], dtype='msg'), 
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateSmallPayrollEmployment()], dtype='img'),   
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateMediumPayrollEmployment_descr()], dtype='msg'),
+                              Context(content = [AdpNationalEmploymentReport.nonfarmPrivateMediumPayrollEmployment(),
+                                                 AdpNationalEmploymentReport.nonfarmPrivateLargePayrollEmployment()], dtype='img')]
                     
             @staticmethod
             def diffusionIndexphiladelphia():
@@ -189,24 +190,49 @@ class SrcMacro:
                     
             @staticmethod
             def inventoriesSalesRatio():
-                  yield Context(content = [InventoriesSalesRatio.totalBusiness(),
-                                            InventoriesSalesRatio.retailers(),
-                                            InventoriesSalesRatio.retailTradeExcludingVehicle(),
-                                            InventoriesSalesRatio.motorVehicle(),
-                                            InventoriesSalesRatio.furniture_home_furnishings(),
-                                            InventoriesSalesRatio.buildingMaterials(),
-                                            InventoriesSalesRatio.clothing(),
-                                            InventoriesSalesRatio.food_beverage(),
-                                            InventoriesSalesRatio.generalMrchandise(),
-                                            InventoriesSalesRatio.department(),
-                                            InventoriesSalesRatio.merchantWholesalers(),
-                                            InventoriesSalesRatio.manufacturers(),
-                                            InventoriesSalesRatio.businessInventories(),
-                                            InventoriesSalesRatio.retailersInventories(),
-                                            InventoriesSalesRatio.merchantWholesalersInventories(),
-                                            InventoriesSalesRatio.manufacturersInventories(),
+                  yield from [Context(content = [InventoriesSalesRatio.descr(),
+                                                 
+                                                InventoriesSalesRatio.business_descr()], dtype='msg'),
+                              Context(content = [InventoriesSalesRatio.totalBusiness()], dtype='img'),
+                              Context(content = [InventoriesSalesRatio.saleInventory_descr(),
+                                                InventoriesSalesRatio.retailers_descr()], dtype='msg'),
+                              Context(content = [InventoriesSalesRatio.retailers()], dtype='img'),
+                              
+                              Context(content = [InventoriesSalesRatio.retailers_descr()], dtype='msg'), 
+                              Context(content = [InventoriesSalesRatio.retailTradeExcludingVehicle(),
+                                                InventoriesSalesRatio.motorVehicle(),
+                                                InventoriesSalesRatio.furniture_home_furnishings(),
+                                                InventoriesSalesRatio.buildingMaterials(),
+                                                InventoriesSalesRatio.clothing(),
+                                                InventoriesSalesRatio.food_beverage(),
+                                                InventoriesSalesRatio.generalMrchandise(),
+                                                InventoriesSalesRatio.department(),
+                                                InventoriesSalesRatio.merchantWholesalers(),
+                                                InventoriesSalesRatio.manufacturers(),], dtype='img'),  
+                               
+                              Context(content = [InventoriesSalesRatio.inventory_descr()], dtype='msg'),
+                              Context(content = [InventoriesSalesRatio.businessInventories(),
+                                                InventoriesSalesRatio.retailersInventories(),
+                                                InventoriesSalesRatio.merchantWholesalersInventories(),
+                                                InventoriesSalesRatio.manufacturersInventories()], dtype='img')]
+                  
+            
+                  # yield Context(content = [InventoriesSalesRatio.descr(),
+                  #                         InventoriesSalesRatio.business_descr(),
+                  #                         InventoriesSalesRatio.totalBusiness(),
+                                          
+                  #                         InventoriesSalesRatio.saleInventory_descr(),
+                  #                         InventoriesSalesRatio.retailers_descr(),
+                                          
+                                          
+                  #                         InventoriesSalesRatio.retailers(),
+                  #                         InventoriesSalesRatio.retailers_descr(),
+                                          
+                                          
+                  #                         ,
+                  #                         ,
 
-                                          ], dtype='img')
+                  #                         ], dtype='img')
             @staticmethod
             def ppi():
                   yield Context(content = [PPI.finalDemand(),
