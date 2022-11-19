@@ -10,7 +10,8 @@ class PlotEconomicIdx:
         self._ds:pd.Series = self.load_data_from_fred(colKey)
 
     def sub(self, colKey):
-        self._ds = self._ds - self.load_data_from_fred(colKey)
+        data = self._ds.values - self.load_data_from_fred(colKey).values
+        self._ds = pd.DataFrame(data, index=self._ds.index, columns=self._ds.columns)
         return self
         
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
