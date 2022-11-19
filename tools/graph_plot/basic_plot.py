@@ -17,9 +17,9 @@ class PlotvizBasic:
     def plotWithPctchage(ds, title:str=' ',  mode:str='show', y1_title:str=''):  #변화율을 표시
         
         ds_pct = ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna()
-        max = abs(ds_pct.quantile(q=0.9).max())
-        min = abs(ds_pct.quantile(q=0.9).min())
-        range_secondary_y = int(np.where(max > min, max, min)*100*2+1)
+        max_ds = abs(ds_pct.quantile(q=0.9).max())
+        min_ds = abs(ds_pct.quantile(q=0.9).min())
+        range_secondary_y = int(np.where(max_ds > min_ds, max_ds, min_ds)*100*2+1)
          
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
