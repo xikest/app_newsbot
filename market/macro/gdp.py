@@ -119,7 +119,7 @@ GDP는 총수요와 재고 변화의 합이라 할 수 있다.
     @staticmethod
     def  changeInventories(mode='binary'):
         return (PlotEconomicIdx('CBI').renameColumn('민간 재고의 변화')
-                .plot(title='민간 재고의 변화', mode=mode, y1_title=''))    
+                .plot(title='민간 재고의 변화', mode=mode, y1_title='', secondary_y=False))   
     
     @staticmethod
     def netExports_descr():
@@ -243,7 +243,7 @@ GDP에서 18% 가량을 차지한다.
     @staticmethod
     def realFinalSalestoPrivateDomesticPurchasers(mode='binary'):
         return (PlotEconomicIdx('PB0000031Q225SBEA').renameColumn('국내 생산 최종 매출')
-                .plot(title='국내 생산 최종 매출', mode=mode, y1_title=''))    
+                .plot(title='국내 생산 최종 매출', mode=mode, y1_title='', secondary_y=False))   
         
         
     @staticmethod
@@ -253,7 +253,7 @@ GDP에서 18% 가량을 차지한다.
     @staticmethod
     def rGDPdivRealFinalSales(mode='binary'):
         return (PlotEconomicIdx('LB0000031Q020SBEA').div('GDPC1').renameColumn('실질GDP / 실제 최종 판매')
-                .plot(title='실질GDP / 실제 최종 판매', mode=mode, y1_title=''))    
+                .plot(title='실질GDP / 실제 최종 판매', mode=mode, y1_title='Pecent (%)', secondary_y=False))   
         
     @staticmethod
     def gDPdivGNP_descr():
@@ -265,7 +265,7 @@ GDP는 미국 내 생산량에 대한 뛰어난 지표이며 미국의 고용 �
     @staticmethod
     def gDPdivGNP(mode='binary'):
         return (PlotEconomicIdx('GDP').div('GNP').renameColumn('GDP / GNP')
-                .plot(title='GDP / GNP', mode=mode, y1_title=''))    
+                .plot(title='GDP / GNP', mode=mode,  y1_title='Pecent (%)', secondary_y=False))   
         
         
     @staticmethod
@@ -277,7 +277,7 @@ GDP는 미국 내 생산량에 대한 뛰어난 지표이며 미국의 고용 �
     @staticmethod
     def realGDP_Computers(mode='binary'):
         return (PlotEconomicIdx('BB01RL1Q225SBEA').renameColumn('실질 GDP: 컴퓨터 매출')
-                .plot(title='실질 GDP: 컴퓨터 매출', mode=mode))    
+                .plot(title='실질 GDP: 컴퓨터 매출', mode=mode, secondary_y=False))   
         
     @staticmethod
     def realGDP_Vehicle_descr():
@@ -287,7 +287,7 @@ GDP는 미국 내 생산량에 대한 뛰어난 지표이며 미국의 고용 �
     @staticmethod
     def realGDP_Vehicle(mode='binary'):
         return (PlotEconomicIdx('A953RL1Q225SBEA').renameColumn('실질 GDP: 자동차 매출')
-                .plot(title='실질 GDP: 자동차 매출', mode=mode))    
+                .plot(title='실질 GDP: 자동차 매출', mode=mode, secondary_y=False))     
         
         
     @staticmethod
@@ -298,4 +298,4 @@ GDP는 미국 내 생산량에 대한 뛰어난 지표이며 미국의 고용 �
 """
     def rPCE_excludingfood_energy(mode='binary'):
         return (PlotEconomicIdx('DPCCRAM1M225NBEA').renameColumn('실질 PCE: 음식, 에너지 제외')
-                .plot(title='실질 PCE: 음식, 에너지 제외', mode=mode))    
+                .plot(title='실질 PCE: 음식, 에너지 제외', mode=mode, secondary_y=False))    
