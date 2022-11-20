@@ -3,6 +3,7 @@ import platform
 
 from bots.bot_alert.bot_news_alert import NewsAlert
 from bots.src_generator.src_news import SrcNews
+from bots.src_generator.src_tweetter import SrcTwt
 from info.bot_info import BotInfo
 
 # #beta testing
@@ -16,3 +17,6 @@ if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 asyncio.run(NewsAlert(TOKEN).start(SrcNews.gen_news))
 
+
+
+list(SrcTwt.gen_twt(['financialjuice']))
