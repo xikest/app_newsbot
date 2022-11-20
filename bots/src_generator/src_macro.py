@@ -27,13 +27,12 @@ from market.macro.existing_home_sales import ExistingHomeSales
 from market.macro.industrial_production import IndustrialProduction
 from market.macro.ism import ISM
 from market.macro.productivity import Productivity
-from market.macro.initial_claims import InitialClaims
 from market.macro.e_commerce_retail_sales import E_COMMERCE
 from market.macro.import_export import ImportExport
 from market.macro.cass_freight_index import CassFreightIndex
 from market.macro.new_housing import NewHousing
 from market.macro.consumer_credit import ConsumerCredit
-
+from market.macro.initial_claims import InitialClaims
 from market.macro.cpi_bra import CPI_BRA
 from market.macro.cpi_chn import CPI_CHN
 from market.macro.cpi_de import CPI_DE
