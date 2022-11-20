@@ -45,6 +45,15 @@ class BasicHandler:
     ecommerce - 전자 상거래 
     import_export - 수출입
     cass_freight_index - 캐스 화물 지수
+    new_housing - 신규 주택 착공
+    consumer_credit - 소비자 신용
+    cpi_bra - CPI 브라질
+    cpi_chn - CPI 중국
+    cpi_de - CPI 독일
+    cpi_inida - CPI 인도
+    cpi_jpn - CPI 일본
+    cpi_kr - CPI 한국
+    
     bs_stock - ticker를 입력해 주세요.""")
         return CommandHandler('help', _help)
 

@@ -249,9 +249,9 @@ class CmdHandler:
         
         # E_COMMERCE reply function
         @staticmethod
-        def ecommerce():
+        def ecommerce_retailes():
             async   def _ecommerce(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ecommerce)
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ecommerce_retails)
             return CommandHandler('ecommerce', _ecommerce)  
         
         # ImportExport reply function
@@ -268,4 +268,58 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cassFreightIndex)
             return CommandHandler('cass_freight_index', _cassFreightIndex)  
         
+        # NewHousing reply function
+        @staticmethod
+        def newHousing():
+            async   def _newHousing(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.newHousing)
+            return CommandHandler('new_housing', _newHousing)  
         
+        # ConsumerCredit reply function
+        @staticmethod
+        def consumerCredit():
+            async   def _consumerCredit(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.consumerCredit)
+            return CommandHandler('consumer_credit', _consumerCredit)  
+        
+        # CPI_BRA reply function
+        @staticmethod
+        def cpi_bra():
+            async   def _cpi_bra(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_bra)
+            return CommandHandler('cpi_bra', _cpi_bra)  
+        
+        # CPI_CHN reply function
+        @staticmethod
+        def cpi_chn():
+            async   def _cpi_chn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_chn)
+            return CommandHandler('cpi_chn', _cpi_chn)  
+        
+        # CPI_DE reply function
+        @staticmethod
+        def cpi_de():
+            async   def _cpi_de(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_de)
+            return CommandHandler('cpi_de', _cpi_de)  
+        
+        # CPI_INDIA reply function
+        @staticmethod
+        def cpi_inida():
+            async   def _cpi_inida(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_inida)
+            return CommandHandler('cpi_inida', _cpi_inida)  
+        
+        # CPI_JPN reply function
+        @staticmethod
+        def cpi_jpn():
+            async   def _cpi_jpn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_jpn)
+            return CommandHandler('cpi_jpn', _cpi_jpn)  
+        
+        # CPI_KR reply function
+        @staticmethod
+        def cpi_kr():
+            async   def _cpi_kr(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cpi_kr)
+            return CommandHandler('cpi_kr', _cpi_kr)  

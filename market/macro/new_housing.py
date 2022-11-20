@@ -78,7 +78,7 @@ class NewHousing :
                 .plot(title='공사가 진행 중인 신규 주택 총합', mode=mode, y1_title=''))
         
     @staticmethod
-    def newHousing_total_underConstruction(mode='binary'):
+    def newHousing_single_underConstruction(mode='binary'):
         return (PlotEconomicIdx('UNDCON1USA').renameColumn('공사가 진행 중인 신규 단독 주택')
                 .plot(title='공사가 진행 중인 신규 단독 주택', mode=mode, y1_title=''))
         

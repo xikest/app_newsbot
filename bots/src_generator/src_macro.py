@@ -31,8 +31,15 @@ from market.macro.initial_claims import class InitialClaims
 from market.macro.e_commerce_retail_sales import class E_COMMERCE
 from market.macro.import_export import class ImportExport
 from market.macro.cass_freight_index import class CassFreightIndex
+from market.macro.new_housing import class NewHousing
+from market.macro.consumer_credit import class ConsumerCredit
 
-
+from market.macro.cpi_bra import class CPI_BRA
+from market.macro.cpi_chn import class CPI_CHN
+from market.macro.cpi_de import class CPI_DE
+from market.macro.cpi_india import class CPI_INDIA
+from market.macro.cpi_jpn import class CPI_JPN
+from market.macro.cpi_kr import class CPI_KR
 
 
 class SrcMacro:
@@ -481,7 +488,7 @@ class SrcMacro:
                               Context(content = [InitialClaims.insuredUnemploymentRate_descr()], dtype='msg'),
                               Context(content = [InitialClaims.insuredUnemploymentRate()], dtype='img')]
                               
-            def ecommerce():
+            def ecommerce_retails():
                   yield from  [Context(content = [E_COMMERCE.descr()], dtype='msg'),                              
                               Context(content = [E_COMMERCE.e_CommerceRetailSales()], dtype='img')]
 
@@ -516,4 +523,82 @@ class SrcMacro:
                               ]
                         
 
+            @staticmethod
+            def newHousing():
+                  yield from [Context(content = [NewHousing.descr()], dtype='msg'),
+                              Context(content = [NewHousing.report_url()], dtype='msg')
+                              
+                              Context(content = [NewHousing.newHousing_total_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_total()], dtype='img'),
+                          
+                              Context(content = [NewHousing.newHousing_single_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_single()], dtype='img'),
+                              
+                              Context(content = [NewHousing.newHousing_total_permit_descr()], dtype='msg'),
+                              Context(content = [NewHousing.newHousing_total_permit()], dtype='img'),
+                              Context(content = [NewHousing.newHousing_single_permit()], dtype='img'),
+                              
+                              Context(content = [NewHousing.newHousing_total_notStarted_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_total_notStarted()], dtype='img'),
+                              Context(content = [NewHousing.newHousing_single_notStarted()], dtype='img'),
+                              
+                              Context(content = [NewHousing.newHousing_total_underConstruction()], dtype='img'),
+                              Context(content = [NewHousing.newHousing_single_underConstruction()], dtype='img'),
 
+
+                              Context(content = [NewHousing.newHousing_total_completed_descr()], dtype='msg'),
+                              Context(content = [NewHousing.newHousing_total_completed()], dtype='img'),
+                              Context(content = [NewHousing.newHousing_single_completed()], dtype='img'),
+                              ]
+                        
+            @staticmethod
+            def consumerCredit():
+                  yield from [Context(content = [ConsumerCredit.descr()], dtype='msg'),
+                              Context(content = [ConsumerCredit.report_url()], dtype='msg')
+                              
+                              Context(content = [ConsumerCredit.total_consumer_credit()], dtype='img'),
+                              
+                              Context(content = [ConsumerCredit.revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.revolvingConsumerCreditOwnedSecuritized()], dtype='img'),
+                              
+                              Context(content = [ConsumerCredit.non_revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.non_revolvingConsumerCreditOwnedSecuritized()], dtype='img'),
+                          
+                              Context(content = [ConsumerCredit.percentChangeTotalConsumerCredit_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.percentChangeTotalConsumerCredit()], dtype='img'),
+                          
+                              Context(content = [ConsumerCredit.commercialInterestRate_CreditCardPlans_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.commercialInterestRate_CreditCardPlans()], dtype='img')
+                              ]
+                          
+            @staticmethod
+            def cpi_bra():
+                  yield from [Context(content = [CPI_BRA.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_BRA.cpi()], dtype='img')]
+
+            @staticmethod
+            def cpi_chn():
+                  yield from [Context(content = [CPI_CHN.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_CHN.cpi()], dtype='img')]
+
+            @staticmethod
+            def cpi_de():
+                  yield from [Context(content = [CPI_DE.production_industry_exc_construction()], dtype='msg'),
+                              Context(content = [CPI_DE.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_DE.cpi_descr()], dtype='msg'),
+                              Context(content = [CPI_DE.cpi()], dtype='img')]
+
+            @staticmethod
+            def cpi_inida():
+                  yield from [Context(content = [CPI_INDIA.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_INDIA.cpi()], dtype='img')]
+                  
+            @staticmethod
+            def cpi_jpn():
+                  yield from [Context(content = [CPI_JPN.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_JPN.cpi()], dtype='img')]
+                  
+            @staticmethod
+            def cpi_kr():
+                  yield from [Context(content = [CPI_KR.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_KR.cpi()], dtype='img')]

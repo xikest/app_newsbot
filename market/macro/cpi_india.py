@@ -1,6 +1,6 @@
 from market.macro.plotviz_economic_indicator import PlotEconomicIdx
 
-class CPI_IN:
+class CPI_INDIA:
     @staticmethod
     def production_industry_exc_construction(mode='binary'):
         return (PlotEconomicIdx('INDPRINTO01GYSAM').renameColumn('인도 산업 생산')

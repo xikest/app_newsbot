@@ -52,7 +52,21 @@ class Echobot():
             application.add_handler(CmdHandler.existingHomeSales())   
             application.add_handler(CmdHandler.industrialProduction())         
             application.add_handler(CmdHandler.ism())  
-            application.add_handler(CmdHandler.productivity())         
+            application.add_handler(CmdHandler.productivity())    
+               
+            application.add_handler(CmdHandler.initialClaims())  
+            application.add_handler(CmdHandler.ecommerce_retailes())   
+            application.add_handler(CmdHandler.import_export())         
+            application.add_handler(CmdHandler.cassFreightIndex())
+            application.add_handler(CmdHandler.newHousing())    
+            application.add_handler(CmdHandler.consumerCredit())  
+            application.add_handler(CmdHandler.cpi_bra())   
+            application.add_handler(CmdHandler.cpi_chn())         
+            application.add_handler(CmdHandler.cpi_de())  
+            application.add_handler(CmdHandler.cpi_inida())   
+            application.add_handler(CmdHandler.cpi_jpn())  
+            application.add_handler(CmdHandler.cpi_kr())   
+              
 
             application.run_polling(timeout=3)
 
