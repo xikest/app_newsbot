@@ -14,13 +14,13 @@ import numpy as np
 
 class PlotvizBasic:
     @staticmethod
-    def plotWithPctchage(ds, title:str=' ',  mode:str='show', yaxis_title =None, y1_title:str=''):  #변화율을 표시
+    def plotWithPctchage(ds, title:str=' ',  mode:str='show', yaxis_title = None, y1_title:str=''):  #변화율을 표시
         
         ds_pct = ds.pct_change().replace([np.inf, -np.inf], np.nan).dropna()
         max_ds = abs(ds_pct.quantile(q=0.9).max())
         min_ds = abs(ds_pct.quantile(q=0.9).min())
         range_secondary_y = int(np.where(max_ds > min_ds, max_ds, min_ds)*100*2+1)
-        if yaxis_title == None: yaxis_title = ''
+        if yaxis_title is None: yaxis_title = ''
         
         fig = (PlotViz(ds).line()
                                 .bar(pct_change=True, secondary_y=True, opacity=0.5)
@@ -32,7 +32,9 @@ class PlotvizBasic:
         elif mode == 'show': return fig.show()
         
     @staticmethod
-    def plot(ds, title:str=' ',  mode:str='show',  yaxis_title=yaxis_title, yaxis_title =''):  #변화율을 표시
+    def plot(ds, title:str=' ',  mode:str='show',  yaxis_title=None, yaxis_title =''):  #변화율을 표시
+        if yaxis_title is None: yaxis_title = ''
+        
         fig = (PlotViz(ds).line()
                                 .add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', yaxis_title=yaxis_title,width=500, height=700)
