@@ -1,8 +1,11 @@
 from xml.etree.ElementInclude import default_loader
 from ..src_generator.src_generator import SrcGenerator
 from typing import Optional, List
+import time
+import tweepy
 from tools.telegram_bot.contents import Context
 from info.ids import Ids
+from info.twt_following import TweetsFlw
 
 class SrcNews:
   _defaultChatID:Optional[str]=None
@@ -45,11 +48,13 @@ class SrcNews:
       rss_nber = [SrcNews.NBER.nber_economic_indicators_releases]
       # rss_imf = [SrcNews.IMF.imf_blog_chart]
       
-              
+      twt_gen = [SrcNews.Tweets.gen_twt]  
+            
       list_news.extend(mail_gen)
       list_news.extend(hke_gen)
       # list_news.extend(bw_gen)
       list_news.extend(efm_gen)
+      list_news.extend(twt_gen)
       list_news.extend(rss_gen)
       list_news.extend(rss_google)
       list_news.extend(rss_nber)
@@ -57,7 +62,73 @@ class SrcNews:
       yield from list_news
         
 
-        
+  class Tweets:
+    
+    """
+    SrcTwt.set_screen_names(['financialjuice'])
+    SrcTwt.set_BEARER_TOKEN(bearer_token)
+    list(SrcTwt.gen_twt())
+
+    Returns:
+        _type_: _description_
+
+    Yields:
+        _type_: _description_
+    """
+    _ChatId:str=None
+    # _screen_names:List[str]=TweetsFlw.screen_names()
+    # _BEARER_TOKEN:Optional[str]=Ids.twt_beartoken()
+
+    @classmethod
+    def getChatId(cls):
+      if cls._ChatId is None:cls.setChatId(SrcNews.getChatId())
+      return cls._ChatId
+    
+    @classmethod
+    def setChatId(cls, ChatId:str):
+      cls._ChatId = ChatId
+      
+      
+    # @classmethod
+    # def get_screen_names(cls)->List:
+    #   return cls._screen_names
+    
+    # @classmethod
+    # def set_screen_names(cls, screen_names:List[str]):
+    #   cls._screen_names = screen_names
+      
+      
+    # @classmethod
+    # def get_BEARER_TOKEN(cls)->str:
+    #   return cls._BEARER_TOKEN
+    
+    # @classmethod
+    # def set_BEARER_TOKEN(cls, BEARER_TOKEN:Optional[str]=None):
+    #   cls._BEARER_TOKEN = BEARER_TOKEN
+      
+      
+    @staticmethod
+    def gen_twt()-> List[Context]: 
+      screen_names = TweetsFlw.screen_names()  # following 리스트
+      for screen_name in screen_names():
+          for tweet in SrcNews.Tweets.get_msg(screen_name):
+              yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
+              
+    @staticmethod
+    def get_msg(screen_name:str='financialjuice') -> str:
+        BEARER_TOKEN=Ids.twt_beartoken()    # 트위터 접근 토큰
+        client = tweepy.Client(BEARER_TOKEN)
+        t_id = client.get_user(username=screen_name).data.id # get_id
+        try :
+                paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
+                response = next(paginator)
+                for tweets in response.data:
+                    time.sleep(1) # 10초 슬립
+                    yield tweets.text
+                    print(f' get finish')
+        except:
+              pass    
+
         
 # ============================================
 # 네이버 메일 WSJ
