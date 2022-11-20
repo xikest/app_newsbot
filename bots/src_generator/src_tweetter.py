@@ -6,6 +6,7 @@ from info.ids import Ids
 from .src_generator import SrcGenerator
 from tools.telegram_bot.contents import Context
 
+#####SRC News에 통합
 
 
 class SrcTwt:
