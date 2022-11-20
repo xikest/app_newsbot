@@ -110,7 +110,7 @@ class SrcNews:
     @staticmethod
     def gen_twt()-> List[Context]: 
       screen_names = TweetsFlw.screen_names()  # following 리스트
-      for screen_name in screen_names():
+      for screen_name in screen_names:
           for tweet in SrcNews.Tweets.get_msg(screen_name):
               yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
               
@@ -123,7 +123,7 @@ class SrcNews:
                 paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
                 response = next(paginator)
                 for tweets in response.data:
-                    time.sleep(1) # 10초 슬립
+                    # time.sleep(1) # 10초 슬립
                     yield tweets.text
                     print(f' get finish')
         except:
