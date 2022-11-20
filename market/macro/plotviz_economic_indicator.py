@@ -8,7 +8,7 @@ class PlotEconomicIdx:
     def __init__(self, colKey:str):
         self._colName:Optional[str]= None
         self._ds:pd.Series = self.load_data_from_fred(colKey)
-        self._yaxis_title = None
+        self._yaxis_title = ''
 
     def sub(self, colKey):
         df = self.load_data_from_fred(colKey)
