@@ -3,7 +3,6 @@ import platform
 
 from bots.bot_alert.bot_news_alert import NewsAlert
 from bots.src_generator.src_news import SrcNews
-from src_tweetter import SrcTwt
 from info.bot_info import BotInfo
 
 # #beta testing
