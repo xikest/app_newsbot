@@ -39,13 +39,13 @@ class PlotEconomicIdx:
         data=self._ds.applymap(lambda x: round(x,4)) #ds 값이 반올림 함, 나누기 후 값이 소실될 수 있어 4자리로 제한함. ex) 0.003 등
         if secondary_y  is False:   return PlotvizBasic.plot(data, title,  mode, y1_title)  #세컨트 플랏이 false이면 보여주지 않음
         # if y1_title is not None: self._yaxis_title = y1_title  # y축 타이틀이 있으면 우선으로 지정함
-        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title = self._yaxis_title)
+        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title = y1_title)
 
 
     def plotWithMa(self, window=3, title:str=' ',  mode:str='binary',y1_title:Optional[str]=None): #이동평균
         data = self._ds.rolling(window).mean().dropna().applymap(lambda x: round(x,1))
         # if y1_title is not None: self._yaxis_title = y1_title  # y축 타이틀이 있으면 우선으로 지정함
-        return PlotvizBasic.plotWithPctchage(data,  title,  mode, y1_title = self._yaxis_title)
+        return PlotvizBasic.plotWithPctchage(data,  title,  mode, y1_title = y1_title)
     
     # def plotBar(self, periods:str='M'): #막대 그래프
         
