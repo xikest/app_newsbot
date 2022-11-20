@@ -35,11 +35,11 @@ class PlotEconomicIdx:
         if colName is not None: self._ds.columns = [self._colName]
         return self
 
-    def plot(self, title:str=' ',  mode:str='binary', yaxis_title=None, y1_title:Optional[str]=None):  #변화율을 표시
+    def plot(self, title:str=' ',  mode:str='binary', y1_title:Optional[str]=None, secondary_y=True):  #변화율을 표시
         data=self._ds.applymap(lambda x: round(x,4)) #ds 값이 반올림 함, 나누기 후 값이 소실될 수 있어 4자리로 제한함. ex) 0.003 등
-        if y1_title  is None:   return PlotvizBasic.plot(data, title,  mode)
-        if yaxis_title is not None: self._yaxis_title = yaxis_title
-        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, yaxis_title= self._yaxis_title, y1_title)
+        if secondary_y  is False:   return PlotvizBasic.plot(data, title,  mode, y1_title)  #세컨트 플랏이 false이면 보여주지 않음
+        if y1_title is not None: self._yaxis_title = y1_title  # y축 타이틀이 있으면 우선으로 지정함
+        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title = self._yaxis_title)
 
 
     def plotWithMa(self, window=3, title:str=' ',  mode:str='binary',yaxis_title=None, y1_title:str=''): #이동평균
