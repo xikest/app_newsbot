@@ -232,10 +232,40 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ism)
             return CommandHandler('ism', _ism)   
        
-        # existingHomeSales reply function
+        # productivity reply function
         @staticmethod
         def productivity():
             async   def _productivity(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.productivity)
             return CommandHandler('productivity', _productivity)   
+        
+        # InitialClaims reply function
+        @staticmethod
+        def initialClaims():
+            async   def _initialClaims(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.initialClaims)
+            return CommandHandler('initial_claims', _initialClaims)  
+        
+        
+        # E_COMMERCE reply function
+        @staticmethod
+        def ecommerce():
+            async   def _ecommerce(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.ecommerce)
+            return CommandHandler('ecommerce', _ecommerce)  
+        
+        # ImportExport reply function
+        @staticmethod
+        def import_export():
+            async   def _import_export(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.import_export)
+            return CommandHandler('import_export', _import_export)  
+        
+        # CassFreightIndex reply function
+        @staticmethod
+        def cassFreightIndex():
+            async   def _cassFreightIndex(update: Update, context: ContextTypes.DEFAULT_TYPE):
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cassFreightIndex)
+            return CommandHandler('cass_freight_index', _cassFreightIndex)  
+        
         

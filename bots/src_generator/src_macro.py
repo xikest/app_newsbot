@@ -27,9 +27,10 @@ from market.macro.existing_home_sales import ExistingHomeSales
 from market.macro.industrial_production import IndustrialProduction
 from market.macro.ism import ISM
 from market.macro.productivity import Productivity
-
-
-
+from market.macro.initial_claims import class InitialClaims
+from market.macro.e_commerce_retail_sales import class E_COMMERCE
+from market.macro.import_export import class ImportExport
+from market.macro.cass_freight_index import class CassFreightIndex
 
 
 
@@ -92,33 +93,57 @@ class SrcMacro:
                   
             @staticmethod
             def reatailSales():
-                  yield Context(content = [ReatailSales.advanceRetailSales(),
-                                            ReatailSales.retailSales(),
-                                            ReatailSales.advanceRetailSalesExcludingMotorVehicle(),
-                                            ReatailSales.retailSalesExcludingMotorVehicle(),
-                                            ReatailSales.advanceRetailSales_Gasoline(),
-                                            ReatailSales.retailSales_Gasoline(),
-                                            ReatailSales.advanceRetailSales_NonstoreRetailers(),
-                                            ReatailSales.retailSales_NonstoreRetailers(),
-                                            ReatailSales.advanceRetailSales_food_drinking(),
-                                            ReatailSales.retailSales_food_drinking(),                                        
-                                            ], dtype='img')
+                  yield from  [Context(content = [ReatailSales.descr()], dtype='msg'),
+                              Context(content = [ReatailSales.advanceRetailSales()], dtype='img'),
+                              
+                              Context(content = [ReatailSales.retailSales_descr()], dtype='msg'),
+                              Context(content = [ReatailSales.retailSales()], dtype='img'),
+                              
+                              Context(content = [ReatailSales.advanceRetailSalesExcludingMotorVehicle_descr()], dtype='msg'),
+                              Context(content = [ReatailSales.advanceRetailSalesExcludingMotorVehicle()], dtype='img'),
+                              Context(content = [ReatailSales.retailSalesExcludingMotorVehicle()], dtype='img'),
+                              
+                              Context(content = [ReatailSales.advanceRetailSales_Gasoline_descr()], dtype='msg'),
+                              Context(content = [ReatailSales.advanceRetailSales_Gasoline()], dtype='img'),
+                              Context(content = [ReatailSales.retailSales_Gasoline()], dtype='img'),
+
+                              Context(content = [ReatailSales.advanceRetailSales_NonstoreRetailers()], dtype='img'),
+                              Context(content = [ReatailSales.retailSales_NonstoreRetailers_descr()], dtype='msg'),
+                              Context(content = [ReatailSales.retailSales_NonstoreRetailers()], dtype='img'),
+                              
+                              Context(content = [ReatailSales.advanceRetailSales_food_drinking()], dtype='img'),
+                              Context(content = [ReatailSales.retailSales_food_drinking_descr()], dtype='msg'),
+                              Context(content = [ReatailSales.retailSales_food_drinking()], dtype='img')
+                  ]
+
 
                     
             @staticmethod
             def newResidentialSales():
-                  yield Context(content = [NewResidentialSales.housesSold(),
-                                            NewResidentialSales.monthlySupply(),
-                                            NewResidentialSales.medianSalesPriceforNewHousesSold(),
-                                            NewResidentialSales.averageSalesPriceforNewHousesSold(),
-                                            NewResidentialSales.newHousesSoldNotStarted(),
-                                          ], dtype='img')
+                  yield from  [Context(content = [NewResidentialSales.descr()], dtype='msg'),
+                               
+                              Context(content = [NewResidentialSales.housesSold_descr()], dtype='msg'),
+                              Context(content = [NewResidentialSales.housesSold()], dtype='img'),
+                              
+                              Context(content = [NewResidentialSales.monthlySupply_descr()], dtype='msg'),
+                              Context(content = [NewResidentialSales.monthlySupply()], dtype='img'),
+                              
+                              Context(content = [NewResidentialSales.medianSalesPriceforNewHousesSold_descr()], dtype='msg'),
+                              Context(content = [NewResidentialSales.medianSalesPriceforNewHousesSold()], dtype='img'),
+                              Context(content = [NewResidentialSales.averageSalesPriceforNewHousesSold()], dtype='img'),
+ 
+                              Context(content = [NewResidentialSales.newHousesSoldNotStarted_descr()], dtype='msg'),
+                              Context(content = [NewResidentialSales.newHousesSoldNotStarted()], dtype='img')
+                              ]
+
 
             @staticmethod
             def durableGoods():
-                  yield from  [Context(content = [DurableGoods.descr(),
-                                                  DurableGoods.newOrder_durableGoods_descr()], dtype='msg'),
+                  yield from  [Context(content = [DurableGoods.descr()], dtype='msg'),
+                               
+                              Context(content = [DurableGoods.newOrder_durableGoods_descr()], dtype='msg'),
                               Context(content = [DurableGoods.newOrder_durableGoods()], dtype='img'),
+                              
                               Context(content = [DurableGoods.newOrder_durableGoodsExcludingTransportation_descr()], dtype='msg'),
                               Context(content = [DurableGoods.newOrder_durableGoodsExcludingTransportation()], dtype='img'),
                               
@@ -144,14 +169,37 @@ class SrcMacro:
 
             @staticmethod
             def pce():
-                  yield Context(content = [PCE.personalIncome(),
-                                            PCE.realDisposablePersonalIncome(),
-                                            PCE.personaloutlays(),
-                                            PCE.pce(),
-                                            PCE.personalInterestPayments(),
-                                            PCE.expenditures_durable(),
-                                            PCE.real_pce(),
-                                            PCE.pce_PriceIndex()], dtype='img')
+                 yield from  [Context(content = [PCE.descr()], dtype='msg'),
+                              
+                              Context(content = [PCE.personalIncome_descr()], dtype='msg'),
+                              Context(content = [PCE.personalIncome()], dtype='img'),
+                              
+                              Context(content = [PCE.realDisposablePersonalIncome_descr()], dtype='msg'),
+                              Context(content = [PCE.realDisposablePersonalIncome()], dtype='img'),
+                              
+                              Context(content = [PCE.personaloutlays_descr()], dtype='msg'),
+                              Context(content = [PCE.personaloutlays()], dtype='img'),
+
+                              Context(content = [PCE.pce_descr()], dtype='msg'),
+                              Context(content = [PCE.pce()], dtype='img'),
+                              
+                              Context(content = [PCE.personalInterestPayments_descr()], dtype='msg'),
+                              Context(content = [PCE.personalInterestPayments()], dtype='img'),
+
+                              Context(content = [PCE.personalInterestPayments_disposablePersonalIncome_descr()], dtype='msg'),
+                              Context(content = [PCE.personalInterestPayments_disposablePersonalIncome()], dtype='img'),
+
+                              Context(content = [PCE.expenditures_durable_descr()], dtype='msg'),
+                              Context(content = [PCE.expenditures_durable()], dtype='img'),
+
+                              Context(content = [PCE.real_pce_descr()], dtype='msg'),
+                              Context(content = [PCE.real_pce()], dtype='img'),
+                              
+                              Context(content = [PCE.pce_PriceIndex()], dtype='img'),
+
+                              Context(content = [PCE.pce_PriceIndex_yearly_descr()], dtype='msg'),
+                              Context(content = [PCE.pce_PriceIndex_yearly()], dtype='img')
+                              ]
 
 
             @staticmethod
@@ -237,20 +285,41 @@ class SrcMacro:
                                          
                     
             @staticmethod
+            def import_export():
+                  yield from  [Context(content = [ImportExport.descr()], dtype='msg'),
+                              Context(content = [ImportExport.importPriceIndex()], dtype='img'),
+                              Context(content = [ImportExport.importPriceIndex_excludeFuel()], dtype='img'),
+                              
+                              Context(content = [ImportExport.exportPriceIndex_descr()], dtype='msg'),
+                              Context(content = [ImportExport.exportPriceIndex()], dtype='img'),
+                              
+                              Context(content = [ImportExport.exportPriceIndex_nonagricultural()], dtype='msg'),
+                              Context(content = [ImportExport.importPriceIndex_nonmanufacturing()], dtype='img'),
+                              Context(content = [importPriceIndex_oil_gas.durableGoods()], dtype='img'),
+                              Context(content = [ImportExport.exportPriceIndex_nonmanufacturing()], dtype='img'),
+                              Context(content = [ImportExport.exportPriceIndex_oil_gas()], dtype='img'),
+                              Context(content = [ImportExport.downward_usd_descr()], dtype='msg'),
+                              Context(content = [ImportExport.upward_usd_descr()], dtype='msg')]
+                              
+                              
+                              
+            @staticmethod
             def jolt():
-                  yield Context(content = [Jolt.jobOpenings_Nonfarm(),
-                                            Jolt.jobOpenings_Private(),
-                                            Jolt.jobOpenings_Government(),
-                                            Jolt.hires_Nonfarm(),
-                                            Jolt.hires_Private(),
-                                            Jolt.hires_Government(),
-                                            Jolt.separations_Nonfarm(),
-                                            Jolt.separations_Private(),
-                                            Jolt.separations_Government(),
-                                            Jolt.quits_Nonfarm(),
-                                            Jolt.quits_Private(),
-                                            Jolt.quits_Government(),
-                                          ], dtype='img')
+                  yield from [Context(content = [Jolt.descr()], dtype='msg'),
+                              Context(content = [Jolt.jobOpenings_Nonfarm(),
+                                                Jolt.jobOpenings_Private(),
+                                                Jolt.jobOpenings_Government(),
+                                                Jolt.hires_Nonfarm(),
+                                                Jolt.hires_Private(),
+                                                Jolt.hires_Government(),
+                                                Jolt.separations_Nonfarm(),
+                                                Jolt.separations_Private(),
+                                                Jolt.separations_Government()], dtype='img')
+                              Context(content = [Jolt.quits_Nonfarm_descr()], dtype='msg'),
+                              Context(content = [Jolt.quits_Nonfarm(),
+                                                Jolt.quits_Private(),
+                                                Jolt.quits_Government()], dtype='img')
+                              ]
                     
             @staticmethod
             def adpNationalEmploymentReport():
@@ -307,16 +376,19 @@ class SrcMacro:
 
             @staticmethod
             def ppi():
-                  yield Context(content = [PPI.finalDemand(),
-                                            PPI.finalDemand_yoy(),
-                                            PPI.finalDemand_less_foods_energy(),
-                                            PPI.finalDemand_less_foods_energy_yoy(),
-                                            PPI.processed_goods_Intermediate_yoy(),
-                                            PPI.processed_goods_Intermediate_core(),
-                                            PPI.unprocessed_goods_Intermediate_yoy(),
-                                            PPI.unprocessed_goods_Intermediate_core(),
-                                          ], dtype='img')
-                  
+                  yield from [Context(content = [PPI.descr()], dtype='msg'),
+                              Context(content = [PPI.finalDemand(),
+                                                PPI.finalDemand_yoy(),
+                                                PPI.finalDemand_less_foods_energy(),
+                                                PPI.finalDemand_less_foods_energy_yoy(),
+                                                PPI.processed_goods_Intermediate_yoy(),
+                                                PPI.processed_goods_Intermediate_core(),
+                                                PPI.unprocessed_goods_Intermediate_yoy(),
+                                                PPI.unprocessed_goods_Intermediate_core(),
+                                                ], dtype='img')  
+                              ]
+
+
             @staticmethod
             def cfnai():
                   yield from [Context(content = [CFNAI.descr(), CFNAI.chicagoFedNationalActivityIndex_descr()], dtype='msg'),
@@ -349,52 +421,98 @@ class SrcMacro:
                               Context(content = [ExistingHomeSales.pendingHomeSalesIndex()], dtype='msg')]
 
 
-
-
-            @staticmethod
             def industrialProduction():
-                  yield Context(content = [IndustrialProduction.industrialProduction(),
-                                          IndustrialProduction.industrialProduction_ExcludingSelected(),
-                                          IndustrialProduction.industrialProduction_ConsumerGoods(),
-                                          IndustrialProduction.industrialProduction_BusinessEquipment(),
-                                          IndustrialProduction.industrialProduction_Defense_Space_Equipment(),
-                                          IndustrialProduction.industrialProduction_Manufacturing(),
-                                          IndustrialProduction.industrialProduction_Motor_VehiclesParts(),
-                                          IndustrialProduction.industrialProduction_Communications_Equipment(),
-                                          IndustrialProduction.industrialProduction_Semiconductor(),
-                                          IndustrialProduction.industrialProduction_Computer_Electronic(),
-                                          IndustrialProduction.industrialProduction_ExcludingMotorVehicles(),
-                                          IndustrialProduction.industrialProduction_ExcludingHi_Tech(),
-                                          IndustrialProduction.capacityUtilization(),
-                                          IndustrialProduction.capacityUtilization_Manufacturing(),
-                                          IndustrialProduction.capacityUtilization_Manufacturing_hi_tech(),
-                                          IndustrialProduction.capacityUtilization_Manufacturing_Computers(),
-                                          IndustrialProduction.capacityUtilization_Manufacturing_Communications(),
-                                          IndustrialProduction.capacityUtilization_Vehicles(),
-                                          IndustrialProduction.capacityUtilization_PrimaryMetal()
-                                          ], dtype='img')
+                  yield from  [Context(content = [IndustrialProduction.descr()], dtype='msg'),
+                               
+                              Context(content = [IndustrialProduction.industrialProduction_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.industrialProduction_ExcludingSelected()], dtype='img'),
+                        
+                              Context(content = [IndustrialProduction.industrialProduction_ConsumerGoods_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_ConsumerGoods()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.industrialProduction_BusinessEquipment_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_BusinessEquipment()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.industrialProduction_Defense_Space_Equipment_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_Defense_Space_Equipment()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.industrialProduction_Manufacturing_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_Manufacturing()], dtype='img'),
+ 
+                              Context(content = [IndustrialProduction.industrialProduction_Motor_VehiclesParts_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_Motor_VehiclesParts()], dtype='img'),
+                              Context(content = [IndustrialProduction.industrialProduction_Communications_Equipment()], dtype='img'),
+                              Context(content = [IndustrialProduction.industrialProduction_Semiconductor()], dtype='img'),
+
+                              Context(content = [IndustrialProduction.industrialProduction_Computer_Electronic_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_Computer_Electronic()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.industrialProduction_ExcludingMotorVehicles_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.industrialProduction_ExcludingMotorVehicles()], dtype='img'),
+                              Context(content = [IndustrialProduction.industrialProduction_ExcludingHi_Tech()], dtype='img'),
+                              
+                              Context(content = [IndustrialProduction.capacityUtilization_descr()], dtype='msg'),
+                              Context(content = [IndustrialProduction.capacityUtilization()], dtype='img'),                           
+                              Context(content = [IndustrialProduction.capacityUtilization_Manufacturing()], dtype='img'),
+                              Context(content = [IndustrialProduction.capacityUtilization_Manufacturing_hi_tech()], dtype='img'),                           
+                              Context(content = [IndustrialProduction.capacityUtilization_Manufacturing_Computers()], dtype='img'),
+                              Context(content = [IndustrialProduction.capacityUtilization_Manufacturing_Communications()], dtype='img'),                           
+                              Context(content = [IndustrialProduction.capacityUtilization_Vehicles()], dtype='img'),
+                              Context(content = [IndustrialProduction.capacityUtilization_PrimaryMetal()], dtype='img')]
+                              
+            def cassFreightIndex():
+                  yield from  [Context(content = [CassFreightIndex.descr()], dtype='msg'),
+                              Context(content = [CassFreightIndex.report_url()], dtype='msg'),
+                              
+                              Context(content = [CassFreightIndex.cassFreightIndex_descr()], dtype='msg'),
+                              Context(content = [CassFreightIndex.cassFreightIndex()], dtype='img'),
+                              
+                              Context(content = [CassFreightIndex.cassFreightIndex_expenditures_descr()], dtype='msg'),
+                              Context(content = [CassFreightIndex.cassFreightIndex_expenditures()], dtype='img')]
+                              
+            def initialClaims():
+                  yield from  [Context(content = [InitialClaims.descr()], dtype='msg'),
+                              
+                              Context(content = [InitialClaims.initialClaims_4WeekMA()], dtype='img'),
+                              Context(content = [InitialClaims.insuredUnemployment_4WeekMA()], dtype='img'),
+                              
+                              Context(content = [InitialClaims.insuredUnemploymentRate_descr()], dtype='msg'),
+                              Context(content = [InitialClaims.insuredUnemploymentRate()], dtype='img')]
+                              
+            def ecommerce():
+                  yield from  [Context(content = [E_COMMERCE.descr()], dtype='msg'),                              
+                              Context(content = [E_COMMERCE.e_CommerceRetailSales()], dtype='img')]
 
 
 
             @staticmethod
             def ism():
-                  yield Context(content = [ISM.ism_ReportOnBusiness(),
-                                          ], dtype='msg')
+                  yield from  [Context(content = [ISM.service_descr()], dtype='msg'),                              
+                              Context(content = [ISM.manufactoring0_descr()], dtype='msg'),  
+                              Context(content = [ISM.manufactoring1_descr()], dtype='msg'), 
+                              Context(content = [ISM.ism_ReportOnBusiness()], dtype='msg')]
+
 
 
             @staticmethod
             def productivity():
-                  yield from [Context(content = [Productivity.laborProductivity(),
-                                          Productivity.hourlyCompensation(),
-                                          Productivity.unitLaborCosts(),
-                                          Productivity.importPriceIndex(),
-                                          Productivity.exportPriceIndex_AllCommodities(),
-                                          Productivity.exportPriceIndex_NonagriculturalCommodities(),
-                                          ], dtype='img'),
+                  yield from [Context(content = [Productivity.descr()], dtype='msg')
                               
-                              Context(content = [Productivity.upward_usd(),
-                                                 Productivity.downward_usd(),
-                                                ], dtype='msg')
+                              Context(content = [Productivity.laborProductivity_descr()], dtype='msg')
+                              Context(content = [Productivity.laborProductivity()], dtype='img'),
+                          
+                              Context(content = [Productivity.hourlyCompensation_descr()], dtype='msg')
+                              Context(content = [Productivity.hourlyCompensation()], dtype='img'),
+                              
+                              Context(content = [Productivity.unitLaborCosts()], dtype='img'),
+                              Context(content = [Productivity.importPriceIndex()], dtype='img'),
+                              Context(content = [Productivity.exportPriceIndex_AllCommodities()], dtype='img'),
+                              Context(content = [Productivity.exportPriceIndex_NonagriculturalCommodities()], dtype='img'),
+
+                              Context(content = [Productivity.upward_usd()], dtype='msg')
+                              Context(content = [Productivity.downward_usd()], dtype='msg')
                               ]
                         
 

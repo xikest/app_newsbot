@@ -1,6 +1,6 @@
 from market.macro.plotviz_economic_indicator import PlotEconomicIdx
 
-class InitialClaims:
+class CassFreightIndex:
     @staticmethod
     def descr():
         return """-캐스화물지수-
@@ -32,5 +32,5 @@ class InitialClaims:
 """
     @staticmethod
     def cassFreightIndex_expenditures (mode='binary'):
-        return (PlotEconomicIdx('FRGSHPUSM649NCIS').renameColumn('해상 선적')
-                .plot(title='해상 선적', mode=mode, y1_title=''))
+        return (PlotEconomicIdx('FRGSHPUSM649NCIS').renameColumn('운송 비용의 변화')
+                .plot(title='운송 비용의 변화', mode=mode, y1_title=''))
