@@ -42,10 +42,10 @@ class PlotEconomicIdx:
         else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title = self._yaxis_title)
 
 
-    def plotWithMa(self, window=3, title:str=' ',  mode:str='binary',yaxis_title=None, y1_title:str=''): #이동평균
+    def plotWithMa(self, window=3, title:str=' ',  mode:str='binary',y1_title:Optional[str]=None): #이동평균
         data = self._ds.rolling(window).mean().dropna().applymap(lambda x: round(x,1))
-        if yaxis_title is not None: self._yaxis_title = yaxis_title
-        return PlotvizBasic.plotWithPctchage(data,  title,  mode, yaxis_title= self._yaxis_title, y1_title)
+        if y1_title is not None: self._yaxis_title = y1_title  # y축 타이틀이 있으면 우선으로 지정함
+        return PlotvizBasic.plotWithPctchage(data,  title,  mode, y1_title = self._yaxis_title)
     
     # def plotBar(self, periods:str='M'): #막대 그래프
         
