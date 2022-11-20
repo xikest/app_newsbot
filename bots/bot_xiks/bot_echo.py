@@ -53,7 +53,6 @@ class Echobot():
             application.add_handler(CmdHandler.industrialProduction())         
             application.add_handler(CmdHandler.ism())  
             application.add_handler(CmdHandler.productivity())    
-               
             application.add_handler(CmdHandler.initialClaims())  
             application.add_handler(CmdHandler.ecommerce_retailes())   
             application.add_handler(CmdHandler.import_export())         
