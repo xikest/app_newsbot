@@ -27,19 +27,19 @@ from market.macro.existing_home_sales import ExistingHomeSales
 from market.macro.industrial_production import IndustrialProduction
 from market.macro.ism import ISM
 from market.macro.productivity import Productivity
-from market.macro.initial_claims import class InitialClaims
-from market.macro.e_commerce_retail_sales import class E_COMMERCE
-from market.macro.import_export import class ImportExport
-from market.macro.cass_freight_index import class CassFreightIndex
-from market.macro.new_housing import class NewHousing
-from market.macro.consumer_credit import class ConsumerCredit
+from market.macro.initial_claims import InitialClaims
+from market.macro.e_commerce_retail_sales import E_COMMERCE
+from market.macro.import_export import ImportExport
+from market.macro.cass_freight_index import CassFreightIndex
+from market.macro.new_housing import NewHousing
+from market.macro.consumer_credit import ConsumerCredit
 
-from market.macro.cpi_bra import class CPI_BRA
-from market.macro.cpi_chn import class CPI_CHN
-from market.macro.cpi_de import class CPI_DE
-from market.macro.cpi_india import class CPI_INDIA
-from market.macro.cpi_jpn import class CPI_JPN
-from market.macro.cpi_kr import class CPI_KR
+from market.macro.cpi_bra import CPI_BRA
+from market.macro.cpi_chn import CPI_CHN
+from market.macro.cpi_de import CPI_DE
+from market.macro.cpi_india import CPI_INDIA
+from market.macro.cpi_jpn import CPI_JPN
+from market.macro.cpi_kr import CPI_KR
 
 
 class SrcMacro:
@@ -302,7 +302,7 @@ class SrcMacro:
                               
                               Context(content = [ImportExport.exportPriceIndex_nonagricultural()], dtype='msg'),
                               Context(content = [ImportExport.importPriceIndex_nonmanufacturing()], dtype='img'),
-                              Context(content = [importPriceIndex_oil_gas.durableGoods()], dtype='img'),
+                              Context(content = [ImportExport.importPriceIndex_oil_gas()], dtype='img'),
                               Context(content = [ImportExport.exportPriceIndex_nonmanufacturing()], dtype='img'),
                               Context(content = [ImportExport.exportPriceIndex_oil_gas()], dtype='img'),
                               Context(content = [ImportExport.downward_usd_descr()], dtype='msg'),
@@ -321,7 +321,7 @@ class SrcMacro:
                                                 Jolt.hires_Government(),
                                                 Jolt.separations_Nonfarm(),
                                                 Jolt.separations_Private(),
-                                                Jolt.separations_Government()], dtype='img')
+                                                Jolt.separations_Government()], dtype='img'),
                               Context(content = [Jolt.quits_Nonfarm_descr()], dtype='msg'),
                               Context(content = [Jolt.quits_Nonfarm(),
                                                 Jolt.quits_Private(),
@@ -505,12 +505,12 @@ class SrcMacro:
 
             @staticmethod
             def productivity():
-                  yield from [Context(content = [Productivity.descr()], dtype='msg')
+                  yield from [Context(content = [Productivity.descr()], dtype='msg'),
                               
-                              Context(content = [Productivity.laborProductivity_descr()], dtype='msg')
+                              Context(content = [Productivity.laborProductivity_descr()], dtype='msg'),
                               Context(content = [Productivity.laborProductivity()], dtype='img'),
                           
-                              Context(content = [Productivity.hourlyCompensation_descr()], dtype='msg')
+                              Context(content = [Productivity.hourlyCompensation_descr()], dtype='msg'),
                               Context(content = [Productivity.hourlyCompensation()], dtype='img'),
                               
                               Context(content = [Productivity.unitLaborCosts()], dtype='img'),
@@ -518,7 +518,7 @@ class SrcMacro:
                               Context(content = [Productivity.exportPriceIndex_AllCommodities()], dtype='img'),
                               Context(content = [Productivity.exportPriceIndex_NonagriculturalCommodities()], dtype='img'),
 
-                              Context(content = [Productivity.upward_usd()], dtype='msg')
+                              Context(content = [Productivity.upward_usd()], dtype='msg'),
                               Context(content = [Productivity.downward_usd()], dtype='msg')
                               ]
                         
@@ -526,19 +526,19 @@ class SrcMacro:
             @staticmethod
             def newHousing():
                   yield from [Context(content = [NewHousing.descr()], dtype='msg'),
-                              Context(content = [NewHousing.report_url()], dtype='msg')
+                              Context(content = [NewHousing.report_url()], dtype='msg'),
                               
-                              Context(content = [NewHousing.newHousing_total_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_total_descr()], dtype='msg'),
                               Context(content = [NewHousing.newHousing_total()], dtype='img'),
                           
-                              Context(content = [NewHousing.newHousing_single_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_single_descr()], dtype='msg'),
                               Context(content = [NewHousing.newHousing_single()], dtype='img'),
                               
                               Context(content = [NewHousing.newHousing_total_permit_descr()], dtype='msg'),
                               Context(content = [NewHousing.newHousing_total_permit()], dtype='img'),
                               Context(content = [NewHousing.newHousing_single_permit()], dtype='img'),
                               
-                              Context(content = [NewHousing.newHousing_total_notStarted_descr()], dtype='msg')
+                              Context(content = [NewHousing.newHousing_total_notStarted_descr()], dtype='msg'),
                               Context(content = [NewHousing.newHousing_total_notStarted()], dtype='img'),
                               Context(content = [NewHousing.newHousing_single_notStarted()], dtype='img'),
                               
@@ -548,26 +548,26 @@ class SrcMacro:
 
                               Context(content = [NewHousing.newHousing_total_completed_descr()], dtype='msg'),
                               Context(content = [NewHousing.newHousing_total_completed()], dtype='img'),
-                              Context(content = [NewHousing.newHousing_single_completed()], dtype='img'),
+                              Context(content = [NewHousing.newHousing_single_completed()], dtype='img')
                               ]
                         
             @staticmethod
             def consumerCredit():
                   yield from [Context(content = [ConsumerCredit.descr()], dtype='msg'),
-                              Context(content = [ConsumerCredit.report_url()], dtype='msg')
+                              Context(content = [ConsumerCredit.report_url()], dtype='msg'),
                               
                               Context(content = [ConsumerCredit.total_consumer_credit()], dtype='img'),
                               
-                              Context(content = [ConsumerCredit.revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg'),
                               Context(content = [ConsumerCredit.revolvingConsumerCreditOwnedSecuritized()], dtype='img'),
                               
-                              Context(content = [ConsumerCredit.non_revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.non_revolvingConsumerCreditOwnedSecuritized_descr()], dtype='msg'),
                               Context(content = [ConsumerCredit.non_revolvingConsumerCreditOwnedSecuritized()], dtype='img'),
                           
-                              Context(content = [ConsumerCredit.percentChangeTotalConsumerCredit_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.percentChangeTotalConsumerCredit_descr()], dtype='msg'),
                               Context(content = [ConsumerCredit.percentChangeTotalConsumerCredit()], dtype='img'),
                           
-                              Context(content = [ConsumerCredit.commercialInterestRate_CreditCardPlans_descr()], dtype='msg')
+                              Context(content = [ConsumerCredit.commercialInterestRate_CreditCardPlans_descr()], dtype='msg'),
                               Context(content = [ConsumerCredit.commercialInterestRate_CreditCardPlans()], dtype='img')
                               ]
                           

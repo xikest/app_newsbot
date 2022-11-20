@@ -1,6 +1,7 @@
 from xml.etree.ElementInclude import default_loader
 from ..src_generator.src_generator import SrcGenerator
-from typing import Optional
+from typing import Optional, List
+from tools.telegram_bot.contents import Context
 from info.ids import Ids
 
 class SrcNews:
@@ -15,7 +16,7 @@ class SrcNews:
     cls._defaultChatID = defaultChatID
   
   @staticmethod
-  def gen_news(): 
+  def gen_news()-> List[Context]: 
       list_news =list()
       mail_gen = [SrcNews.Mailbox.naver_mailbox_wsj]
       hke_gen = [SrcNews.HanKyungEconomy.hk_economy_top,
