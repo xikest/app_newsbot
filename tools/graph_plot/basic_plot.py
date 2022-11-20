@@ -22,7 +22,7 @@ class PlotvizBasic:
         range_secondary_y = int(np.where(max_ds > min_ds, max_ds, min_ds)*100*2+1)
         
         fig = (PlotViz(ds).line()
-                                .bar(pct_change=True, secondary_y=True, opacity=0.3)
+                                .bar(pct_change=True, secondary_y=True, opacity=0.5)
                                 .add_annotation( pos='recent')
                                 .update_layout(title= f'{title}', width=500, height=700)
                                 .update_yaxes(title_text=y1_title).update_yaxes(title_text='percent (%)', secondary_y=True, range=[0-range_secondary_y,  range_secondary_y])
