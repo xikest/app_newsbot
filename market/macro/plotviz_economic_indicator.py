@@ -21,7 +21,7 @@ class PlotEconomicIdx:
     def div(self, colKey):
         df = self.load_data_from_fred(colKey)
         df_merged = self._ds.merge(df, left_index=True, right_index=True).ffill() #계산하기 위해 self._ds와 인덱스를 맞춰줌
-        df = (df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze()) - 1 
+        df = ((df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze()) - 1 ) * 100
         self._ds = pd.DataFrame(df, index=df_merged.index, columns=self._ds.columns)
         # self._yaxis_title='Pecent (%)'
         return self
