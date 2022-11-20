@@ -8,6 +8,7 @@ class PlotEconomicIdx:
     def __init__(self, colKey:str):
         self._colName:Optional[str]= None
         self._ds:pd.Series = self.load_data_from_fred(colKey)
+        self._yaxis_title = None
 
     def sub(self, colKey):
         df = self.load_data_from_fred(colKey)
@@ -22,6 +23,7 @@ class PlotEconomicIdx:
         df_merged = self._ds.merge(df, left_index=True, right_index=True).ffill() #계산하기 위해 self._ds와 인덱스를 맞춰줌
         df = (df_merged.iloc[:,0].values.squeeze() / df_merged.iloc[:,1].values.squeeze()) - 1 
         self._ds = pd.DataFrame(df, index=df_merged.index, columns=self._ds.columns)
+        self._yaxis_title='Pecent (%)'
         return self
     
     def load_data_from_fred(self, colKey:str): # 데이터 받이오기
@@ -33,16 +35,17 @@ class PlotEconomicIdx:
         if colName is not None: self._ds.columns = [self._colName]
         return self
 
-    def plot(self, title:str=' ',  mode:str='binary', y1_title:Optional[str]=None):  #변화율을 표시
+    def plot(self, title:str=' ',  mode:str='binary', yaxis_title=None, y1_title:Optional[str]=None):  #변화율을 표시
         data=self._ds.applymap(lambda x: round(x,4)) #ds 값이 반올림 함, 나누기 후 값이 소실될 수 있어 4자리로 제한함. ex) 0.003 등
-        # if ((self._ds > 0).sum() > 0).values:  data = self._ds.applymap(lambda x: round(x,1)) #ds 값이 모두 0보다 크면 반올림 함
         if y1_title  is None:   return PlotvizBasic.plot(data, title,  mode)
-        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, y1_title)
+        if yaxis_title is not None: self._yaxis_title = yaxis_title
+        else:   return PlotvizBasic.plotWithPctchage(data, title,  mode, yaxis_title= self._yaxis_title, y1_title)
 
 
-    def plotWithMa(self, window=3, title:str=' ',  mode:str='binary', y1_title:str=''): #이동평균
+    def plotWithMa(self, window=3, title:str=' ',  mode:str='binary',yaxis_title=None, y1_title:str=''): #이동평균
         data = self._ds.rolling(window).mean().dropna().applymap(lambda x: round(x,1))
-        return PlotvizBasic.plotWithPctchage(data,  title,  mode, y1_title)
+        if yaxis_title is not None: self._yaxis_title = yaxis_title
+        return PlotvizBasic.plotWithPctchage(data,  title,  mode, yaxis_title= self._yaxis_title, y1_title)
     
     # def plotBar(self, periods:str='M'): #막대 그래프
         
