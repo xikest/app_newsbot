@@ -68,9 +68,9 @@ class Contents(list):
                     while len(context.content) > 0:
                         if context.dtype == 'img': 
                             await   asyncio.sleep(5)
-                            await   bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
+                            bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                         else: 
                             await   asyncio.sleep(5)
-                            await   bot.send_message(chat_id=context.botChatId, text=context.content.pop(0)) #'msg'
+                            bot.send_message(chat_id=context.botChatId, text=context.content.pop(0)) #'msg'
                 return None
             

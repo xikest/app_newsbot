@@ -6,6 +6,10 @@ import tweepy
 from tools.telegram_bot.contents import Context
 from info.ids import Ids
 from info.twt_following import TweetsFlw
+import googletrans
+
+
+
 
 class SrcNews:
   _defaultChatID:Optional[str]=None
@@ -52,12 +56,15 @@ class SrcNews:
             
       list_news.extend(mail_gen)
       list_news.extend(hke_gen)
+        
       # list_news.extend(bw_gen)
+    
       list_news.extend(efm_gen)
       list_news.extend(twt_gen)
       list_news.extend(rss_gen)
       list_news.extend(rss_google)
       list_news.extend(rss_nber)
+        
       # list_news.extend(rss_imf)
       yield from list_news
         
@@ -112,10 +119,11 @@ class SrcNews:
       screen_names = TweetsFlw.screen_names()  # following 리스트
       for screen_name in screen_names:
           for tweet in SrcNews.Tweets.get_msg(screen_name):
-              yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
+              yield Context(content=[tweet], label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
               
     @staticmethod
     def get_msg(screen_name:str='financialjuice') -> str:
+        translator = googletrans.Translator()
         BEARER_TOKEN=Ids.twt_beartoken()    # 트위터 접근 토큰
         client = tweepy.Client(BEARER_TOKEN)
         t_id = client.get_user(username=screen_name).data.id # get_id
@@ -124,12 +132,13 @@ class SrcNews:
                 response = next(paginator)
                 for tweets in response.data:
                     # time.sleep(1) # 10초 슬립
-                    yield tweets.text
+                    yield  tweets.text
+                    # yield  f"{tweets.text} \n {translator.translate(tweets.text, dest='ko')}"
                     print(f' get finish')
         except:
               pass    
 
-        
+
 # ============================================
 # 네이버 메일 WSJ
 # ============================================

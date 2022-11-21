@@ -517,8 +517,8 @@ class SrcMacro:
                               Context(content = [Productivity.exportPriceIndex_AllCommodities()], dtype='img'),
                               Context(content = [Productivity.exportPriceIndex_NonagriculturalCommodities()], dtype='img'),
 
-                              Context(content = [Productivity.upward_usd()], dtype='msg'),
-                              Context(content = [Productivity.downward_usd()], dtype='msg')
+                              Context(content = [Productivity.upward_usd_descr()], dtype='msg'),
+                              Context(content = [Productivity.downward_usd_descr()], dtype='msg')
                               ]
                         
 
