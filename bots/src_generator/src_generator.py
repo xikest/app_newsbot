@@ -139,7 +139,7 @@ class SrcGenerator:
     @staticmethod
     def get_from_rss_NBER_schedule(rss_url, botChatId=None)-> Context:
       for feed in feedparser.parse(rss_url).entries:
-        release_time = pd.to_datetime(SrcFunction.Nber.squeezeDate(feed.description)).date()+ timedelta(hours=13)
+        # release_time = pd.to_datetime(SrcFunction.Nber.squeezeDate(feed.description)).date()+ timedelta(hours=13)
         # release_time =None
-        yield Context(title=feed.title, content=[feed.link], descr=feed.description, release_time=release_time, key=feed.title, botChatId=botChatId)
+        yield Context(title=feed.title, content=[feed.link], descr=feed.description, key=feed.title, botChatId=botChatId)
  
