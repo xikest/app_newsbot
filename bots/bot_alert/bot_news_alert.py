@@ -32,6 +32,16 @@ class NewsAlert():
           print((await bot.get_updates())[0])
   
   
+  # async def start(self,genContent_list:Generator):
+  #           while True:
+  #               try:
+  #                   await self.updateMassgeFromGenerators(genContent_list)
+  #                   print(f'cycle finish, sleep {time.time()}')
+  #                   await asyncio.sleep(1800) #5분 대기
+  #                   print(f'awake{time.time()}')
+  #               except:
+  #                   pass
+
   async def start(self,genContent_list:Generator):
             while True:
                 try:

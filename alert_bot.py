@@ -6,7 +6,7 @@ from bots.src_generator.src_news import SrcNews
 from info.bot_info import BotInfo
 
 # #beta testing
-TOKEN =BotInfo.AlertBot.get_token()
+TOKEN = BotInfo.AlertBot.get_token()
 SrcNews.setChatId(BotInfo.AlertBot.get_chanel('teat_chat_id'))
 SrcNews.Mailbox.setChatId(BotInfo.AlertBot.get_chanel('teat_w_chat_id'))
 SrcNews.NBER.setChatId(BotInfo.AlertBot.get_chanel('nber_chat_id'))
