@@ -1,2 +1,4 @@
 nohup python3 alert_bot.py > alert_bot_out_.log 2>&1 &
 nohup python3 beta_bot.py > beta_bot_out_.log 2>&1 &
+
+#
