@@ -132,8 +132,8 @@ class SrcNews:
                 response = next(paginator)
                 for tweets in response.data:
                     # time.sleep(1) # 10초 슬립
-                    yield  tweets.text
-                    # yield  f"{tweets.text} \n {translator.translate(tweets.text, dest='ko')}"
+                    #yield  [tweets.text]
+                    yield  [f"{tweets.text} \n {translator.translate(tweets.text, dest='ko')}"]
                     print(f' get finish')
         except:
               pass    
