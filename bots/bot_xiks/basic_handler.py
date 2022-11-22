@@ -12,14 +12,14 @@ class BasicHandler:
 
     @staticmethod
     def start():
-        def _start(update: Update, context: CallbackContext):
-            update.message.reply_text(text="I'm a bot, please talk to me!")
+        async   def _start(update: Update, context: CallbackContext):
+            await   update.message.reply_text(text="I'm a bot, please talk to me!")
         return CommandHandler('start', _start)
         
     @staticmethod
     def help():
-        def _help(update: Update, context: CallbackContext):
-            update.message.reply_text(text = """shiller_ratio - 쉴러 PE Ratio
+        async def _help(update: Update, context: CallbackContext):
+            await  update.message.reply_text(text = """shiller_ratio - 쉴러 PE Ratio
 market_pattern_w - market pattern_w
 market_pattern_m - market pattern_m
 cpi - 소비자 물가 지수
@@ -76,15 +76,15 @@ bs_stock - ticker를 입력해 주세요.""")
     
     @staticmethod
     def caps():
-        def _caps(update: Update, context: CallbackContext):
+        async   def _caps(update: Update, context: CallbackContext):
             text_caps = ' '.join(context.args).upper()
-            update.message.reply_text(text=text_caps)
+            await   update.message.reply_text(text=text_caps)
         return CommandHandler('caps', _caps)  
     
     
     @staticmethod  
     def inline_caps():
-        def _inline_caps(update: Update, context: CallbackContext):
+        async   def _inline_caps(update: Update, context: CallbackContext):
             query = update.inline_query.query
             if not query:
                 return
@@ -96,8 +96,9 @@ bs_stock - ticker를 입력해 주세요.""")
                     input_message_content=InputTextMessageContent(query.upper())
                 )
             )
-            context.bot.answer_inline_query(update.inline_query.id, results)
+            await   context.bot.answer_inline_query(update.inline_query.id, results)
         return InlineQueryHandler(_inline_caps)
+
 
     # @staticmethod      
     # def unknown():

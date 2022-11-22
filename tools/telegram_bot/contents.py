@@ -21,7 +21,6 @@ class Context:
 class Contents(list): 
     """
     import feedparser
-
     def make_content(rss_url):
       yield [Content(feed.summary, feed.title, feed.link) for feed in feedparser.parse(rss_url).entries]
           
@@ -68,9 +67,8 @@ class Contents(list):
                     while len(context.content) > 0:
                         if context.dtype == 'img': 
                             await   asyncio.sleep(5)
-                            bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
+                            await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                         else: 
                             await  asyncio.sleep(5)
-                            bot.send_message(chat_id=context.botChatId, text=context.content.pop(0)) #'msg'
+                            await bot.send_message(chat_id=context.botChatId, text=context.content.pop(0)) #'msg'
                 return None
-            

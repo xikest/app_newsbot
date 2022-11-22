@@ -6,9 +6,8 @@ from bots.bot_xiks.command_handler import CmdHandler
 import asyncio
 
 import logging
-
-from telegram import Update, ForceReply
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import Update
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
     
 logging.basicConfig(
@@ -24,51 +23,48 @@ class Echobot():
     @getToken.setter
     def setToken(self, TOKEN:Optional[str]=None) -> None: self._TOKEN = TOKEN
 
-
-
     def start(self):
-            updater = Updater(self.getToken)
-            dispatcher = updater.dispatcher
-            dispatcher.add_handler(BasicHandler.start())
-            dispatcher.add_handler(BasicHandler.help())
-            # dispatcher.add_handler(BasicHandler.echo())
-            dispatcher.add_handler(BasicHandler.inline_caps())
-            
-            dispatcher.add_handler(CmdHandler.shillerRatio())
-            dispatcher.add_handler(CmdHandler.mkPtn_m())
-            dispatcher.add_handler(CmdHandler.mkPtn_w())
-            dispatcher.add_handler(CmdHandler.fed())  
-            dispatcher.add_handler(CmdHandler.cpi())
-            dispatcher.add_handler(CmdHandler.reatailSales())
-            dispatcher.add_handler(CmdHandler.newResidentialSales())
-            dispatcher.add_handler(CmdHandler.durableGoods())    
-            dispatcher.add_handler(CmdHandler.pce()) 
-            dispatcher.add_handler(CmdHandler.employmentCostIndex())    
-            dispatcher.add_handler(CmdHandler.gdp())  
-            dispatcher.add_handler(CmdHandler.jolt())    
-            dispatcher.add_handler(CmdHandler.adpNationalEmploymentReport())  
-            dispatcher.add_handler(CmdHandler.diffusionIndexphiladelphia())   
-            dispatcher.add_handler(CmdHandler.inventoriesSalesRatio())         
-            dispatcher.add_handler(CmdHandler.ppi())
-            dispatcher.add_handler(CmdHandler.cfnai())    
-            dispatcher.add_handler(CmdHandler.empireStateManufacturingSurvey())  
-            dispatcher.add_handler(CmdHandler.existingHomeSales())   
-            dispatcher.add_handler(CmdHandler.industrialProduction())         
-            dispatcher.add_handler(CmdHandler.ism())  
-            dispatcher.add_handler(CmdHandler.productivity())    
-            dispatcher.add_handler(CmdHandler.initialClaims())  
-            dispatcher.add_handler(CmdHandler.ecommerce_retailes())   
-            dispatcher.add_handler(CmdHandler.import_export())         
-            dispatcher.add_handler(CmdHandler.cassFreightIndex())
-            dispatcher.add_handler(CmdHandler.newHousing())    
-            dispatcher.add_handler(CmdHandler.consumerCredit())  
-            dispatcher.add_handler(CmdHandler.cpi_bra())   
-            dispatcher.add_handler(CmdHandler.cpi_chn())         
-            dispatcher.add_handler(CmdHandler.cpi_de())  
-            dispatcher.add_handler(CmdHandler.cpi_inida())   
-            dispatcher.add_handler(CmdHandler.cpi_jpn())  
-            dispatcher.add_handler(CmdHandler.cpi_kr())   
-            updater.start_polling()
+            application  =  ApplicationBuilder().token(self.getToken).build()
 
+            application.add_handler(BasicHandler.start())
+            application.add_handler(BasicHandler.help())
+            # dispatcher.add_handler(BasicHandler.echo())
+            application.add_handler(BasicHandler.inline_caps())
             
- 
+            application.add_handler(CmdHandler.shillerRatio())
+            application.add_handler(CmdHandler.mkPtn_m())
+            application.add_handler(CmdHandler.mkPtn_w())
+            application.add_handler(CmdHandler.fed())  
+            application.add_handler(CmdHandler.cpi())
+            application.add_handler(CmdHandler.reatailSales())
+            application.add_handler(CmdHandler.newResidentialSales())
+            application.add_handler(CmdHandler.durableGoods())    
+            application.add_handler(CmdHandler.pce()) 
+            application.add_handler(CmdHandler.employmentCostIndex())    
+            application.add_handler(CmdHandler.gdp())  
+            application.add_handler(CmdHandler.jolt())    
+            application.add_handler(CmdHandler.adpNationalEmploymentReport())  
+            application.add_handler(CmdHandler.diffusionIndexphiladelphia())   
+            application.add_handler(CmdHandler.inventoriesSalesRatio())         
+            application.add_handler(CmdHandler.ppi())
+            application.add_handler(CmdHandler.cfnai())    
+            application.add_handler(CmdHandler.empireStateManufacturingSurvey())  
+            application.add_handler(CmdHandler.existingHomeSales())   
+            application.add_handler(CmdHandler.industrialProduction())         
+            application.add_handler(CmdHandler.ism())  
+            application.add_handler(CmdHandler.productivity())    
+            application.add_handler(CmdHandler.initialClaims())  
+            application.add_handler(CmdHandler.ecommerce_retailes())   
+            application.add_handler(CmdHandler.import_export())         
+            application.add_handler(CmdHandler.cassFreightIndex())
+            application.add_handler(CmdHandler.newHousing())    
+            application.add_handler(CmdHandler.consumerCredit())  
+            application.add_handler(CmdHandler.cpi_bra())   
+            application.add_handler(CmdHandler.cpi_chn())         
+            application.add_handler(CmdHandler.cpi_de())  
+            application.add_handler(CmdHandler.cpi_inida())   
+            application.add_handler(CmdHandler.cpi_jpn())  
+            application.add_handler(CmdHandler.cpi_kr())   
+              
+
+            application.run_polling(timeout=3)

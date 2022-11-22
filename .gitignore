@@ -14,3 +14,8 @@ bots/src_generator/__pycache__/src_news.cpython-37.pyc
 *.pyc
 contents_list.pickle
 test.ipynb
+*.pyc
+*.pyc
+*.pyc
+*.pyc
+tools/telegram_bot/__pycache__/contents.cpython-37.pyc
