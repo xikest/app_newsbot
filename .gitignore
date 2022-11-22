@@ -8,3 +8,9 @@ xstm_bot.py
 info/twt_following.py
 test.ipynb
 test.ipynb
+*.pyc
+.vscode/settings.json
+bots/src_generator/__pycache__/src_news.cpython-37.pyc
+*.pyc
+contents_list.pickle
+test.ipynb
