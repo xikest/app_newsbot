@@ -6,14 +6,15 @@ import tweepy
 from tools.telegram_bot.contents import Context
 from info.ids import Ids
 from info.twt_following import TweetsFlw
+from .papago import Papago
 import googletrans
 
 
 class SrcNews:
-  _defaultChatID:Optional[str]=None
+  _defaultChatID:Optional[str] =None
   
   @classmethod
-  def getChatId(cls):
+  def getChatId(cls) -> Optional[str]:
     return cls._defaultChatID
   
   @classmethod
@@ -77,7 +78,7 @@ class SrcNews:
     Yields:
         _type_: _description_
     """
-    _ChatId:str=None
+    _ChatId:Optional[str]=None
     # _screen_names:List[str]=TweetsFlw.screen_names()
     # _BEARER_TOKEN:Optional[str]=Ids.twt_beartoken()
 
@@ -112,7 +113,8 @@ class SrcNews:
                 for tweets in response.data:
                     # time.sleep(1) # 10초 슬립
                     # yield  [tweets.text]
-                    yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
+                    yield [ Papago(tweets.text).translate(), tweets.text]
+                    # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')
         except:
               pass    
