@@ -6,8 +6,8 @@ import tweepy
 from tools.telegram_bot.contents import Context
 from info.ids import Ids
 from info.twt_following import TweetsFlw
-# from .papago import Papago
-from  .translate import KakaoTranslate
+from .src_tweet import Tweets
+from .translate import KakaoTranslate
 # import googletrans
 
 
@@ -53,12 +53,16 @@ class SrcNews:
       # rss_imf = [SrcNews.IMF.imf_blog_chart]
       
       twt_gen = [SrcNews.Tweets.gen_twt]  
+      twt_consensus_gen = [SrcNews.Consensus.gen_twt]  
+      
             
       list_news.extend(mail_gen)
       list_news.extend(hke_gen)
       # list_news.extend(bw_gen)
       list_news.extend(efm_gen)
       list_news.extend(twt_gen)
+      list_news.extend(twt_consensus_gen)
+      
       list_news.extend(rss_gen)
       list_news.extend(rss_google)
       list_news.extend(rss_nber)
@@ -68,22 +72,62 @@ class SrcNews:
     
     
     
-  # class Consensus:
-  #       _ChatId:Optional[str]=None
-  #       # _screen_names:List[str]=TweetsFlw.screen_names()
-  #       # _BEARER_TOKEN:Optional[str]=Ids.twt_beartoken()
-
-  #       @classmethod
-  #       def getChatId(cls):
-  #         if cls._ChatId is None:cls.setChatId(SrcNews.getChatId())
-  #         return cls._ChatId
-
-  #       @classmethod
-  #       def setChatId(cls, ChatId:str):
-  #         cls._ChatId = ChatId
-        
-  #       @staticmethod
+  class Consensus:
     
+    """
+    SrcTwt.set_screen_names(['financialjuice'])
+    SrcTwt.set_BEARER_TOKEN(bearer_token)
+    list(SrcTwt.gen_twt())
+
+    Returns:
+        _type_: _description_
+
+    Yields:
+        _type_: _description_
+    """
+    _ChatId:Optional[str]=None
+
+    @classmethod
+    def getChatId(cls):
+      if cls._ChatId is None:cls.setChatId(SrcNews.getChatId())
+      return cls._ChatId
+    
+    @classmethod
+    def setChatId(cls, ChatId:str):
+      cls._ChatId = ChatId
+      
+
+      
+    @staticmethod
+    def gen_twt()-> List[Context]: 
+      screen_names = ['ConsensusGurus']  # following 리스트
+      for screen_name in screen_names:
+          for tweet in SrcNews.Tweets.get_msg(screen_name):
+              yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
+              
+    @staticmethod
+    def get_msg(screen_name:str='financialjuice') -> str:
+        BEARER_TOKEN=Ids.twt_beartoken()    # 트위터 접근 토큰
+        client = tweepy.Client(BEARER_TOKEN)
+        t_id = client.get_user(username=screen_name).data.id # get_id
+        
+        # translator = googletrans.Translator()
+        try :
+                paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
+                response = next(paginator)
+                for tweets in response.data[::-1]:
+                    # time.sleep(1) # 10초 슬립
+                    # yield  [tweets.text]
+                    if '@' not in tweets.text:
+                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}\n{tweets.text}"]
+                    # yield [ Papago(tweets.text).translate(), tweets.text]
+                    # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
+                    print(f' get finish')
+        except:
+              pass    
+            #
+        
+      
 
   class Tweets:
     
