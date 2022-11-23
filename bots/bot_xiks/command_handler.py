@@ -87,18 +87,12 @@ class CmdHandler:
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.ShillerRatio.compareWithPrice)
             return CommandHandler('shiller_ratio', _shillerRatio)
 
-        # mkptn reply function
-        @staticmethod
-        def mkPtn_w():
-            async   def _mkPtn_w(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern_w)
-            return CommandHandler('market_pattern_w', _mkPtn_w)
         
         # mkptn reply function
         @staticmethod
-        def mkPtn_m():
+        def mkPtn():
             async   def _mkPtn_m(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern_m)
+                await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern)
             return CommandHandler('market_pattern_m', _mkPtn_m)
         
 # =================================================================================================================================

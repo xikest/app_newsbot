@@ -119,7 +119,7 @@ class SrcNews:
                     # time.sleep(1) # 10초 슬립
                     # yield  [tweets.text]
                     if '@' not in tweets.text:
-                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}\n{tweets.text}"]
+                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}\n\n{tweets.text}"]
                     # yield [ Papago(tweets.text).translate(), tweets.text]
                     # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')
@@ -178,7 +178,7 @@ class SrcNews:
                     # time.sleep(1) # 10초 슬립
                     # yield  [tweets.text]
                     if '@' not in tweets.text:
-                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}\n{tweets.text}"]
+                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}\n\n{tweets.text}"]
                     # yield [ Papago(tweets.text).translate(), tweets.text]
                     # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')

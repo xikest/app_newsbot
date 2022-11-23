@@ -33,12 +33,14 @@ class ShillerRatio:
     #
     
   def _plot(self, compare_with='S&P 500 Real Price by Month', reference='Shiller PE Ratio by Month',  mode='binary'):
+    reference = list(self._df.columns).index(reference)
+    compare_with=list(self._df.columns).index(compare_with)    
     fig = (PlotViz(self._df).line(col_idx=reference)
+                               .add_annotation( pos='max', col_idx=reference).add_annotation( pos='min',  col_idx=reference).add_annotation( pos='recent',  col_idx=reference)
                                .line(col_idx=compare_with, secondary_y=True)
+                               .add_annotation( pos='max', col_idx=compare_with, showarrow=False, yref='y2').add_annotation( pos='min', col_idx=compare_with, showarrow=False,  yref='y2').add_annotation( pos='recent', col_idx=compare_with, showarrow=False, yref='y2')
                                .add_hline(y=26, annotation_text='CAPE:26',  annotation_position= 'bottom left', annotation_font_color='black')
                                .add_hrect(y0=20,y1=32)
-                               .add_annotation( pos='max').add_annotation( pos='min').add_annotation( pos='recent')
-                               .add_annotation( pos='max', col_idx=compare_with, showarrow=False, yref='y2').add_annotation( pos='min', col_idx=compare_with, showarrow=False,  yref='y2').add_annotation( pos='recent', col_idx=compare_with,showarrow=False, yref='y2')
                                .update_layout(title= f'Shiller PE Ratio Vs {compare_with}', width=500, height=700)
                                .update_yaxes(title_text=reference).update_yaxes(title_text=compare_with, secondary_y=True)
                                .update_xaxes())
