@@ -102,8 +102,8 @@ class SrcNews:
     def gen_twt()-> List[Context]: 
       screen_names = ['ConsensusGurus']  # following 리스트
       for screen_name in screen_names:
-          for tweet in SrcNews.Tweets.get_msg(screen_name):
-              yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Tweets.getChatId())
+          for tweet in SrcNews.Consensus.get_msg(screen_name):
+              yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Consensus.getChatId())
               
     @staticmethod
     def get_msg(screen_name:str='financialjuice') -> str:
