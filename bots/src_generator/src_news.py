@@ -7,6 +7,7 @@ from tools.telegram_bot.contents import Context
 from info.ids import Ids
 from info.twt_following import TweetsFlw
 from .papago import Papago
+from  .translate import KakaoTranslate
 # import googletrans
 
 
@@ -110,11 +111,11 @@ class SrcNews:
         try :
                 paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
                 response = next(paginator)
-                for tweets in response.data:
+                for tweets in response.data[::-1]:
                     # time.sleep(1) # 10초 슬립
                     # yield  [tweets.text]
                     if '@' not in tweets.text:
-                      yield [ f"#{screen_name}\n{tweets.text}"]
+                      yield [ f"#{screen_name}\n{KakaoTranslate.eng2kor(tweets.text)}"]
                     # yield [ Papago(tweets.text).translate(), tweets.text]
                     # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')
