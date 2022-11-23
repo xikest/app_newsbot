@@ -6,7 +6,7 @@ import tweepy
 from tools.telegram_bot.contents import Context
 from info.ids import Ids
 from info.twt_following import TweetsFlw
-from .papago import Papago
+# from .papago import Papago
 from  .translate import KakaoTranslate
 # import googletrans
 
