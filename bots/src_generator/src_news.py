@@ -64,7 +64,26 @@ class SrcNews:
       list_news.extend(rss_nber)
       # list_news.extend(rss_imf)
       yield from list_news
+      
+    
+    
+    
+  # class Consensus:
+  #       _ChatId:Optional[str]=None
+  #       # _screen_names:List[str]=TweetsFlw.screen_names()
+  #       # _BEARER_TOKEN:Optional[str]=Ids.twt_beartoken()
+
+  #       @classmethod
+  #       def getChatId(cls):
+  #         if cls._ChatId is None:cls.setChatId(SrcNews.getChatId())
+  #         return cls._ChatId
+
+  #       @classmethod
+  #       def setChatId(cls, ChatId:str):
+  #         cls._ChatId = ChatId
         
+  #       @staticmethod
+    
 
   class Tweets:
     
