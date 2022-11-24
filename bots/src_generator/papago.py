@@ -5,7 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
+# sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 
 
 class Papago:
@@ -21,9 +22,10 @@ class Papago:
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
         
-        self._wd = webdriver.Chrome('chromedriver.exe', options=chrome_options)
+        self._wd = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
         self._wd.get('https://papago.naver.com/')# 웹페이지 가져 오기
         pass
         
@@ -63,6 +65,3 @@ class Papago:
                    'jp':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[4]/a',
                    'cn':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a'}
         return dict_lang.get(lang)
-
-
-
