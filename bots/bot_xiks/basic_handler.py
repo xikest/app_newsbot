@@ -20,8 +20,7 @@ class BasicHandler:
     def help():
         async def _help(update: Update, context: CallbackContext):
             await  update.message.reply_text(text = """shiller_ratio - 쉴러 PE Ratio
-market_pattern_w - market pattern_w
-market_pattern_m - market pattern_m
+market_pattern - market pattern
 cpi - 소비자 물가 지수
 ppi - 생산자 물가 지수
 ism - ISM 서비스 지수

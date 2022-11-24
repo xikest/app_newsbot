@@ -32,7 +32,7 @@ class CmdHandler:
                             await asyncio.sleep(1)
                             if context_ex.dtype == 'img': 
                                 await    update.message.reply_photo(photo=context_ex.content.pop(0))
-                            if context_ex.dtype == 'msg': 
+                            elif context_ex.dtype == 'msg': 
                                 await    update.message.reply_text(text=context_ex.content.pop(0))      
                 
 # =================================================================================================================================
@@ -91,9 +91,9 @@ class CmdHandler:
         # mkptn reply function
         @staticmethod
         def mkPtn():
-            async   def _mkPtn_m(update: Update, context: ContextTypes.DEFAULT_TYPE):
+            async   def _mkPtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Market.pattern)
-            return CommandHandler('market_pattern_m', _mkPtn_m)
+            return CommandHandler('market_pattern', _mkPtn)
         
 # =================================================================================================================================
 # Macro

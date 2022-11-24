@@ -100,7 +100,7 @@ class SrcNews:
       
     @staticmethod
     def gen_twt()-> List[Context]: 
-      screen_names = ['ConsensusGurus']  # following 리스트
+      screen_names = ['ConsensusGurus', 'eWhispers']  # following 리스트
       for screen_name in screen_names:
           for tweet in SrcNews.Consensus.get_msg(screen_name):
               yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Consensus.getChatId())
@@ -109,10 +109,10 @@ class SrcNews:
     def get_msg(screen_name:str='financialjuice') -> str:
         BEARER_TOKEN=Ids.twt_beartoken()    # 트위터 접근 토큰
         client = tweepy.Client(BEARER_TOKEN)
-        t_id = client.get_user(username=screen_name).data.id # get_id
         
         # translator = googletrans.Translator()
         try :
+                t_id = client.get_user(username=screen_name).data.id # get_id
                 paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
                 response = next(paginator)
                 for tweets in response.data[::-1]:
@@ -124,7 +124,9 @@ class SrcNews:
                     # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')
         except:
-              pass    
+                print('Consensus error')
+                # time.slepp(15 * 60)
+            
             #
         
       
@@ -168,10 +170,11 @@ class SrcNews:
     def get_msg(screen_name:str='financialjuice') -> str:
         BEARER_TOKEN=Ids.twt_beartoken()    # 트위터 접근 토큰
         client = tweepy.Client(BEARER_TOKEN)
-        t_id = client.get_user(username=screen_name).data.id # get_id
+      
         
         # translator = googletrans.Translator()
         try :
+                t_id = client.get_user(username=screen_name).data.id # get_id
                 paginator = iter(tweepy.Paginator(client.get_users_tweets, t_id, max_results=50))
                 response = next(paginator)
                 for tweets in response.data[::-1]:
@@ -183,7 +186,8 @@ class SrcNews:
                     # yield [ f"{tweets.text} \n {translator.translate(tweets.text, dest='ko').text}"]
                     print(f' get finish')
         except:
-              pass    
+               print('tweets error')
+               # time.slepp(15 * 60)
             #
 
         

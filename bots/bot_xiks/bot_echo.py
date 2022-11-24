@@ -31,6 +31,8 @@ class Echobot():
             # dispatcher.add_handler(BasicHandler.echo())
             application.add_handler(BasicHandler.inline_caps())
             
+            application.add_handler(CmdHandler.bs_stock())
+            
             application.add_handler(CmdHandler.shillerRatio())
             application.add_handler(CmdHandler.mkPtn())
             application.add_handler(CmdHandler.fed())  
