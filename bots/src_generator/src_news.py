@@ -100,7 +100,7 @@ class SrcNews:
       
     @staticmethod
     def gen_twt()-> List[Context]: 
-      screen_names = ['ConsensusGurus', 'eWhispers']  # following 리스트
+      screen_names = ['ConsensusGurus']  # following 리스트
       for screen_name in screen_names:
           for tweet in SrcNews.Consensus.get_msg(screen_name):
               yield Context(content=tweet, label=screen_name, dtype='msg', botChatId=SrcNews.Consensus.getChatId())
