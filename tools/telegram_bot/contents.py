@@ -63,7 +63,7 @@ class Contents(list):
                 bot = telegram.Bot(token)
                 if context not in self.loadContents():
                     self.saveContents(context=context)
-                    # await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))                    
+                    await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))                    
                     while len(context.content) > 0:
                         if context.dtype == 'img': 
                             await   asyncio.sleep(5)

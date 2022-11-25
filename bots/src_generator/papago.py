@@ -36,13 +36,15 @@ class Papago:
         # 입력 언어 선택
         dropMenu = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
         dropMenu.click()
+        time.sleep(1)
         selector_lang = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
         selector_lang.click()
-
+        time.sleep(1)
+ 
         # 입력
         input_text = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
         input_text.send_keys('d'+text) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-        
+        time.sleep(1)
         # 출력 언어 선택
         # 구현 안함, 입력 언어와 동일한 방식으로 선택
 
