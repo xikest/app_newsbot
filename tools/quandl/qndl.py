@@ -2,7 +2,7 @@ import quandl
 
 import pandas as pd
 from tools.time.time import Periods
-from info.ids import Ids
+from info.bot_ids import InfoQdl
 
 def get_keys(key_list, pos=0):
     category = key_list[pos].split('_')[0]
@@ -13,7 +13,7 @@ def get_keys(key_list, pos=0):
 class Qdl:
     
     def __init__(self, category, keys : list or str, periods:int=10):       
-        quandl.ApiConfig.api_key = Ids.qdl_api()
+        quandl.ApiConfig.api_key = InfoQdl.get_api()
         self.__get_data(category, keys, periods).__adjusting_data()
        
        
