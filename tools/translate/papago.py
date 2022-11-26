@@ -28,7 +28,7 @@ class Papago:
         self._wd = webdriver.Chrome('chromedriver', options=chrome_options)
         self._wd.get('https://papago.naver.com/')# 웹페이지 가져 오기
         pass
-        
+      
     
         
     async def translate(self, text="hello"):
