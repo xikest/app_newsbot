@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-
+import asyncio
 # sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 
@@ -31,29 +31,28 @@ class Papago:
         
     
         
-    def translate(self, text="hello"):
+    async def translate(self, text="hello"):
 
         # 입력 언어 선택
         dropMenu = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
-        dropMenu.click()
-        time.sleep(1)
+        dropMenu.click() #언어 선택 메뉴
+        
         selector_lang = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
-        selector_lang.click()
-        time.sleep(1)
+        selector_lang.click() #언어 선택
+
  
         # 입력
         input_text = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
-        input_text.send_keys('d'+text) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-        time.sleep(1)
+        
+        for txt in chunks(text,50):
+            input_text.send_keys('d'+txt) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
         # 출력 언어 선택
         # 구현 안함, 입력 언어와 동일한 방식으로 선택
 
-        
         #번역하기 버튼 클릭
         trans_btn = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
-        # self._wd.find_element(By.XPATH , '//*[@id="btnTranslate"]')  
         trans_btn.click()
-        time.sleep(1)
+        await asyncio.sleep(1)  # 번역 결과 대기
         
         #번역된 결과 보기
         result = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
@@ -67,3 +66,9 @@ class Papago:
                    'jp':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[4]/a',
                    'cn':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a'}
         return dict_lang.get(lang)
+    
+def chunks(l, n):
+    # Yield successive n-sized chunks from l
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+        
