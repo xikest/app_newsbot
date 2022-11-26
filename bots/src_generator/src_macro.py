@@ -52,15 +52,7 @@ class SrcMacro:
                   yield Context(content = [MarketPattern.plot(period='m'), MarketPattern.plot(period='w')], dtype='img')
                 
             
-      
-      class EconomicIdx:
-            @staticmethod
-            def gen_nber_releases():
-                  genContent = SrcNews.NBER.nber_economic_indicators_releases()
-                  for context in genContent:
-                        context:Context
-                        context.content=[context.descr] ## 컨텐츠 업데이트
-                        yield context
+
                   
       class Macro:
             @staticmethod
