@@ -25,7 +25,7 @@ class Papago:
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
         
-        self._wd = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
+        self._wd = webdriver.Chrome('chromedriver', options=chrome_options)
         self._wd.get('https://papago.naver.com/')# 웹페이지 가져 오기
         pass
         
