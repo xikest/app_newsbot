@@ -50,7 +50,7 @@ class NewsAlert():
 
   async def update(self, generatorForContext:Generator, delay:Union[int, float]=0):
             start = time.time()
-            for context in generatorForContext(): 
+            async for context in generatorForContext(): 
                       await Contents(context).sendTo(self.getToken, delay=delay)
             end = time.time()
             print(f'context time taken: {(end - start)}')
