@@ -19,4 +19,5 @@ if platform.system()=='Windows':
     
 while True:
     asyncio.run(NewsAlert(TOKEN).update(srcTwitter.generator))
+    print('cycle finish')
 
