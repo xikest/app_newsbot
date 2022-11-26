@@ -31,10 +31,10 @@ class NewsAlert():
           print((await bot.get_updates())[0])
   
   
-  async def start(self,genContent_list:Generator):
+  async def start(self,generator_list:List):
             while True:
                 try:
-                    await self.updateMassgeFromGenerators(genContent_list)
+                    await self.updateMassgeFromGenerators(generator_list)
                     print(f'cycle finish, sleep {time.time()}')
                     await asyncio.sleep(5*60) #5분 대기
                     print(f'awake{time.time()}')
@@ -45,11 +45,12 @@ class NewsAlert():
 #======================
 # 내부 함수
 #======================
-  def updateMassgeFromGenerators(self, genContent_list:Generator):
-      return asyncio.gather(*[self.update(genContent, delay=i) for  i, genContent in enumerate(genContent_list())]) 
+  async def updateMassgeFromGenerators(self, generator_list:Generator):
+      return asyncio.gather(*[self.update(generatorForContext, delay=i) async for  i, generatorForContext in enumerate(generator_list)]) 
 
-  async def update(self, genContent:Generator, delay:Union[int, float]=0):
+  async def update(self, generatorForContext:Generator, delay:Union[int, float]=0):
             start = time.time()
-            for context in genContent(): await Contents(context).sendTo(self.getToken, delay=delay)
+            for context in generatorForContext(): 
+                      await Contents(context).sendTo(self.getToken, delay=delay)
             end = time.time()
             print(f'context time taken: {(end - start)}')
