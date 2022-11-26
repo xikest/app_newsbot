@@ -1,7 +1,6 @@
 import time
 import sys
 from selenium import webdriver
-from selenium.webdriver import FirefoxOptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,13 +18,14 @@ class Papago:
     def __init__(self, lang:str='en'):
         self._lang=lang
         
-        firefox_options = FirefoxOptions()
-        firefox_options.add_argument('--headless')
-        firefox_options.add_argument('--no-sandbox')
-        firefox_options.add_argument('--disable-dev-shm-usage')
-        firefox_options.add_argument('lang=ko_kr')
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('user-agent={0}'.format(user_agent))
+        chrome_options.add_argument('lang=ko_kr')
         
-        self._wd = webdriver.Firefox(options=firefox_options)
+        self._wd = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=chrome_options)
         self._wd.get('https://papago.naver.com/')# 웹페이지 가져 오기
         pass
         
