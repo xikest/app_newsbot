@@ -2,7 +2,6 @@
 from typing import Optional, List,Generator
 import tweepy
 from tools.telegram_bot.contents import Context
-from info.feeds import FeddFlowwings
 from tools.translate.papago import Papago
 # from tools.translate.google import GoogleTranslate
 # from tools.translate.kakao import KakaoTranslate
