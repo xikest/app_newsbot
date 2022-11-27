@@ -35,7 +35,7 @@ class FeedFlowwings:
                     News(name='한경 금융 탑기사', src='web',url = 'https://www.hankyung.com/financial-market', attr_key='main-headline'),
                     # News(name='한경 집코노미 탑기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-headline'),
                     # News(name='한경 집코노미 주요 기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-jipconomy'),
-                    News(name='연포 인포 맥스 많이 본 뉴스', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
+                    News(name='연포 인포 맥스 많이 본 뉴스', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db02 db05', prefix='https://news.einfomax.co.kr/'),
                     News(name='연포 인포 맥스 정치', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N15&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='연포 인포 맥스 많이 본 뉴스', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='연포 인포 맥스 외환', src='webWithoutHttp',  url ='https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N16&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
