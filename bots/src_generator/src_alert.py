@@ -41,10 +41,11 @@ class SrcAlert:
               generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromNews, generatorFromMail, generatorFromRss]:
-                for context in generator():
-                #   print(f"gen: {context}")
-                  yield context 
+              # for generator in [generatorFromMail, generatorFromRss, generatorFromNews]:
+              for generator in [generatorFromMail]:
+                async for context in generator():
+                    # print(f"gen: {context}")
+                    yield context 
 
 
 BotProfiles.get_botTwitters().channels.get('chat_id')

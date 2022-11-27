@@ -17,10 +17,9 @@ class Context:
         title:Optional[str]=None
         content:List[Any] = None
         label:Optional[str] = None
+        summary:List[Any] = None
         descr:Optional[str] = None
-        release_time:Optional[str] = None
         dtype:Optional[str] = None
-        used:bool=False
         enable_translate:bool = False
         botChatId:Optional[str] = None
 
@@ -72,16 +71,17 @@ class Contents(list):
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))         
                     try:           
                         while len(context.content) > 0:   
-                            # print('loop start')                
+                            print('loop start')   
+                            print(context)
+                            print(f"dtype: {context.dtype}")             
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                                 
                             elif context.dtype == 'msg':
-                                msg = context.content.pop(0)
-                                if context.enable_translate == True: msg = f"#{context.label}\n{await self.translate(msg)}\n\n{msg}"
-                                elif context.enable_translate == False :msg = f"#{context.label}\n\n{msg}"
-                                # print(f'msg : {msg}')
+                                if context.enable_translate == True: msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
+                                print(f'msg : {msg}')
                                 await asyncio.sleep(5)
                                 await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
                             else: 

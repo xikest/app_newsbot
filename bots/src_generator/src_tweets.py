@@ -28,7 +28,7 @@ class SrcTweets:
                         async for tweet_msg in self.get_msg(tweets, t_id):
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
-                                yield Context(content=[tweet_msg], label=f'{screenName}', dtype='msg', enable_translate = True, botChatId=self._ChatId)
+                                yield Context(content=[tweet_msg], label=f'{screenName}', summary=[tweet_msg], enable_translate = True, botChatId=self._ChatId,  dtype='msg')
             except Exception as e:
                 print(f"tweets body error: {e}")
                 pass
