@@ -19,13 +19,13 @@ class SrcAlert:
         self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_chat_id')
         
         
-    @setattr   
+ 
     def set_chatId_mail(self, ChatId):
         self._chatId_mail = ChatId
-    @setattr   
+ 
     def set_chatId_rss(self, ChatId):
         self._chatId_rss = ChatId
-    @setattr   
+
     def set_chatId_news(self, ChatId):
         self._chatId_news = ChatId
         
