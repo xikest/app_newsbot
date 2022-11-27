@@ -27,7 +27,7 @@ ism - ISM 서비스 지수
 diffusion_index_philadelphia - 필라델피아 기업 경기 전망 보고서
 reatail_sales - 소매 판매 보고서
 new_residential_sales - 신규 주택 판매
-durable_goods - 내구주 수주
+durable_goods - 내구재 수주
 pce - 개인 소비 지출
 employment_cost_index - 고용 비용 지수
 gdp - GDP
