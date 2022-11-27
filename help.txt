@@ -3,7 +3,7 @@ nohup python3 -u bot_beta.py > log_bot_beta.log 2>&1 &
 nohup python3 -u bot_twt.py > log_bot_twt.log 2>&1 &
 
 
-
+ps -ef|grep bot
 
 ### 크롬 설치
 apt-get update
