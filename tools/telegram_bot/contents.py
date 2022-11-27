@@ -65,7 +65,6 @@ class Contents(list):
 
     
     async   def sendTo(self, token:str, delay:Union[int, float]=0) -> None:
-                # print('send start')
                 context:Context = self.pop()
                 bot = telegram.Bot(token)
                 if context not in self.loadContents():
@@ -73,14 +72,12 @@ class Contents(list):
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))         
                     try:           
                         while len(context.content) > 0:   
-                            # print('while start')                
+                            # print('loop start')                
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                                 
                             elif context.dtype == 'msg':
-                                
-                                # print('elif dtype msg')
                                 msg = context.content.pop(0)
                                 if context.enable_translate == True: msg = f"#{context.label}\n{await self.translate(msg)}\n\n{msg}"
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{msg}"
