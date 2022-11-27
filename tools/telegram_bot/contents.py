@@ -72,7 +72,7 @@ class Contents(list):
                     try:           
                         while len(context.content) > 0:   
                             # print('loop start')   
-                            print(context)
+                            # print(context)
                             # print(f"dtype: {context.dtype}")             
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)

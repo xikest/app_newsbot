@@ -26,7 +26,8 @@ class Mail:
 class FeedFlowwings:
     @staticmethod
     def get_rss_urls():
-        yield from [News(name='fred_blog', src='rss', url='http://fredblog.stlouisfed.org/feed/', enable_translate=True),
+        yield from [
+                    News(name='fred_blog', src='rss', url='http://fredblog.stlouisfed.org/feed/', enable_translate=True),
                     News(name='EIA_today_energy', src='rss', url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
                     News(name='EIA_thisweek_petroleum', src='rss_s', url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml', enable_translate=True),
                     News(name='GDP_NOW', src='rss', url='https://www.atlantafed.org/rss/GDPNow', enable_translate=True),
@@ -42,13 +43,13 @@ class FeedFlowwings:
 
     @staticmethod
     def get_news_urls():
-        yield from [News(name='브릿지워터', src='web',  url ='https://www.bridgewater.com/research-and-insights', attr_key = 'MasonryList'),
+        yield from [            
                     News(name='한경_글로벌마켓', src='web', url = 'https://www.hankyung.com/globalmarket/news/hot-stock', attr_key='list_top_thumb'),
                     News(name='한경_월스리트_나우',src='web', url='https://www.hankyung.com/globalmarket/news/wallstreet-now', attr_key='list_thumb_rowtype'),
                     News(name='한경_경제', src='web', url = 'https://www.hankyung.com/economy', attr_key='main-headline'),
                     News(name='한경_금융', src='web',url = 'https://www.hankyung.com/financial-market', attr_key='main-headline'),
                     News(name='한경 집코노미 탑기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-headline'),
-                    News(name='한경 집코노미 주요 기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-jipconomy'),
+                    # News(name='한경 집코노미 주요 기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-jipconomy'),
                     News(name='연포인포맥스_top', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db02 db05', prefix='https://news.einfomax.co.kr/'),
                     News(name='einfomax_정책금융', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N15&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='연포_인포_맥스_많이_본_뉴스', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
@@ -56,6 +57,7 @@ class FeedFlowwings:
                     News(name='einfomax_해외주식', src='webWithoutHttp', url ='https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N21&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='einfomax_글로벌경제', src='webWithoutHttp', url ='https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N4&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='einfomax_중국경제', src='webWithoutHttp',  url ='https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N18&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
+                    # News(name='브릿지워터', src='web',  url ='https://www.bridgewater.com/research-and-insights', attr_key = 'MasonryList')
                     ]
 
     @staticmethod
