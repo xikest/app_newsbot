@@ -6,6 +6,12 @@ from tools.time.time import Timer
 import asyncio
 import telegram
 
+
+from tools.translate.papago import Papago
+# from tools.translate.google import GoogleTranslate
+# from tools.translate.kakao import KakaoTranslate
+
+
 @dataclass
 class Context:
         title:Optional[str]=None
@@ -15,7 +21,7 @@ class Context:
         release_time:Optional[str] = None
         dtype:Optional[str] = None
         used:bool=False
-        key:Optional[str] = None
+        enable_translate:bool = False
         botChatId:Optional[str] = None
 
 class Contents(list): 
@@ -65,13 +71,24 @@ class Contents(list):
                     self.saveContents(context=context)
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))                    
                     while len(context.content) > 0:
-                        # print(context)
+                        
                         try:
                             if context.dtype == 'img': 
                                 await   asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
-                            elif context.dtype == 'msg': 
-                                await  asyncio.sleep(5)
-                                await bot.send_message(chat_id=context.botChatId, text=context.content.pop(0)) #'msg'
+                            elif context.dtype == 'msg':
+                               # print(context)
+                                if context.enable_translate == True: msg = self.translate(context.contet.pop(0))
+                                elif context.enable_translate == False : msg = context.contet.pop(0)
+                                
+                                await asyncio.sleep(5)
+                                await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
                         except: pass
                 return None
+            
+    def translate(self, txt:str) -> str:
+        papago = Papago('en')
+        res = papago.translate(txt)
+        papago.quit()
+        print(res)
+        return res

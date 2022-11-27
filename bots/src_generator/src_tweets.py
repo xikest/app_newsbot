@@ -26,7 +26,7 @@ class SrcTweets:
                 tweets = client.get_users_tweets
                 async   for tweet_msg in self.get_msg(tweets, t_id, screenName):
                         print('tweet_msg')
-                        yield Context(content=[tweet_msg], label=screenName, dtype='msg', botChatId=self._ChatId)
+                        yield Context(content=[tweet_msg], label=screenName, dtype='msg', enable_translate = True, botChatId=self._ChatId)
                         
 
 
@@ -39,20 +39,15 @@ class SrcTweets:
                         
                         for tweet in response.data[::-1]:
                             if '@' not in tweet.text:
-                                res = self.translate(tweet.text)
-                                print(res)
-                                yield f"#{screenName}\n{res}\n\n{tweet.text}"
+                                print(tweet.text)
+                                yield tweet.text
                                 # yield f"#{screenName}\n{await GoogleTranslate('en').eng2kor(tweet.text)}\n\n{tweet.text}"
                                 # yield f"#{screenName}\n{KakaoTranslate.eng2kor(tweet.text)}\n\n{tweet.text}"
                 except Exception as e:
                     print(f'tweets error msg : {e}')
                     await asyncio.sleep(15*60)    
 
-    def translate(self, txt:str) -> str:
-        papago = Papago('en')
-        res = papago.translate(txt)
-        papago.quit()
-        return res
+
 
     def get_id(self, client, screenName:str) -> str:
         try:

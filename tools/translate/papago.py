@@ -17,11 +17,13 @@ class Papago:
     """
     def __init__(self, lang:str='en'):
         self._lang=lang
+        self._tryCnt =0
         
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument("--remote-debugging-port=9230")
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
         
@@ -32,6 +34,7 @@ class Papago:
     
         
     def translate(self, text="hello"):
+            self._text = text
             try:
 
                 # 입력 언어 선택
@@ -60,6 +63,9 @@ class Papago:
                 return result.text
             except Exception as e:
                 self._wd.quit()
+                if self._tryCnt < 3:
+                    self._tryCnt += 1
+                    self.translate(self._text)
                 print(f"papago_error: {e}")
                 
                 

@@ -5,6 +5,8 @@ nohup python3 -u bot_twt.py > log_bot_twt.log 2>&1 &
 
 ps -ef|grep bot
 
+du -sh *
+
 ### 크롬 설치
 apt-get update
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

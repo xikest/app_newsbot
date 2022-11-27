@@ -36,7 +36,7 @@ class NewsAlert():
                 try:
                     await self.update(generator)
                     print(f'cycle finish, sleep {time.time()}')
-                    # await asyncio.sleep(waitTime) #5분 대기
+                    await asyncio.sleep(waitTime) #5분 대기
                     print(f'awake{time.time()}')
                 except:
                     pass
