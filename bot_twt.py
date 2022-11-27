@@ -19,6 +19,6 @@ if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     
 
-asyncio.run(NewsAlert(TOKEN).start(srcTwitter.generator))
+asyncio.run(NewsAlert(TOKEN).start(srcTwitter.generator, waitTime= 1*60))
 
 
