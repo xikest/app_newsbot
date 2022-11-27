@@ -34,7 +34,7 @@ class SrcTweets:
                         
                         for tweet in response.data[::-1]:
                             if '@' not in tweet.text:
-                                res = await Papago('en').translate(tweet.text)
+                                res = Papago('en').translate(tweet.text)
                                 print(res)
                                 yield f"#{screenName}\n{res}\n\n{tweet.text}"
                                 # yield f"#{screenName}\n{await GoogleTranslate('en').eng2kor(tweet.text)}\n\n{tweet.text}"
