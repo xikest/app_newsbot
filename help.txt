@@ -1,3 +1,16 @@
-nohup python3 bot_alert.py > bot_alert_out_.log 2>&1 &
-nohup python3 bot_beta.py > bot_beta_out_.log 2>&1 &
-nohup python3 bot_twt.py > bot_twt.log 2>&1 &
+nohup python3 -u bot_alert.py > log_bot_alert.log 2>&1 &
+nohup python3 -u bot_beta.py > log_bot_beta.log 2>&1 &
+nohup python3 -u bot_twt.py > log_bot_twt.log 2>&1 &
+
+
+
+## 크롬 설치
+apt-get update
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+google-chrome --version  ## 버전 확인
+
+## 크롬 드라이버 설치
+wget https://chromedriver.storage.googleapis.com/107.0.5304.62/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip  # 압축 풀기
+mv chromedriver /usr/bin/chromedriver # 파일 이동
