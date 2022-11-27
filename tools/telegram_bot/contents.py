@@ -65,7 +65,7 @@ class Contents(list):
                     self.saveContents(context=context)
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))                    
                     while len(context.content) > 0:
-                        print(context)
+                        # print(context)
                         try:
                             if context.dtype == 'img': 
                                 await   asyncio.sleep(5)

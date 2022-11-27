@@ -34,7 +34,7 @@ class SrcTweets:
     async   def get_msg(self, tweets, t_id, screenName:str='financialjuice') -> str:                
                 try :
                         if t_id is None: raise Exception('failed get tweets id')
-                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=5))
+                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=10))
                         response = next(paginator)
                         
                         for tweet in response.data[::-1]:
