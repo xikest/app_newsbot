@@ -18,9 +18,9 @@ class SrcTweets:
         
         
     async   def generator(self)-> Context: 
-            print('generator')
+            # print('generator')
             for screenName in self._screenNames() : # following 리스트
-                    print(screenName)
+                    # print(screenName)
                     client = tweepy.Client(self._BEARERTOKEN)
                     t_id = await self.get_id(client, screenName) # get_id
                     tweets = client.get_users_tweets
