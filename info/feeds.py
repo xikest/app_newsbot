@@ -21,8 +21,8 @@ class FeedFlowwings:
     def get_rss_urls():
         yield from [News(name='뉴스핌', src='googleAlert', url='https://www.google.co.kr/alerts/feeds/11305193269230284098/15091211705036215232'),
                     News(name='인남식', src='googleAlert', url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10207016080645967575'),
-                    News(name='다모다란', src='rss', url='https://aswathdamodaran.blogspot.com/feeds/posts/default'),
-                    News(name='GDP NOW', src='rss', url='https://www.atlantafed.org/rss/GDPNow'),
+                    # News(name='다모다란', src='rss', url='https://aswathdamodaran.blogspot.com/feeds/posts/default'),
+                    # News(name='GDP NOW', src='rss', url='https://www.atlantafed.org/rss/GDPNow'),
                     News(name='EIA today energy', src='rss', url='https://www.eia.gov/rss/todayinenergy.xml'),
                     News(name='EIA thisweek_petroleum', src='rss', url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml')
                     ]
