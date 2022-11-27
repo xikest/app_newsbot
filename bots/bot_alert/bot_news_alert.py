@@ -31,12 +31,12 @@ class NewsAlert():
           print((await bot.get_updates())[0])
   
   
-  async def start(self,generator_list:List):
+  async def start(self,generator:Generator, waitTime=5*60):
             while True:
                 try:
-                    await self.updateMassgeFromGenerators(generator_list)
+                    await self.update(generator)
                     print(f'cycle finish, sleep {time.time()}')
-                    await asyncio.sleep(5*60) #5분 대기
+                    await asyncio.sleep(waitTime) #5분 대기
                     print(f'awake{time.time()}')
                 except:
                     pass
@@ -45,8 +45,6 @@ class NewsAlert():
 #======================
 # 내부 함수
 #======================
-  async def updateMassgeFromGenerators(self, generator_list:Generator):
-      return asyncio.gather(*[self.update(generatorForContext, delay=i) async for  i, generatorForContext in enumerate(generator_list)]) 
 
   async def update(self, generatorForContext:Generator, delay:Union[int, float]=0):
             start = time.time()

@@ -21,5 +21,6 @@ TOKEN = BotProfiles.get_botAlert().TOKEN
 srcAlert = SrcAlert()
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-asyncio.run(NewsAlert(TOKEN).update(srcAlert.generator))
+    
+asyncio.run(NewsAlert(TOKEN).start(srcAlert.generator))
 

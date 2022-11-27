@@ -18,8 +18,7 @@ srcTwitter = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(),
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     
-while True:
-    asyncio.run(NewsAlert(TOKEN).update(srcTwitter.generator))
-    print('cycle finish')
-    #
+
+asyncio.run(NewsAlert(TOKEN).start(srcTwitter.generator))
+
 
