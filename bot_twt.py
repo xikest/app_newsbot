@@ -12,7 +12,7 @@ TOKEN = BotProfiles.get_botTwitters().TOKEN
 
 srcTwitter = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                         screenNames = InfoTwitter.get_screenNames(),
-                        ChatId = BotProfiles.get_botTwitters().channels.get('twt_chat_id'))
+                        ChatId = BotProfiles.get_botTwitters().channels.get('chat_id'))
 
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
