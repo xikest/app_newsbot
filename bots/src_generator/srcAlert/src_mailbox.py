@@ -15,7 +15,7 @@ class SrcMailBox:
         self._mailings = mailings
         self._ChatId:Optional[str]=ChatId
 
-    async def generator(self)-> Context:
+    def generator(self)-> Context:
                 try:
                     for mailing in self._mailings():        
                         UIDs, raw_msg = self._get_UIDs_msg( self._usr, self._pid, mailing.box)

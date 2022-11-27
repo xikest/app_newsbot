@@ -26,13 +26,19 @@ class Mail:
 class FeedFlowwings:
     @staticmethod
     def get_rss_urls():
-        yield from [News(name='중국_소식', src='googleAlert', url='https://www.google.co.kr/alerts/feeds/11305193269230284098/15091211705036215232'),
+        yield from [News(name='fred_blog', src='rss', url='http://fredblog.stlouisfed.org/feed/', enable_translate=True),
+                    News(name='EIA_today_energy', src='rss', url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
+                    News(name='EIA_thisweek_petroleum', src='rss_s', url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml', enable_translate=True),
+                    News(name='GDP_NOW', src='rss', url='https://www.atlantafed.org/rss/GDPNow', enable_translate=True),
+                    News(name='fred_blog', src='rss', url='http://fredblog.stlouisfed.org/feed/', enable_translate=True),
+                    News(name='opec_basketprice', src='rss', url=' https://www.opec.org/opec_web/en/basket.rss', enable_translate=True),
+                    News(name='중국_소식', src='googleAlert', url='https://www.google.co.kr/alerts/feeds/11305193269230284098/15091211705036215232'),
                     News(name='중동_소식', src='googleAlert', url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10207016080645967575'),
                     # News(name='다모다란_교수', src='rss', url='https://aswathdamodaran.blogspot.com/feeds/posts/default'),
-                    News(name='GDP_NOW', src='rss', url='https://www.atlantafed.org/rss/GDPNow', enable_translate=True),
-                    News(name='EIA_today_energy', src='rss', url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
-                    News(name='EIA_thisweek_petroleum', src='rss', url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml', enable_translate=True)
                     ]
+
+
+
 
     @staticmethod
     def get_news_urls():

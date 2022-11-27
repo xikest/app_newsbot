@@ -41,9 +41,8 @@ class SrcAlert:
               generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
 
             #   await asyncio.sleep(1)
-              # for generator in [generatorFromMail, generatorFromRss, generatorFromNews]:
-              for generator in [generatorFromMail]:
-                async for context in generator():
+              for generator in [generatorFromRss, generatorFromMail, generatorFromNews]:
+                for context in generator():
                     # print(f"gen: {context}")
                     yield context 
 
