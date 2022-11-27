@@ -20,5 +20,7 @@ class BotProfiles:
         @staticmethod
         def get_botTwitters():
             return  profile(TOKEN='5911658908:AAH_TFHQX5JPZ3GxUDyG6mMIh3IYQMowLkM',
-                            channels={'twt_chat_id' :'-1001609819786'})
-            # 'chat_id' :'-1001601197449'
+                            
+                            channels={'chat_id' :'-1001601197449',
+                                'twt_chat_id' :'-1001609819786'})
+

@@ -14,18 +14,32 @@ from info.feeds import FeedFlowwings
 class SrcAlert:
     def __init__(self, ChatId:str=None):
         self._ChatId:Optional[str]=ChatId
+        self._chatId_mail = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
+        self._chatId_rss = BotProfiles.get_botAlert().channels.get('teat_chat_id')
+        self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_chat_id')
         
-
+        
+    @setattr   
+    def set_chatId_mail(self, ChatId):
+        self._chatId_mail = ChatId
+    @setattr   
+    def set_chatId_rss(self, ChatId):
+        self._chatId_rss = ChatId
+    @setattr   
+    def set_chatId_news(self, ChatId):
+        self._chatId_news = ChatId
+        
+        
     async def generator(self)-> Context:
               generatorFromMail = SrcMailBox(InfoNav.get_usr(), 
                                               InfoNav.get_pid(), 
                                               InfoNav.get_box(), 
                                               InfoNav.get_sender(), 
-                                              BotProfiles.get_botAlert().channels.get('teat_w_chat_id')).generator
+                                              self._chatId_mail).generator
                             
-              generatorFromRss = SrcRss(FeedFlowwings.get_rss_urls(), BotProfiles.get_botAlert().channels.get('teat_chat_id')).generator
+              generatorFromRss = SrcRss(FeedFlowwings.get_rss_urls(), self._chatId_rss).generator
               
-              generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), BotProfiles.get_botAlert().channels.get('teat_chat_id')).generator
+              generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
 
               await asyncio.sleep(1)
               for generator in [generatorFromRss, generatorFromNews, generatorFromMail]:
@@ -33,7 +47,7 @@ class SrcAlert:
                   yield context 
 
 
-
+BotProfiles.get_botTwitters().channels.get('chat_id')
 
 
 

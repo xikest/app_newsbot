@@ -27,8 +27,3 @@ class InfoTwitter:
         def get_twitter_BEARERTOKEN():
             return 'AAAAAAAAAAAAAAAAAAAAAKQsJgEAAAAAN%2FTZADSVKkF4kla%2B3GXIVpkfJyg%3Do7F9D8lhFELPezgm6X0QscEm0I9yuB8nRdTNHOQWBIhJx0qI6C'
         
-        @staticmethod
-        def get_screenNames():
-            return ['financialjuice']
-            # 'ConsensusGurus',
-            

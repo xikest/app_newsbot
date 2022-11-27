@@ -18,23 +18,28 @@ class SrcTweets:
         
         
     async   def generator(self)-> Context: 
-            for screenName in self._screenNames : # following 리스트
+            print('generator')
+            for screenName in self._screenNames() : # following 리스트
+                print(screenName)
                 client = tweepy.Client(self._BEARERTOKEN)
                 t_id = self.get_id(client, screenName) # get_id
                 tweets = client.get_users_tweets
                 async   for tweet_msg in self.get_msg(tweets, t_id, screenName):
+                        print('tweet_msg')
                         yield Context(content=[tweet_msg], label=screenName, dtype='msg', botChatId=self._ChatId)
                         
+
+
 
     async   def get_msg(self, tweets, t_id, screenName:str='financialjuice') -> str:                
                 try :
                         if t_id is None: raise Exception('failed get tweets id')
-                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=50))
+                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=5))
                         response = next(paginator)
                         
                         for tweet in response.data[::-1]:
                             if '@' not in tweet.text:
-                                res = Papago('en').translate(tweet.text)
+                                res = self.translate(tweet.text)
                                 print(res)
                                 yield f"#{screenName}\n{res}\n\n{tweet.text}"
                                 # yield f"#{screenName}\n{await GoogleTranslate('en').eng2kor(tweet.text)}\n\n{tweet.text}"
@@ -42,6 +47,12 @@ class SrcTweets:
                 except Exception as e:
                     print(f'tweets error msg : {e}')
                     await asyncio.sleep(15*60)    
+
+    def translate(self, txt:str) -> str:
+        papago = Papago('en')
+        res = papago.translate(txt)
+        papago.quit()
+        return res
 
     def get_id(self, client, screenName:str) -> str:
         try:

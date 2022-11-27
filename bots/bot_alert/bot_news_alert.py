@@ -54,3 +54,4 @@ class NewsAlert():
                       await Contents(context).sendTo(self.getToken, delay=delay)
             end = time.time()
             print(f'context time taken: {(end - start)}')
+            await asyncio.sleep(5)
