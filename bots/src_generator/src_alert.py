@@ -4,12 +4,14 @@ from tools.telegram_bot.contents import Context
 from .srcAlert.src_mailbox import SrcMailBox
 from .srcAlert.src_rss import SrcRss
 from .srcAlert.src_news import SrcNews
-
-import asyncio
+from .srcAlert.src_tweets import SrcTweets
 
 from info.bot_ids import InfoNav
+from info.bot_ids import InfoTwitter
 from info.bot_profiles import BotProfiles
 from info.feeds import FeedFlowwings
+      
+      
       
 class SrcAlert:
     def __init__(self, ChatId:str=None):
@@ -17,8 +19,7 @@ class SrcAlert:
         self._chatId_mail = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
         self._chatId_rss = BotProfiles.get_botAlert().channels.get('teat_chat_id')
         self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_chat_id')
-        
-        
+        self._chatId_tweets = BotProfiles.get_botTwitters().channels.get('twt_chat_id')
  
     def set_chatId_mail(self, ChatId):
         self._chatId_mail = ChatId
@@ -28,6 +29,9 @@ class SrcAlert:
 
     def set_chatId_news(self, ChatId):
         self._chatId_news = ChatId
+        
+    def set_chatId_tweets(self, ChatId):
+        self._chatId_tweets = ChatId   
         
         
     async def generator(self)-> Context:
@@ -39,15 +43,24 @@ class SrcAlert:
               generatorFromRss = SrcRss(FeedFlowwings.get_rss_urls(), self._chatId_rss).generator
               
               generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
+              
+              generatorFromTwitter = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                            screenNames = FeedFlowwings.get_screenNames,
+                                            ChatId = self._chatId_tweets).generator
+
+              
+              
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromNews, generatorFromRss, generatorFromMail]:
-                for context in generator():
+              for generator in [generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromMail]:
+                async for context in generator():
                     # print(f"gen: {context}")
                     yield context 
 
 
-BotProfiles.get_botTwitters().channels.get('chat_id')
+
+
+
 
 
 

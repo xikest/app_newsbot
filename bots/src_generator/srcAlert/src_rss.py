@@ -10,7 +10,7 @@ class SrcRss:
         self._ChatId:Optional[str]=ChatId
         self._rssList:Generator = rssList
 
-    def generator(self)-> Context:
+    async def generator(self)-> Context:
                 try: 
                     for rss in self._rssList:
                         for feed in feedparser.parse(rss.url).entries:

@@ -9,6 +9,10 @@ from tools.translate.papago import Papago
 import asyncio
 
 class SrcTweets:
+    
+    SLEEP = False
+    AWAKE = True
+    status = SLEEP
 
     def __init__(self, BEARERTOKEN:Optional[str], screenNames:Generator, ChatId:Optional[str]):
         self._ChatId:Optional[str]=ChatId
@@ -18,6 +22,7 @@ class SrcTweets:
         
         
     async   def generator(self)-> Context: 
+        if SrcTweets.status == SrcTweets.AWAKE:
             # print('generator')
             try: 
                 for screenName in self._screenNames() : # following 리스트
@@ -47,8 +52,10 @@ class SrcTweets:
                                 # await asyncio.sleep(1)
                                 yield tweet.text
                 except Exception as e:
+                    SrcTweets.status = SrcTweets.SLEEP
                     print(f'tweets connect error, sleep 15min.: {e}')
                     await asyncio.sleep(15*60)    
+                    SrcTweets.status = SrcTweets.AWAKE
 
 
 

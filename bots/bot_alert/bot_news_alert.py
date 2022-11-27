@@ -9,7 +9,9 @@ import telegram
 class NewsAlert():
   """
   """
-
+  status = True
+  STOP = False
+  
   def __init__(self, token:Optional[str]=None):
     super().__init__()
     self._token = token
@@ -31,8 +33,8 @@ class NewsAlert():
           print((await bot.get_updates())[0])
   
   
-  async def start(self,generator:Generator, waitTime=5*60):
-            while True:
+  async def start(self,generator:Generator, waitTime=1*60):
+            while NewsAlert.status != NewsAlert.STOP:
                 try:
                     await self.update(generator)
                     print(f'cycle finish, sleep {time.time()}')

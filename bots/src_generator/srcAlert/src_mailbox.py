@@ -7,15 +7,23 @@ import re
 from tools.telegram_bot.contents import Context
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import asyncio
 
 class SrcMailBox:
+    
+    
+    SLEEP = False
+    AWAKE = True
+    status = SLEEP
+    
     def __init__(self, usr:str, pid:str, mailings:Generator, ChatId:str=None):
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
         self._ChatId:Optional[str]=ChatId
 
-    def generator(self)-> Context:
+    async def generator(self)-> Context:
+        if SrcMailBox.status == SrcMailBox.AWAKE:
                 try:
                     for mailing in self._mailings():        
                         UIDs, raw_msg = self._get_UIDs_msg( self._usr, self._pid, mailing.box)
@@ -48,6 +56,9 @@ class SrcMailBox:
                                 yield Context(content=[url], label=f'{mailing.box}', summary=[summary], enable_translate=enable_translate, botChatId=self._ChatId, dtype='msg')
                 except Exception as e:
                     print(f"mail box error: {e}")
+                    SrcMailBox.status = SrcMailBox.SLEEP
+                    await asyncio.sleep(30*60)
+                    SrcMailBox.status = SrcMailBox.AWAKE
                     pass
                     
     def _get_UIDs_msg(self, usr:str, pid:str, box:str, imap:str ='imap.naver.com'):

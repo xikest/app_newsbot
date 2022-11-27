@@ -8,12 +8,13 @@ from info.bot_profiles import BotProfiles
 # ==========================================================================================
 #  테스트 프로파일
 # ==========================================================================================
+
 # TOKEN = BotProfiles.get_botTwitters().TOKEN
 # srcAlert = SrcAlert()
 # srcAlert.set_chatId_mail( BotProfiles.get_botTwitters().channels.get('chat_id'))
 # srcAlert.set_chatId_news( BotProfiles.get_botTwitters().channels.get('chat_id'))
 # srcAlert.set_chatId_rss( BotProfiles.get_botTwitters().channels.get('chat_id'))
-
+# srcAlert.set_chatId_tweets( BotProfiles.get_botTwitters().channels.get('chat_id'))
 
 TOKEN = BotProfiles.get_botAlert().TOKEN
 srcAlert = SrcAlert()

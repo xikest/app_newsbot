@@ -2,7 +2,7 @@ import asyncio
 import platform
 
 from bots.bot_alert.bot_news_alert import NewsAlert
-from bots.src_generator.src_tweets import SrcTweets
+from bots.src_generator.srcAlert.src_tweets import SrcTweets
 from info.bot_profiles import BotProfiles
 from info.bot_ids import InfoTwitter
 from info.feeds import FeedFlowwings
