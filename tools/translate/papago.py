@@ -34,8 +34,6 @@ class Papago:
         self._wd.get('https://papago.naver.com/')# 웹페이지 가져 오기
         pass
       
-    
-        
     async def translate(self, text="hello"):
             self._text = text
             try:
@@ -70,7 +68,18 @@ class Papago:
                     self._tryCnt += 1
                     await self.translate(self._text)
                 print(f"papago_error: {e}")
-                
+
+    def quit(self):
+        self._wd.quit()
+            
+    def _get_dict_lang(self, lang:str='auto') ->str: # 언어 선택
+        dict_lang={'auto':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[1]/a',
+                   'kr':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[2]/a',
+                   'en':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a',
+                   'jp':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[4]/a',
+                   'cn':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a'}
+        return dict_lang.get(lang)  
+                    
     def translate_tx(self, text="hello"):
             self._text = text
             try:
@@ -106,18 +115,6 @@ class Papago:
                     self._tryCnt += 1
                     self.translate_tx(self._text)
                 print(f"papago_error: {e}")
-                
-    def quit(self):
-        self._wd.quit()
-            
-
-    def _get_dict_lang(self, lang:str='auto') ->str: # 언어 선택
-        dict_lang={'auto':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[1]/a',
-                   'kr':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[2]/a',
-                   'en':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a',
-                   'jp':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[4]/a',
-                   'cn':'//*[@id="ddSourceLanguage"]/div[2]/ul/li[3]/a'}
-        return dict_lang.get(lang)
     
 def chunks(l, n):
     # Yield successive n-sized chunks from l
