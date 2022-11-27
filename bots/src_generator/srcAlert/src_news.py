@@ -12,24 +12,28 @@ class SrcNews:
 
     
     def generator(self)-> Context:
-        for news in self._newsStand:
-            if news.src == 'web': 
-                webGenerator = self._get_from_web(news.url, news.attr_key)
-                for content in webGenerator:
-                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
-                
-            elif news.src == 'webWithSelector': 
-                pass
-                # content = self._get_from_web_with_selector(news.url, news.attr_key)
-            elif news.src == 'webWithoutHttp': 
-                webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
-                for content in webGenerator:
-                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
-                
-            elif news.src == 'webLink': 
-                webGenerator = self._get_from_web_link(news.url, news.class_key)
-                for content in webGenerator:
-                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
+        try:
+            for news in self._newsStand:
+                if news.src == 'web': 
+                    webGenerator = self._get_from_web(news.url, news.attr_key)
+                    for content in webGenerator:
+                        yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
+                    
+                elif news.src == 'webWithSelector': 
+                    pass
+                    # content = self._get_from_web_with_selector(news.url, news.attr_key)
+                elif news.src == 'webWithoutHttp': 
+                    webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
+                    for content in webGenerator:
+                        yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
+                    
+                elif news.src == 'webLink': 
+                    webGenerator = self._get_from_web_link(news.url, news.class_key)
+                    for content in webGenerator:
+                        yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
+        except Exception as e:
+            print(f"news stand error: {e}")
+            pass
 
 
 

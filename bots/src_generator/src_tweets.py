@@ -19,16 +19,19 @@ class SrcTweets:
         
     async   def generator(self)-> Context: 
             # print('generator')
-            for screenName in self._screenNames() : # following 리스트
-                    # print(screenName)
-                    client = tweepy.Client(self._BEARERTOKEN)
-                    t_id = await self.get_id(client, screenName) # get_id
-                    tweets = client.get_users_tweets
-                    async for tweet_msg in self.get_msg(tweets, t_id):
-                            # print(f'tweet_msg generator : {tweet_msg}')
-                            # await asyncio.sleep(1)
-                            yield Context(content=[tweet_msg], label=f'{screenName}', dtype='msg', enable_translate = True, botChatId=self._ChatId)
-                        
+            try: 
+                for screenName in self._screenNames() : # following 리스트
+                        # print(screenName)
+                        client = tweepy.Client(self._BEARERTOKEN)
+                        t_id = await self.get_id(client, screenName) # get_id
+                        tweets = client.get_users_tweets
+                        async for tweet_msg in self.get_msg(tweets, t_id):
+                                # print(f'tweet_msg generator : {tweet_msg}')
+                                # await asyncio.sleep(1)
+                                yield Context(content=[tweet_msg], label=f'{screenName}', dtype='msg', enable_translate = True, botChatId=self._ChatId)
+            except Exception as e:
+                print(f"tweets body error: {e}")
+                pass
 
 
 
@@ -44,7 +47,7 @@ class SrcTweets:
                                 # await asyncio.sleep(1)
                                 yield tweet.text
                 except Exception as e:
-                    print(f'tweets error msg : {e}')
+                    print(f'tweets connect error, sleep 15min.: {e}')
                     await asyncio.sleep(15*60)    
 
 

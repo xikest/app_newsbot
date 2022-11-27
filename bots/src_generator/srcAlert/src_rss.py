@@ -17,5 +17,5 @@ class SrcRss:
                             elif rss.src == 'rss': 
                                 yield Context(content=[feed.link], label=f'{rss.name}', descr=feed.description, botChatId=self._ChatId, dtype='msg')                                   
                 except Exception as e:
-                    print(f'google rss error msg : {e}')
-                    return
+                    print(f"rss error: {e}")
+                    pass
