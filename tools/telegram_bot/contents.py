@@ -65,30 +65,36 @@ class Contents(list):
 
     
     async   def sendTo(self, token:str, delay:Union[int, float]=0) -> None:
+                print('send start')
                 context:Context = self.pop()
                 bot = telegram.Bot(token)
                 if context not in self.loadContents():
                     self.saveContents(context=context)
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))                    
-                    while len(context.content) > 0:
-                        
-                        try:
-                            if context.dtype == 'img': 
-                                await   asyncio.sleep(5)
-                                await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
-                            elif context.dtype == 'msg':
-                               # print(context)
-                                if context.enable_translate == True: msg = self.translate(context.contet.pop(0))
-                                elif context.enable_translate == False : msg = context.contet.pop(0)
-                                
-                                await asyncio.sleep(5)
-                                await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
-                        except: pass
+                    while len(context.content) > 0:   
+                        print('while start')                
+                        if context.dtype == 'img': 
+                            await asyncio.sleep(5)
+                            await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
+                            
+                        elif context.dtype == 'msg':
+                            
+                            print('elif dtype msg')
+                            msg = context.content.pop(0)
+                            if context.enable_translate == True: msg = f"#{context.label}\n{await self.translate(msg)}\n\n{msg}"
+                            elif context.enable_translate == False :msg = f"#{context.label}\n\n{msg}"
+                            print(f'msg : {msg}')
+                            await asyncio.sleep(5)
+                            await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
+                        else: 
+                            break
+                            
+
                 return None
             
-    def translate(self, txt:str) -> str:
-        papago = Papago('en')
-        res = papago.translate(txt)
-        papago.quit()
-        print(res)
-        return res
+    async def translate(self, txt:str) -> str:
+            papago = Papago('en')
+            res = await papago.translate(txt)
+            papago.quit()
+            print(res)
+            return res

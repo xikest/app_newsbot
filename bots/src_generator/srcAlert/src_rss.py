@@ -13,10 +13,9 @@ class SrcRss:
                     for rss in self._rssList:
                         for feed in feedparser.parse(rss.url).entries:
                             if rss.src == 'googleAlert': 
-                                yield Context(title=rss.name, content=[feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]], descr=None, botChatId=self._ChatId)
+                                yield Context( content=[feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]], label=f'{rss.name}', descr=None, botChatId=self._ChatId, dtype='msg') 
                             elif rss.src == 'rss': 
-                                yield Context(title=feed.title, content=[feed.link], descr=feed.description, botChatId=self._ChatId)
+                                yield Context(content=[feed.link], label=f'{rss.name}', descr=feed.description, botChatId=self._ChatId, dtype='msg')                                   
                 except Exception as e:
                     print(f'google rss error msg : {e}')
                     return
-

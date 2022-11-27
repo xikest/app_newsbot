@@ -31,19 +31,19 @@ class SrcAlert:
         
         
     async def generator(self)-> Context:
-              generatorFromMail = SrcMailBox(InfoNav.get_usr(), 
-                                              InfoNav.get_pid(), 
-                                              InfoNav.get_box(), 
-                                              InfoNav.get_sender(), 
-                                              self._chatId_mail).generator
+              generatorFromMail = SrcMailBox(usr=InfoNav.get_usr(), 
+                                              pid=InfoNav.get_pid(), 
+                                              mailings=FeedFlowwings.get_mailing,
+                                              ChatId=self._chatId_mail).generator
                             
               generatorFromRss = SrcRss(FeedFlowwings.get_rss_urls(), self._chatId_rss).generator
               
               generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
 
               await asyncio.sleep(1)
-              for generator in [generatorFromNews, generatorFromRss, generatorFromMail]:
+              for generator in [generatorFromRss, generatorFromMail, generatorFromNews]:
                 for context in generator():
+                  print(f"gen: {context}")
                   yield context 
 
 

@@ -20,40 +20,40 @@ class SrcTweets:
     async   def generator(self)-> Context: 
             print('generator')
             for screenName in self._screenNames() : # following 리스트
-                print(screenName)
-                client = tweepy.Client(self._BEARERTOKEN)
-                t_id = self.get_id(client, screenName) # get_id
-                tweets = client.get_users_tweets
-                async   for tweet_msg in self.get_msg(tweets, t_id, screenName):
-                        print('tweet_msg')
-                        yield Context(content=[tweet_msg], label=screenName, dtype='msg', enable_translate = True, botChatId=self._ChatId)
+                    print(screenName)
+                    client = tweepy.Client(self._BEARERTOKEN)
+                    t_id = await self.get_id(client, screenName) # get_id
+                    tweets = client.get_users_tweets
+                    async for tweet_msg in self.get_msg(tweets, t_id):
+                            # print(f'tweet_msg generator : {tweet_msg}')
+                            # await asyncio.sleep(1)
+                            yield Context(content=[tweet_msg], label=f'{screenName}', dtype='msg', enable_translate = True, botChatId=self._ChatId)
                         
 
 
 
-    async   def get_msg(self, tweets, t_id, screenName:str='financialjuice') -> str:                
+    async   def get_msg(self, tweets, t_id) -> str:                
                 try :
                         if t_id is None: raise Exception('failed get tweets id')
-                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=10))
+                        paginator = iter(tweepy.Paginator(tweets, t_id, max_results=5))
                         response = next(paginator)
                         
                         for tweet in response.data[::-1]:
                             if '@' not in tweet.text:
-                                print(tweet.text)
+                                # print('get_msg')
+                                # await asyncio.sleep(1)
                                 yield tweet.text
-                                # yield f"#{screenName}\n{await GoogleTranslate('en').eng2kor(tweet.text)}\n\n{tweet.text}"
-                                # yield f"#{screenName}\n{KakaoTranslate.eng2kor(tweet.text)}\n\n{tweet.text}"
                 except Exception as e:
                     print(f'tweets error msg : {e}')
                     await asyncio.sleep(15*60)    
 
 
 
-    def get_id(self, client, screenName:str) -> str:
-        try:
-            return client.get_user(username=screenName).data.id # get_id
-        except:
-            raise Exception(f'tweets error id')
+    async   def get_id(self, client, screenName:str) -> str:
+                try:
+                    return client.get_user(username=screenName).data.id # get_id
+                except:
+                    raise Exception(f'tweets error id')
             
 
 

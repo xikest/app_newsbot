@@ -16,7 +16,7 @@ class SrcNews:
             if news.src == 'web': 
                 webGenerator = self._get_from_web(news.url, news.attr_key)
                 for content in webGenerator:
-                    yield Context(content=[content], botChatId=self._ChatId, dtype='msg')
+                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
                 
             elif news.src == 'webWithSelector': 
                 pass
@@ -24,12 +24,12 @@ class SrcNews:
             elif news.src == 'webWithoutHttp': 
                 webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
                 for content in webGenerator:
-                    yield Context(content=[content], botChatId=self._ChatId, dtype='msg')
+                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
                 
             elif news.src == 'webLink': 
                 webGenerator = self._get_from_web_link(news.url, news.class_key)
                 for content in webGenerator:
-                    yield Context(content=[content], botChatId=self._ChatId, dtype='msg')
+                    yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
 
 
 

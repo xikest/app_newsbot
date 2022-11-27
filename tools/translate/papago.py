@@ -11,7 +11,10 @@ user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 
 class Papago:
     """
-    result = Papago('en').translate('what is this ?')
+    from tools.translate.papago import Papago
+    papago = Papago('en')
+    result = papago.translate('hello, today is a good day')
+    papago.quit()
     print(result)
 
     """
@@ -33,7 +36,7 @@ class Papago:
       
     
         
-    def translate(self, text="hello"):
+    async def translate(self, text="hello"):
             self._text = text
             try:
 
@@ -56,7 +59,7 @@ class Papago:
                 trans_btn = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
                 trans_btn.click()
                 time.sleep(1)
-                # await asyncio.sleep(1)  # 번역 결과 대기
+                await asyncio.sleep(1)  # 번역 결과 대기
                 
                 #번역된 결과 보기
                 result = WebDriverWait(self._wd, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
