@@ -34,6 +34,7 @@ class SrcTweets:
                         async for tweet_msg in self.get_msg(tweets, t_id):
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
+                                tweet_msg = tweet_msg.replace('#', '')
                                 yield Context(content=[tweet_msg], label=f'{screenName}', summary=[tweet_msg], enable_translate = True, botChatId=self._ChatId,  dtype='msg')
                 print(f'tweets_src_fin:{ datetime.datetime.now()}\n')  
                                       
