@@ -106,5 +106,5 @@ class Contents(list):
                 context.summary = [Wsj(content).summary() for content in context.content]
                     # context.summary.append(Wsj(content).summary())
                 context.enable_translate=True # 번역할 것인지 
-                print(f'summariziong: {context}')
+                # print(f'summariziong: {context}')
         return context 
