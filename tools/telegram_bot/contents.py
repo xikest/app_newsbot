@@ -6,10 +6,7 @@ from tools.time.time import Timer
 import asyncio
 import telegram
 
-from tools.translate.kakao import Kakao
-from tools.translate.papago import Papago
-# from tools.translate.google import GoogleTranslate
-
+from tools.translate import Kakao, Papago
 
 from .summary import Wsj
 
