@@ -79,7 +79,9 @@ class Contents(list):
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                                 
                             elif context.dtype == 'msg':
-                                if context.enable_translate == True: msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                if context.enable_translate == True:
+                        
+                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
                                 await asyncio.sleep(5)

@@ -50,7 +50,7 @@ class FeedFlowwings:
                     News(name='한경_금융', src='web',url = 'https://www.hankyung.com/financial-market', attr_key='main-headline'),
                     News(name='한경_집코노미', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-headline'),
                     # News(name='한경 집코노미 주요 기사', src='web', url = 'https://www.hankyung.com/realestate', attr_key='main-jipconomy'),
-                    News(name='einfomax', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db02 db05', prefix='https://news.einfomax.co.kr/'),
+                    # News(name='einfomax', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db02 db05', prefix='https://news.einfomax.co.kr/'),
                     News(name='einfomax_정책금융', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N15&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     # News(name='einfomax', src='webWithoutHttp', url = 'https://news.einfomax.co.kr/', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
                     News(name='einfomax_채권외환', src='webWithoutHttp',  url ='https://news.einfomax.co.kr/news/articleList.html?sc_section_code=S1N16&view_type=sm', attr_key='auto-article auto-db01', prefix='https://news.einfomax.co.kr/'),
@@ -67,6 +67,10 @@ class FeedFlowwings:
    
     @staticmethod
     def get_screenNames():      
-            yield from ['financialjuice',
-                        'NickTimiraos']
+            yield from ['financialjuice', #매크로
+                        'NickTimiraos', #Fed
+                       'Fxhedgers',  #fx
+                       'unusual_whales',
+                        'Amena_Bakr'  # 오일
+                       ]
             # 'ConsensusGurus',

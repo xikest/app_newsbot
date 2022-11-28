@@ -14,7 +14,7 @@ class SrcMailBox:
     
     SLEEP = False
     AWAKE = True
-    status = SLEEP
+    status = AWAKE
     
     def __init__(self, usr:str, pid:str, mailings:Generator, ChatId:str=None):
         self._usr = usr
@@ -43,9 +43,9 @@ class SrcMailBox:
                                 body = body.decode('utf-8')
                                 url = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)[-11]
                                 
-                                if mailing.box == 'WSJ': 
+                                if mailing.box == 'wsj':   #대문자로 
                                     summary = Wsj(url).summary()
-                                    enable_translate=True
+                                    enable_translate=False # contents에서 보내기 전에 볼러옴 
                                 else:
                                     summary = None
                                     enable_translate=False

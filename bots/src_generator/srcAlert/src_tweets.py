@@ -12,7 +12,7 @@ class SrcTweets:
     
     SLEEP = False
     AWAKE = True
-    status = SLEEP
+    status = AWAKE
 
     def __init__(self, BEARERTOKEN:Optional[str], screenNames:Generator, ChatId:Optional[str]):
         self._ChatId:Optional[str]=ChatId
