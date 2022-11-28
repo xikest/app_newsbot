@@ -71,6 +71,8 @@ class FeedFlowwings:
                         'NickTimiraos', #Fed
                        'Fxhedgers',  #fx
                        'unusual_whales',
-                        'Amena_Bakr'  # 오일
-                       ]
+                        'Amena_Bakr',  # 오일
+                        'staunovo',  #원자재 애널리스트
+                        'DanielTNiles', #댄 나일스, 사토리 펀드 설립자
+                       'michaeljburry']  #마이클 버리
             # 'ConsensusGurus',
