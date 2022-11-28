@@ -61,7 +61,7 @@ class Papago:
                 #번역된 결과 보기
                 result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
                 
-                # await asycncio.sleep(1  # 종료를 내포하는 것으로 기능 수정 필요
+                # await asyncio.sleep(1  # 종료를 내포하는 것으로 기능 수정 필요
                 # self._wd.quit()
                 return result.text
             except Exception as e:
@@ -70,8 +70,8 @@ class Papago:
                 # if self._tryCnt < 3:
                 #     self._tryCnt += 1
                 #     self.translate_tx(self._text)
-                print(f"papago_error: {e}")
-                return None
+                # print(f"papago_error: {e}")
+                # return None
 
     def quit(self):
         self._wd.quit()
@@ -113,13 +113,13 @@ class Papago:
                 result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
                 return result.text
             except Exception as e:
-
                 self._wd.quit()
+                raise Exception(f"papago_error: {e}")
                 # if self._tryCnt < 3:
                 #     self._tryCnt += 1
                 #     self.translate_tx(self._text)
-                print(f"papago_error: {e}")
-                return None
+                # print(f"papago_error: {e}")
+                # return None
     
 def chunks(l, n):
     # Yield successive n-sized chunks from l
