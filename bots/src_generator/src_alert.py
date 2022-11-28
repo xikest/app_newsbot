@@ -52,7 +52,7 @@ class SrcAlert:
               
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromMail]:
+              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 

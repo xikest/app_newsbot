@@ -11,6 +11,7 @@ from tools.translate.papago import Papago
 # from tools.translate.google import GoogleTranslate
 # from tools.translate.kakao import KakaoTranslate
 
+from .summary import Wsj
 
 @dataclass
 class Context:
@@ -21,6 +22,7 @@ class Context:
         descr:Optional[str] = None
         dtype:Optional[str] = None
         enable_translate:bool = False
+        enable_summary:bool = False
         botChatId:Optional[str] = None
 
 class Contents(list): 
@@ -66,10 +68,13 @@ class Contents(list):
     async   def sendTo(self, token:str, delay:Union[int, float]=0) -> None:
                 context:Context = self.pop()
                 bot = telegram.Bot(token)
+                # print('send start')
                 if context not in self.loadContents():
                     self.saveContents(context=context)
+                    # print('no in loading')
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))         
                     try:           
+                        context = self.summary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
                             # print(context)
@@ -79,9 +84,11 @@ class Contents(list):
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                                 
                             elif context.dtype == 'msg':
+                                # print(f'summcontex beforet: {context}')
+                                # print(f'summcontext after: {context}')
                                 if context.enable_translate == True:
-                        
                                     msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                    print(f'translate : {msg}')
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
                                 await asyncio.sleep(5)
@@ -95,8 +102,36 @@ class Contents(list):
                 return None
             
     async def translate(self, txt:str) -> str:
+        
+        # 번역을 해주는 기능 구현
+    # async def translate(self, context:Context, txt:str) -> str:
+#         if context.enable_translate == True:
+                # context.summary =[self.translate(summary) for summary in context.summary]
+                # return context
+    
+#                 context.content = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+#         elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
+        
+        try:
             papago = Papago('en')
             res = await papago.translate(txt)
             papago.quit()
             # print(res)
-            return res
+        except:
+             res = await Kakao('en').translate(txt)
+        return res
+    
+    
+    def trimming(self):
+        #발송용으로 컨텐츠 트리밍하는 기능 구현
+        pass
+    
+    def summary(self, context:Context):
+        
+        if context.enable_summary==True:
+            if context.label == 'WSJ':   #WSJ 기사 요약
+                context.summary = [Wsj(content).summary() for content in context.content]
+                    # context.summary.append(Wsj(content).summary())
+                context.enable_translate=True # 번역할 것인지 
+                print(f'summariziong: {context}')
+        return context 

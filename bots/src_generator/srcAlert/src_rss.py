@@ -2,7 +2,7 @@ from typing import Optional, Generator
 import feedparser
 from tools.telegram_bot.contents import Context
 from bs4 import BeautifulSoup
-
+import datetime
 
 class SrcRss:
 
@@ -22,10 +22,11 @@ class SrcRss:
                             # elif rss.src == 'rss_s': 
                             #     summary=BeautifulSoup(f'{feed.title}\n\n{feed.summary}', 'html.parser').text
                             #     yield Context(content=[feed.link], label = f"{rss.name}", summary = [summary],  enable_translate=rss.enable_translate, botChatId=self._ChatId, dtype='msg')                  
-                                
+                    print(f'rss_src_fin:{ datetime.datetime.now()}\n')  
                                                                
                 except Exception as e:
-                    print(f"rss error: {e}")
+                    print(f'rss_src_err:{ datetime.datetime.now()}')  
+                    print(f"rss error: {e}\n")
                     pass
 
 

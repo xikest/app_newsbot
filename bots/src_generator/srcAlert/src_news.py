@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from typing import Optional, Generator
 from tools.telegram_bot.contents import Context
-
+import datetime
 
 
 class SrcNews:
@@ -31,8 +31,12 @@ class SrcNews:
                         webGenerator = self._get_from_web_link(news.url, news.class_key)
                         for content in webGenerator:
                             yield Context(content=[content], label=f'{news.name}', botChatId=self._ChatId, dtype='msg')
+                            
+                print(f'news_src_fin:{ datetime.datetime.now()}\n')  
+                
             except Exception as e:
-                print(f"news stand error: {e}")
+                print(f'news_src_err:{ datetime.datetime.now()}')  
+                print(f"news stand error: {e}\n")
                 pass
 
 

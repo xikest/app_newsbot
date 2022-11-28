@@ -7,6 +7,7 @@ from tools.translate.papago import Papago
 # from tools.translate.kakao import KakaoTranslate
 
 import asyncio
+import datetime
 
 class SrcTweets:
     
@@ -34,8 +35,12 @@ class SrcTweets:
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
                                 yield Context(content=[tweet_msg], label=f'{screenName}', summary=[tweet_msg], enable_translate = True, botChatId=self._ChatId,  dtype='msg')
+                print(f'tweets_src_fin:{ datetime.datetime.now()}\n')  
+                                      
             except Exception as e:
+                print(f'tweets_src_err:{datetime.datetime.now()}')  
                 print(f"tweets body error: {e}")
+                print(f'tweets_src_err-> awake:{datetime.datetime.now()}\n')  
                 pass
 
 

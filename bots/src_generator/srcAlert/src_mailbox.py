@@ -8,6 +8,10 @@ from tools.telegram_bot.contents import Context
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import asyncio
+import datetime
+
+
+    
 
 class SrcMailBox:
     
@@ -42,24 +46,20 @@ class SrcMailBox:
                                     body = message.get_payload(decode=True)
                                 body = body.decode('utf-8')
                                 url = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)[-11]
+                                yield Context(content=[url], label=f'{mailing.box}', enable_summary=True, botChatId=self._ChatId, dtype='msg')
+                    print(f'mail_src_fin:{datetime.datetime.now()}\n')
                                 
-                                if mailing.box == 'wsj':   #대문자로 
-                                    summary = Wsj(url).summary()
-                                    enable_translate=False # contents에서 보내기 전에 볼러옴 
-                                else:
-                                    summary = None
-                                    enable_translate=False
-                                
-                                # print(enable_translate)
-                                # print(summary)
-                                    
-                                yield Context(content=[url], label=f'{mailing.box}', summary=[summary], enable_translate=enable_translate, botChatId=self._ChatId, dtype='msg')
                 except Exception as e:
-                    print(f"mail box error: {e}")
+                    print(f'mail_src_err -> sleep:{datetime.datetime.now()}')  
+                    print(f"mail box error: {e}\n")
+                                      
                     SrcMailBox.status = SrcMailBox.SLEEP
                     await asyncio.sleep(30*60)
                     SrcMailBox.status = SrcMailBox.AWAKE
+                    print(f'mail_src_err-> awake:{datetime.datetime.now()}\n')  
                     pass
+                    
+                    
                     
     def _get_UIDs_msg(self, usr:str, pid:str, box:str, imap:str ='imap.naver.com'):
         imap_obj = imapclient.IMAPClient(imap, ssl=True)
@@ -72,43 +72,3 @@ class SrcMailBox:
     
     
     
-
-
-class Wsj:
-    """
-    from tools.translate.papago import Papago
-    papago = Papago('en')
-    result = papago.translate('hello, today is a good day')
-    papago.quit()
-    print(result)
-
-    """
-    def __init__(self, url:str):
-        user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument("--remote-debugging-port=9230")
-        chrome_options.add_argument('user-agent={0}'.format(user_agent))
-        chrome_options.add_argument('lang=ko_kr')
-        
-        self._wd = webdriver.Chrome('chromedriver', options=chrome_options)
-        self._wd.get(url)# 웹페이지 가져 오기
-        pass
-      
-    
-        
-    def summary(self):
-        html = self._wd.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        title = soup.title.text
-        sub_title = soup.find('h2').text
-        self._quit()
-        return f"{title}\n\n{sub_title}"
-        
-
-
-    def _quit(self):
-        self._wd.quit()
-            
