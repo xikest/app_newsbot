@@ -74,8 +74,11 @@ class FeedFlowwings:
                         'Amena_Bakr',  # 오일
                         'staunovo',  #원자재 애널리스트
                         'DanielTNiles', #댄 나일스, 사토리 펀드 설립자
-                        'WSJ',
-                        'business',
+                        'WSJmarkets',
+                        'WSJCentralBanks',
+                        'WSJTech',
+                        'markets',
+                        'Quicktake',
                         'CNBC',
                         'TheEconomist'
                        ] 
