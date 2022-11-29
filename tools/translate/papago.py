@@ -34,23 +34,20 @@ class Papago:
         pass
       
       
-    async def translate(self, paragraph:str) ->str:
-        """_summary_
-        문단을 문장 단위로 쪼개어 번역을 진행 함.
-        Args:
-            paragraph (str): _description_
+    # async def translate(self, paragraph:str) ->str:
+    #     """_summary_
+    #     문단을 문장 단위로 쪼개어 번역을 진행 함.
+    #     Args:
+    #         paragraph (str): _description_
 
-        Returns:
-            str: _description_
-        """
-        regexes = [r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', #http 주소 제거
-                    r'[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)']  #http 아닌 웹주소 제거
-        
-        for regex in regexes: paragraph = re.sub(regex,"",paragraph) 
+    #     Returns:
+    #         str: _description_
+    #     """
+
             
-        tokenized_sentences = sent_tokenize(paragraph)
-        sentences = " ".join([await self._translate(sentence) for sentence in tokenized_sentences])
-        return sentences
+    #     tokenized_sentences = sent_tokenize(paragraph)
+    #     sentences = " ".join([await self._translate(sentence) for sentence in tokenized_sentences])
+    #     return sentences
       
       
     def _initionalizer(self, url:str):
@@ -69,7 +66,7 @@ class Papago:
     
       
       
-    async def _translate(self, text="hello"):
+    async def translate(self, text="hello"):
             wd = self._initionalizer(self._url)
             try:
                 # 입력 언어 선택

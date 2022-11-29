@@ -5,6 +5,8 @@ from dataclasses  import dataclass
 from tools.time.time import Timer
 import asyncio
 import telegram
+import re
+from nltk import sent_tokenize
 
 from tools.translate import Kakao, Papago
 
@@ -71,7 +73,7 @@ class Contents(list):
                     # print('no in loading')
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))         
                     try:           
-                        context = self.summary(context)  # 요약본 생성
+                        context = self.makeSummary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
                             # print(context)            
@@ -90,14 +92,33 @@ class Contents(list):
                             else: raise Exception("dtype이 정의되지 않았습니다.")
                     except:pass
                 return None
+
+     
+    async def translate(self, paragraph:str) ->str:
+        """_summary_
+        문단을 문장 단위로 쪼개어 번역을 진행 함.
+        Args:
+            paragraph (str): _description_
+
+        Returns:
+            str: _description_
+        """
             
-    async def translate(self, txt:str) -> str:
-        try:res = await Papago('en').translate(txt)
-            # print(res)
-        except: res = await Kakao('en').translate(txt)
-        return res
+    async def translate(self, paragraph:str) -> str:
+        paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거
+        tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
+        try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
+        except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
+        return sentences
     
-    def summary(self, context:Context):
+    def paragraphTrimming(self, paragraph):
+        regexes = [r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', #http 주소 제거
+            r'[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)']  #http 아닌 웹주소 제거
+        
+        for regex in regexes: paragraph = re.sub(regex,"",paragraph) # 필요없는 문장 제거
+        return paragraph
+    
+    def makeSummary(self, context:Context):
         if context.enable_summary==True:
             if context.label == 'WSJ':   #WSJ 기사 요약
                 context.summary = [Wsj(content).summary() for content in context.content]
