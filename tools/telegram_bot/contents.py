@@ -94,15 +94,6 @@ class Contents(list):
                 return None
 
      
-    async def translate(self, paragraph:str) ->str:
-        """_summary_
-        문단을 문장 단위로 쪼개어 번역을 진행 함.
-        Args:
-            paragraph (str): _description_
-
-        Returns:
-            str: _description_
-        """
             
     async def translate(self, paragraph:str) -> str:
         paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거
