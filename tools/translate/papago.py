@@ -49,7 +49,7 @@ class Papago:
         for regex in regexes: paragraph = re.sub(regex,"",paragraph) 
             
         tokenized_sentences = sent_tokenize(paragraph)
-        sentences = " ".join([self._translate(sentence) for sentence in tokenized_sentences])
+        sentences = " ".join([await self._translate(sentence) for sentence in tokenized_sentences])
         return sentences
       
       
