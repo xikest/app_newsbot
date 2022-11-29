@@ -92,10 +92,7 @@ class Contents(list):
                 return None
             
     async def translate(self, txt:str) -> str:
-        try:
-            papago = Papago('en')
-            res = await papago.translate(txt)
-            # papago.quit()
+        try:res = await Papago('en').translate(txt)
             # print(res)
         except: res = await Kakao('en').translate(txt)
         return res
