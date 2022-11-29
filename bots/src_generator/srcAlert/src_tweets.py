@@ -69,7 +69,7 @@ class SrcTweets:
                 try:
                     return client.get_user(username=screenName).data.id # get_id
                 except:
-                    raise Exception(f'tweets error id')
+                    raise Exception(f'tweets error id: {screenName}')
             
 
 
