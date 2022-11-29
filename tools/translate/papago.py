@@ -10,7 +10,7 @@ sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 # pip install nltk
 # python -m nltk.downloader all
 from nltk import sent_tokenize
-
+import re
 
 
 
@@ -25,6 +25,9 @@ class Papago:
     print(result)
 
     """
+    
+    
+    
     def __init__(self, lang:str='en'):
         self._url = 'https://papago.naver.com/'
         self._lang=lang
@@ -40,6 +43,11 @@ class Papago:
         Returns:
             str: _description_
         """
+        regexes = [r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', #http 주소 제거
+                    r'[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)']  #http 아닌 웹주소 제거
+        
+        for regex in regexes: paragraph = re.sub(regex,"",paragraph) 
+            
         tokenized_sentences = sent_tokenize(paragraph)
         sentences = " ".join([self._translate(sentence) for sentence in tokenized_sentences])
         return sentences
