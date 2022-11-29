@@ -92,7 +92,7 @@ class Papago:
                 #번역된 결과 보기
                 result = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
                 
-                # await asyncio.sleep(1  # 종료를 내포하는 것으로 기능 수정 필요
+                await asyncio.sleep(1)  # 종료를 내포하는 것으로 기능 수정 필요
                 # 세션 닫기
                 wd.quit()
                 return result
