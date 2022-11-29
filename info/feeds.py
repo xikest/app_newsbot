@@ -77,9 +77,10 @@ class FeedFlowwings:
                         'WSJmarkets',
                         'WSJCentralBanks',
                         'WSJTech',
-                        'markets',
+                        # 'markets',
                         # 'Quicktake',
                         'CNBCnow',
-                        'TheEconomist'
+                        'Sino_Market',
+                        'JavierBias'
                        ] 
             # 'ConsensusGurus',
