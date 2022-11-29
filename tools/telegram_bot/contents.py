@@ -95,7 +95,7 @@ class Contents(list):
         try:
             papago = Papago('en')
             res = await papago.translate(txt)
-            papago.quit()
+            # papago.quit()
             # print(res)
         except: res = await Kakao('en').translate(txt)
         return res

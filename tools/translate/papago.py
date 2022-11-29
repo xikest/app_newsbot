@@ -59,11 +59,13 @@ class Papago:
                 await asyncio.sleep(2)  # 번역 결과 대기
                 
                 #번역된 결과 보기
-                result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
+                result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
                 
                 # await asyncio.sleep(1  # 종료를 내포하는 것으로 기능 수정 필요
-                # self._wd.quit()
-                return result.text
+                # 세션 닫기
+                self._wd.quit()
+                
+                return result
             except Exception as e:
                 self._wd.quit()
                 raise Exception(f"papago_error: {e}")
@@ -85,7 +87,6 @@ class Papago:
         return dict_lang.get(lang)  
                     
     def translate_tx(self, text="hello"):
-            self._text = text
             try:
 
                 # 입력 언어 선택
@@ -110,8 +111,12 @@ class Papago:
               
                 
                 #번역된 결과 보기
-                result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]')))
-                return result.text
+                result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
+                
+                # 세션 닫기
+                self._wd.quit()
+                
+                return result
             except Exception as e:
                 self._wd.quit()
                 raise Exception(f"papago_error: {e}")
