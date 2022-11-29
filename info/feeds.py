@@ -81,6 +81,6 @@ class FeedFlowwings:
                         # 'Quicktake',
                         'CNBCnow',
                         'Sino_Market',
-                        'JavierBlas '
+                        'JavierBlas'
                        ] 
             # 'ConsensusGurus',
