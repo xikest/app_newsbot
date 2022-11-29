@@ -69,8 +69,8 @@ class FeedFlowwings:
     def get_screenNames():      
             yield from ['financialjuice', #매크로
                         'NickTimiraos', #Fed
-                       'Fxhedgers',  #fx
-                       'unusual_whales',
+                       # 'Fxhedgers',  #fx
+                       # 'unusual_whales',
                         'Amena_Bakr',  # 오일
                         'staunovo',  #원자재 애널리스트
                         'DanielTNiles', #댄 나일스, 사토리 펀드 설립자
@@ -78,8 +78,8 @@ class FeedFlowwings:
                         'WSJCentralBanks',
                         'WSJTech',
                         'markets',
-                        'Quicktake',
-                        'CNBC',
+                        # 'Quicktake',
+                        'CNBCnow',
                         'TheEconomist'
                        ] 
             # 'ConsensusGurus',
