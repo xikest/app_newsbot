@@ -35,7 +35,7 @@ class SrcTweets:
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
                                 tweet_msg = tweet_msg.replace('#', '')
-                                yield Context(content=[tweet_msg], label=f'{screenName}', summary=[tweet_msg], enable_translate = True, botChatId=self._ChatId,  dtype='msg')
+                                yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)
                 print(f'tweets_src_fin:{ datetime.datetime.now()}\n')  
                                       
             except Exception as e:

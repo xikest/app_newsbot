@@ -14,15 +14,15 @@ from .summary import Wsj
 
 @dataclass
 class Context:
-        title:Optional[str]=None
-        content:List[Any] = None
         label:Optional[str] = None
-        summary:List[Any] = None
-        descr:Optional[str] = None
+        content:List[Any] = None
         dtype:Optional[str] = None
+        botChatId:Optional[str] = None
+        
+        summary:List[Any] = None
         enable_translate:bool = False
         enable_summary:bool = False
-        botChatId:Optional[str] = None
+        
 
 class Contents(list): 
     """
