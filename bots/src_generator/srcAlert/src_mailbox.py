@@ -45,8 +45,12 @@ class SrcMailBox:
                                 else:
                                     body = message.get_payload(decode=True)
                                 body = body.decode('utf-8')
-                                url = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)[-11]
-                                yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary=True)
+                                # url = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)[-11]
+                                urls = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)
+                                for url in urls:
+                                    if 'www.wsj.com/articles' in url:
+                                        yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary=True)
+                                        
                     print(f'mail_src_fin:{datetime.datetime.now()}\n')
                                 
                 except Exception as e:
