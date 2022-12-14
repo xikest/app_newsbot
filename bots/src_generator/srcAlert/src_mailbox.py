@@ -45,7 +45,6 @@ class SrcMailBox:
                                 else:
                                     body = message.get_payload(decode=True)
                                 body = body.decode('utf-8')
-                                # url = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)[-11]
                                 urls = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)
                                 for url in urls:
                                     if 'www.wsj.com/articles' in url:
