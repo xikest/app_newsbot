@@ -97,16 +97,20 @@ class Contents(list):
             
     async def translate(self, paragraph:str) -> str:
         paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거
-        tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
-        try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
-        except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
+        
+        try: sentences = await Papago('en').translate(paragraph)
+        except: sentences = await Kakao('en').translate(paragraph)
+        # tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
+        # try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
+        # except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
         return sentences
     
     def paragraphTrimming(self, paragraph):
         regexes = [
             # r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', #http 주소 제거
             # r'[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)', #http 아닌 웹주소 제거
-            'oott'
+            'oott',
+            'OOTT'
             ]  
         
         for regex in regexes: paragraph = re.sub(regex,"",paragraph) # 필요없는 문장 제거
