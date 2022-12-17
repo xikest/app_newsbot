@@ -16,7 +16,14 @@ class Fed:
         return (PlotEconomicIdx('M2V').renameColumn('Velocity of M2 Money Stock')
                         .plot(title='Velocity of M2 Money Stock', mode=mode, y1_title=''))
             
+    @staticmethod
+    def t10y2y(mode='binary'):
+        return (PlotEconomicIdx('T10Y2Y').renameColumn('Treasury gap')
+                        .plot(title='Treasury : 10-Year Minus 2-Year', mode=mode, y1_title=''))
 
-
+    @staticmethod
+    def t10y3m(mode='binary'):
+        return (PlotEconomicIdx('T10Y3M').renameColumn('Treasury gap')
+                        .plot(title='Treasury : 10-Year Minus 3-Month', mode=mode, y1_title=''))
 
 

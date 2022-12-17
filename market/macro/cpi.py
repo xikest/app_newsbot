@@ -33,6 +33,12 @@ CPI에서 약 25%를 차지하는 식량과 에너지의 가격은 흉작이나 
         return (PlotEconomicIdx('CPILFESL').renameColumn('CPI core')
                 .plot(title='CPI core', mode=mode, y1_title=''))
         
+        
+    @staticmethod    
+    def sticky(mode='binary'):
+        return (PlotEconomicIdx('CORESTICKM159SFRBATL').renameColumn('CPI sticky')
+                .plot(title='CPI sticky less Food and Energy', mode=mode, y1_title=''))
+    
     @staticmethod    
     def ma_descr():
         return """[소비자 물가 지수 동향의 변화]

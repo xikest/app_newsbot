@@ -59,7 +59,9 @@ class SrcMacro:
             def fed():
                   yield Context(content = [Fed.totalAssets(),
                                            Fed.fed_effective_rate(),
-                                           Fed.m2v()
+                                           Fed.m2v(),
+                                           Fed.t10y2y(),
+                                           Fed.t10y3m(),
                                           ], dtype='img')
         
    
@@ -70,6 +72,7 @@ class SrcMacro:
                               Context(content = [CPI.headLine()], dtype='img'),
                               Context(content = [CPI.core_descr()], dtype='msg'),
                               Context(content = [CPI.core()], dtype='img'),
+                              Context(content = [CPI.sticky()], dtype='img'),
                               Context(content = [CPI.ma_descr()], dtype='msg'),
                               Context(content = [CPI.ma3month(),
                                                 CPI.ma6month(),
