@@ -1,3 +1,4 @@
+                   
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from typing import Optional, Generator
@@ -32,6 +33,8 @@ class SrcNews:
                         for content in webGenerator:
                             yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
                             
+                            
+                            
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
             except Exception as e:
@@ -41,7 +44,7 @@ class SrcNews:
 
 
 
-    def _get_from_web(self, url, attr_key, prefix=None)-> Context:
+    def _get_from_web(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
         for headline in headlines:  ## html의 속성 부분을 추출
             for link in headline.find_all('a'):
@@ -51,13 +54,13 @@ class SrcNews:
                     else: 
                         yield link.attrs['href']
                 
-    def _get_from_web_with_selector(self, url, selector)-> Context:
+    def _get_from_web_with_selector(self, url, selector)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').select(selector) 
         for headline in headlines:  ## html의 속성 부분을 추출
             if 'href' in headline.attrs:  #속성 중 링크만 추출
                 yield headline.attrs['href']
     
-    def _get_from_web_without_http(self, url, attr_key, prefix=None)-> Context:
+    def _get_from_web_without_http(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
         for headline in headlines:  ## html의 속성 부분을 추출
             for link in headline.find_all('a'):
@@ -67,7 +70,7 @@ class SrcNews:
                     else: 
                         yield link.attrs['href']
         
-    def _get_from_web_link(self, url, class_key)-> Context:
+    def _get_from_web_link(self, url, class_key)-> str:
         links = BeautifulSoup(urlopen(url), 'html.parser').find_all('a')
         for link  in links:
             if 'class' in link.attrs:  #속성 중 class만 추출

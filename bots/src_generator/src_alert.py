@@ -5,6 +5,8 @@ from .srcAlert.src_mailbox import SrcMailBox
 from .srcAlert.src_rss import SrcRss
 from .srcAlert.src_news import SrcNews
 from .srcAlert.src_tweets import SrcTweets
+from .srcAlert.src_energy import SrcEnergy
+
 
 from info.bot_ids import InfoNav
 from info.bot_ids import InfoTwitter
@@ -20,6 +22,8 @@ class SrcAlert:
         self._chatId_rss = BotProfiles.get_botAlert().channels.get('teat_chat_id')
         self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_chat_id')
         self._chatId_tweets = BotProfiles.get_botTwitters().channels.get('twt_chat_id')
+        self._chatId_energy = BotProfiles.get_botEnegy().channels.get('energy_chat_id')
+        
  
     def set_chatId_mail(self, ChatId):
         self._chatId_mail = ChatId
@@ -48,11 +52,12 @@ class SrcAlert:
                                             screenNames = FeedFlowwings.get_screenNames,
                                             ChatId = self._chatId_tweets).generator
 
-              
+              generatorFromEnergy= SrcEnergy(newsEnergy= FeedFlowwings.get_energy_urls(),
+                                             ChatId = self._chatId_energy).generator()
               
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss]:
+              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromEnergy]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 
