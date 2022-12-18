@@ -21,6 +21,7 @@ class Context:
         
         summary:List[Any] = None
         enable_translate:bool = False
+        tokenize:bool = False
         enable_summary:bool = False
         
 
@@ -83,7 +84,7 @@ class Contents(list):
                                 
                             elif context.dtype == 'msg':
                                 if context.enable_translate == True:
-                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0), context.tokenize)}\n\n{context.content.pop(0)}"
                                     # print(f'translate : {msg}')
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
@@ -94,12 +95,21 @@ class Contents(list):
                 return None
 
      
+
+     
             
-    async def translate(self, paragraph:str) -> str:
-        paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거
-        
-        try: sentences = await Papago('en').translate(paragraph)
-        except: sentences = await Kakao('en').translate(paragraph)
+    async def translate(self, paragraph:str, tokenize:bool) -> str:
+       
+        if tokenize == True:
+            tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
+            try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
+            except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
+            
+            
+        else:        
+            paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거   
+            try: sentences = await Papago('en').translate(paragraph)
+            except: sentences = await Kakao('en').translate(paragraph)
         # tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
         # try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
         # except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
@@ -119,8 +129,9 @@ class Contents(list):
     def makeSummary(self, context:Context):
         if context.enable_summary==True:
             if context.label == 'WSJ':   #WSJ 기사 요약
-                context.summary = [Wsj(content).summary() for content in context.content]
+                context.summary = [Wsj().summary(wsj_url= content) for content in context.content]
                     # context.summary.append(Wsj(content).summary())
                 context.enable_translate=True # 번역할 것인지 
+                context.tokenize=True  #텍스트 토큰화 실행
                 # print(f'summariziong: {context}')
         return context 
