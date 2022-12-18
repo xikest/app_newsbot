@@ -98,21 +98,20 @@ class Contents(list):
 
      
             
-    async def translate(self, paragraph:str, tokenize:bool) -> str:
+    async def translate(self, paragraph:str, tokenize:bool=False) -> str:
        
-        if tokenize == True:
-            tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
-            try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
-            except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
+        # if tokenize == True:
+        #     tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
+        #     try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
+        #     except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
             
             
-        else:        
-            paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거   
-            try: sentences = await Papago('en').translate(paragraph)
-            except: sentences = await Kakao('en').translate(paragraph)
-        # tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기
-        # try: sentences = " ".join([await Papago('en').translate(sentence) for sentence in tokenized_sentences])
-        # except: sentences = " ".join([await Kakao('en').translate(sentence) for sentence in tokenized_sentences])
+        # else:        
+        #     paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거   
+        #     try: sentences = await Papago('en').translate(paragraph)
+        #     except: sentences = await Kakao('en').translate(paragraph)
+        try: sentences = await Papago('en').translate(paragraph) 
+        except: sentences = await Kakao('en').translate(paragraph)
         return sentences
     
     def paragraphTrimming(self, paragraph):
@@ -135,6 +134,6 @@ class Contents(list):
                 context.summary = [Iea().summary(iea_url = content) for content in context.content]
                 
         context.enable_translate=True # 번역할 것인지 
-        context.tokenize=True  #텍스트 토큰화 실행
+        # context.tokenize=True  #텍스트 토큰화 실행
         # print(f'summariziong: {context}')    
         return context 

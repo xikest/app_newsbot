@@ -79,8 +79,8 @@ class Wsj:
         
         wd = webdriver.Chrome('chromedriver', options=chrome_options)
         wd.get(url)# 웹페이지 가져 오기
-        wd = self._get_cookies(wd)
-        self._to_wsj(wd)
+        # wd = self._get_cookies(wd)
+        # self._to_wsj(wd)
         return wd
         
     def _get_cookies(self, wd):
@@ -111,9 +111,10 @@ class Wsj:
         soup = BeautifulSoup(html, 'html.parser')
         title = soup.title.text
         sub_title = soup.find('h2').text
-        paragraphes = soup.find_all('p', attrs={"data-type":"paragraph"})
-        paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
-        summary =  f"{title}\n\n{sub_title}\n\n{paragraphes}"
+        # paragraphes = soup.find_all('p', attrs={"data-type":"paragraph"})
+        # paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
+        # summary =  f"{title}\n\n{sub_title}\n\n{paragraphes}"
+        summary =  f"{title}\n\n{sub_title}"
         # print(summary)
         wd.close()
         wd.quit()
@@ -148,11 +149,12 @@ class Iea:
         soup = BeautifulSoup(html, 'html.parser')
         title = soup.title.text
         sub_title = soup.find('h4').text
-        main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
+        # main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
             
-        paragraphes = main_texts.find_all('p')
-        paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
-        summary =  f"""{title}\n\n{sub_title}\n\n{paragraphes}"""
+        # paragraphes = main_texts.find_all('p')
+        # paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
+        # summary =  f"""{title}\n\n{sub_title}\n\n{paragraphes}"""
+        summary =  f"{title}\n\n{sub_title}"
         wd.close()
         wd.quit()
         return summary
