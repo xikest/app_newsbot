@@ -11,8 +11,7 @@ class SrcEnergy:
         self._newsEnergy:Generator =  newsEnergy
 
     
-    # async def generator(self)-> Context:
-    def generator(self)-> Context:
+    async def generator(self)-> Context:
             try:
                 for news in self._newsEnergy:
                     print(f'news= {news}')
