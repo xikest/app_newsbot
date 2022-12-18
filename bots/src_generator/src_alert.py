@@ -52,12 +52,12 @@ class SrcAlert:
                                             screenNames = FeedFlowwings.get_screenNames,
                                             ChatId = self._chatId_tweets).generator
 
-              generatorFromEnergy= SrcEnergy(newsEnergy= FeedFlowwings.get_energy_urls(),
-                                             ChatId = self._chatId_energy).generator()
+            #   generatorFromEnergy= SrcEnergy(newsEnergy= FeedFlowwings.get_energy_urls(),
+            #                                  ChatId = self._chatId_energy).generator()
               
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromEnergy]:
+              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 
