@@ -35,7 +35,11 @@ class SrcAlert:
         self._chatId_news = ChatId
         
     def set_chatId_tweets(self, ChatId):
-        self._chatId_tweets = ChatId   
+        self._chatId_tweets = ChatId  
+        
+    def set_chatId_energy(self, ChatId):
+        self._chatId_energy = ChatId  
+        
         
         
     async def generator(self)-> Context:
@@ -56,7 +60,7 @@ class SrcAlert:
               
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromEnergy]:
+              for generator in [generatorFromEnergy, generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 

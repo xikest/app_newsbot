@@ -10,7 +10,7 @@ from nltk import sent_tokenize
 
 from tools.translate import Kakao, Papago
 
-from .summary import Wsj
+from .summary import Wsj, Iea
 
 @dataclass
 class Context:
@@ -77,7 +77,7 @@ class Contents(list):
                         context = self.makeSummary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
-                            # print(context)            
+                            print(context)            
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
@@ -85,7 +85,7 @@ class Contents(list):
                             elif context.dtype == 'msg':
                                 if context.enable_translate == True:
                                     msg = f"#{context.label}\n{await self.translate(context.summary.pop(0), context.tokenize)}\n\n{context.content.pop(0)}"
-                                    # print(f'translate : {msg}')
+                                    print(f'translate : {msg}')
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
                                 await asyncio.sleep(5)
@@ -130,8 +130,11 @@ class Contents(list):
         if context.enable_summary==True:
             if context.label == 'WSJ':   #WSJ 기사 요약
                 context.summary = [Wsj().summary(wsj_url= content) for content in context.content]
-                    # context.summary.append(Wsj(content).summary())
-                context.enable_translate=True # 번역할 것인지 
-                context.tokenize=True  #텍스트 토큰화 실행
-                # print(f'summariziong: {context}')
+
+            elif context.label == 'IEA':
+                context.summary = [Iea().summary(iea_url = content) for content in context.content]
+                
+        context.enable_translate=True # 번역할 것인지 
+        context.tokenize=True  #텍스트 토큰화 실행
+        print(f'summariziong: {context}')    
         return context 

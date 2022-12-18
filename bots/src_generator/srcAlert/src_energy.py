@@ -14,11 +14,11 @@ class SrcEnergy:
     async def generator(self)-> Context:
             try:
                 for news in self._newsEnergy:
-                    print(f'news= {news}')
+                    # print(f'news= {news}')
                     if news.src == 'web': 
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg', enable_summary=True)
                     elif news.src =='rss':
                         for feed in feedparser.parse(news.url).entries:
                             summary=BeautifulSoup(f'{feed.title}\n\n{feed.description}', 'html.parser').text

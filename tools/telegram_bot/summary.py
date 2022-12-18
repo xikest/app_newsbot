@@ -158,7 +158,6 @@ class Wsj:
         """
         wsj_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="header"]/div[2]/ul/li[2]/a')))
         wsj_btn.click()
-        # time.sleep(30)
         wd.implicitly_wait(30)
         wd.switch_to.window(wd.window_handles[1])
         return None
@@ -173,74 +172,52 @@ class Wsj:
         title = soup.title.text
         sub_title = soup.find('h2').text
         paragraphes = soup.find_all('p', attrs={"data-type":"paragraph"})
-        # for paragraph in paragraphes:
-        #     print(paragraph.attrs)
-        # print(paragraphes)
-        # print('\n')
         paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
-        
-        # ad_text ="Download for Free Today Enter your mobile number and we will send you a link to download the WSJ app. You are now subscribed. Manage your subscriptions at any time via https://wsj.com/newsletters. Please try again later. Manage your subscriptions at any time via https://wsj.com/newsletters. This copy is for your personal, non-commercial use only. Distribution and use of this material are governed by our Subscriber Agreement and by copyright law. For non-personal use or to order multiple copies, please contact Dow Jones Reprints at 1-800-843-0008 or visit www.djreprints.com."
-        # paragraphes= paragraphes.replace(ad_text, "")
-
-        # self._quit()
         summary =  f"{title}\n\n{sub_title}\n\n{paragraphes}"
         # print(summary)
         wd.close()
         wd.quit()
         return summary
     
-    # def quit(self):
-    #     self._wd.quit()
-    
-# HkCookie().get_cookie()
-# Wsj().summary()
 
 
 
-
-
-
-
-
-
-                    
-    # def translate_tx(self, text="hello"):
-    #         try:
-
-    #             # 입력 언어 선택
-    #             dropMenu = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
-    #             dropMenu.click() #언어 선택 메뉴
-                
-    #             selector_lang = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
-    #             selector_lang.click() #언어 선택
+class Iea: 
+    def __init__(self):
+        pass
+      
+    def _initionalizer(self):
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument("--remote-debugging-port=9230")
+        chrome_options.add_argument('user-agent={0}'.format(user_agent))
+        chrome_options.add_argument('lang=ko_kr')
         
-    #             # 입력
-    #             input_text = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
-                
-    #             for txt in chunks(text,50):
-    #                 input_text.send_keys('d'+txt) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-    #             # 출력 언어 선택
-    #             # 구현 안함, 입력 언어와 동일한 방식으로 선택
+        wd = webdriver.Chrome('chromedriver', options=chrome_options)
 
-    #             #번역하기 버튼 클릭
-    #             trans_btn = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
-    #             trans_btn.click()
-    #             time.sleep(1)
-              
-                
-    #             #번역된 결과 보기
-    #             result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
-                
-    #             # 세션 닫기
-    #             self._wd.quit()
-                
-    #             return result
-    #         except Exception as e:
-    #             self._wd.quit()
-    #             raise Exception(f"papago_error: {e}")
-    #             # if self._tryCnt < 3:
-    #             #     self._tryCnt += 1
-    #             #     self.translate_tx(self._text)
-    #             # print(f"papago_error: {e}")
-    #             # return None
-    
+        return wd
+        
+        
+    def summary(self, iea_url='https://www.iea.org/news/global-government-spending-on-clean-energy-transitions-rises-to-usd-1-2-trillion-since-the-start-of-the-pandemic-spurred-by-energy-security-concerns'):
+        wd = self._initionalizer()
+        wd.get(iea_url)
+
+        html = wd.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        title = soup.title.text
+        sub_title = soup.find('h4').text
+        main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
+            
+        paragraphes = main_texts.find_all('p')
+        paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
+        summary =  f"""{title}\n\n{sub_title}\n\n{paragraphes}"""
+        wd.close()
+        wd.quit()
+        return summary
+
+
+
+
+
