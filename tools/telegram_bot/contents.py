@@ -110,6 +110,7 @@ class Contents(list):
         #     paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거   
         #     try: sentences = await Papago('en').translate(paragraph)
         #     except: sentences = await Kakao('en').translate(paragraph)
+        paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거  
         try: sentences = await Papago('en').translate(paragraph) 
         except: sentences = await Kakao('en').translate(paragraph)
         return sentences
