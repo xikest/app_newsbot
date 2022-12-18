@@ -77,7 +77,7 @@ class Contents(list):
                         context = self.makeSummary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
-                            print(context)            
+                            # print(context)            
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
@@ -85,7 +85,7 @@ class Contents(list):
                             elif context.dtype == 'msg':
                                 if context.enable_translate == True:
                                     msg = f"#{context.label}\n{await self.translate(context.summary.pop(0), context.tokenize)}\n\n{context.content.pop(0)}"
-                                    print(f'translate : {msg}')
+                                    # print(f'translate : {msg}')
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
                                 await asyncio.sleep(5)
@@ -136,5 +136,5 @@ class Contents(list):
                 
         context.enable_translate=True # 번역할 것인지 
         context.tokenize=True  #텍스트 토큰화 실행
-        print(f'summariziong: {context}')    
+        # print(f'summariziong: {context}')    
         return context 
