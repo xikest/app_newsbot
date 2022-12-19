@@ -66,17 +66,17 @@ class Papago:
     
       
       
-    async def translate(self, text="hello"):
+    def translate(self, text="hello"):
             wd = self._initionalizer(self._url)
             try:
                 # 입력 언어 선택
                 dropMenu = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
                 dropMenu.click() #언어 선택 메뉴
-                await asyncio.sleep(1)  #  결과 대기
+                time.sleep(1)  #  결과 대기
                 
                 selector_lang = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
                 selector_lang.click() #언어 선택
-                await asyncio.sleep(1)  #결과 대기
+                time.sleep(1)  #  결과 대기
                 # 입력
                 input_text = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
                 for txt in chunks(text,50): input_text.send_keys('d'+txt) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
@@ -87,16 +87,18 @@ class Papago:
                 trans_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
                 trans_btn.click()
                 # time.sleep(1)
-                await asyncio.sleep(2)  # 번역 결과 대기
+                time.sleep(2)  #  결과 대기
                 
                 #번역된 결과 보기
                 result = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
                 
-                await asyncio.sleep(1)  # 종료를 내포하는 것으로 기능 수정 필요
+                time.sleep(1)  #  결과 대기
                 # 세션 닫기
+                wd.close()
                 wd.quit()
                 return result
             except Exception as e:
+                wd.close()
                 wd.quit()
                 raise Exception(f"papago_error: {e}")
                 # if self._tryCnt < 3:
@@ -122,44 +124,3 @@ def chunks(l, n):
         yield l[i:i + n]
 
 
-                    
-    def translate_tx(self, text="hello"):
-            try:
-
-                # 입력 언어 선택
-                dropMenu = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
-                dropMenu.click() #언어 선택 메뉴
-                
-                selector_lang = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
-                selector_lang.click() #언어 선택
-        
-                # 입력
-                input_text = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
-                
-                for txt in chunks(text,50):
-                    input_text.send_keys('d'+txt) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-                # 출력 언어 선택
-                # 구현 안함, 입력 언어와 동일한 방식으로 선택
-
-                #번역하기 버튼 클릭
-                trans_btn = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
-                trans_btn.click()
-                time.sleep(1)
-              
-                
-                #번역된 결과 보기
-                result = WebDriverWait(self._wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
-                
-                # 세션 닫기
-                self._wd.quit()
-                
-                return result
-            except Exception as e:
-                self._wd.quit()
-                raise Exception(f"papago_error: {e}")
-                # if self._tryCnt < 3:
-                #     self._tryCnt += 1
-                #     self.translate_tx(self._text)
-                # print(f"papago_error: {e}")
-                # return None
-    
