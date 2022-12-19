@@ -9,7 +9,7 @@ from info.bot_profiles import BotProfiles
 #  테스트 프로파일
 # ==========================================================================================
 
-# TOKEN = BotProfiles.get_botTwitters().TOKEN
+# TOKEN = BotProfiles.get_botBeta().TOKEN
 # srcAlert = SrcAlert()
 # srcAlert.set_chatId_wsj( BotProfiles.get_botBeta().channels.get('beta_chat_id'))
 # srcAlert.set_chatId_news( BotProfiles.get_botBeta().channels.get('beta_chat_id'))
