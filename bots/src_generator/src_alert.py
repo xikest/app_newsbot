@@ -72,6 +72,10 @@ class SrcAlert:
             #RSS 중국
             # generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
             
+            #트위터: 뉴스
+            generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                    screenNames = FeedTweets.get_screenNames_news,
+                                                    ChatId = self._chatId_news).generator
             
             #트위터: 매크로
             generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
