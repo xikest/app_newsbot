@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import asyncio
 import pickle
 from bs4 import BeautifulSoup
+from urllib.request import urlopen
 
 sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 
@@ -78,26 +79,26 @@ class Iea:
     def __init__(self):
         pass
       
-    def _initionalizer(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        # chrome_options.add_argument("--remote-debugging-port=9230")
-        chrome_options.add_argument('user-agent={0}'.format(user_agent))
-        chrome_options.add_argument('lang=ko_kr')
+    # def _initionalizer(self):
+    #     chrome_options = webdriver.ChromeOptions()
+    #     chrome_options.add_argument('--headless')
+    #     chrome_options.add_argument('--no-sandbox')
+    #     chrome_options.add_argument('--disable-dev-shm-usage')
+    #     # chrome_options.add_argument("--remote-debugging-port=9230")
+    #     chrome_options.add_argument('user-agent={0}'.format(user_agent))
+    #     chrome_options.add_argument('lang=ko_kr')
         
-        wd = webdriver.Chrome('chromedriver', options=chrome_options)
+    #     wd = webdriver.Chrome('chromedriver', options=chrome_options)
 
-        return wd
+    #     return wd
         
-        
+
+
     def summary(self, iea_url='https://www.iea.org/news/global-government-spending-on-clean-energy-transitions-rises-to-usd-1-2-trillion-since-the-start-of-the-pandemic-spurred-by-energy-security-concerns'):
-        wd = self._initionalizer()
-        wd.get(iea_url)
-
-        html = wd.page_source
-        soup = BeautifulSoup(html, 'html.parser')
+        # wd = self._initionalizer()
+        # wd.get(iea_url)
+        
+        soup = BeautifulSoup(urlopen(iea_url), 'html.parser')
         title = soup.title.text
         sub_title = soup.find('h4').text
         # main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
@@ -106,8 +107,8 @@ class Iea:
         # paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
         # summary =  f"""{title}\n\n{sub_title}\n\n{paragraphes}"""
         summary =  f"{title}\n\n{sub_title}"
-        wd.close()
-        wd.quit()
+        # wd.close()
+        # wd.quit()
         return summary
 
 
