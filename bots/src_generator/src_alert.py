@@ -17,7 +17,9 @@ class SrcAlert:
         self._chatId_tweetsConcensus = BotProfiles.get_botAlert().channels.get('twt_consensus_chat_id')
         self._chatId_energy = BotProfiles.get_botAlert().channels.get('energy_chat_id')
         self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
- 
+        self._chatId_agri = BotProfiles.get_botAlert().channels.get('teat_agri_chat_id')
+        self._chatId_stats = BotProfiles.get_botAlert().channels.get('teat_stats_chat_id')
+        
     def set_chatId_wsj(self, ChatId):
         self._chatId_wsj = ChatId
  
@@ -36,6 +38,11 @@ class SrcAlert:
     def set_chatId_cn(self, ChatId):
         self._chatId_cn = ChatId  
         
+    def set_chatId_agri(self, ChatId):
+        self._chatId_agri = ChatId  
+        
+    def set_chatId_stats(self, ChatId):
+        self._chatId_stats = ChatId  
         
     async def generator(self)-> Context:
 
@@ -62,8 +69,8 @@ class SrcAlert:
             #RSS 에너지
             generatorFromRssEnergy = SrcRss(FeedRss.get_rss_energy, self._chatId_energy).generator
             
-            #RSS 뉴스  
-            generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
+            #RSS 중국
+            # generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
             
             
             #트위터: 매크로
@@ -78,16 +85,26 @@ class SrcAlert:
             generatorFromTwitterEnergy = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                                 screenNames = FeedTweets.get_screenNames_energy,
                                                                 ChatId = self._chatId_energy).generator
+            
+            #트위터: 농업
+            generatorFromTwitterAgriculture = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_agriculture,
+                                                                ChatId = self._chatId_agri).generator
+            
             #트위터: 차이나
             generatorFromTwitterCn = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                                 screenNames = FeedTweets.get_screenNames_cn,
                                                                 ChatId = self._chatId_cn).generator
               
-
+            #트위터: 통계
+            generatorFromTwitterStats = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_stats,
+                                                                ChatId = self._chatId_stats).generator
+            
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy,
-                              generatorFromRssNews, generatorFromRssEnergy, generatorFromRssCn]:
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromTwitterAgriculture, generatorFromTwitterStats,
+                              generatorFromRssNews, generatorFromRssEnergy]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 
