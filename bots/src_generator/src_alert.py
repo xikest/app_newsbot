@@ -48,6 +48,10 @@ class SrcAlert:
             #web: 뉴스 한경, 연합인포맥스
             generatorFromWebNews = SrcNews(FeedWeb.get_news, self._chatId_news).generator
             
+            #web: 뉴스 중국
+            generatorFromWebNews = SrcNews(FeedWeb.get_news_cn, self._chatId_cn).generator
+            
+            
             #web: 에너지
             generatorFromWebEnergy= SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
             

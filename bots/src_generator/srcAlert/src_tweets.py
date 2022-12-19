@@ -5,7 +5,7 @@ from tools.telegram_bot.contents import Context
 from tools.translate.papago import Papago
 # from tools.translate.google import GoogleTranslate
 # from tools.translate.kakao import KakaoTranslate
-
+       
 import asyncio
 import datetime
 
@@ -14,13 +14,14 @@ class SrcTweets:
     SLEEP = False
     AWAKE = True
     status = AWAKE
-
+    stopKeywords= ['Unusual Whales']
+    
     def __init__(self, BEARERTOKEN:Optional[str], screenNames:Generator, ChatId:Optional[str]):
         self._ChatId:Optional[str]=ChatId
         self._BEARERTOKEN = BEARERTOKEN
         self._screenNames:Generator = screenNames
 
-        
+
         
     async   def generator(self)-> Context: 
         if SrcTweets.status == SrcTweets.AWAKE:
@@ -35,7 +36,9 @@ class SrcTweets:
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
                                 tweet_msg = tweet_msg.replace('#', '')
-                                yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)
+                                for stopKeyword in SrcTweets.stopKeywords:
+                                    if  stopKeyword not in tweet_msg:
+                                        yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)
                 print(f'tweets_src_fin:{ datetime.datetime.now()}\n')  
                                       
             except Exception as e:
