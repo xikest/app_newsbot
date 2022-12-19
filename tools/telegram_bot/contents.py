@@ -111,7 +111,7 @@ class Contents(list):
         #     try: sentences = await Papago('en').translate(paragraph)
         #     except: sentences = await Kakao('en').translate(paragraph)
         paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거  
-        try: sentences = Papago('en').translate(paragraph) 
+        try: sentences = await Papago('en').translate(paragraph) 
         except Exception as e:
             print(f"translate err {e}")
             sentences = paragraph

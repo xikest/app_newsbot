@@ -54,7 +54,7 @@ class Papago:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
-        # chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--disable-dev-shm-usage')
         # chrome_options.add_argument("--remote-debugging-port=9230")
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
@@ -66,17 +66,18 @@ class Papago:
     
       
       
-    def translate(self, text="hello"):
+    async def translate(self, text="hello"):
             wd = self._initionalizer(self._url)
             try:
                 # 입력 언어 선택
                 dropMenu = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="ddSourceLanguageButton"]')))
                 dropMenu.click() #언어 선택 메뉴
-                time.sleep(1)  #  결과 대기
+                await asyncio.sleep(1)  #  결과 대기
                 
                 selector_lang = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , self._get_dict_lang())))
                 selector_lang.click() #언어 선택
-                time.sleep(1)  #  결과 대기
+                await asyncio.sleep(1)  #  결과 대기
+                
                 # 입력
                 input_text = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="sourceEditArea"]')))
                 for txt in chunks(text,50): input_text.send_keys('d'+txt) # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
@@ -87,16 +88,17 @@ class Papago:
                 trans_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="btnTranslate"]')))
                 trans_btn.click()
                 # time.sleep(1)
-                time.sleep(2)  #  결과 대기
+                await asyncio.sleep(2)  #  결과 대기
                 
                 #번역된 결과 보기
                 result = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="targetEditArea"]'))).text
                 
-                time.sleep(1)  #  결과 대기
+                await asyncio.sleep(1)  #  결과 대기
                 # 세션 닫기
                 wd.close()
                 wd.quit()
                 return result
+            
             except Exception as e:
                 wd.close()
                 wd.quit()
