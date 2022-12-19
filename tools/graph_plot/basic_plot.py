@@ -3,12 +3,12 @@
 # 기본으로 미리 준비된 샘플 코드
 # =============================================================================================
 
-import datetime
-import pandas as pd
-import pandas_datareader.data as web
+# import datetime
+# import pandas as pd
+# import pandas_datareader.data as web
 from tools.graph_plot.plotviz import PlotViz
-from tools.time.time import Periods
-from typing import Optional
+# from tools.time.time import Periods
+# from typing import Optional
 import numpy as np
 
 

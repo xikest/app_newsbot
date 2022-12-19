@@ -1,13 +1,13 @@
 from plotly.subplots import make_subplots
 # import plotly.express as px
-import pandas as pd
+# import pandas as pd
 from datetime import datetime
 import plotly.io as pio
 from .plot_func import make_trace, check_instance_for_df
-from typing import Union
+# from typing import Union
 
-import numpy as np
-from numpy import ndarray
+# import numpy as np
+# from numpy import ndarray
 
 # Templates configuration
 # -----------------------

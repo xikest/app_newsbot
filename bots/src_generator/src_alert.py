@@ -1,66 +1,90 @@
-from typing import Optional, List
+from typing import Optional
 
-from tools.telegram_bot.contents import Context
-from .srcAlert.src_mailbox import SrcMailBox
-from .srcAlert.src_rss import SrcRss
-from .srcAlert.src_news import SrcNews
-from .srcAlert.src_tweets import SrcTweets
-from .srcAlert.src_energy import SrcEnergy
+from tools.telegram_bot import Context
+from .srcAlert import SrcMailBox, SrcRss, SrcNews, SrcTweets
 
-
-from info.bot_ids import InfoNav
-from info.bot_ids import InfoTwitter
+from info.bot_ids import InfoNav, InfoTwitter
 from info.bot_profiles import BotProfiles
-from info.feeds import FeedFlowwings
-      
-      
+from info.feeds import FeedWeb, FeedRss, FeedTweets
+    
       
 class SrcAlert:
     def __init__(self, ChatId:str=None):
         self._ChatId:Optional[str]=ChatId
-        self._chatId_mail = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
-        self._chatId_rss = BotProfiles.get_botAlert().channels.get('teat_chat_id')
-        self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_chat_id')
-        self._chatId_tweets = BotProfiles.get_botTwitters().channels.get('twt_chat_id')
-        self._chatId_energy = BotProfiles.get_botEnegy().channels.get('energy_chat_id')
-        
+        self._chatId_wsj = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
+        self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_news_id')
+        self._chatId_tweetsMacro = BotProfiles.get_botAlert().channels.get('twt_macro_id')
+        self._chatId_tweetsConcensus = BotProfiles.get_botAlert().channels.get('twt_consensus_chat_id')
+        self._chatId_energy = BotProfiles.get_botAlert().channels.get('energy_chat_id')
+        self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
  
-    def set_chatId_mail(self, ChatId):
-        self._chatId_mail = ChatId
+    def set_chatId_wsj(self, ChatId):
+        self._chatId_wsj = ChatId
  
-    def set_chatId_rss(self, ChatId):
-        self._chatId_rss = ChatId
-
     def set_chatId_news(self, ChatId):
         self._chatId_news = ChatId
         
-    def set_chatId_tweets(self, ChatId):
-        self._chatId_tweets = ChatId  
+    def set_chatId_tweetsMacro(self, ChatId):
+        self._chatId_tweetsMacro = ChatId  
+        
+    def set_chatId_tweetsConcensus(self, ChatId):
+        self._chatId_tweetsConcensus = ChatId  
         
     def set_chatId_energy(self, ChatId):
         self._chatId_energy = ChatId  
         
+    def set_chatId_cn(self, ChatId):
+        self._chatId_cn = ChatId  
         
         
     async def generator(self)-> Context:
-              generatorFromMail = SrcMailBox(usr=InfoNav.get_usr(), 
-                                              pid=InfoNav.get_pid(), 
-                                              mailings=FeedFlowwings.get_mailing,
-                                              ChatId=self._chatId_mail).generator
-                            
-              generatorFromRss = SrcRss(FeedFlowwings.get_rss_urls(), self._chatId_rss).generator
-              
-              generatorFromNews = SrcNews(FeedFlowwings.get_news_urls(), self._chatId_news).generator
-              
-              generatorFromTwitter = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                            screenNames = FeedFlowwings.get_screenNames,
-                                            ChatId = self._chatId_tweets).generator
 
-              generatorFromEnergy= SrcEnergy(FeedFlowwings.get_energy_urls(), self._chatId_energy).generator
+            #web: WSJ 뉴스
+            generatorFromWSJ = SrcMailBox(usr=InfoNav.get_usr(), 
+                                            pid=InfoNav.get_pid(), 
+                                            mailings=FeedWeb.get_WSJ,
+                                            ChatId=self._chatId_wsj).generator
+
+            #web: 뉴스 한경, 연합인포맥스
+            generatorFromWebNews = SrcNews(FeedWeb.get_news, self._chatId_news).generator
+            
+            #web: 에너지
+            generatorFromWebEnergy= SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
+            
+            
+            #RSS 뉴스  
+            generatorFromRssNews = SrcRss(FeedRss.get_rss_news, self._chatId_news).generator
+            
+            #RSS 에너지
+            generatorFromRssEnergy = SrcRss(FeedRss.get_rss_energy, self._chatId_energy).generator
+            
+            #RSS 뉴스  
+            generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
+            
+            
+            #트위터: 매크로
+            generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                    screenNames = FeedTweets.get_screenNames_macro,
+                                                    ChatId = self._chatId_tweetsMacro).generator
+            #트위터: 컨센서스
+            generatorFromTwitterConcensus = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                        screenNames = FeedTweets.get_screenNames_concensus,
+                                                        ChatId = self._chatId_tweetsConcensus).generator
+            #트위터: 에너지
+            generatorFromTwitterEnergy = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_energy,
+                                                                ChatId = self._chatId_energy).generator
+            #트위터: 차이나
+            generatorFromTwitterCn = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_cn,
+                                                                ChatId = self._chatId_cn).generator
               
 
             #   await asyncio.sleep(1)
-              for generator in [generatorFromMail, generatorFromTwitter, generatorFromNews, generatorFromRss, generatorFromEnergy]:
+            for generator in [generatorFromWSJ, 
+                              generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn,
+                              generatorFromWebNews, generatorFromWebEnergy,
+                              generatorFromRssNews, generatorFromRssEnergy, generatorFromRssCn]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 

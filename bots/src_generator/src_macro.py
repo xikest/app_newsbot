@@ -1,40 +1,15 @@
-from tools.telegram_bot.contents import Context
+from tools.telegram_bot import Context
 
 # 반환 값은 모두 리스트 값 
-from market.shiller_cape_ratio import ShillerRatio
-from market.market_pattern import MarketPattern
-from market.macro.cpi import CPI
-from market.macro.pce import PCE
-from market.macro.retail_sales import  ReatailSales
-from market.macro.new_residential_sales import  NewResidentialSales
-from market.macro.durable_goods import  DurableGoods
-from market.macro.employment_cost_index import EmploymentCostIndex
-from market.macro.gdp import GDP
-from market.macro.jolt import Jolt
-from market.macro.adp_employment_report import AdpNationalEmploymentReport
-from market.macro.diffusion_Index_philadelphia import DiffusionIndexphiladelphia
-from market.macro.busines_inventories import InventoriesSalesRatio
-from market.macro.fed import Fed
-from market.macro.ppi import PPI
-from market.macro.cfnai import CFNAI
-from market.macro.empire_state_manufacturing import EmpireStateManufacturingSurvey
-from market.macro.existing_home_sales import ExistingHomeSales
-from market.macro.industrial_production import IndustrialProduction
-from market.macro.ism import ISM
-from market.macro.productivity import Productivity
-from market.macro.e_commerce_retail_sales import E_COMMERCE
-from market.macro.import_export import ImportExport
-from market.macro.cass_freight_index import CassFreightIndex
-from market.macro.new_housing import NewHousing
-from market.macro.consumer_credit import ConsumerCredit
-from market.macro.initial_claims import InitialClaims
-from market.macro.cpi_bra import CPI_BRA
-from market.macro.cpi_chn import CPI_CHN
-from market.macro.cpi_de import CPI_DE
-from market.macro.cpi_india import CPI_INDIA
-from market.macro.cpi_jpn import CPI_JPN
-from market.macro.cpi_kr import CPI_KR
-
+from market import ShillerRatio
+from market import MarketPattern
+from market.macro import (CPI, PCE, ReatailSales, NewResidentialSales, DurableGoods, EmploymentCostIndex, GDP, Jolt,
+                          AdpNationalEmploymentReport, DiffusionIndexphiladelphia, InventoriesSalesRatio, 
+                          Fed,
+                          PPI, CFNAI, EmpireStateManufacturingSurvey, ExistingHomeSales, IndustrialProduction, ISM, Productivity, 
+                          E_COMMERCE, ImportExport, CassFreightIndex, NewHousing, ConsumerCredit, InitialClaims, 
+                          CPI_BRA, CPI_CHN, CPI_DE, CPI_INDIA,  CPI_JPN, CPI_KR
+                          )
 
 class SrcMacro:
       class ShillerRatio:    

@@ -1,6 +1,6 @@
 import logging
 
-from bots.bot_xiks.bot_echo import Echobot
+from bots import BotBeta
 from info.bot_profiles import BotProfiles
 
 # Enable logging
@@ -9,4 +9,4 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 TOKEN = BotProfiles.get_botBeta().TOKEN
-Echobot(TOKEN).start()
+BotBeta(TOKEN).start()

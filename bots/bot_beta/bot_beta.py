@@ -1,20 +1,14 @@
 from typing import Optional
-from telegram.ext import Updater
+from telegram.ext import ApplicationBuilder
 import logging
-from bots.bot_xiks.basic_handler import BasicHandler
-from bots.bot_xiks.command_handler import CmdHandler
-import asyncio
-
-import logging
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
+from .handler import BasicHandler, CmdHandler
 
     
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO)
 
-class Echobot():
+class BotBeta():
     def __init__(self, TOKEN:Optional[str]=None):  self._TOKEN = TOKEN
  
     @property

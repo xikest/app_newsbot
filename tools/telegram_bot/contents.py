@@ -112,7 +112,8 @@ class Contents(list):
         #     except: sentences = await Kakao('en').translate(paragraph)
         paragraph = self.paragraphTrimming(paragraph)  # 불용어 제거  
         try: sentences = await Papago('en').translate(paragraph) 
-        except: sentences = await Kakao('en').translate(paragraph)
+        except: sentences = paragraph
+            # sentences = await Kakao('en').translate(paragraph)
         return sentences
     
     def paragraphTrimming(self, paragraph):

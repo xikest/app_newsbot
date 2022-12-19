@@ -14,55 +14,6 @@ sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 
-class HkCookie:
-    """
-    hk에서 쿠키를 생성
-    """
-    def __init__(self):
-        self._url = 'https://plus.hankyung.com/'
-        pass
-      
-    def _initionalizer(self, url:str):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        # chrome_options.add_argument("--remote-debugging-port=9230")
-        chrome_options.add_argument('user-agent={0}'.format(user_agent))
-        chrome_options.add_argument('lang=ko_kr')
-        
-        wd = webdriver.Chrome('chromedriver', options=chrome_options)
-        wd.get(url)# 웹페이지 가져 오기
-        return wd
-        
-    def get_cookie(self):
-        wd = self._initionalizer(self._url)
-        
-        hk_login_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="header"]/div[1]/ul/li[1]/a')))
-        hk_login_btn.click()
-        
-        member_login_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="container"]/div/div[1]/div[1]/a')))
-        member_login_btn.click()
-
-        #로그인 정보 입력
-        input_id = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="userid"]')))
-        input_id.send_keys('taest12@naver.com') # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-        time.sleep(1)
-        
-        input_pw = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="userpw"]')))
-        input_pw.send_keys('xowlsdl13!') # 텍스트 입력,  텍스트의 가장 앞에는 더미 문자 추가해줘야 함
-        time.sleep(1)
-        
-        login_btn = WebDriverWait(wd, 30).until(EC.element_to_be_clickable((By.XPATH , '//*[@id="loginForm"]/div/div[2]/a')))
-        login_btn.click()
-        wd.implicitly_wait(10)
-        
-        cookies = wd.get_cookies()
-        with open('hk_cookies.pkl','wb') as f:
-             pickle.dump(cookies, f)
-        wd.close()
-        wd.quit()
-
 class Wsj: 
     def __init__(self):
         self._url = 'https://plus.hankyung.com'
@@ -72,13 +23,13 @@ class Wsj:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
+        # chrome_options.add_argument('--disable-dev-shm-usage')
         # chrome_options.add_argument("--remote-debugging-port=9230")
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
         
         wd = webdriver.Chrome('chromedriver', options=chrome_options)
-        wd.get(url)# 웹페이지 가져 오기
+        # wd.get(url)# 웹페이지 가져 오기
         # wd = self._get_cookies(wd)
         # self._to_wsj(wd)
         return wd

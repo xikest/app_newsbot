@@ -1,11 +1,11 @@
 from typing import Generator
 import asyncio
-from ..src_generator.src_macro import SrcMacro
-from ..src_generator.src_stocks import SrcStocks
-from tools.telegram_bot.contents import Context
+from bots.src_generator import SrcMacro
+from bots.src_generator import SrcStocks
+from tools.telegram_bot import Context
 
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import ReplyKeyboardRemove, Update
 from telegram.ext import (
     CommandHandler,
     ContextTypes,

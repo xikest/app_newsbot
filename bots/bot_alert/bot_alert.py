@@ -1,12 +1,12 @@
 import asyncio
-from typing import Generator, List, Callable, Optional, Union
-from tools.telegram_bot.contents import Contents
-from tools.time.time import Timer
+from typing import Generator, Optional, Union
 import time
 import asyncio
 import telegram
 
-class NewsAlert():
+from tools.telegram_bot import Contents
+
+class BotAlert():
   """
   """
   status = True
@@ -34,7 +34,7 @@ class NewsAlert():
   
   
   async def start(self,generator:Generator, waitTime=1*60):
-            while NewsAlert.status != NewsAlert.STOP:
+            while BotAlert.status != BotAlert.STOP:
                 try:
                     await self.update(generator)
                     print(f'cycle finish, sleep {time.time()}')

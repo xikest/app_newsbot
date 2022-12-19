@@ -19,10 +19,10 @@ class SrcEnergy:
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         for content in webGenerator:
                             yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg', enable_summary=True)
-                    elif news.src =='rss':
-                        for feed in feedparser.parse(news.url).entries:
-                            summary=BeautifulSoup(f'{feed.title}\n\n{feed.description}', 'html.parser').text
-                            yield Context(label = f"{news.name}", content=[feed.link], summary = [summary], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)    
+                    # elif news.src =='rss':
+                    #     for feed in feedparser.parse(news.url).entries:
+                    #         summary=BeautifulSoup(f'{feed.title}\n\n{feed.description}', 'html.parser').text
+                    #         yield Context(label = f"{news.name}", content=[feed.link], summary = [summary], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)    
                                         
 
                 print(f'energy_src_fin:{ datetime.datetime.now()}\n')  

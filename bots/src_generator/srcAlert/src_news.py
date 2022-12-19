@@ -14,7 +14,7 @@ class SrcNews:
     
     async def generator(self)-> Context:
             try:
-                for news in self._newsStand:
+                for news in self._newsStand():
                     if news.src == 'web': 
                         webGenerator = self._get_from_web(news.url, news.attr_key)
                         for content in webGenerator:
@@ -33,7 +33,11 @@ class SrcNews:
                         for content in webGenerator:
                             yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
                             
-                            
+                    elif news.src == 'webWithStarts': 
+                        webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
+                        for content in webGenerator:
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg', enable_summary=True)
+                  
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
@@ -42,7 +46,16 @@ class SrcNews:
                 print(f"news stand error: {e}\n")
                 pass
 
-
+    def _get_from_web_with_starts(self, url, attr_key, prefix=None, startswith='http')-> str:
+        headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
+        for headline in headlines:  ## html의 속성 부분을 추출
+            for link in headline.find_all('a'):
+                if 'href' in link.attrs and link.attrs['href'].startswith(startswith):
+                        if prefix is not None:
+                            # print(link.attrs['href'])
+                            yield prefix + link.attrs['href']
+                        else: 
+                            yield link.attrs['href']
 
     def _get_from_web(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
