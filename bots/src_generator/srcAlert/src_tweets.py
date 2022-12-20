@@ -5,9 +5,11 @@ from tools.telegram_bot.contents import Context
 from tools.translate.papago import Papago
 # from tools.translate.google import GoogleTranslate
 # from tools.translate.kakao import KakaoTranslate
-       
+     
 import asyncio
 import datetime
+
+from emoji import core
 
 class SrcTweets:
     
@@ -36,6 +38,7 @@ class SrcTweets:
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
                                 tweet_msg = tweet_msg.replace('#', '')
+                                tweet_msg = core.replace_emoji(tweet_msg, "")
                                 for stopKeyword in SrcTweets.stopKeywords:
                                     if  stopKeyword not in tweet_msg:
                                         yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)

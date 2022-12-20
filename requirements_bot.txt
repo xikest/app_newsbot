@@ -25,6 +25,7 @@ cycler==0.10.0
 decorator==4.4.2
 defusedxml==0.6.0
 Django==2.2.4
+emoji==2.2.0
 entrypoints==0.3
 exceptiongroup==1.0.4
 feedparser==6.0.10
