@@ -17,3 +17,6 @@ google-chrome --version  ## 버전 확인
 wget https://chromedriver.storage.googleapis.com/107.0.5304.62/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip  # 압축 풀기
 mv chromedriver /usr/bin/chromedriver # 파일 이동
+
+## 패키지 목록 저장
+pip freeze > requirements_bot.txt
