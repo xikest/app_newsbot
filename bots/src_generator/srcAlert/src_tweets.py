@@ -14,7 +14,7 @@ class SrcTweets:
     SLEEP = False
     AWAKE = True
     status = AWAKE
-    stopKeywords= ['Unusual Whales']
+    stopKeywords= ['Unusual Whales','Link (+ live flow)', 'FX OPTION EXPIRIES', 'This is getting ridiculous now','You can try it here']
     
     def __init__(self, BEARERTOKEN:Optional[str], screenNames:Generator, ChatId:Optional[str]):
         self._ChatId:Optional[str]=ChatId
