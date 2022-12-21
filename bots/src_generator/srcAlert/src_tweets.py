@@ -39,9 +39,9 @@ class SrcTweets:
                                 # await asyncio.sleep(1)
                                 tweet_msg = tweet_msg.replace('#', '')
                                 tweet_msg = core.replace_emoji(tweet_msg, "")
-                                for stopKeyword in SrcTweets.stopKeywords:
-                                    if  stopKeyword not in tweet_msg:
-                                        yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)
+                                #for stopKeyword in SrcTweets.stopKeywords:
+                                  #  if  stopKeyword not in tweet_msg:
+                                yield Context(label=f'{screenName}', content=[tweet_msg], botChatId=self._ChatId,  dtype='msg', summary=[tweet_msg], enable_translate = True)
                 print(f'tweets_src_fin:{ datetime.datetime.now()}\n')  
                                       
             except Exception as e:
