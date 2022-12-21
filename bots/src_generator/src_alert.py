@@ -16,7 +16,7 @@ class SrcAlert:
         self._chatId_tweetsMacro = BotProfiles.get_botAlert().channels.get('twt_macro_id')
         self._chatId_tweetsConcensus = BotProfiles.get_botAlert().channels.get('twt_consensus_chat_id')
         self._chatId_energy = BotProfiles.get_botAlert().channels.get('energy_chat_id')
-        # self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
+        self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
         self._chatId_agri = BotProfiles.get_botAlert().channels.get('teat_agri_chat_id')
         self._chatId_stats = BotProfiles.get_botAlert().channels.get('teat_stats_chat_id')
         
@@ -35,8 +35,8 @@ class SrcAlert:
     def set_chatId_energy(self, ChatId):
         self._chatId_energy = ChatId  
         
-    # def set_chatId_cn(self, ChatId):
-    #     self._chatId_cn = ChatId  
+    def set_chatId_cn(self, ChatId):
+        self._chatId_cn = ChatId  
         
     def set_chatId_agri(self, ChatId):
         self._chatId_agri = ChatId  
@@ -108,9 +108,10 @@ class SrcAlert:
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn, generatorFromTwitterAgriculture, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, 
-                              generatorFromRssNews, generatorFromRssEnergy]:
+                              generatorFromRssNews, generatorFromRssEnergy
+                              ]:
                 async for context in generator():
-                    print(f"gen: {context}")
+                    # print(f"gen: {context}")
                     yield context 
 
 

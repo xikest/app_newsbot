@@ -40,7 +40,8 @@ class BotAlert():
                     print(f'cycle finish, sleep {time.time()}')
                     await asyncio.sleep(waitTime) #5분 대기
                     print(f'awake{time.time()}')
-                except:
+                except Exception as e:
+                    print(f'bot start err.{e}')
                     pass
 
 
