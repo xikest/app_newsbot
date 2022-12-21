@@ -35,8 +35,8 @@ class SrcAlert:
     def set_chatId_energy(self, ChatId):
         self._chatId_energy = ChatId  
         
-    def set_chatId_cn(self, ChatId):
-        self._chatId_cn = ChatId  
+    # def set_chatId_cn(self, ChatId):
+    #     self._chatId_cn = ChatId  
         
     def set_chatId_agri(self, ChatId):
         self._chatId_agri = ChatId  
