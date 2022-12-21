@@ -73,7 +73,7 @@ class SrcAlert:
             # generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
             
             #트위터: 뉴스
-            generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                     screenNames = FeedTweets.get_screenNames_news,
                                                     ChatId = self._chatId_news).generator
             
@@ -106,8 +106,8 @@ class SrcAlert:
                                                                 ChatId = self._chatId_stats).generator
             
             #   await asyncio.sleep(1)
-            for generator in [generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromTwitterAgriculture, generatorFromTwitterStats,
+            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn, generatorFromTwitterAgriculture, generatorFromTwitterStats,
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, 
                               generatorFromRssNews, generatorFromRssEnergy]:
                 async for context in generator():
                     # print(f"gen: {context}")
