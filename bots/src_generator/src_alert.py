@@ -110,7 +110,7 @@ class SrcAlert:
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, 
                               generatorFromRssNews, generatorFromRssEnergy]:
                 async for context in generator():
-                    # print(f"gen: {context}")
+                    print(f"gen: {context}")
                     yield context 
 
 
