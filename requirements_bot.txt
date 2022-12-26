@@ -21,6 +21,7 @@ chardet==3.0.4
 charset-normalizer==2.1.1
 click==7.1.2
 colorama==0.4.6
+cryptography==38.0.4
 cycler==0.10.0
 decorator==4.4.2
 defusedxml==0.6.0
@@ -31,6 +32,7 @@ exceptiongroup==1.0.4
 feedparser==6.0.10
 flake8==3.8.4
 Flask==1.1.2
+frozendict==2.3.4
 gast==0.3.3
 google-auth==1.23.0
 google-auth-oauthlib==0.4.2
@@ -42,6 +44,7 @@ h2==3.2.0
 h5py==3.0.0
 hpack==3.0.0
 hstspreload==2022.11.1
+html5lib==1.1
 httpcore==0.16.1
 httpx==0.23.1
 hyperframe==5.2.0
@@ -182,5 +185,5 @@ widgetsnbextension==3.5.1
 wincertstore==0.2
 wrapt==1.12.1
 wsproto==1.2.0
-yfinance==0.1.87
+yfinance==0.2.3
 zipp==3.4.0
