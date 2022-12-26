@@ -52,13 +52,14 @@ class BalanceSheet():
 # =============================================================================
 # cashflow ratio with sheet data: 
 # =============================================================================
-    def call_from_cashflow(self, key = 'Net Income',  period:str= 'quarterly'):
+    def call_from_cashflow(self, key = 'Net Income From Continuing Operations',  period:str= 'quarterly'):
         if period == 'quarterly' : return self.__data__.quarterly_cashflow.loc[key,:]
         elif  'yearly' : return self.__data__.cashflow.loc[key,:]
 
-    def __call_ratio_from_cashflow__(self, col_name:str, pre_key:str, suf_key:str, period:str) ->pd.Series:
-       return pd.Series(self.call_from_cashflow(pre_key, period)/ self.call_from_cashflow(suf_key, period), index=self.call_from_cashflow(pre_key, period).index, name=col_name)
-
+    # def __call_ratio_from_cashflow__(self, col_name:str, pre_key:str, suf_key:str, period:str) ->pd.Series:
+    #    return pd.Series(self.call_from_cashflow(pre_key, period)/ self.call_from_cashflow(suf_key, period), index=self.call_from_cashflow(pre_key, period).index, name=col_name)
+   
+   
 
 # =============================================================================
 # balancesheet ratio with sheet data: 
@@ -71,8 +72,8 @@ class BalanceSheet():
     def debt_longterm(self,  period:str= 'quarterly'):           
         self.plot_data['title'] =f'{self.symbol}: lonterm debt {period}'
         self.plot_data['y_title'] = None
-        if period == 'quarterly' : self.plot_data['data'] = self.call_from_balance_sheet(period='quarterly',  key = 'Long Term Debt')
-        elif 'yearly' : self.plot_data['data'] = self.call_from_balance_sheet(period='yearly',  key = 'Long Term Debt')
+        if period == 'quarterly' : self.plot_data['data'] = self.call_from_balance_sheet(period='quarterly',  key = 'Net Long Term Debt Issuance')
+        elif 'yearly' : self.plot_data['data'] = self.call_from_balance_sheet(period='yearly',  key = 'Net Long Term Debt Issuance')
         return self
 
 # =============================================================================
@@ -81,7 +82,7 @@ class BalanceSheet():
 
     def ratio_incomes(self, period='quarterly'):
         self.plot_data['title'] =f'{self.symbol}: 현금 흐름 Vs 수익 창출 {period}'
-        self.plot_data['y_title'] = '현금 흐름 (%)'
+        self.plot_data['y_title'] = '영업에서 현금 흐름 (%)'
         self.plot_data['second_y_title'] = '수익 창출 (%)'
         self.plot_data['data']  = pd.DataFrame()
         self.plot_data['data']['현금 흐름'] = self.ratio_income_div_operating(period)*100
@@ -90,10 +91,31 @@ class BalanceSheet():
         
 
     def ratio_income_div_operating(self, period='quarterly'):
-        return pd.Series(self.call_from_cashflow('Net Income',period) / self.call_from_cashflow('Total Cash From Operating Activities', period), name='영업 활동으로 인한 현금 흐름 (Income/Operating)')
-
+        return pd.Series(self.call_from_cashflow('Net Income From Continuing Operations',period) / self.call_from_cashflow('Cash Flow From Continuing Operating Activities', period), name='영업 활동으로 발생하는 현금 흐름 (Income/Operating)')
+    
     def ratio_income_div_assetes(self, period='quarterly'):
-      return pd.Series(self.call_from_cashflow('Net Income',period) / self.call_from_balance_sheet('Total Assets', period), name='자산 대비 수익 창출 능력 (Income/Assets)')
+      return pd.Series(self.call_from_cashflow('Net Income From Continuing Operations',period) / self.call_from_balance_sheet('Total Assets', period), name='자산 대비 수익 창출 능력 (Income/Assets)')
+
+
+# =============================================================================
+# cash flow:
+# =============================================================================
+    def cashflow(self, period='quarterly'):
+        self.plot_data['title'] =f'{self.symbol}: 금융 현금 흐름 Vs 투자 현금 흐름 {period}'
+        self.plot_data['y_title'] = '금융 현금 흐름 (%)'
+        self.plot_data['second_y_title'] = '투자 현금 흐름 (%)'
+        self.plot_data['data']  = pd.DataFrame()
+        self.plot_data['data']['금융 현금 흐름'] = self.finanacing_cashflow(period)
+        self.plot_data['data']['투자 현금 흐름'] = self.investing_cashflow(period)
+        return self
+        
+
+    def finanacing_cashflow(self, period='quarterly'):
+        return pd.Series(self.call_from_cashflow('Financing Cash Flow',period) , name='금융 현금 흐름 (Financing)')
+
+    def investing_cashflow(self, period='quarterly'):
+        return pd.Series(self.call_from_cashflow('Investing Cash Flow',period), name='투자 현금 흐름 (Investing)')
+    
 
 # =============================================================================
 # call options: 
@@ -174,6 +196,14 @@ class BalanceSheet():
                                     .add_annotation( pos='max').add_annotation( pos='max',col_idx=1, yshift=5)
                                     .update_yaxes(title_text=y_title)
                                     .update_xaxes())
+            
+        elif plot_type == 'line_pair_second':
+            fig = (PlotViz(self.plot_data['data']).line(col_idx=0).line(col_idx=1, secondary_y=True)
+                                    .update_layout(title= f'{title}', width=500, height=700)
+                                    .update_yaxes(title_text=y_title, range=[0, 150])
+                                    .update_yaxes(title_text=second_y_title, secondary_y=True, range=[-10, 10])
+                                    .update_xaxes())
+            
             
         elif plot_type == 'bar_line_pair':
             fig = (PlotViz(self.plot_data['data']).bar(col_idx=0).line(col_idx=1, secondary_y=True)

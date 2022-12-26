@@ -10,7 +10,8 @@ class SrcStocks:
 
             def ratio_incomes(self):
                 try:
-                    yield Context(content = [BalanceSheet(self._symbol).ratio_incomes().plot(plot_type='bar_line_pair')], dtype='img')
+                    yield Context(content = [BalanceSheet(self._symbol).ratio_incomes().plot(plot_type='bar_line_pair'),
+                                             BalanceSheet(self._symbol).cashflow().plot(plot_type='bar_line_pair')], dtype='img')
                 except:
                     yield Context(content = ['No search'], dtype='img')
                     
