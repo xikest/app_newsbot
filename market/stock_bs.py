@@ -100,20 +100,27 @@ class BalanceSheet():
 # =============================================================================
 # cash flow:
 # =============================================================================
-    def cashflow(self, period='quarterly'):
-        self.plot_data['title'] =f'{self.symbol}: 금융 현금 흐름 Vs 투자 현금 흐름 {period}'
-        self.plot_data['y_title'] = '금융 현금 흐름 (%)'
-        self.plot_data['second_y_title'] = '투자 현금 흐름 (%)'
+    def finanacing_cashflow(self, period='quarterly'):
+        self.plot_data['title'] =f'{self.symbol}: 금융 현금 흐름 {period}'
+        self.plot_data['y_title'] = '금융 현금 흐름'
+        self.plot_data['second_y_title'] = ''
         self.plot_data['data']  = pd.DataFrame()
-        self.plot_data['data']['금융 현금 흐름'] = self.finanacing_cashflow(period)
-        self.plot_data['data']['투자 현금 흐름'] = self.investing_cashflow(period)
+        self.plot_data['data']['금융 현금 흐름'] = self._finanacing_cashflow(period)
         return self
         
 
-    def finanacing_cashflow(self, period='quarterly'):
+    def _finanacing_cashflow(self, period='quarterly'):
         return pd.Series(self.call_from_cashflow('Financing Cash Flow',period) , name='금융 현금 흐름 (Financing)')
-
+    
     def investing_cashflow(self, period='quarterly'):
+        self.plot_data['title'] =f'{self.symbol}: 투자 현금 흐름 {period}'
+        self.plot_data['y_title'] = '투자 현금 흐름'
+        self.plot_data['second_y_title'] = ''
+        self.plot_data['data']  = pd.DataFrame()
+        self.plot_data['data']['투자 현금 흐름'] = self._investing_cashflow(period)
+        return self
+    
+    def _investing_cashflow(self, period='quarterly'):
         return pd.Series(self.call_from_cashflow('Investing Cash Flow',period), name='투자 현금 흐름 (Investing)')
     
 
@@ -196,15 +203,7 @@ class BalanceSheet():
                                     .add_annotation( pos='max').add_annotation( pos='max',col_idx=1, yshift=5)
                                     .update_yaxes(title_text=y_title)
                                     .update_xaxes())
-            
-        elif plot_type == 'line_pair_second':
-            fig = (PlotViz(self.plot_data['data']).line(col_idx=0).line(col_idx=1, secondary_y=True)
-                                    .update_layout(title= f'{title}', width=500, height=700)
-                                    .update_yaxes(title_text=y_title, range=[0, 150])
-                                    .update_yaxes(title_text=second_y_title, secondary_y=True, range=[-10, 10])
-                                    .update_xaxes())
-            
-            
+  
         elif plot_type == 'bar_line_pair':
             fig = (PlotViz(self.plot_data['data']).bar(col_idx=0).line(col_idx=1, secondary_y=True)
                                     .update_layout(title= f'{title}', width=500, height=700)
