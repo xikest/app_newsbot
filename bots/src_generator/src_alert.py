@@ -75,7 +75,7 @@ class SrcAlert:
             #트위터: 뉴스
             generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                     screenNames = FeedTweets.get_screenNames_news,
-                                                    ChatId = self._chatId_news).generator
+                                                    ChatId = self._chatId_wsj).generator
             
             #트위터: 매크로
             generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
