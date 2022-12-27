@@ -1,5 +1,4 @@
-from pandas_datareader import data as pdr
-import yfinance as yf
+import FinanceDataReader as fdr
 
 from datetime import datetime
 import numpy as np
@@ -39,8 +38,7 @@ class MarketPattern:
     pass
 
   def _prepare_dataset(self, symbols, start, end):
-    
-    dataset = pdr.get_data_yahoo(list(symbols.keys()), 'yahoo', start=start, end=end)['Adj Close']
+    dataset = pd.DataFrame({symbol:fdr.DataReader(symbol, start=start, end=end)['Adj Close'] for symbol in symbols})
     self.dataset = dataset.rename(columns=symbols)
     return self
 
