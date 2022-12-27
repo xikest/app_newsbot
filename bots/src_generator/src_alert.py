@@ -119,9 +119,9 @@ class SrcAlert:
                                                                 ChatId = self._chatId_stats).generator
             
             #   await asyncio.sleep(1)
-            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn, generatorFromTwitterAgriculture, generatorFromTwitterStats,
+            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, generatorFromWebUSDA,
-                              generatorFromRssNews, generatorFromRssEnergy
+                              generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, 
                               ]:
                 async for context in generator():
                     # print(f"gen: {context}")
