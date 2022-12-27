@@ -37,7 +37,12 @@ class SrcNews:
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         for content in webGenerator:
                             yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg', enable_summary=True)
-                  
+                    elif news.src == 'webWithStarts_labelTime': 
+                        webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
+                        label = self._get_labelTime_from_web(news.url)
+                        for content in webGenerator:
+                            yield Context(label=f'{label}', content=[content],  botChatId=self._ChatId, dtype='msg')
+  
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
@@ -45,6 +50,12 @@ class SrcNews:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
                 print(f"news stand error: {e}\n")
                 pass
+
+    def _get_labelTime_from_web(self, url)-> str:
+        html = BeautifulSoup(urlopen(url), 'html.parser')
+        return f'{html.h1.text}_{html.time.text}'
+
+
 
     def _get_from_web_with_starts(self, url, attr_key, prefix=None, startswith='http')-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
