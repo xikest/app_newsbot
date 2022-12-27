@@ -6,9 +6,6 @@ from tools.graph_plot.plotviz import PlotViz
 from dateutil.relativedelta import relativedelta
 from tools.time.time import Periods
 
-yf.pdr_override() # <== that's all it takes :-)
-
-
 def market_symbols():
   return {'XLV':'Health Care', 'XLB': 'Materials', 'XLP' :'Consumer Staples', 'XLF': 'Financial',
           'XLI':'Industrial', 'XLC' : 'Communication Services', 'XLK' : 'Technology',
