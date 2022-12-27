@@ -41,7 +41,7 @@ class SrcNews:
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         label = self._get_labelTime_from_web(news.url)
                         for content in webGenerator:
-                            yield Context(label=f'{label}', content=[content],  botChatId=self._ChatId, dtype='msg')
+                            yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._ChatId, dtype='msg')
   
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
