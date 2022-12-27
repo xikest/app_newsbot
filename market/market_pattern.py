@@ -1,9 +1,14 @@
-import pandas_datareader.data as web
+from pandas_datareader import data as pdr
+import yfinance as yf
+
 from datetime import datetime
 import numpy as np
 from tools.graph_plot.plotviz import PlotViz
 from dateutil.relativedelta import relativedelta
 from tools.time.time import Periods
+
+yf.pdr_override() # <== that's all it takes :-)
+
 
 def market_symbols():
   return {'XLV':'Health Care', 'XLB': 'Materials', 'XLP' :'Consumer Staples', 'XLF': 'Financial',
@@ -34,7 +39,8 @@ class MarketPattern:
     pass
 
   def _prepare_dataset(self, symbols, start, end):
-    dataset = web.DataReader(list(symbols.keys()), 'yahoo', start=start, end=end)['Adj Close']
+    
+    dataset = pdr.get_data_yahoo(list(symbols.keys()), 'yahoo', start=start, end=end)['Adj Close']
     self.dataset = dataset.rename(columns=symbols)
     return self
 
