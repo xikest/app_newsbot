@@ -14,7 +14,7 @@ class SrcAlert:
         self._chatId_wsj = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
         self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_news_id')
         self._chatId_tweetsMacro = BotProfiles.get_botAlert().channels.get('twt_macro_id')
-        self._chatId_tweetsConcensus = BotProfiles.get_botAlert().channels.get('twt_consensus_chat_id')
+        self._chatId_concensus = BotProfiles.get_botAlert().channels.get('consensus_chat_id')
         self._chatId_energy = BotProfiles.get_botAlert().channels.get('energy_chat_id')
         self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
         self._chatId_agri = BotProfiles.get_botAlert().channels.get('teat_agri_chat_id')
@@ -31,8 +31,8 @@ class SrcAlert:
     def set_chatId_tweetsMacro(self, ChatId):
         self._chatId_tweetsMacro = ChatId  
         
-    def set_chatId_tweetsConcensus(self, ChatId):
-        self._chatId_tweetsConcensus = ChatId  
+    def set_chatId_concensus(self, ChatId):
+        self._chatId_concensus = ChatId  
         
     def set_chatId_energy(self, ChatId):
         self._chatId_energy = ChatId  
@@ -73,8 +73,11 @@ class SrcAlert:
             #web: 식량: USDA
             generatorFromWebUSDA =  SrcNews(FeedWeb.get_USDA_report, self._chatId_agri).generator
             
-            #RSS 뉴스  
-            generatorFromRssNews = SrcRss(FeedRss.get_rss_news, self._chatId_news).generator
+            #RSS 시장 예상  
+            generatorFromRssConcensus = SrcRss(FeedRss.get_rss_concensus, self._chatId_concensus).generator
+            
+            #RSS 인사이트  
+            generatorFromRssinsight = SrcRss(FeedRss.get_rss_insight, self._chatId_insight).generator
             
             #RSS 에너지
             generatorFromRssEnergy = SrcRss(FeedRss.get_rss_energy, self._chatId_energy).generator
@@ -94,7 +97,7 @@ class SrcAlert:
             #트위터: 컨센서스
             generatorFromTwitterConcensus = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                         screenNames = FeedTweets.get_screenNames_concensus,
-                                                        ChatId = self._chatId_tweetsConcensus).generator
+                                                        ChatId = self._chatId_concensus).generator
             #트위터: 에너지
             generatorFromTwitterEnergy = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                                 screenNames = FeedTweets.get_screenNames_energy,
