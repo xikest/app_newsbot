@@ -2,6 +2,7 @@ import FinanceDataReader as fdr
 
 from datetime import datetime
 import numpy as np
+import pandas as pd
 from tools.graph_plot.plotviz import PlotViz
 from dateutil.relativedelta import relativedelta
 from tools.time.time import Periods
