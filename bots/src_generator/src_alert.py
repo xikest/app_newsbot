@@ -19,6 +19,8 @@ class SrcAlert:
         self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
         self._chatId_agri = BotProfiles.get_botAlert().channels.get('teat_agri_chat_id')
         self._chatId_stats = BotProfiles.get_botAlert().channels.get('teat_stats_chat_id')
+        self._chatId_insight = BotProfiles.get_botAlert().channels.get('teat_insight_chat_id')
+        
         
     def set_chatId_wsj(self, ChatId):
         self._chatId_wsj = ChatId
@@ -44,6 +46,9 @@ class SrcAlert:
     def set_chatId_stats(self, ChatId):
         self._chatId_stats = ChatId  
         
+    def set_chatId_insight(self, ChatId):
+        self._chatId_insight = ChatId  
+        
     async def generator(self)-> Context:
 
             #web: WSJ 뉴스
@@ -60,8 +65,10 @@ class SrcAlert:
             
             
             #web: 에너지
-            generatorFromWebEnergy= SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
+            generatorFromWebEnergy = SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
             
+            #web: 인사이트
+            generatorFromWebInsight =  SrcNews(FeedWeb.get_insight, self._chatId_insight).generator
             
             #RSS 뉴스  
             generatorFromRssNews = SrcRss(FeedRss.get_rss_news, self._chatId_news).generator
@@ -107,7 +114,7 @@ class SrcAlert:
             
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterEnergy, generatorFromTwitterConcensus, generatorFromTwitterCn, generatorFromTwitterAgriculture, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, 
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, 
                               generatorFromRssNews, generatorFromRssEnergy
                               ]:
                 async for context in generator():
