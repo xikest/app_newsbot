@@ -26,20 +26,28 @@ class BalanceSheet():
     
     
     def shortName(self):
+            
         return self.__data__.info['shortName']
     
     def trailingPE(self):
-        return round(self.__data__.info['trailingPE'],1)
+        info = self.__data__.info['trailingPE']
+        if isinstance(info, float): info= round(info,1)
+        return info
     
     def forwardPE(self):
-        return round(self.__data__.info['forwardPE'],1)
+        info = self.__data__.info['forwardPE']
+        if isinstance(info, float): info= round(info,1)
+        return info
     
     def returnOnEquity(self):
-        return round(self.__data__.info['returnOnEquity'],1)
+        info = self.__data__.info['returnOnEquity']
+        if isinstance(info, float): info= round(info,1)
+        return info
     
     def debtToEquity(self):
-        return round(self.__data__.info['debtToEquity'],1)
-    
+        info = self.__data__.info['debtToEquity']
+        if isinstance(info, float): info= round(info,1)
+        return info
 
     def prices(self):
          self.plot_data['title'] =f'{self.symbol} price'

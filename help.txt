@@ -19,3 +19,6 @@ mv chromedriver /usr/bin/chromedriver # 파일 이동
 
 ## 패키지 목록 저장
 pip freeze > requirements_bot.txt
+
+## 패키지 목록에서 설치
+pip install -r requirements_bot.txt
