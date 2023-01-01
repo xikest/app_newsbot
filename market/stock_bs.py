@@ -23,6 +23,23 @@ class BalanceSheet():
         self.plot_data['y_title'] = None
         self.plot_data['data'] = self.__data__.actions[col].loc[:, 'Stock Splits']
         return self
+    
+    
+    def shortName(self):
+        return self.__data__.info['shortName']
+    
+    def trailingPE(self):
+        return round(self.__data__.info['trailingPE'],1)
+    
+    def forwardPE(self):
+        return round(self.__data__.info['forwardPE'],1)
+    
+    def returnOnEquity(self):
+        return round(self.__data__.info['returnOnEquity'],1)
+    
+    def debtToEquity(self):
+        return round(self.__data__.info['debtToEquity'],1)
+    
 
     def prices(self):
          self.plot_data['title'] =f'{self.symbol} price'
@@ -81,9 +98,9 @@ class BalanceSheet():
 # =============================================================================
 
     def ratio_incomes(self, period='quarterly'):
-        self.plot_data['title'] =f'{self.symbol}: 현금 흐름 Vs 수익 창출 {period}'
+        self.plot_data['title'] =f'{self.shortName()}<br><sup>PE(trailing): {self.trailingPE()}, PE(forward): {self.forwardPE()}</sup><br><sup>ROE: {self.returnOnEquity()}</sup><br><sup>DebtToEquity {self.debtToEquity()}</sup>'
         self.plot_data['y_title'] = '영업에서 현금 흐름 (%)'
-        self.plot_data['second_y_title'] = '수익 창출 (%)'
+        self.plot_data['second_y_title'] = '자산에서 수익 창출 (%)'
         self.plot_data['data']  = pd.DataFrame()
         self.plot_data['data']['현금 흐름'] = self.ratio_income_div_operating(period)*100
         self.plot_data['data']['수익 창출'] = self.ratio_income_div_assetes(period)*100
@@ -95,6 +112,13 @@ class BalanceSheet():
     
     def ratio_income_div_assetes(self, period='quarterly'):
       return pd.Series(self.call_from_cashflow('Net Income From Continuing Operations',period) / self.call_from_balance_sheet('Total Assets', period), name='자산 대비 수익 창출 능력 (Income/Assets)')
+    
+
+
+
+
+
+
 
 
 # =============================================================================
@@ -208,7 +232,8 @@ class BalanceSheet():
             fig = (PlotViz(self.plot_data['data']).bar(col_idx=0).line(col_idx=1, secondary_y=True)
                                     .update_layout(title= f'{title}', width=500, height=700)
                                     .update_yaxes(title_text=y_title, range=[0, 150])
-                                    .update_yaxes(title_text=second_y_title, secondary_y=True, range=[-10, 10])
+                                    .update_yaxes(title_text=second_y_title, secondary_y=True)
+                   # , range=[-10, 10])
                                     .update_xaxes())
 
 
