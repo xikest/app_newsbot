@@ -20,6 +20,7 @@ class SrcAlert:
         self._chatId_agri = BotProfiles.get_botAlert().channels.get('teat_agri_chat_id')
         self._chatId_stats = BotProfiles.get_botAlert().channels.get('teat_stats_chat_id')
         self._chatId_insight = BotProfiles.get_botAlert().channels.get('teat_insight_chat_id')
+        self._chatId_bok = BotProfiles.get_botAlert().channels.get('teat_bok_chat_id')
         
         
     def set_chatId_wsj(self, ChatId):
@@ -48,6 +49,9 @@ class SrcAlert:
         
     def set_chatId_insight(self, ChatId):
         self._chatId_insight = ChatId  
+        
+    def set_chatId_bok(self, ChatId):
+        self._chatId_bok = ChatId  
         
     async def generator(self)-> Context:
 
@@ -82,8 +86,8 @@ class SrcAlert:
             #RSS 에너지
             generatorFromRssEnergy = SrcRss(FeedRss.get_rss_energy, self._chatId_energy).generator
             
-            #RSS 중국
-            # generatorFromRssCn = SrcRss(FeedRss.get_rss_cn, self._chatId_cn).generator
+            #RSS 한국은행
+            generatorFromRssBok = SrcRss(FeedRss.get_rss_cn, self._chatId_bok).generator
             
             #트위터: 뉴스
             generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
@@ -121,7 +125,7 @@ class SrcAlert:
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, generatorFromWebUSDA,
-                              generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, 
+                              generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():
                     # print(f"gen: {context}")
