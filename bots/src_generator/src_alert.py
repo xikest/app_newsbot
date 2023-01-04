@@ -77,7 +77,7 @@ class SrcAlert:
             #web: 식량: USDA
             generatorFromWebUSDA =  SrcNews(FeedWeb.get_USDA_report, self._chatId_agri).generator
             
-            #RSS 시장 예상  
+            #RSS 컨센서스  
             generatorFromRssConcensus = SrcRss(FeedRss.get_rss_concensus, self._chatId_concensus).generator
             
             #RSS 인사이트  
@@ -88,7 +88,8 @@ class SrcAlert:
             
             #RSS 한국은행
             generatorFromRssBok = SrcRss(FeedRss.get_rss_cn, self._chatId_bok).generator
-            
+
+
             #트위터: 뉴스
             generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
                                                     screenNames = FeedTweets.get_screenNames_news,
