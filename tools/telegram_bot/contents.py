@@ -141,7 +141,6 @@ class Contents(list):
             elif context.label == 'IEA':
                 context.summary = [Iea().summary(iea_url = content) for content in context.content]
                 context.enable_translate=True # 번역할 것인지 
-                context.enable_translate=True # 번역할 것인지 
                 # context.tokenize=True  #텍스트 토큰화 실행
                 
         

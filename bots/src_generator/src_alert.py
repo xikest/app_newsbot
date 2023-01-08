@@ -130,8 +130,8 @@ class SrcAlert:
             
             
             #   await asyncio.sleep(1)
-            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, generatorFromWebUSDA, generatorFromTwitterInsight,
+            for generator in [ generatorFromWebInsight, generatorFromTwitterInsight, generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebUSDA, 
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():

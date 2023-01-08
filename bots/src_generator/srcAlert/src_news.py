@@ -49,11 +49,15 @@ class SrcNews:
                         for content in webGenerator:
                             yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._ChatId, dtype='msg')
                             
-                    elif news.src == 'webFromSnpglobal':
-                        webGenerator = self._get_from_web_snpGlobal(news.url)
-                        for title, p, link in webGenerator:
-                            print(f'{title} {p}')                               
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title} {p}'], botChatId=self._ChatId, dtype='msg')
+                    elif news.src == 'webFromSnpglobalInsights':
+                        webGenerator = self._get_from_web_snpGlobalInsights(news.url)
+                        for title, p, link in webGenerator:                           
+                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                  
+                    elif news.src == 'webFromSnpglobalInfographics':
+                        webGenerator = self._get_from_web_snpGlobalInfographics(news.url)
+                        for title, link in webGenerator:                        
+                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
                   
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
@@ -79,7 +83,17 @@ class SrcNews:
         wd.get(url)
         return wd.page_source
     
-    def _get_from_web_snpGlobal(self, url):
+    def _get_from_web_snpGlobalInfographics(self, url):
+        html = self._get_html_with_selenium(url)
+        soup = BeautifulSoup(html, 'html.parser')
+        contents = soup.find_all(attrs={'id':'resultsWrapper'})
+        for content in contents:
+            title = content.h2.text.replace('\n','').replace(' ','')
+            link = content.find('a').attrs['href']
+            yield title, link
+    
+    
+    def _get_from_web_snpGlobalInsights(self, url):
         html = self._get_html_with_selenium(url)
         soup = BeautifulSoup(html, 'html.parser')
         contents = soup.find_all(attrs={'class':'blog-excerpt__content'})    
