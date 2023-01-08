@@ -86,12 +86,12 @@ class SrcNews:
     def _get_from_web_snpGlobalInfographics(self, url):
         html = self._get_html_with_selenium(url)
         soup = BeautifulSoup(html, 'html.parser')
-        contents = soup.find_all(attrs={'id':'resultsWrapper'})
+        contents = soup.find_all(attrs={'class':'modalimage card--inline js-gtm-tag'})
         for content in contents:
-            title = content.h2.text.replace('\n','').replace(' ','')
-            link = content.find('a').attrs['href']
+            title = content['data-gtm-label']
+            link = content['href']
             yield title, link
-    
+            
     
     def _get_from_web_snpGlobalInsights(self, url):
         html = self._get_html_with_selenium(url)
