@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from tools.telegram_bot.contents import Context
 import datetime
+import sys
 
 sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
