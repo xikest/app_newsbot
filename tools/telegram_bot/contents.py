@@ -84,7 +84,7 @@ class Contents(list):
                                 
                             elif context.dtype == 'msg':
                                 if context.enable_translate == True:
-                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0), context.tokenize)}\n\n{context.content.pop(0)}"
+                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
                                     # print(f'translate : {msg}')
                                 elif context.enable_translate == False :msg = f"#{context.label}\n\n{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
@@ -98,7 +98,7 @@ class Contents(list):
 
      
             
-    async def translate(self, paragraph:str, tokenize:bool=False) -> str:
+    async def translate(self, paragraph:str) -> str:
        
         # if tokenize == True:
         #     tokenized_sentences = sent_tokenize(paragraph)  #문장 단위로 쪼개기

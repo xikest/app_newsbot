@@ -51,7 +51,8 @@ class SrcNews:
                             
                     elif news.src == 'webFromSnpglobal':
                         webGenerator = self._get_from_web_snpGlobal(news.url)
-                        for title, p, link in webGenerator:                               
+                        for title, p, link in webGenerator:
+                            print(f'{title} {p}')                               
                             yield Context(label=f'{news.name}', content=[link], summary=[f'{title} {p}'], botChatId=self._ChatId, dtype='msg')
                   
                             
