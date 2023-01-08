@@ -2,9 +2,14 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from typing import Optional, Generator
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from tools.telegram_bot.contents import Context
 import datetime
 
+sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
 
 class SrcNews:
     def __init__(self, newsStand: Generator, ChatId:str=None):
@@ -42,7 +47,12 @@ class SrcNews:
                         label = self._get_labelTime_from_web(news.url)
                         for content in webGenerator:
                             yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._ChatId, dtype='msg')
-  
+                            
+                    elif news.src == 'webFromSnpglobal':
+                        webGenerator = self._get_from_web_snpGlobal(news.name, news.url)
+                        for title, p, link in webGenerator:                               
+                            yield Context(label=f'{label}', content=[link], summary=[f'{title} {p}'], botChatId=self._ChatId, dtype='msg')
+                  
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
@@ -50,6 +60,35 @@ class SrcNews:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
                 print(f"news stand error: {e}\n")
                 pass
+
+
+      
+    def _get_html_with_selenium(self, url:str):
+        
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument("--remote-debugging-port=9230")
+        chrome_options.add_argument('user-agent={0}'.format(user_agent))
+        chrome_options.add_argument('lang=ko_kr')
+    
+        wd = webdriver.Chrome('chromedriver', options=chrome_options)
+        wd.get(url)
+        return wd.page_source
+    
+    def _get_from_web_snpGlobal(self, url):
+        html = self._get_html_with_selenium(url)
+        soup = BeautifulSoup(html, 'html.parser')
+        contents = soup.find_all(attrs={'class':'blog-excerpt__content'})    
+        for content in contents:
+            title = content.h1.text
+            p = content.p.text
+            link = content.find('a').attrs['href']
+            yield title, p, link
+            
+            
+
 
     def _get_labelTime_from_web(self, url)-> str:
         html = BeautifulSoup(urlopen(url), 'html.parser')
