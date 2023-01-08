@@ -87,7 +87,7 @@ class SrcAlert:
             generatorFromRssEnergy = SrcRss(FeedRss.get_rss_energy, self._chatId_energy).generator
             
             #RSS 한국은행
-            generatorFromRssBok = SrcRss(FeedRss.get_rss_cn, self._chatId_bok).generator
+            generatorFromRssBok = SrcRss(FeedRss.get_rss_bok, self._chatId_bok).generator
 
 
             #트위터: 뉴스
@@ -123,9 +123,15 @@ class SrcAlert:
                                                                 screenNames = FeedTweets.get_screenNames_stats,
                                                                 ChatId = self._chatId_stats).generator
             
+            #트위터: 인사이트
+            generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_insight,
+                                                                ChatId = self._chatId_insight).generator
+            
+            
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, generatorFromWebUSDA,
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebInsight, generatorFromWebUSDA, generatorFromTwitterInsight,
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():
