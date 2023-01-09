@@ -124,19 +124,14 @@ class SrcAlert:
                                                                 ChatId = self._chatId_stats).generator
             
             #트위터: 인사이트
-            # generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-            #                                                     screenNames = FeedTweets.get_screenNames_insight,
-            #                                                     ChatId = self._chatId_insight).generator
+            generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+                                                                screenNames = FeedTweets.get_screenNames_insight,
+                                                                ChatId = self._chatId_insight).generator
             
             
             #   await asyncio.sleep(1)
-<<<<<<< HEAD
-            for generator in [ generatorFromWebInsight, generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebUSDA, 
-=======
-            for generator in [ generatorFromTwitterInsight, generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
+            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebUSDA, generatorFromWebInsight, 
->>>>>>> 93caa847e5bab87eea06e5115a0b6debe45690ab
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():
