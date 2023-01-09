@@ -73,7 +73,7 @@ class SrcNews:
                 pass
 
     def _get_from_web_dolblog(self, url:str):
-        html = BeautifulSoup(urlopen(url))
+        html = BeautifulSoup(urlopen(url), 'html.parser')
         contents = html.find_all(attrs={'class':'highlight-teaser'})
         for content in contents[-1:]:
             title = content.h3.text
