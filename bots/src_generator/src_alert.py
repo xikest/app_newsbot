@@ -123,10 +123,10 @@ class SrcAlert:
                                                                 screenNames = FeedTweets.get_screenNames_stats,
                                                                 ChatId = self._chatId_stats).generator
             
-            #트위터: 인사이트
-            generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_insight,
-                                                                ChatId = self._chatId_insight).generator
+            # #트위터: 인사이트
+            # generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_insight,
+            #                                                     ChatId = self._chatId_insight).generator
             
             
             #   await asyncio.sleep(1)
