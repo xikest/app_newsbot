@@ -58,7 +58,12 @@ class SrcNews:
                         webGenerator = self._get_from_web_snpGlobalInfographics(news.url)
                         for title, link in webGenerator:                        
                             yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
-                  
+                   
+                    elif news.src == 'webFromDolBlog':
+                        webGenerator = self._get_from_web_dolblog(news.url)
+                        for title, p, link in webGenerator:                        
+                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                 
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
@@ -67,7 +72,20 @@ class SrcNews:
                 print(f"news stand error: {e}\n")
                 pass
 
+    def _get_from_web_dolblog(self, url:str):
+        html = BeautifulSoup(urlopen(url))
+        contents = html.find_all(attrs={'class':'highlight-teaser'})
+        for content in contents:
+            title = content.h3.text
+            p = content.p.text
+            link = "https://blog.dol.gov"+content.find('a').attrs['href']
+            yield title, p, link
 
+
+
+#===================================================
+# snp global
+#===================================================
       
     def _get_html_with_selenium(self, url:str):
         
