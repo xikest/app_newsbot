@@ -34,7 +34,7 @@ class SrcTweets:
                         client = tweepy.Client(self._BEARERTOKEN)
                         t_id = await self.get_id(client, screenName) # get_id
                         tweets = client.get_users_tweets
-                        async for tweet_msg in self.get_msg(tweets, t_id):
+                        async for tweet_msg in self.get_msg(tweets, t_id)[-1:]:
                                 # print(f'tweet_msg generator : {tweet_msg}')
                                 # await asyncio.sleep(1)
                                 tweet_msg = tweet_msg.replace('#', '')
