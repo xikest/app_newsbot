@@ -124,13 +124,13 @@ class SrcAlert:
                                                                 ChatId = self._chatId_stats).generator
             
             #트위터: 인사이트
-            generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_insight,
-                                                                ChatId = self._chatId_insight).generator
+            # generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_insight,
+            #                                                     ChatId = self._chatId_insight).generator
             
             
             #   await asyncio.sleep(1)
-            for generator in [ generatorFromWebInsight, generatorFromTwitterInsight, generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
+            for generator in [ generatorFromWebInsight, generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebUSDA, 
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
