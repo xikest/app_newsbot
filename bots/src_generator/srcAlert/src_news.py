@@ -63,7 +63,13 @@ class SrcNews:
                         webGenerator = self._get_from_web_dolblog(news.url)
                         for title, p, link in webGenerator:                        
                             yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                            
+                    elif news.src == 'webFromIEA_analysis':
+                        webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
+                        for title, p, link in webGenerator:                        
+                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
                  
+                            
                             
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')  
                 
@@ -71,7 +77,19 @@ class SrcNews:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
                 print(f"news stand error: {e}\n")
                 pass
+            
+            
+    def _get_from_web_IEA_analysis(self, url:str='https://www.iea.org/flagship', attr_key:str='m-flagship-listing'):
+        headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출  
+        for headline in headlines[-1:]:## html의 속성 부분을 추출
+            link= 'https://www.iea.org'+headline.find('a').attrs['href']
+            title=headline.h3.text.strip()
+            p = headline.h4.text.strip()
+            yield title, p, link
 
+    
+    
+    
     def _get_from_web_dolblog(self, url:str):
         html = BeautifulSoup(urlopen(url), 'html.parser')
         contents = html.find_all(attrs={'class':'highlight-teaser'})
@@ -99,12 +117,16 @@ class SrcNews:
     
         try:
             wd = webdriver.Chrome('chromedriver', options=chrome_options)
-            html = wd.get(url)
+            wd.get(url)
+            
+            html = wd.page_source
+            
             wd.close()
             wd.quit()
             return html
     
         except Exception as e:
+            print(e)
             wd.close()
             wd.quit()
             
