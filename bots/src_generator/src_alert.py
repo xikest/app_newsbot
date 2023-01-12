@@ -69,7 +69,7 @@ class SrcAlert:
             
             
             #web: 에너지
-            generatorFromWebEnergy = SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
+            # generatorFromWebEnergy = SrcNews(FeedWeb.get_energy, self._chatId_energy).generator
             
             #web: 인사이트: 브릿지워터
             generatorFromWebInsight =  SrcNews(FeedWeb.get_insight, self._chatId_insight).generator
@@ -131,7 +131,8 @@ class SrcAlert:
             
             #   await asyncio.sleep(1)
             for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebEnergy, generatorFromWebUSDA, generatorFromWebInsight, 
+                              generatorFromWSJ, generatorFromWebNews, generatorFromWebUSDA, generatorFromWebInsight, 
+                              # generatorFromWebEnergy,
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():
