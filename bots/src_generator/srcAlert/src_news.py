@@ -97,9 +97,17 @@ class SrcNews:
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
     
-        wd = webdriver.Chrome('chromedriver', options=chrome_options)
-        wd.get(url)
-        return wd.page_source
+        try:
+            wd = webdriver.Chrome('chromedriver', options=chrome_options)
+            html = wd.get(url)
+            wd.close()
+            wd.quit()
+            return html
+    
+        except Exception as e:
+            wd.close()
+            wd.quit()
+            
     
     def _get_from_web_snpGlobalInfographics(self, url):
         html = self._get_html_with_selenium(url)
