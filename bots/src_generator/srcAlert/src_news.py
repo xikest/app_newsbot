@@ -135,7 +135,7 @@ class SrcNews:
         html = self._get_html_with_selenium(url)
         soup = BeautifulSoup(html, 'html.parser')
         contents = soup.find_all(attrs={'class':'modalimage card--inline js-gtm-tag'})
-        for content in contents[-1:]:
+        for content in contents[::-1]:
             title = content['data-gtm-label']
             link = content['href']
             yield title, link
@@ -145,7 +145,7 @@ class SrcNews:
         html = self._get_html_with_selenium(url)
         soup = BeautifulSoup(html, 'html.parser')
         contents = soup.find_all(attrs={'class':'blog-excerpt__content'})    
-        for content in contents[-1:]:
+        for content in contents[::-1]:
             title = content.h1.text
             p = content.p.text
             link = content.find('a').attrs['href']
