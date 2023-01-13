@@ -114,9 +114,9 @@ class SrcNews:
         chrome_options.add_argument("--remote-debugging-port=9230")
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
         chrome_options.add_argument('lang=ko_kr')
-    
+        wd = webdriver.Chrome('chromedriver', options=chrome_options)
         try:
-            wd = webdriver.Chrome('chromedriver', options=chrome_options)
+            
             wd.get(url)
             
             html = wd.page_source
