@@ -77,23 +77,27 @@ class SrcNews:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
                 print(f"news stand error: {e}\n")
                 pass
-            
-            
+
+#===================================================
+# IEA
+#===================================================         
     def _get_from_web_IEA_analysis(self, url:str='https://www.iea.org/flagship', attr_key:str='m-flagship-listing'):
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출  
-        for headline in headlines[-1:]:## html의 속성 부분을 추출
+        for headline in headlines[::-1]:## html의 속성 부분을 추출
             link= 'https://www.iea.org'+headline.find('a').attrs['href']
             title=headline.h3.text.strip()
             p = headline.h4.text.strip()
             yield title, p, link
 
     
-    
+#===================================================
+# dol
+#===================================================    
     
     def _get_from_web_dolblog(self, url:str):
         html = BeautifulSoup(urlopen(url), 'html.parser')
         contents = html.find_all(attrs={'class':'highlight-teaser'})
-        for content in contents[-1:]:
+        for content in contents[::-1]:
             title = content.h3.text
             p = content.p.text
             link = "https://blog.dol.gov"+content.find('a').attrs['href']
@@ -113,7 +117,7 @@ class SrcNews:
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument("--remote-debugging-port=9230")
         chrome_options.add_argument('user-agent={0}'.format(user_agent))
-        chrome_options.add_argument('lang=ko_kr')
+        # chrome_options.add_argument('lang=ko_kr')
         wd = webdriver.Chrome('chromedriver', options=chrome_options)
         try:
             
@@ -126,7 +130,7 @@ class SrcNews:
             return html
     
         except Exception as e:
-            print(e)
+            print(f"snp global err: {e}")
             wd.close()
             wd.quit()
             
@@ -151,9 +155,15 @@ class SrcNews:
             link = content.find('a').attrs['href']
             yield title, p, link
             
+#===================================================
+# 브릿지워터
+#===================================================
+
+
             
-
-
+#===================================================
+# web
+#===================================================
     def _get_labelTime_from_web(self, url)-> str:
         html = BeautifulSoup(urlopen(url), 'html.parser')
         return f'{html.h1.text}_{html.time.text}'
