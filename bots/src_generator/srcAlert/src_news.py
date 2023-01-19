@@ -66,8 +66,8 @@ class SrcNews:
                             
                     elif news.src == 'webFromIEA_analysis':
                         webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
-                        for title, p, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                        for title, link in webGenerator:                        
+                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
                  
                             
                             
