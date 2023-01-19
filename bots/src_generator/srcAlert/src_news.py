@@ -86,10 +86,8 @@ class SrcNews:
         for headline in headlines[::-1]:## html의 속성 부분을 추출
             link= 'https://www.iea.org'+headline.find('a').attrs['href']
             title=headline.h3.text.strip()
-            p = headline.h4.text.strip()
-            yield title, p, link
-
-    
+            yield title,  link
+            
 #===================================================
 # dol
 #===================================================    
