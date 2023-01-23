@@ -11,7 +11,7 @@ from .diffusion_Index_philadelphia import DiffusionIndexphiladelphia
 from .busines_inventories import InventoriesSalesRatio
 from .fed import Fed
 from .ppi import PPI
-from .cfnai import CFNAI
+from .chicago_fed import NFCI, CFNAI
 from .empire_state_manufacturing import EmpireStateManufacturingSurvey
 from .existing_home_sales import ExistingHomeSales
 from .industrial_production import IndustrialProduction

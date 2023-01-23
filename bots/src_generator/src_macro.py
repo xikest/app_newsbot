@@ -5,8 +5,8 @@ from market import ShillerRatio
 from market import MarketPattern
 from market.macro import (CPI, PCE, ReatailSales, NewResidentialSales, DurableGoods, EmploymentCostIndex, GDP, Jolt,
                           AdpNationalEmploymentReport, DiffusionIndexphiladelphia, InventoriesSalesRatio, 
-                          Fed,
-                          PPI, CFNAI, EmpireStateManufacturingSurvey, ExistingHomeSales, IndustrialProduction, ISM, Productivity, 
+                          Fed, NFCI, CFNAI,
+                          PPI, EmpireStateManufacturingSurvey, ExistingHomeSales, IndustrialProduction, ISM, Productivity, 
                           E_COMMERCE, ImportExport, CassFreightIndex, NewHousing, ConsumerCredit, InitialClaims, 
                           CPI_BRA, CPI_CHN, CPI_DE, CPI_INDIA,  CPI_JPN, CPI_KR
                           )
@@ -38,9 +38,21 @@ class SrcMacro:
                                            Fed.t10y2y(),
                                            Fed.t10y3m(),
                                           ], dtype='img')
-        
-   
-        
+
+            @staticmethod
+            def chicagoFed():
+                  yield from  [Context(content = [NFCI.descr(),NFCI.financialConditionsIndex_descr()], dtype='msg'),
+                              Context(content = [NFCI.financialConditionsIndex(),
+                                                NFCI.financialConditionsCreditSubindex(),
+                                                NFCI.financialConditionsLeverageSubindex(),
+                                                NFCI.financialConditionsRiskSubindex()], dtype='img'),
+                              Context(content = [NFCI.financialConditionsNonfinancialLeveralSubindex_descr()], dtype='msg'),
+                              Context(content = [NFCI.financialConditionsNonfinancialLeveralSubindex()], dtype='img'),
+                              Context(content = [CFNAI.descr(), CFNAI.chicagoFedNationalActivityIndex_descr()], dtype='msg'),
+                              Context(content = [CFNAI.chicagoFedNationalActivityIndex()], dtype='img')
+                              ]
+
+                  
             @staticmethod
             def cpi():
                   yield from [Context(content = [CPI.descr()], dtype='msg'),
@@ -357,11 +369,7 @@ class SrcMacro:
                               ]
 
 
-            @staticmethod
-            def cfnai():
-                  yield from [Context(content = [CFNAI.descr(), CFNAI.chicagoFedNationalActivityIndex_descr()], dtype='msg'),
-                              Context(content = [CFNAI.chicagoFedNationalActivityIndex()], dtype='img')
-                              ]
+
 
             @staticmethod
             def empireStateManufacturingSurvey():
@@ -533,33 +541,18 @@ class SrcMacro:
                               ]
                           
             @staticmethod
-            def cpi_bra():
+            def cpi_ex():
                   yield from [Context(content = [CPI_BRA.production_industry_exc_construction()], dtype='img'),
-                              Context(content = [CPI_BRA.cpi()], dtype='img')]
-
-            @staticmethod
-            def cpi_chn():
-                  yield from [Context(content = [CPI_CHN.production_industry_exc_construction()], dtype='img'),
-                              Context(content = [CPI_CHN.cpi()], dtype='img')]
-
-            @staticmethod
-            def cpi_de():
-                  yield from [Context(content = [CPI_DE.production_industry_exc_construction()], dtype='msg'),
+                              Context(content = [CPI_BRA.cpi()], dtype='img'),
+                              Context(content = [CPI_CHN.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_CHN.cpi()], dtype='img'),
+                              Context(content = [CPI_DE.production_industry_exc_construction()], dtype='msg'),
                               Context(content = [CPI_DE.production_industry_exc_construction()], dtype='img'),
                               Context(content = [CPI_DE.cpi_descr()], dtype='msg'),
-                              Context(content = [CPI_DE.cpi()], dtype='img')]
-
-            @staticmethod
-            def cpi_inida():
-                  yield from [Context(content = [CPI_INDIA.production_industry_exc_construction()], dtype='img'),
-                              Context(content = [CPI_INDIA.cpi()], dtype='img')]
-                  
-            @staticmethod
-            def cpi_jpn():
-                  yield from [Context(content = [CPI_JPN.production_industry_exc_construction()], dtype='img'),
-                              Context(content = [CPI_JPN.cpi()], dtype='img')]
-                  
-            @staticmethod
-            def cpi_kr():
-                  yield from [Context(content = [CPI_KR.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_DE.cpi()], dtype='img'),
+                              Context(content = [CPI_INDIA.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_INDIA.cpi()], dtype='img'),
+                              Context(content = [CPI_JPN.production_industry_exc_construction()], dtype='img'),
+                              Context(content = [CPI_JPN.cpi()], dtype='img'),
+                              Context(content = [CPI_KR.production_industry_exc_construction()], dtype='img'),
                               Context(content = [CPI_KR.cpi()], dtype='img')]
