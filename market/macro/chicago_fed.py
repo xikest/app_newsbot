@@ -4,7 +4,7 @@ class NFCI:
     
     @staticmethod
     def descr():
-        return """"""
+        return """국가재정상황지수"""
     
     @staticmethod
     def financialConditionsIndex_descr():
