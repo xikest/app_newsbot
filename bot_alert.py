@@ -29,8 +29,8 @@ srcAlert.set_chatId_bok( BotProfiles.get_botBeta().channels.get('beta_chat_id'))
 #  프로파일
 # ==========================================================================================
 
-# TOKEN = BotProfiles.get_botAlert().TOKEN
-# srcAlert = SrcAlert()
+TOKEN = BotProfiles.get_botAlert().TOKEN
+srcAlert = SrcAlert()
 
 
 # ==========================================================================================
