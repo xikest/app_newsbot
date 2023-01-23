@@ -35,7 +35,7 @@ jolt - 고용 이직 현황
 adp_employment_report - ADP 고용 보고서
 inventories_sales_ratio - 기업재고
 fed - FED(자산, M2V, FED rate)
-chicagoFed - cnfi(국가재정상황지수), cfnai(국가활동지수)
+chicago_fed - cnfi(국가재정상황지수), cfnai(국가활동지수)
 empirestate_manufacturing - 엠파이어스테이트_제조업
 existing_home_sales - 기존 주택
 industrial_production_capacity - 산업 생산 및 설비 가동률

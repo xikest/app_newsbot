@@ -110,7 +110,7 @@ class CmdHandler:
         def chicagoFed():
             async   def _chicagoFed(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.chicagoFed)
-            return CommandHandler('chicagoFed', _chicagoFed)
+            return CommandHandler('chicago_fed', _chicagoFed)
 
         
         # cpi reply function
@@ -198,12 +198,12 @@ class CmdHandler:
             return CommandHandler('ppi', _ppi)   
 
        
-        # cfnai reply function
-        @staticmethod
-        def cfnai():
-            async   def _cfnai(update: Update, context: ContextTypes.DEFAULT_TYPE):
-                await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cfnai)
-            return CommandHandler('cfnai', _cfnai)   
+        # # cfnai reply function
+        # @staticmethod
+        # def cfnai():
+        #     async   def _cfnai(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        #         await   CmdHandler._sentPhoto(update, context, SrcMacro.Macro.cfnai)
+        #     return CommandHandler('cfnai', _cfnai)   
        
         # empireStateManufacturingSurvey reply function
         @staticmethod
