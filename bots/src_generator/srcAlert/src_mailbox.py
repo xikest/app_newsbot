@@ -26,7 +26,10 @@ class SrcMailBox:
         self._mailings = mailings
         self._ChatId:Optional[str]=ChatId
 
+
     async def generator(self)-> Context:
+        urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
+        
         if SrcMailBox.status == SrcMailBox.AWAKE:
                 try:
                     for mailing in self._mailings():        
@@ -45,11 +48,13 @@ class SrcMailBox:
                                 else:
                                     body = message.get_payload(decode=True)
                                 body = body.decode('utf-8')
-                                urls = re.findall('(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+', body)
+                                urls = re.findall(urlPattern, body)
                                 for url in urls:
-                                    if 'www.wsj.com/articles' in url:
+                                    # print("wsj_article: ",url) ## url 로그 출력
+                                    if not mailing.conditions or all(condition in url for condition in mailing.conditions):
                                         yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary=True)
-                                        
+                                    
+
                     print(f'mail_src_fin:{datetime.datetime.now()}\n')
                                 
                 except Exception as e:

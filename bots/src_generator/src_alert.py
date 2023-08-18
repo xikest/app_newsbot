@@ -90,38 +90,38 @@ class SrcAlert:
             generatorFromRssBok = SrcRss(FeedRss.get_rss_bok, self._chatId_bok).generator
 
 
-            #트위터: 뉴스
-            generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                    screenNames = FeedTweets.get_screenNames_news,
-                                                    ChatId = self._chatId_wsj).generator
+            # #트위터: 뉴스
+            # generatorFromTwitterNews = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                         screenNames = FeedTweets.get_screenNames_news,
+            #                                         ChatId = self._chatId_wsj).generator
             
-            #트위터: 매크로
-            generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                    screenNames = FeedTweets.get_screenNames_macro,
-                                                    ChatId = self._chatId_tweetsMacro).generator
-            #트위터: 컨센서스
-            generatorFromTwitterConcensus = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                        screenNames = FeedTweets.get_screenNames_concensus,
-                                                        ChatId = self._chatId_concensus).generator
-            #트위터: 에너지
-            generatorFromTwitterEnergy = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_energy,
-                                                                ChatId = self._chatId_energy).generator
+            # #트위터: 매크로
+            # generatorFromTwitterMacro = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                         screenNames = FeedTweets.get_screenNames_macro,
+            #                                         ChatId = self._chatId_tweetsMacro).generator
+            # #트위터: 컨센서스
+            # generatorFromTwitterConcensus = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                             screenNames = FeedTweets.get_screenNames_concensus,
+            #                                             ChatId = self._chatId_concensus).generator
+            # #트위터: 에너지
+            # generatorFromTwitterEnergy = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_energy,
+            #                                                     ChatId = self._chatId_energy).generator
             
-            #트위터: 농업
-            generatorFromTwitterAgriculture = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_agriculture,
-                                                                ChatId = self._chatId_agri).generator
+            # #트위터: 농업
+            # generatorFromTwitterAgriculture = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_agriculture,
+            #                                                     ChatId = self._chatId_agri).generator
             
-            #트위터: 차이나
-            generatorFromTwitterCn = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_cn,
-                                                                ChatId = self._chatId_cn).generator
+            # #트위터: 차이나
+            # generatorFromTwitterCn = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_cn,
+            #                                                     ChatId = self._chatId_cn).generator
               
-            #트위터: 통계
-            generatorFromTwitterStats = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
-                                                                screenNames = FeedTweets.get_screenNames_stats,
-                                                                ChatId = self._chatId_stats).generator
+            # #트위터: 통계
+            # generatorFromTwitterStats = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
+            #                                                     screenNames = FeedTweets.get_screenNames_stats,
+            #                                                     ChatId = self._chatId_stats).generator
             
             # #트위터: 인사이트
             # generatorFromTwitterInsight = SrcTweets(BEARERTOKEN = InfoTwitter.get_twitter_BEARERTOKEN(), 
@@ -130,8 +130,9 @@ class SrcAlert:
             
             
             #   await asyncio.sleep(1)
-
-            for generator in [generatorFromTwitterNews, generatorFromTwitterMacro, generatorFromTwitterConcensus, generatorFromTwitterEnergy, generatorFromTwitterAgriculture, generatorFromTwitterCn, generatorFromTwitterStats,
+# generatorFromTwitterNews,generatorFromTwitterEnergy, generatorFromTwitterCn, generatorFromTwitterMacro
+            for generator in [ 
+                              # generatorFromTwitterConcensus,  generatorFromTwitterAgriculture, generatorFromTwitterStats,
                               generatorFromWSJ, generatorFromWebNews, generatorFromWebUSDA, generatorFromWebInsight, 
                               # generatorFromWebEnergy,
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
