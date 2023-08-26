@@ -55,9 +55,9 @@ class Wsj:
         return None
         
         
-    def summary(self, wsj_url='https://www.wsj.com/articles/hilton-sees-a-new-golden-age-of-travel-can-it-last-11671245615?mod=hp_lead_pos6'):
+    def summary(self, url='https://www.wsj.com/articles/hilton-sees-a-new-golden-age-of-travel-can-it-last-11671245615?mod=hp_lead_pos6'):
         wd = self._initionalizer(self._url)
-        wd.get(wsj_url)
+        wd.get(url)
 
         html = wd.page_source
         soup = BeautifulSoup(html, 'html.parser')
@@ -94,11 +94,11 @@ class Iea:
         
 
 
-    def summary(self, iea_url='https://www.iea.org/news/global-government-spending-on-clean-energy-transitions-rises-to-usd-1-2-trillion-since-the-start-of-the-pandemic-spurred-by-energy-security-concerns'):
+    def summary(self, url='https://www.iea.org/news/global-government-spending-on-clean-energy-transitions-rises-to-usd-1-2-trillion-since-the-start-of-the-pandemic-spurred-by-energy-security-concerns'):
         # wd = self._initionalizer()
         # wd.get(iea_url)
         
-        soup = BeautifulSoup(urlopen(iea_url), 'html.parser')
+        soup = BeautifulSoup(urlopen(url), 'html.parser')
         title = soup.title.text
         sub_title = soup.find('h4').text
         # main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
@@ -112,3 +112,25 @@ class Iea:
         return summary
 
 
+class Wisdom: 
+    def __init__(self):
+        pass
+        
+
+
+    def summary(self, url='https://whalewisdom.com/filing/robbins-charles-4-2023-08-23-173606-0400-blk'):
+        # wd = self._initionalizer()
+        # wd.get(iea_url)
+        
+        soup = BeautifulSoup(urlopen(url), 'html.parser')
+        title = soup.title.text
+        sub_title = soup.find('h1').text
+        # main_texts=soup.find(attrs={'class': 'm-block m-block--text'})
+            
+        # paragraphes = main_texts.find_all('p')
+        # paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
+        # summary =  f"""{title}\n\n{sub_title}\n\n{paragraphes}"""
+        summary =  f"{title}\n\n{sub_title}"
+        # wd.close()
+        # wd.quit()
+        return summary

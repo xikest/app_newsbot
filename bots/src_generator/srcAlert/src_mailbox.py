@@ -28,6 +28,8 @@ class SrcMailBox:
 
 
     async def generator(self)-> Context:
+
+        tempUrls = []
         urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
         
         if SrcMailBox.status == SrcMailBox.AWAKE:
@@ -50,10 +52,11 @@ class SrcMailBox:
                                 body = body.decode('utf-8')
                                 urls = re.findall(urlPattern, body)
                                 for url in urls:
-                                    # print("wsj_article: ",url) ## url 로그 출력
+                                    # print("article: ",url) ## url 로그 출력
                                     if not mailing.conditions or all(condition in url for condition in mailing.conditions):
-                                        yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary=True)
-                                    
+                                        print(f"sent_article: {url}") ## url 로그 출력
+                                        yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary = True)
+                                            
 
                     print(f'mail_src_fin:{datetime.datetime.now()}\n')
                                 

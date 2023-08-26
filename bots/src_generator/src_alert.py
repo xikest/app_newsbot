@@ -12,8 +12,8 @@ class SrcAlert:
     def __init__(self, ChatId:str=None):
         self._ChatId:Optional[str]=ChatId
         self._chatId_wsj = BotProfiles.get_botAlert().channels.get('teat_w_chat_id')
+        self._chatId_wisdom = BotProfiles.get_botAlert().channels.get('teat_wisdom_chat_id')    
         self._chatId_news = BotProfiles.get_botAlert().channels.get('teat_news_id')
-        self._chatId_tweetsMacro = BotProfiles.get_botAlert().channels.get('twt_macro_id')
         self._chatId_concensus = BotProfiles.get_botAlert().channels.get('consensus_chat_id')
         self._chatId_energy = BotProfiles.get_botAlert().channels.get('energy_chat_id')
         self._chatId_cn = BotProfiles.get_botAlert().channels.get('teat_cn_chat_id')
@@ -29,8 +29,8 @@ class SrcAlert:
     def set_chatId_news(self, ChatId):
         self._chatId_news = ChatId
         
-    def set_chatId_tweetsMacro(self, ChatId):
-        self._chatId_tweetsMacro = ChatId  
+    def set_chatId_wisdom(self, ChatId):
+        self._chatId_wisdom = ChatId  
         
     def set_chatId_concensus(self, ChatId):
         self._chatId_concensus = ChatId  
@@ -60,6 +60,12 @@ class SrcAlert:
                                             pid=InfoNav.get_pid(), 
                                             mailings=FeedWeb.get_WSJ,
                                             ChatId=self._chatId_wsj).generator
+            
+            #web: WISDOM 뉴스
+            generatorFromWISDOM = SrcMailBox(usr=InfoNav.get_usr(), 
+                                            pid=InfoNav.get_pid(), 
+                                            mailings=FeedWeb.get_WISDOM,
+                                            ChatId=self._chatId_wisdom).generator
 
             #web: 뉴스 한경, 연합인포맥스
             generatorFromWebNews = SrcNews(FeedWeb.get_news, self._chatId_news).generator
@@ -133,11 +139,10 @@ class SrcAlert:
 # generatorFromTwitterNews,generatorFromTwitterEnergy, generatorFromTwitterCn, generatorFromTwitterMacro
             for generator in [ 
                               # generatorFromTwitterConcensus,  generatorFromTwitterAgriculture, generatorFromTwitterStats,
-                              generatorFromWSJ, generatorFromWebNews, generatorFromWebUSDA, generatorFromWebInsight, 
+                              generatorFromWISDOM, generatorFromWSJ, generatorFromWebNews, generatorFromWebUSDA, generatorFromWebInsight, 
                               # generatorFromWebEnergy,
                               generatorFromRssConcensus, generatorFromRssinsight, generatorFromRssEnergy, generatorFromRssBok
                               ]:
                 async for context in generator():
                     # print(f"gen: {context}")
                     yield context 
-
