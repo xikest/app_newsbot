@@ -54,7 +54,7 @@ class SrcMailBox:
                                 for url in urls:
                                     # print("article: ",url) ## url 로그 출력
                                     if not mailing.conditions or all(condition in url for condition in mailing.conditions):
-                                        print(f"sent_article: {url}") ## url 로그 출력
+                                        #print(f"sent_article: {url}") ## url 로그 출력
                                         yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary = True)
                                             
 
