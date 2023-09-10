@@ -74,7 +74,7 @@ class Contents(list):
                     # print('no in loading')
                     #await asyncio.sleep(Timer.sleepToRelease(context.release_time, delay))         
                     try:           
-                        context = self.makeSummary(context)  # 요약본 생성
+                        # context = self.makeSummary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
                             # print(context)            
