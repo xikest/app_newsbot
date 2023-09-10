@@ -77,7 +77,7 @@ class Contents(list):
                         context = self.makeSummary(context)  # 요약본 생성
                         while len(context.content) > 0:   
                             # print('loop start')   
-                            print(context)            
+                            # print(context)            
                             if context.dtype == 'img': 
                                 await asyncio.sleep(5)
                                 await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
@@ -88,7 +88,7 @@ class Contents(list):
                                     # print(f'translate : {msg}')
                                 elif context.enable_translate == False:
                                     msg = f"#{context.label}\n\n{context.content.pop(0)}"
-                                print(f'msg : {msg}')
+                                # print(f'msg : {msg}')
                                 await asyncio.sleep(5)
                                 await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
                             else: raise Exception("dtype이 정의되지 않았습니다.")
