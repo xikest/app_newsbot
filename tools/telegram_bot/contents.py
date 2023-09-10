@@ -84,10 +84,12 @@ class Contents(list):
                                 
                             elif context.dtype == 'msg':
                                 if context.enable_translate == True:
-                                    msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                    # msg = f"#{context.label}\n{await self.translate(context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                                    msg = f"{context.content.pop(0)}"
                                     # print(f'translate : {msg}')
                                 elif context.enable_translate == False:
-                                    msg = f"#{context.label}\n\n{context.content.pop(0)}"
+                                    # msg = f"#{context.label}\n\n{context.content.pop(0)}"
+                                    msg = f"{context.content.pop(0)}"
                                 # print(f'msg : {msg}')
                                 await asyncio.sleep(5)
                                 await bot.send_message(chat_id=context.botChatId, text=msg) #'msg'
