@@ -137,13 +137,13 @@ class Contents(list):
 
             if context.label == 'WSJ_NEWS':   #WSJ 기사 요약
                 context.summary = [Wsj().summary(url= content) for content in context.content]
-                context.enable_translate=True # 번역할 것인지 
+                context.enable_translate=False # 번역할 것인지 
                 # context.tokenize=True  #텍스트 토큰화 실행
 
 
             elif context.label == 'IEA':
                 context.summary = [Iea().summary(url = content) for content in context.content]
-                context.enable_translate=True # 번역할 것인지 
+                context.enable_translate=False # 번역할 것인지 
                 # context.tokenize=True  #텍스트 토큰화 실행
                 
             # elif context.label == 'WHALE_WISDOM':

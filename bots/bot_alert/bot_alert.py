@@ -33,7 +33,7 @@ class BotAlert():
           print((await bot.get_updates())[0])
   
   
-  async def start(self,generator:Generator, waitTime=1*60):
+  async def start(self,generator:Generator, waitTime=30*60):
             while BotAlert.status != BotAlert.STOP:
                 try:
                     await self.update(generator)
