@@ -2,8 +2,8 @@ from typing import Generator, Optional, Union
 import time
 import asyncio
 from bot.handler.contents_hanlder import ContentsHandler
-from bot.src_alert import Src_alert
-from info.sender import Bot_profiles
+from bot.src_alert import Src_Alert
+from info.sender import Bot_Profiles
 
 class Bot_Alert():
 

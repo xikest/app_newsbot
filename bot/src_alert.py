@@ -6,7 +6,7 @@ from info.feeder import Feeder
 from info.definition_obj import Context
 
 
-class Src_alert:
+class Src_Alert:
     def __init__(self):
         self.category:dict = {
             'news':'news',
