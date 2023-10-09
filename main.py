@@ -16,22 +16,3 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
-
-# # ==========================================================================================
-# #  프로파일
-# # ==========================================================================================
-#
-# # TOKEN = BotProfiles.get_bot_token()
-# # srcAlert = SrcAlert()
-#
-# # ==========================================================================================
-# #  실행
-# # ==========================================================================================
-# if platform.system()=='Windows':
-#     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-#
-# asyncio.run(BotAlert().start())
-#
-# if __name__ == '__main__':
-#     bot = BotAlert()
-#     asyncio.run(bot.start())

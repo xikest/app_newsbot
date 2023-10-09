@@ -17,7 +17,6 @@ class Bot_Alert():
   def setToken(self, token:str = None):
         # 입력된 토큰이 None인 경우 빈 문자열로 설정
         self._TOKEN = token if token is not None else ''
-        print("token: ", Bot_Profiles.get_token())
 
   async def start(self, waitTime:int = 1800):
             try:

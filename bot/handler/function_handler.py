@@ -7,7 +7,6 @@ import gzip
 import pandas as pd
 from tqdm import tqdm
 
-
 class FunctionHandler:
     # ===============================================
     # 파일 열기
