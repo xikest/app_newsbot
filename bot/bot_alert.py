@@ -3,13 +3,13 @@ import time
 import asyncio
 from bot.handler.contents_hanlder import ContentsHandler
 from bot.src_alert import Src_alert
-from info.sender import BotProfiles
+from info.sender import Bot_profiles
 
 class Bot_Alert():
 
   def __init__(self):
     self._token:str = None
-    self.setToken(token=BotProfiles.get_token())
+    self.setToken(token = Bot_profiles.get_token())
     self.src = Src_alert()
     pass
   @property
