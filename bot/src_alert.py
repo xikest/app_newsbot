@@ -37,17 +37,3 @@ class Src_Alert:
         for feed_generator in self.feed_generators():
             async for context in feed_generator():
                 yield context
-
-    # def feed_generators(self) -> Generator:
-    #     feeder = Feeder()
-    #     for category in self.category.keys():
-    #         if category == 'news':
-    #             return [SrcNews(newsStand=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator for
-    #                     source in feeder.get_keylist(category)]
-    #         elif category == 'mail':
-    #             return [SrcMail(pid=feeder.get_feed_ids('pid'), usr=feeder.get_feed_ids('usr'),
-    #                             mailings=feeder.get_feeds(source), chatId=feeder.get_chatId(source)).generator for
-    #                     source in feeder.get_keylist(category)]
-    #         elif category == 'rss':
-    #             return [SrcRss(rssList=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator for source
-    #                     in feeder.get_keylist(category)]
