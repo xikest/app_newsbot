@@ -25,7 +25,7 @@ class Src_Alert:
                               for source in feeder.get_keylist(category)]
             elif category == 'mail':
                 generators = [SrcMail(pid=feeder.get_feed_ids('pid'), usr=feeder.get_feed_ids('usr'),
-                                      mailings=feeder.get_feeds(source), chatId=feeder.get_chatId(source)).generator
+                                      mailings=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator
                               for source in feeder.get_keylist(category)]
             elif category == 'rss':
                 generators = [SrcRss(rssList=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator

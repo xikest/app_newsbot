@@ -12,7 +12,7 @@ class SrcMail:
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
-        self._ChatId:Optional[str]=chat_id
+        self._chat_id:Optional[str]=chat_id
     async def generator(self)-> Context:
         urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
         try:
@@ -37,7 +37,7 @@ class SrcMail:
                             # print("article: ",url) ## url 로그 출력
                             if not mailing.conditions or all(condition in url for condition in mailing.conditions):
                                 #print(f"sent_article: {url}") ## url 로그 출력
-                                yield Context(label=f'{mailing.box}', content=[url], botChatId=self._ChatId, dtype='msg', enable_summary = True)
+                                yield Context(label=f'{mailing.box}', content=[url], botChatId=self._chat_id, dtype='msg')
             print(f'mail_src_fin:{datetime.datetime.now()}\n')
         except Exception as e:
             print(f'mail_src_err -> sleep:{datetime.datetime.now()}')

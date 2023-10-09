@@ -12,7 +12,7 @@ user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 
 class SrcNews:
     def __init__(self, newsStand: Generator, chat_id:str=None):
-        self._ChatId:Optional[str]=chat_id
+        self._chat_id:Optional[str]=chat_id
         self._newsStand:Generator =  newsStand
             
     
@@ -23,55 +23,50 @@ class SrcNews:
                     if news.src == 'web': 
                         webGenerator = self._get_from_web(news.url, news.attr_key)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
-                        
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
                     elif news.src == 'webWithSelector': 
                         pass
                         # content = self._get_from_web_with_selector(news.url, news.attr_key)
                     elif news.src == 'webWithoutHttp': 
                         webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
                         
                     elif news.src == 'webLink': 
                         webGenerator = self._get_from_web_link(news.url, news.class_key)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg')
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
                             
                     elif news.src == 'webWithStarts': 
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._ChatId, dtype='msg', enable_summary=True)
+                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
                     elif news.src == 'webWithStarts_labelTime': 
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         label = self._get_labelTime_from_web(news.url)
                         for content in webGenerator:
-                            yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._ChatId, dtype='msg')
+                            yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._chat_id, dtype='msg')
                             
                     elif news.src == 'webFromSnpglobalInsights':
                         webGenerator = self._get_from_web_snpGlobalInsights(news.url)
                         for title, p, link in webGenerator:                           
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
                   
                     elif news.src == 'webFromSnpglobalInfographics':
                         webGenerator = self._get_from_web_snpGlobalInfographics(news.url)
                         for title, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
                    
                     elif news.src == 'webFromDolBlog':
                         webGenerator = self._get_from_web_dolblog(news.url)
                         for title, p, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}\n\n{p}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
+                            yield Context(label=f'{news.name}', content=[link],  botChatId=self._chat_id, dtype='msg')
                             
                     elif news.src == 'webFromIEA_analysis':
                         webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
                         for title, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], summary=[f'{title}'], botChatId=self._ChatId, dtype='msg', enable_translate=news.enable_translate)
-                 
-                            
-                            
-                print(f'news_src_fin:{ datetime.datetime.now()}\n')  
-                
+                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
+                print(f'news_src_fin:{ datetime.datetime.now()}\n')
             except Exception as e:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
                 print(f"news stand error: {e}\n")
