@@ -69,7 +69,7 @@ class SrcNews:
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')
             except Exception as e:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
-                print(f"news stand error: {e}\n")
+                print(f"news stand error {news.src}: {e}\n")
                 pass
 
 #===================================================
