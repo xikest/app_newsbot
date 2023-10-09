@@ -1,4 +1,4 @@
-nohup python3 -u main.py > log_bot_alert.log 2>&1 &
+nohup python3 -u start_bot.py > log_bot_alert.log 2>&1 &
 
 
 ps -ef|grep bot
