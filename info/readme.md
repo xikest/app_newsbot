@@ -73,6 +73,7 @@ chat_id = feeder.get_chatId(source='news_chatid')  # 'news_chatid' 소스의 채
 feeder = Feeder()
 usr_info = feeder.get_feed_ids(key='usr')  # 'usr' 키에 해당하는 이메일 정보를 반환합니다.
 ```
+---
 
 ## Sender 클래스 퀵 가이드
 `Sender` 클래스는 텔레그램 봇의 프로필 정보를 관리하고 토큰을 반환하는 클래스입니다.
