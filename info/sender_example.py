@@ -1,4 +1,4 @@
-class Bot_Profiles:
+class Sender:
 
     def __init__(self):
         self.profiles = {'token':'telegram token'} #텔레그램 토큰 작성
