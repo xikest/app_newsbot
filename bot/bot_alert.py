@@ -8,7 +8,8 @@ from info.sender import BotProfiles
 class Bot_Alert():
 
   def __init__(self):
-    self.setToken(BotProfiles.get_bot_token())
+    self._token:str = None
+    self.setToken(token=BotProfiles.get_token())
     self.src = Src_alert()
     pass
   @property
@@ -31,7 +32,7 @@ class Bot_Alert():
             start = time.time()
             async for context in generatorForContext(): 
                       # print(f"bot alert: {context}")
-                      await ContentsHandler(context).sendTo(self.getToken, delay=delay)
+                      await ContentsHandler(context).sendTo(self.getToken)
             end = time.time()
             print(f'context time taken: {(end - start)}')
             await asyncio.sleep(5)
