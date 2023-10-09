@@ -35,7 +35,7 @@ class ContentsHandler(list):
                 self.saveContents(context=context)
                 await self._sendContents(context, bot)
         except Exception as e: 
-            print("err",e)
+            print("error sendTo",e)
 
     async def _sendContents(self, context: Context, bot: telegram.Bot):
         try:
@@ -50,6 +50,6 @@ class ContentsHandler(list):
                 else:
                     raise ValueError("Unsupported content type: dtype is not defined.")
         except Exception as e:
-            print(f"Error sending contents: {e}")
+            print(f"Error _sendContents: {e}")
             pass
 
