@@ -9,8 +9,8 @@ class Bot_Alert():
 
   def __init__(self):
     self._token:str = None
-    self.setToken(token = Bot_profiles.get_token())
-    self.src = Src_alert()
+    self.setToken(token = Bot_Profiles.get_token())
+    self.src = Src_Alert()
     pass
   @property
   def getToken(self):
