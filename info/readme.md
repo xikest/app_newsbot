@@ -1,16 +1,16 @@
-# Feeder 클래스 퀵 가이드
+## Feeder 클래스 퀵 가이드
 `Feeder` 클래스는 여러 웹 소스 및 이메일 정보를 관리하고, 해당 정보를 가져오는 데 사용되는 클래스입니다.
 
-## 클래스 생성 및 초기화
+### 클래스 생성 및 초기화
 
 `Feeder` 클래스의 인스턴스를 생성합니다.
 ```python
 feeder = Feeder()
 ```
 
-## 메일 정보 및 웹 소스 정보
+### 메일 정보 및 웹 소스 정보
 
-### 메일 정보
+#### 메일 정보
 `feeder_mail_info` 속성은 이메일 정보를 딕셔너리 형태로 저장합니다.
 
 ```python
@@ -19,7 +19,7 @@ feeder = Feeder()
     'pid': 'mail info',  # 이메일 비밀번호
 }
 ```
-### 웹 소스 정보
+#### 웹 소스 정보
 `feeder_web_source` 속성은 다양한 웹 소스 정보를 딕셔너리로 저장합니다. <br>
 각 웹 소스는 `News` 객체 및 `Mail` 객체의 리스트로 표현됩니다.
 
@@ -40,8 +40,7 @@ feeder = Feeder()
 }
 ```
 
-### 클래스 메서드
-
+#### 클래스 메서드
 > `get_keylist(source_category: str = 'news') -> list`
 소스 카테고리에 해당하는 키 목록을 반환합니다.
 - source_category: 반환할 카테고리 (기본값은 'news')
@@ -73,4 +72,29 @@ chat_id = feeder.get_chatId(source='news_chatid')  # 'news_chatid' 소스의 채
 ``` python
 feeder = Feeder()
 usr_info = feeder.get_feed_ids(key='usr')  # 'usr' 키에 해당하는 이메일 정보를 반환합니다.
+```
+
+## Sender 클래스 퀵 가이드
+`Sender` 클래스는 텔레그램 봇의 프로필 정보를 관리하고 토큰을 반환하는 클래스입니다.
+
+### 클래스 생성 및 초기화
+```python
+bot_profiles = Bot_Profiles()
+```
+`Bot_Profiles` 클래스의 인스턴스를 생성합니다.
+
+### 토큰 정보
+`profiles` 속성은 텔레그램 봇의 토큰 정보를 딕셔너리로 저장합니다.
+```python
+{
+    'token': 'telegram token',  # 텔레그램 봇의 토큰 정보
+}
+```
+
+### 클래스 메서드
+> `get_token() -> str`
+텔레그램 봇의 토큰을 반환합니다.
+```python
+bot_profiles = Bot_Profiles()
+bot_token = bot_profiles.get_token()  # 텔레그램 봇의 토큰을 반환합니다.
 ```
