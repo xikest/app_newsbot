@@ -1,4 +1,4 @@
-# Bot_Alert - 알리미
+# Bot-Alert
 
 ## 프로젝트 소개
 Bot_Alert는 실시간 정보 수집과 Telegram 알림을 결합한 AI 기반 콘텐츠 알림 봇입니다. <br>
