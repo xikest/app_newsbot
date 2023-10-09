@@ -1,28 +1,3 @@
 
-bot_scheduler.py
-info/bot_info.py
-info/ids.py
-test.py
-test2.py
-info/twt_following.py
-test.ipynb
-*.pyc
-.vscode/settings.json
-contents_list.pickle
-test.ipynb
-
-geckodriver.log
-test.ipynb
-market/macro/.ipynb_checkpoints/Untitled-checkpoint.ipynb
-.ipynb_checkpoints/Untitled-checkpoint.ipynb
-info12/bot_profiles.py
-info12/requirement_bot.txt
-info12/feeds.py
-info12/bot_ids.py
-info/feeder_nav.py
-info/sender.py
 info/feeder.py
-info/make_cookie.py
-test2 copy.py
-hk_cookies.pkl
-.ipynb_checkpoints/stock_bs-checkpoint.ipynb
+info/sender.py
