@@ -26,14 +26,18 @@ class ContentsHandler(list):
             yield from []
 
     async def sendTo(self, token: str) -> None:
-        context = self.pop()
-        if not context:
-            return  # 컨텐츠가 없으면 아무 것도 하지 않음
-
-        bot = telegram.Bot(token)
-        if context not in self.loadContents():
-            self.saveContents(context=context)
-            await self._sendContents(context, bot)
+        try: 
+            context = self.pop()
+            if not context:
+                return  # 컨텐츠가 없으면 아무 것도 하지 않음
+            print("sendTo",token, type(token))
+            bot = telegram.Bot(token)
+            print("made bot")
+            if context not in self.loadContents():
+                self.saveContents(context=context)
+                await self._sendContents(context, bot)
+        except Exception as e: 
+            print("errr",e)
 
     async def _sendContents(self, context: Context, bot: telegram.Bot):
         try:

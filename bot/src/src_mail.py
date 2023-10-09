@@ -8,15 +8,15 @@ import asyncio
 import datetime
 
 class SrcMail:
-    def __init__(self, usr:str, pid:str, mailings:Generator, chatId:str=None):
+    def __init__(self, usr:str, pid:str, mailings:Generator, chat_id:str=None):
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
-        self._ChatId:Optional[str]=chatId
+        self._ChatId:Optional[str]=chat_id
     async def generator(self)-> Context:
         urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
         try:
-            for mailing in self._mailings():
+            for mailing in self._mailings:
                 UIDs, raw_msg = self._get_UIDs_msg( self._usr, self._pid, mailing.box)
                 for UID in UIDs[-20:]:  # 최근 20개만 읽음
                     message = email.message_from_bytes(raw_msg[UID][b'BODY[]'])

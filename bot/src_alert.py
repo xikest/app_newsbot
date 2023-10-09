@@ -14,25 +14,22 @@ class Src_Alert:
             'rss': 'rss'
         }
         pass
+    
     def feed_generators(self) -> Generator:
         feeder = Feeder()
         for category in self.category.keys():
             if category == 'news':
-                yield from [SrcNews(feeder.get_feeds(source), feeder.get_chatId(source)).generator() for source in feeder.get_keylist(category)]
+                return [SrcNews(newsStand=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator for source in feeder.get_keylist(category)]
             elif category == 'mail':
-                yield from [SrcMail(feeder.get_feed_ids(), mailings=feeder.get_feeds(source), chatId=feeder.get_chatId(source)).generator() for source in feeder.get_keylist(category)]
+                return [SrcMail(pid=feeder.get_feed_ids('pid'), usr=feeder.get_feed_ids('usr'), mailings=feeder.get_feeds(source), chatId=feeder.get_chatId(source)).generator for source in feeder.get_keylist(category)]
             elif category == 'rss':
-                yield from [SrcRss(feeder.get_feeds(source), feeder.get_chatId(source)).generator() for source in feeder.get_keylist(category)]
+                return [SrcRss(rssList=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator for source in feeder.get_keylist(category)]
 
     async def generator(self) -> Context:
-        async def run_generator(generator):
-            async for context in generator():
+        for feed_generator in self.feed_generators():
+            async for context in feed_generator():
                 yield context
 
-        tasks = [run_generator(feed_generator) for feed_generator in self.feed_generators()]
-        for task in asyncio.as_completed(tasks):
-            async for context in task:
-                yield context
 
 
     # async def generator(self) -> Context:

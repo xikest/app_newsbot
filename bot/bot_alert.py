@@ -6,20 +6,20 @@ from bot.src_alert import Src_Alert
 from info.sender import Bot_Profiles
 
 class Bot_Alert():
-
   def __init__(self):
-    self._token:str = None
-    self.setToken(token = Bot_Profiles.get_token())
+    self._TOKEN = Bot_Profiles().get_token()
     self.src = Src_Alert()
     pass
   @property
   def getToken(self):
-    return self._token
+    return self._TOKEN
   @getToken.setter
-  def setToken(self, token: Optional[str] = None):
+  def setToken(self, token:str = None):
         # 입력된 토큰이 None인 경우 빈 문자열로 설정
-        self._token = token if token is not None else ''
-  async def start(self, waitTime=30 * 60):
+        self._TOKEN = token if token is not None else ''
+        print("token: ", Bot_Profiles.get_token())
+
+  async def start(self, waitTime:int = 1800):
             try:
                 await self.update(self.src.generator)
                 print(f'cycle finish, sleep {time.time()}')
@@ -28,10 +28,11 @@ class Bot_Alert():
             except Exception as e:
                 print(f'bot start err.{e}')
 
-  async def update(self, generatorForContext:Generator, delay:Union[int, float]=0):
+  async def update(self, generatorForContext:Generator):
             start = time.time()
             async for context in generatorForContext(): 
                       # print(f"bot alert: {context}")
+                      print("cotents update", context)
                       await ContentsHandler(context).sendTo(self.getToken)
             end = time.time()
             print(f'context time taken: {(end - start)}')

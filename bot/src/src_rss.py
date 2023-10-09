@@ -6,13 +6,13 @@ import datetime
 
 class SrcRss:
 
-    def __init__(self, rssList:Generator, ChatId:Optional[str]):
-        self._ChatId:Optional[str]=ChatId
+    def __init__(self, rssList:Generator, chat_id:Optional[str]):
+        self._ChatId:Optional[str]=chat_id
         self._rssList:Generator = rssList
 
     async def generator(self)-> Context:
                 try: 
-                    for rss in self._rssList():
+                    for rss in self._rssList:
                         for feed in feedparser.parse(rss.url).entries[::-1]:
                             if rss.src == 'googleAlert': 
                                 yield Context(label = f"{rss.name}", content=[feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]], botChatId=self._ChatId, dtype='msg') 
