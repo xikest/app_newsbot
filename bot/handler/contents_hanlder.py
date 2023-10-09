@@ -51,6 +51,5 @@ class ContentsHandler(list):
                     raise ValueError("Unsupported content type: dtype is not defined.")
         except Exception as e:
             print(f"Error sending contents: {e}")
-            await asyncio.sleep(10)
             pass
 
