@@ -1,7 +1,8 @@
 import asyncio
+import json
 import telegram
 from info.definition_obj import Context
-from bot.handler.function_handler import FunctionHandler
+# from bot.handler.function_handler import FunctionHandler
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=10000):
@@ -11,19 +12,31 @@ class ContentsHandler(list):
 
     def addContext(self, context: Context = None):
         self.append(context)
-
     def saveContents(self, context: Context, fileName: str = 'contents_list'):
         sent_list = list(self.loadContents())
         sent_list.append(context)
         if len(sent_list) > self.max_buffer_size:
-            sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
-        FunctionHandler.Pickle.save_to_pickle(sent_list, fileName)
-
-    def loadContents(self, fileName: str = 'contents_list'):
+            sent_list.pop(0)  # Remove the oldest content if the buffer size exceeds
+        with open(f"{fileName}.json", 'w') as f:
+            json.dump(sent_list, f)
+    def loadContents(self, fileName: str = 'contents_list') -> list[Context]:
         try:
-            yield from FunctionHandler.Pickle.load_from_pickle(fileName)
+            with open(f"{fileName}.json", 'r') as f:
+                return json.load(f)
         except FileNotFoundError:
-            yield from []
+            return []
+    # def saveContents(self, context: Context, fileName: str = 'contents_list'):
+    #     sent_list = list(self.loadContents())
+    #     sent_list.append(context)
+    #     if len(sent_list) > self.max_buffer_size:
+    #         sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
+    #     FunctionHandler.Pickle.save_to_pickle(sent_list, fileName)
+    #
+    # def loadContents(self, fileName: str = 'contents_list'):
+    #     try:
+    #         yield from FunctionHandler.Pickle.load_from_pickle(fileName)
+    #     except FileNotFoundError:
+    #         yield from []
 
     async def sendTo(self, token: str) -> None:
         try: 
