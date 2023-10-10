@@ -1,7 +1,9 @@
 import asyncio
+from typing import List
 import json
 import telegram
 from info.definition_obj import Context
+
 # from bot.handler.function_handler import FunctionHandler
 
 class ContentsHandler(list):
@@ -19,7 +21,7 @@ class ContentsHandler(list):
             sent_list.pop(0)  # Remove the oldest content if the buffer size exceeds
         with open(f"{fileName}.json", 'w') as f:
             json.dump(sent_list, f)
-    def loadContents(self, fileName: str = 'contents_list') -> list[Context]:
+    def loadContents(self, fileName: str = 'contents_list') -> List[Context]:
         try:
             with open(f"{fileName}.json", 'r') as f:
                 return json.load(f)
