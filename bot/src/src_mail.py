@@ -41,7 +41,7 @@ class SrcMail:
             print(f'mail_src_fin:{datetime.datetime.now()}\n')
         except Exception as e:
             print(f'mail_src_err -> sleep:{datetime.datetime.now()}')
-            print(f"mail box error {mailing.box} {url}: {e}\n")
+            print(f"mail box error {mailing.box}: {e}\n")
             await asyncio.sleep(30*60)
             print(f'mail_src_err-> awake:{datetime.datetime.now()}\n')
             pass

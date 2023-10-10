@@ -1,7 +1,6 @@
 from typing import Optional, Generator
 import feedparser
 from bot.handler.contents_hanlder import Context
-from bs4 import BeautifulSoup
 import datetime
 
 class SrcRss:

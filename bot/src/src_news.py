@@ -14,12 +14,9 @@ class SrcNews:
     def __init__(self, newsStand: Generator, chat_id:str=None):
         self._chat_id:Optional[str]=chat_id
         self._newsStand:Generator =  newsStand
-            
-    
     async def generator(self)-> Context:
             try:
                 for news in self._newsStand:
-                    
                     if news.src == 'web': 
                         webGenerator = self._get_from_web(news.url, news.attr_key)
                         for content in webGenerator:
