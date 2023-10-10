@@ -12,7 +12,6 @@ class SrcRss:
     async def generator(self)-> Context:
                 try: 
                     for rss in self._rssList:
-                        print(f"{rss.name}, {rss.url}")
                         for feed in feedparser.parse(rss.url).entries[::-1]:
                             if rss.src == 'googleAlert': 
                                 yield Context(label = f"{rss.name}", content=[feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]], botChatId=self._chat_id, dtype='msg')
