@@ -21,7 +21,7 @@ class SrcRss:
                     print(f'rss_src_fin:{ datetime.datetime.now()}\n')
                 except Exception as e:
                     print(f'rss_src_err:{ datetime.datetime.now()}')  
-                    print(f"rss error {news.src}, {news.name}, {news.url}: {e}\n")
+                    print(f"rss error {rss.src}, {rss.name}, {rss.url}: {e}\n")
                     pass
 
 
