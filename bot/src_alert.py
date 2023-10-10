@@ -8,16 +8,15 @@ from info.definition_obj import Context
 class Src_Alert:
     def __init__(self):
         self.category:dict = {
+            'rss': 'rss',
             'news':'news',
-            'mail': 'mail',
-            'rss': 'rss'
+            'mail': 'mail'
         }
         pass
 
     def feed_generators(self) -> Generator:
         feeder = Feeder()
         combined_generators = []
-
         for category in self.category.keys():
             if category == 'news':
                 generators = [SrcNews(newsStand=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator
@@ -29,7 +28,6 @@ class Src_Alert:
             elif category == 'rss':
                 generators = [SrcRss(rssList=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator
                               for source in feeder.get_keylist(category)]
-
             combined_generators.extend(generators)
         return combined_generators
     async def generator(self) -> Context:
