@@ -13,7 +13,7 @@ class SrcRss:
                 try:
                     url = None
                     for rss in self._rssList:
-                        for feed in feedparser.parse(rss.url).entries[::-1]:
+                        for feed in feedparser.parse(rss.url).entries[-20:]:
                             if rss.src == 'googleAlert':
                                 url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]
                             elif rss.src == 'rss':

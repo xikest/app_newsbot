@@ -43,11 +43,12 @@ class SrcMail:
 
     async def _run_generator(self, ctype, cdispo, body, mailing):
         body = body.decode('utf-8')
+        # print(f"body {body} \n")
         if ctype == 'text/plain' and 'attachment' not in cdispo:
             urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
             urls = re.findall(urlPattern, body)
-            # soup = bs4.BeautifulSoup(body, 'html.parser')
             for url in urls:
+                url = await self._follow_url_redirects(url)
                 if not mailing.conditions or all(condition in url for condition in mailing.conditions):
                     # print(f"plain_url1: {url}")
                     yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
@@ -64,8 +65,12 @@ class SrcMail:
                         yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
                         
     async def _follow_url_redirects(self, url):
-        response = requests.get(url, allow_redirects=True)
-        final_url = response.url
+        try:
+            response = requests.get(url, allow_redirects=True)
+            final_url = response.url
+        except:
+            final_url = ''
+        # print(f"final url:{final_url}")
         return final_url
     
     def _get_UIDs_msg(self, usr: str, pid: str, box: str, imap: str = 'imap.naver.com'):
