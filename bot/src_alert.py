@@ -9,8 +9,9 @@ class Src_Alert:
     def __init__(self):
         self.category:dict = {
             'mail': 'mail',
+            'rss': 'rss',
             'news': 'news',
-             'rss': 'rss'
+             
         }
         pass
 

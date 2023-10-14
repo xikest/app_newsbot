@@ -18,6 +18,7 @@ class News:
     prefix: Optional[str] = None
     startswith: str = 'http'
     class_key: Optional[str] = None
+    exceptions: []
 
 @dataclass
 class Mail:
