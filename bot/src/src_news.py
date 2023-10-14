@@ -6,6 +6,7 @@ from selenium import webdriver
 from bot.handler.contents_hanlder import Context
 import datetime
 import sys
+import pyshorteners as ps
 
 sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
@@ -38,22 +39,13 @@ class SrcNews:
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         for content in webGenerator:
                             yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+
                     elif news.src == 'webWithStarts_labelTime': 
                         webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                         label = self._get_labelTime_from_web(news.url)
                         for content in webGenerator:
                             yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._chat_id, dtype='msg')
-                            
-                    elif news.src == 'webFromSnpglobalInsights':
-                        webGenerator = self._get_from_web_snpGlobalInsights(news.url)
-                        for title, p, link in webGenerator:                           
-                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
-                  
-                    elif news.src == 'webFromSnpglobalInfographics':
-                        webGenerator = self._get_from_web_snpGlobalInfographics(news.url)
-                        for title, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
-                   
+
                     elif news.src == 'webFromDolBlog':
                         webGenerator = self._get_from_web_dolblog(news.url)
                         for title, p, link in webGenerator:                        
@@ -66,7 +58,7 @@ class SrcNews:
                 print(f'news_src_fin:{ datetime.datetime.now()}\n')
             except Exception as e:
                 print(f'news_src_err:{ datetime.datetime.now()}')  
-                print(f"news stand error {news.src}, {news.name}, {news.url}: {e}\n")
+                print(f"news stand error {e}\n")
                 pass
 
 #===================================================
@@ -75,9 +67,11 @@ class SrcNews:
     def _get_from_web_IEA_analysis(self, url:str='https://www.iea.org/flagship', attr_key:str='m-flagship-listing'):
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출  
         for headline in headlines[::-1]:## html의 속성 부분을 추출
-            link= 'https://www.iea.org'+headline.find('a').attrs['href']
+            url= 'https://www.iea.org'+headline.find('a').attrs['href']
+            sh = ps.Shortener()
+            url = sh.post.short(url)
             title=headline.h3.text.strip()
-            yield title,  link
+            yield title,  url
             
 #===================================================
 # dol
@@ -89,8 +83,10 @@ class SrcNews:
         for content in contents[::-1]:
             title = content.h3.text
             p = content.p.text
-            link = "https://blog.dol.gov"+content.find('a').attrs['href']
-            yield title, p, link
+            url = "https://blog.dol.gov"+content.find('a').attrs['href']
+            sh = ps.Shortener()
+            url = sh.post.short(url)
+            yield title, p, url
 
 
 #===================================================
@@ -109,9 +105,11 @@ class SrcNews:
                 if 'href' in link.attrs and link.attrs['href'].startswith(startswith):
                         if prefix is not None:
                             # print(link.attrs['href'])
-                            yield prefix + link.attrs['href']
-                        else: 
-                            yield link.attrs['href']
+                            url = prefix + link.attrs['href']
+                        else:
+                            url = link.attrs['href']
+                        sh = ps.Shortener()
+                        yield sh.post.short(url)
 
     def _get_from_web(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
@@ -119,29 +117,37 @@ class SrcNews:
             for link in headline.find_all('a'):
                 if 'href' in link.attrs and (link.attrs['href'].startswith('http') or link.attrs['href'].startswith('www')):
                     if prefix is not None:
-                        yield prefix + link.attrs['href']
-                    else: 
-                        yield link.attrs['href']
-                
+                        url = prefix + link.attrs['href']
+                    else:
+                        url = link.attrs['href']
+                    sh = ps.Shortener()
+                    yield sh.post.short(url)
+
     def _get_from_web_with_selector(self, url, selector)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').select(selector) 
         for headline in headlines[::-1]:## html의 속성 부분을 추출
             if 'href' in headline.attrs:  #속성 중 링크만 추출
-                yield headline.attrs['href']
-    
+                url = headline.attrs['href']
+                sh = ps.Shortener()
+                yield sh.post.short(url)
+
     def _get_from_web_without_http(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
         for headline in headlines[::-1]: ## html의 속성 부분을 추출
             for link in headline.find_all('a'):
                 if 'href' in link.attrs:  #속성 중 링크만 추출
-                    if prefix is not None: 
-                        yield prefix + link.attrs['href']
-                    else: 
-                        yield link.attrs['href']
-        
+                    if prefix is not None:
+                        url = prefix + link.attrs['href']
+                    else:
+                        url = link.attrs['href']
+                    sh = ps.Shortener()
+                    yield sh.post.short(url)
+
     def _get_from_web_link(self, url, class_key)-> str:
         links = BeautifulSoup(urlopen(url), 'html.parser').find_all('a')
         for link  in links[::-1]:
             if 'class' in link.attrs:  #속성 중 class만 추출
                 if class_key in link.attrs['class']:
-                    yield link.attrs['href']
+                    url = link.attrs['href']
+                    sh = ps.Shortener()
+                    yield sh.post.short(url)
