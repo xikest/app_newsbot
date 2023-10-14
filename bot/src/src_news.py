@@ -2,7 +2,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from typing import Optional, Generator
-from selenium import webdriver
 from bot.handler.contents_hanlder import Context
 import datetime
 import sys
