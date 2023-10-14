@@ -8,8 +8,8 @@ from info.definition_obj import Context
 class Src_Alert:
     def __init__(self):
         self.category:dict = {
-            'news': 'news',
             'mail': 'mail',
+            'news': 'news',
              'rss': 'rss'
         }
         pass
