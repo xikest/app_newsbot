@@ -6,6 +6,7 @@ import re
 import asyncio
 import datetime
 import bs4  # BeautifulSoup 라이브러리 추가
+import pyshorteners as ps
 from bot.handler.contents_hanlder import Context
 
 class SrcMail:
@@ -28,6 +29,8 @@ class SrcMail:
                         for part in message.walk():
                             ctype = part.get_content_type()
                             cdispo = str(part.get('Content-Disposition'))
+                            
+                            sh = ps.Shortener()
                             if ctype == 'text/plain' and 'attachment' not in cdispo:
                                 body = part.get_payload(decode=True)  # decode
                                 if body is not None:
@@ -35,8 +38,9 @@ class SrcMail:
                                     
                                     urls = re.findall(urlPattern, body)
                                     for url in urls:
-                                        # print(f"링크 주소: {url}")
                                         if not mailing.conditions or all(condition in url for condition in mailing.conditions):
+                                            url = sh.post.short(url)
+                                             # print(f"링크 주소: {url}")
                                             await asyncio.sleep(10)
                                             yield Context(label=f'{mailing.box}', content=[url], botChatId=self._chat_id, dtype='msg')
 
@@ -49,11 +53,11 @@ class SrcMail:
                                     # BeautifulSoup을 사용하여 HTML 본문을 파싱
                                     soup = bs4.BeautifulSoup(body, 'html.parser')
                                     links = soup.find_all('a')
-                                    # 링크 주소를 출력
                                     for link in links:
                                         if link.text.strip() == "Read More":
                                             url = link.get('href')
-                                            # print(f"링크 주소: {url}")
+                                            url = sh.post.short(url)
+                                             # print(f"링크 주소: {url}")
                                             await asyncio.sleep(10)
                                             yield Context(label=f'{mailing.box}', content=[url], botChatId=self._chat_id, dtype='msg')
 

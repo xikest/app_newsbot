@@ -93,63 +93,6 @@ class SrcNews:
             yield title, p, link
 
 
-
-#===================================================
-# snp global
-#===================================================
-      
-    def _get_html_with_selenium(self, url:str):
-        
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument("--remote-debugging-port=9230")
-        chrome_options.add_argument('user-agent={0}'.format(user_agent))
-        # chrome_options.add_argument('lang=ko_kr')
-        wd = webdriver.Chrome('chromedriver', options=chrome_options)
-        try:
-            
-            wd.get(url)
-            
-            html = wd.page_source
-            
-            wd.close()
-            wd.quit()
-            return html
-    
-        except Exception as e:
-            print(f"snp global err: {e}")
-            wd.close()
-            wd.quit()
-            
-    
-    def _get_from_web_snpGlobalInfographics(self, url):
-        html = self._get_html_with_selenium(url)
-        soup = BeautifulSoup(html, 'html.parser')
-        contents = soup.find_all(attrs={'class':'modalimage card--inline js-gtm-tag'})
-        for content in contents[::-1]:
-            title = content['data-gtm-label']
-            link = content['href']
-            yield title, link
-            
-    
-    def _get_from_web_snpGlobalInsights(self, url):
-        html = self._get_html_with_selenium(url)
-        soup = BeautifulSoup(html, 'html.parser')
-        contents = soup.find_all(attrs={'class':'blog-excerpt__content'})    
-        for content in contents[::-1]:
-            title = content.h1.text
-            p = content.p.text
-            link = content.find('a').attrs['href']
-            yield title, p, link
-            
-#===================================================
-# 브릿지워터
-#===================================================
-
-
-            
 #===================================================
 # web
 #===================================================
