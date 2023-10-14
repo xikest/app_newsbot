@@ -5,6 +5,14 @@ ps -ef|grep bot
 
 du -sh *
 
+## 패키지 목록 저장
+pip freeze > requirements_bot.txt
+
+## 패키지 목록에서 설치
+pip install --upgrade pip
+pip install -r requirements_bot.txt
+
+
 ### 크롬 설치
 apt-get update
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -14,7 +22,7 @@ google-chrome --version  ## 버전 확인 후 드라이버와 일치 필요
 ### 크롬 드라이버 설치
 wget https://chromedriver.storage.googleapis.com/107.0.5304.62/chromedriver_linux64.zip
 wget https://chromedriver.storage.googleapis.com/109.0.5414.74/chromedriver_linux64.zip
-wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/117.0.5938.149/linux64/chromedriver-linux64.zip	
+wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/117.0.5938.149/linux64/chromedriver-linux64.zip
 unzip chromedriver-linux64.zip  # 압축 풀기
 mv chromedriver-linux64/chromedriver /usr/bin/chromedriver # 파일 이동
 
@@ -23,4 +31,11 @@ pip freeze > requirements_bot.txt
 
 ## 패키지 목록에서 설치
 pip install --upgrade pip
-pip install -r requirements_bot.txt
+pip install --upgrade -r requirements_bot.txt
+
+
+## 파이썬 버전 확인
+python --version
+
+#리눅스 업데이트
+sudo apt update
