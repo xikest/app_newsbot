@@ -1,8 +1,6 @@
 from pathlib import Path
 import pickle
 import gzip
-
-
 class FunctionHandler:
     # ===============================================
     # pickle 파일
