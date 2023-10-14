@@ -2,7 +2,6 @@ from typing import Optional, Generator
 import feedparser
 from bot.handler.contents_hanlder import Context
 import datetime
-import pyshorteners as ps
 
 class SrcRss:
 
@@ -12,7 +11,6 @@ class SrcRss:
 
     async def generator(self)-> Context:
                 try:
-                    sh = ps.Shortener()
                     url = None
                     for rss in self._rssList:
                         for feed in feedparser.parse(rss.url).entries[::-1]:

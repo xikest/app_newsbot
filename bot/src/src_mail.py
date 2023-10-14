@@ -7,7 +7,6 @@ import asyncio
 import datetime
 import bs4
 import requests
-# import pyshorteners
 from bot.handler.contents_hanlder import Context
 
 class SrcMail:
