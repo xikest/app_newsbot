@@ -18,10 +18,11 @@ class News:
     prefix: Optional[str] = None
     startswith: str = 'http'
     class_key: Optional[str] = None
-    exceptions: []
+    exceptions:[] = None
+    
 
 @dataclass
 class Mail:
     box: str
     sender: str
-    conditions: []
+    conditions:[] = None
