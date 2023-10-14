@@ -5,12 +5,12 @@ nohup python3 -u start_bot.py > log_bot_alert.log 2>&1 &
 ps -ef|grep bot
 
 ## 패키지 목록 저장
-pip freeze > requirements_bot.txt
+pip freeze > requirements.txt
 
 ## 패키지 목록에서 설치
 pip install --upgrade pip
-pip install -r requirements_bot.txt
 pip install --upgrade -r requirements.txt
+pip install -r requirements.txt
 
 ## 파이썬 버전 확인
 python --version
