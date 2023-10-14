@@ -20,7 +20,7 @@ class SrcRss:
                                 url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]
                             elif rss.src == 'rss':
                                 url = feed.link
-                            url = sh.post.short(url)
+                            url = self.url_short(url)
                             yield Context(label = f"{rss.name}", content=[url], botChatId=self._chat_id, dtype='msg')
                     print(f'rss_src_fin:{ datetime.datetime.now()}\n')
                 except Exception as e:
@@ -28,4 +28,7 @@ class SrcRss:
                     print(f"rss error {e}\n")
                     pass
 
-
+    def url_short(self, url):
+        s = pyshorteners.Shortener(domain='https://0x0.st')
+        url = s.tinyurl.short(url)
+        return url
