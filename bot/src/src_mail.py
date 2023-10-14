@@ -49,9 +49,9 @@ class SrcMail:
             urls = re.findall(urlPattern, body)
             for url in urls:
                 url = await self._follow_url_redirects(url)
-                print(f"plain_url1_original: {url}")
+                # print(f"plain_url1_original: {url}")
                 if not mailing.conditions or all(condition in url for condition in mailing.conditions):
-                    print(f"plain_url1: {url}")
+                    # print(f"plain_url1: {url}")
                     yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
 
         elif ctype == 'text/html' and 'attachment' not in cdispo:
@@ -62,7 +62,7 @@ class SrcMail:
                     url = link.get('href')
                     url = await self._follow_url_redirects(url)
                     if not mailing.conditions or all(condition in url for condition in mailing.conditions):
-                        print(f"html_url1: {url}")
+                        # print(f"html_url1: {url}")
                         yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
                         
     async def _follow_url_redirects(self, url):
