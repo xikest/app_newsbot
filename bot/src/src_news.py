@@ -6,7 +6,6 @@ from selenium import webdriver
 from bot.handler.contents_hanlder import Context
 import datetime
 import sys
-import pyshorteners
 
 sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
@@ -69,7 +68,7 @@ class SrcNews:
         for headline in headlines[::-1]:## html의 속성 부분을 추출
             url= 'https://www.iea.org'+headline.find('a').attrs['href']
             title=headline.h3.text.strip()
-            yield title,  self.url_short(url)
+            yield title,  url
             
 #===================================================
 # dol
@@ -82,7 +81,7 @@ class SrcNews:
             title = content.h3.text
             p = content.p.text
             url = "https://blog.dol.gov"+content.find('a').attrs['href']
-            yield title, p, self.url_short(url)
+            yield title, p, url
 
 
 #===================================================
@@ -104,7 +103,7 @@ class SrcNews:
                             url = prefix + link.attrs['href']
                         else:
                             url = link.attrs['href']
-                        yield self.url_short(url)
+                        yield url
 
     def _get_from_web(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
@@ -115,14 +114,14 @@ class SrcNews:
                         url = prefix + link.attrs['href']
                     else:
                         url = link.attrs['href']
-                    yield self.url_short(url)
+                    yield url
 
     def _get_from_web_with_selector(self, url, selector)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').select(selector) 
         for headline in headlines[::-1]:## html의 속성 부분을 추출
             if 'href' in headline.attrs:  #속성 중 링크만 추출
                 url = headline.attrs['href']
-                yield self.url_short(url)
+                yield url
 
     def _get_from_web_without_http(self, url, attr_key, prefix=None)-> str:
         headlines = BeautifulSoup(urlopen(url), 'html.parser').find_all(attrs={'class':f'{attr_key}'})  # name은 태그 추출
@@ -133,7 +132,7 @@ class SrcNews:
                         url = prefix + link.attrs['href']
                     else:
                         url = link.attrs['href']
-                    yield self.url_short(url)
+                    yield url
 
     def _get_from_web_link(self, url, class_key)-> str:
         links = BeautifulSoup(urlopen(url), 'html.parser').find_all('a')
@@ -141,9 +140,4 @@ class SrcNews:
             if 'class' in link.attrs:  #속성 중 class만 추출
                 if class_key in link.attrs['class']:
                     url = link.attrs['href']
-                    yield self.url_short(url)
-                    
-    def url_short(self, url):
-        s = pyshorteners.Shortener(domain='https://0x0.st')
-        url = s.tinyurl.short(url)
-        return url
+                    yield url
