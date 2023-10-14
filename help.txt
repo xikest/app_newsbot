@@ -31,7 +31,7 @@ pip freeze > requirements_bot.txt
 
 ## 패키지 목록에서 설치
 pip install --upgrade pip
-pip install --upgrade -r requirements_bot.txt
+pip install --upgrade -r requirements.txt
 
 
 ## 파이썬 버전 확인
