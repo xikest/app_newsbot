@@ -69,6 +69,10 @@ class SrcMail:
             await asyncio.sleep(30 * 60)
             print(f'mail_src_err -> awake: {datetime.datetime.now()}\n')
 
+            
+            
+            
+            
     def _get_UIDs_msg(self, usr: str, pid: str, box: str, imap: str = 'imap.naver.com'):
         imap_obj = imapclient.IMAPClient(imap, ssl=True)
         imap_obj.login(usr, pid)
