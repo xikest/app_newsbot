@@ -4,7 +4,6 @@ import email
 from email.header import decode_header
 import re
 import asyncio
-import aiohttp
 import datetime
 import bs4
 import requests
@@ -24,7 +23,7 @@ class SrcMail:
     async def generator(self) -> AsyncGenerator[Context, None]:
             for mailing in self._mailings:
                 try:
-                    print(f'start get feed from mail of "{mailing.sender}": {datetime.datetime.now()}') 
+                    print(f"Start getting the feed from the {mailing.sender}'s: {datetime.datetime.now()}") 
                     UIDs, raw_msg = self._get_UIDs_msg(self._usr, self._pid, mailing.box)
                     for UID in UIDs[-20:]:
                         message = email.message_from_bytes(raw_msg[UID][b'BODY[]'])
@@ -38,18 +37,17 @@ class SrcMail:
                                 if body is not None:
                                     async for context in self._run_generator(ctype, cdispo, body, mailing):
                                         yield context
-                    print(f'finish to get feed from mail of {mailing.sender}: {datetime.datetime.now()}')
+                    print(f"Finished obtaining the feed from the {mailing.sender}'s : {datetime.datetime.now()}")
                 except Exception as e:
                     time_sleep = datetime.datetime.now()
-                    print(f'raised feed error from mail of {mailing.sender} @{time_sleep}')
-                    print(f'error description -> {e}')
+                    print(f"Raised a feed error from the {mailing.sender}'s @{time_sleep}")
+                    print(f'Error description -> {e}')
                     await asyncio.sleep(30 * 60)
                     time_awake = datetime.datetime.now()
-                    print(f'awaked feed error of mail of {mailing.sender} @{time_awake}')
-                    print(f'total sleep time{time_awake - time_sleep}')
+                    print(f"Awakened a feed error from the {mailing.sender}'s @{time_awake}")
+                    print(f'Total sleep time{time_awake - time_sleep}')
 
                     
-
     async def _run_generator(self, ctype, cdispo, body, mailing):
         body = body.decode('utf-8')
         # print(f"body {body} \n")
@@ -87,7 +85,7 @@ class SrcMail:
             final_url = response.url
         except requests.exceptions.RequestException as e:
             final_url = ''
-            print(f"url_redirects_error: {e}")
+            print(f"Raised URL redirects error: {e}")
         return final_url
     
     def _get_UIDs_msg(self, usr: str, pid: str, box: str, imap: str = 'imap.naver.com'):

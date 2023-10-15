@@ -15,7 +15,7 @@ class SrcNews:
     async def generator(self)-> Context:
                 for news in self._newsStand:
                     try: 
-                        print(f'start get feed from news of "{news.name}": {datetime.datetime.now()}') 
+                        print(f"Start getting the feed from the {news.name}'s: {datetime.datetime.now()}") 
                         if news.src == 'web': 
                             webGenerator = self._get_from_web(news.url, news.attr_key)
                             for content in webGenerator:
@@ -54,15 +54,15 @@ class SrcNews:
                             for title, link in webGenerator:                        
                                 yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
 
-                        print(f'finish to get feed from news of {news.name}: {datetime.datetime.now()}')
+                        print(f"Finished obtaining the feed from the {news.name}'s : {datetime.datetime.now()}")
                     except Exception as e:
                         time_sleep = datetime.datetime.now()
-                        print(f'raised feed error from news of {news.name} @{time_sleep}')
-                        print(f'error description -> {e}')
+                        print(f"Raised a feed error from the {news.name}'s @{time_sleep}")
+                        print(f'Error description -> {e}')
                         await asyncio.sleep(30 * 60)
                         time_awake = datetime.datetime.now()
-                        print(f'awaked feed error of news of {news.name} @{time_awake}')
-                        print(f'total sleep time{time_awake - time_sleep}')
+                        print(f"Awakened a feed error from the {news.name}'s @{time_awake}")
+                        print(f'Total sleep time{time_awake - time_sleep}')
 
             
             
