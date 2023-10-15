@@ -80,7 +80,7 @@ class SrcMail:
             final_url = '' 
             return final_url  # 유효한 URL이 아닌 경우
         try:
-            await asyncio.sleep(5)
+            await asyncio.sleep(1)
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
             response = requests.get(url, headers=headers, allow_redirects=True)
             response.raise_for_status()  # HTTP 오류가 있는지 확인
