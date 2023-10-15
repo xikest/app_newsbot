@@ -5,56 +5,67 @@ from typing import Optional, Generator
 from bot.handler.contents_hanlder import Context
 import datetime
 import sys
+import asyncio
 
 class SrcNews:
     def __init__(self, newsStand: Generator, chat_id:str=None):
         self._chat_id:Optional[str]=chat_id
         self._newsStand:Generator =  newsStand
+            
     async def generator(self)-> Context:
-            try:
                 for news in self._newsStand:
-                    if news.src == 'web': 
-                        webGenerator = self._get_from_web(news.url, news.attr_key)
-                        for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
-                    elif news.src == 'webWithSelector': 
-                        pass
-                        # content = self._get_from_web_with_selector(news.url, news.attr_key)
-                    elif news.src == 'webWithoutHttp': 
-                        webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
-                        for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
-                        
-                    elif news.src == 'webLink': 
-                        webGenerator = self._get_from_web_link(news.url, news.class_key)
-                        for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
-                            
-                    elif news.src == 'webWithStarts': 
-                        webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
-                        for content in webGenerator:
-                            yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                    try: 
+                        print(f'start get feed from news of "{news.name}": {datetime.datetime.now()}') 
+                        if news.src == 'web': 
+                            webGenerator = self._get_from_web(news.url, news.attr_key)
+                            for content in webGenerator:
+                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                        elif news.src == 'webWithSelector': 
+                            pass
+                            # content = self._get_from_web_with_selector(news.url, news.attr_key)
+                        elif news.src == 'webWithoutHttp': 
+                            webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
+                            for content in webGenerator:
+                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
 
-                    elif news.src == 'webWithStarts_labelTime': 
-                        webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
-                        label = self._get_labelTime_from_web(news.url)
-                        for content in webGenerator:
-                            yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                        elif news.src == 'webLink': 
+                            webGenerator = self._get_from_web_link(news.url, news.class_key)
+                            for content in webGenerator:
+                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
 
-                    elif news.src == 'webFromDolBlog':
-                        webGenerator = self._get_from_web_dolblog(news.url)
-                        for title, p, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link],  botChatId=self._chat_id, dtype='msg')
-                            
-                    elif news.src == 'webFromIEA_analysis':
-                        webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
-                        for title, link in webGenerator:                        
-                            yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
-                print(f'news_src_fin:{ datetime.datetime.now()}\n')
-            except Exception as e:
-                print(f'news_src_err:{ datetime.datetime.now()}')  
-                print(f"news stand error {e}\n")
-                pass
+                        elif news.src == 'webWithStarts': 
+                            webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
+                            for content in webGenerator:
+                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+
+                        elif news.src == 'webWithStarts_labelTime': 
+                            webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
+                            label = self._get_labelTime_from_web(news.url)
+                            for content in webGenerator:
+                                yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._chat_id, dtype='msg')
+
+                        elif news.src == 'webFromDolBlog':
+                            webGenerator = self._get_from_web_dolblog(news.url)
+                            for title, p, link in webGenerator:                        
+                                yield Context(label=f'{news.name}', content=[link],  botChatId=self._chat_id, dtype='msg')
+
+                        elif news.src == 'webFromIEA_analysis':
+                            webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
+                            for title, link in webGenerator:                        
+                                yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
+
+                        print(f'finish to get feed from news of {news.name}: {datetime.datetime.now()}')
+                    except Exception as e:
+                        time_sleep = datetime.datetime.now()
+                        print(f'raised feed error from news of {news.name} @{time_sleep}')
+                        print(f'error description -> {e}')
+                        await asyncio.sleep(30 * 60)
+                        time_awake = datetime.datetime.now()
+                        print(f'awaked feed error of news of {news.name} @{time_awake}')
+                        print(f'total sleep time{time_awake - time_sleep}')
+
+            
+            
 
 #===================================================
 # IEA

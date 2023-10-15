@@ -9,6 +9,8 @@ class Feeder:
         }
 
         # 클래스 정의에 맞춰서 작성
+        # 주의: feed의 chat id는 "_chatid"를 붙여야 함, 
+        # "news"의 "chatid"는 "news_chatid"라고 작성
         self.feeder_web_source = {
             'news_chatid': '[telegram chat ID]',
             'news':
