@@ -27,9 +27,9 @@ class SrcRss:
                         print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")     
                     except Exception as e:
                         time_sleep = datetime.datetime.now()
-                        print(f"Raised a feed error from the {rss.name}'s @{time_sleep}")
                         print(f'Error description -> {e}')
-                        await asyncio.sleep(30 * 60)
+                        print(f"Raised a feed error from the {rss.name}'s @{time_sleep}")
+                        await asyncio.sleep(60 * 60 * 3)
                         time_awake = datetime.datetime.now()
                         print(f"Awakened a feed error from the {rss.name}'s @{time_awake}")
                         print(f'Total sleep time{time_awake - time_sleep}')
