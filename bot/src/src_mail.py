@@ -4,11 +4,15 @@ import email
 from email.header import decode_header
 import re
 import asyncio
+import aiohttp
 import datetime
 import bs4
 import requests
 # import pyshorteners
 from bot.handler.contents_hanlder import Context
+
+
+
 
 class SrcMail:
     def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None):
@@ -69,22 +73,21 @@ class SrcMail:
                     if not mailing.conditions or all(condition in url for condition in mailing.conditions):
                         # print(f"{mailing.sender} html_url: {url}")
                         yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
-                        
 
     async def _follow_url_redirects(self, url):
         # URL 유효성 검사
         if not url.startswith('http://') and not url.startswith('https://'):
             final_url = '' 
             return final_url  # 유효한 URL이 아닌 경우
-
         try:
-            response = requests.get(url, allow_redirects=True)
+            await asyncio.sleep(5)
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
+            response = requests.get(url, headers=headers, allow_redirects=True)
             response.raise_for_status()  # HTTP 오류가 있는지 확인
             final_url = response.url
         except requests.exceptions.RequestException as e:
             final_url = ''
             print(f"url_redirects_error: {e}")
-
         return final_url
     
     def _get_UIDs_msg(self, usr: str, pid: str, box: str, imap: str = 'imap.naver.com'):

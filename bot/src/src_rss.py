@@ -21,7 +21,7 @@ class SrcRss:
                                 url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=','').split('&ct=ga&cd')[0]
                             elif rss.src == 'rss':
                                 url = feed.link
-                            if not rss.exceptions or all(exception in url for exception in rss.exceptions):
+                            if not rss.exceptions or all(exception not in url for exception in rss.exceptions):
                                 yield Context(label = f"{rss.name}", content=[url], botChatId=self._chat_id, dtype='msg')
                         print(f'finish to get feed from rss of "{rss.name}": {datetime.datetime.now()}\n')            
                     except Exception as e:
