@@ -64,7 +64,7 @@ class SrcMail:
             soup = bs4.BeautifulSoup(body, 'html.parser')
             links = soup.find_all('a')
             for link in links:
-                # print(f"'text/html filter condition {mailing.filter_linktext}")
+                # print(f"'text/html filter condition:{mailing.filter_linktext}")
                 if link.text.strip() == mailing.filter_linktext:
                     url = link.get('href')
                     url = await self._follow_url_redirects(url)
