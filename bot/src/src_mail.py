@@ -56,7 +56,7 @@ class SrcMail:
             for url in urls:
                 url = await self._follow_url_redirects(url)
                 # print(f"{mailing.sender} plain_url before filtering: {url}")
-                if not mailing.conditions or all(condition in url for condition in mailing.conditions):
+                if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                     # print(f"{mailing.sender} plain_url: {url}")
                     yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
 
@@ -67,7 +67,7 @@ class SrcMail:
                 if link.text.strip() == mailing.filter_linktext:
                     url = link.get('href')
                     url = await self._follow_url_redirects(url)
-                    if not mailing.conditions or all(condition in url for condition in mailing.conditions):
+                    if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                         # print(f"{mailing.sender} html_url: {url}")
                         yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
 

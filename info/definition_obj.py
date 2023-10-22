@@ -26,4 +26,4 @@ class Mail:
     box: str
     sender: str
     filter_linktext: str = ""
-    conditions:[] = None
+    url_conditions:[] = None
