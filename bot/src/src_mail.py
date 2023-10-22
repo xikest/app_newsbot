@@ -7,7 +7,6 @@ import asyncio
 import datetime
 import bs4
 import requests
-# import pyshorteners
 from bot.handler.contents_hanlder import Context
 
 
@@ -65,7 +64,7 @@ class SrcMail:
             soup = bs4.BeautifulSoup(body, 'html.parser')
             links = soup.find_all('a')
             for link in links:
-                if link.text.strip() == "Read More" or "Read the full article":
+                if link.text.strip() == mailing.link_text_filter:
                     url = link.get('href')
                     url = await self._follow_url_redirects(url)
                     if not mailing.conditions or all(condition in url for condition in mailing.conditions):
