@@ -25,5 +25,5 @@ class News:
 class Mail:
     box: str
     sender: str
-    filter_linktext: str
+    filter_linktext: str = ""
     conditions:[] = None
