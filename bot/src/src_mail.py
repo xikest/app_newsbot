@@ -54,6 +54,7 @@ class SrcMail:
             urlPattern = '(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+'
             urls = re.findall(urlPattern, body)
             for url in urls:
+                # print(f"{mailing.sender} plain_url before redirecion: {url}")
                 url = await self._follow_url_redirects(url)
                 # print(f"{mailing.sender} plain_url before filtering: {url}")
                 if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
@@ -64,10 +65,12 @@ class SrcMail:
             soup = bs4.BeautifulSoup(body, 'html.parser')
             links = soup.find_all('a')
             for link in links:
+                # print(f"text/html link text : {link.text.strip()}")
                 # print(f"'text/html filter condition:{mailing.filter_linktext}")
                 if link.text.strip() == mailing.filter_linktext:
                     url = link.get('href')
                     url = await self._follow_url_redirects(url)
+                    # print(f"{mailing.sender} html_url before filtering: {url}")
                     if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                         # print(f"{mailing.sender} html_url: {url}")
                         yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
