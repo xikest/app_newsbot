@@ -12,9 +12,10 @@ class Src_Alert:
         }
         pass
 
-    def feed_generators(self) -> Generator:
+    def feed_generators(self) -> list:
         feeder = Feeder()
         combined_generators = []
+        generators = None
         for category in self.category.keys():
             if category == 'news':
                 generators = [SrcNews(newsStand=feeder.get_feeds(source), chat_id=feeder.get_chatId(source)).generator

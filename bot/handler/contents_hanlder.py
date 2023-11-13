@@ -2,6 +2,9 @@ import asyncio
 import telegram
 from info.definition_obj import Context
 from bot.handler.function_handler import FunctionHandler
+from sentigpt import SentiGPT
+import os
+from .summary import WSJ_Scraper
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=10000):
@@ -27,20 +30,30 @@ class ContentsHandler(list):
             context = self.pop()
             if not context:
                 return  # 컨텐츠가 없으면 아무 것도 하지 않음
-            bot = telegram.Bot(token)
+
             if context not in self.loadContents():
                 self.saveContents(context=context)
-                await self._sendContents(context, bot)
+                await self._sendContents(context)
         except Exception as e: 
             print("error sendTo",e)
-    async def _sendContents(self, context: Context, bot: telegram.Bot):
+    async def _sendContents(self, context: Context):
+
+        gpt_api_key = os.environ.get("GPT_API_KEY")
+        bot_token = os.environ.get("BOT_TOKEN")
+        bot = telegram.Bot(bot_token)
+        sgpt = SentiGPT(api_key=gpt_api_key)
         try:
             while context.content:
                 if context.dtype == 'img':
                     await asyncio.sleep(10)
                     await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
                 elif context.dtype == 'msg':
-                    msg = f"{context.content.pop(0)}"
+                    context = self.makeSummary(context)
+                    if context.enable_translate == True:
+                        msg = f"#{context.label}\n{await sgpt.translate_en2kr(sentence_en = context.summary.pop(0))}\n\n{context.content.pop(0)}"
+                        # print(f'translate : {msg}')
+                    else:
+                        msg = f"#{context.label}\n\n{context.content.pop(0)}"
                     await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
@@ -49,3 +62,10 @@ class ContentsHandler(list):
             print(f"Error _sendContents: {e}")
             pass
 
+    def makeSummary(self, context:Context):
+        if context.enable_summary==True:
+            if context.label == 'WSJ_NEWS':   #WSJ 기사 요약
+                context.summary = [WSJ_Scraper().summary(url= content) for content in context.content]
+                context.enable_translate=True # 번역할 것인지
+
+        return context

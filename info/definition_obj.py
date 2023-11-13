@@ -7,6 +7,9 @@ class Context:
     content: List[Any] = None
     dtype: Optional[str] = None
     botChatId: Optional[str] = None
+    enable_summary:bool = False
+    enable_translate:bool = False
+    summary:List[Any] =None
 
 @dataclass
 class News:

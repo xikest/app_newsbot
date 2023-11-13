@@ -73,7 +73,7 @@ class SrcMail:
                     # print(f"{mailing.sender} html_url before filtering: {url}")
                     if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                         # print(f"{mailing.sender} html_url: {url}")
-                        yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
+                        yield Context(content=[url], botChatId=self._chat_id, dtype='msg', enable_summary=True)
 
     async def _follow_url_redirects(self, url):
         # URL 유효성 검사
