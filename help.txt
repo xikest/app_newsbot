@@ -17,3 +17,7 @@ python --version
 
 #리눅스 업데이트
 sudo apt update
+
+## 설치 하기
+chmod +x install_env.sh
+./install_env.sh
