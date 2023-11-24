@@ -8,7 +8,7 @@ import datetime
 import bs4
 import requests
 from bot.handler.contents_hanlder import Context
-
+import os
 
 
 
@@ -59,7 +59,7 @@ class SrcMail:
                 # print(f"{mailing.sender} plain_url before filtering: {url}")
                 if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                     # print(f"{mailing.sender} plain_url: {url}")
-                    yield Context(content=[url], botChatId=self._chat_id, dtype='msg')
+                    yield Context(contents=[url], botChatId=self._chat_id, dtype='msg')
 
         elif ctype == 'text/html' and 'attachment' not in cdispo:
             soup = bs4.BeautifulSoup(body, 'html.parser')
@@ -73,7 +73,7 @@ class SrcMail:
                     # print(f"{mailing.sender} html_url before filtering: {url}")
                     if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                         # print(f"{mailing.sender} html_url: {url}")
-                        yield Context(content=[url], botChatId=self._chat_id, dtype='msg', enable_summary=True)
+                        yield Context(contents=[url], botChatId=self._chat_id, dtype='msg', enable_summary=True)
 
     async def _follow_url_redirects(self, url):
         # URL 유효성 검사

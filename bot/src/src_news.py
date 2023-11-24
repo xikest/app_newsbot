@@ -19,40 +19,40 @@ class SrcNews:
                         if news.src == 'web': 
                             webGenerator = self._get_from_web(news.url, news.attr_key)
                             for content in webGenerator:
-                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[content],  botChatId=self._chat_id, dtype='msg')
                         elif news.src == 'webWithSelector': 
                             pass
                             # content = self._get_from_web_with_selector(news.url, news.attr_key)
                         elif news.src == 'webWithoutHttp': 
                             webGenerator = self._get_from_web_without_http(news.url, news.attr_key, news.prefix)
                             for content in webGenerator:
-                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[content],  botChatId=self._chat_id, dtype='msg')
 
                         elif news.src == 'webLink': 
                             webGenerator = self._get_from_web_link(news.url, news.class_key)
                             for content in webGenerator:
-                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[content],  botChatId=self._chat_id, dtype='msg')
 
                         elif news.src == 'webWithStarts': 
                             webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                             for content in webGenerator:
-                                yield Context(label=f'{news.name}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[content],  botChatId=self._chat_id, dtype='msg')
 
                         elif news.src == 'webWithStarts_labelTime': 
                             webGenerator = self._get_from_web_with_starts(news.url, news.attr_key, news.prefix, news.startswith)
                             label = self._get_labelTime_from_web(news.url)
                             for content in webGenerator:
-                                yield Context(label=f'{news.name} {label}', content=[content],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name} {label}', contents=[content],  botChatId=self._chat_id, dtype='msg')
 
                         elif news.src == 'webFromDolBlog':
                             webGenerator = self._get_from_web_dolblog(news.url)
                             for title, p, link in webGenerator:                        
-                                yield Context(label=f'{news.name}', content=[link],  botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[link],  botChatId=self._chat_id, dtype='msg')
 
                         elif news.src == 'webFromIEA_analysis':
                             webGenerator = self._get_from_web_IEA_analysis(news.url, news.attr_key)
                             for title, link in webGenerator:                        
-                                yield Context(label=f'{news.name}', content=[link], botChatId=self._chat_id, dtype='msg')
+                                yield Context(label=f'{news.name}', contents=[link], botChatId=self._chat_id, dtype='msg')
 
                         print(f"Finished obtaining the feed from the {news.name}'s : {datetime.datetime.now()}")
                     except Exception as e:

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class Context:
     label: Optional[str] = None
-    content: List[Any] = None
+    contents: List[Any] = None
     dtype: Optional[str] = None
     botChatId: Optional[str] = None
     enable_summary:bool = False

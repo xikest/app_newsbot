@@ -2,7 +2,6 @@ import asyncio
 import telegram
 from info.definition_obj import Context
 from bot.handler.function_handler import FunctionHandler
-from sentigpt import SentiGPT
 import os
 from .summary import WSJ_Scraper
 
@@ -11,7 +10,8 @@ class ContentsHandler(list):
         super().__init__()
         self.append(context)
         self.max_buffer_size = max_buffer_size
-
+        self.gpt_api_key = os.environ.get("GPT_API_KEY")
+        self.bot_token = os.environ.get("BOT_TOKEN")
     def addContext(self, context: Context = None):
         self.append(context)
     def saveContents(self, context: Context, fileName: str = 'contents_list'):
@@ -38,22 +38,15 @@ class ContentsHandler(list):
             print("error sendTo",e)
     async def _sendContents(self, context: Context):
 
-        gpt_api_key = os.environ.get("GPT_API_KEY")
-        bot_token = os.environ.get("BOT_TOKEN")
-        bot = telegram.Bot(bot_token)
-        sgpt = SentiGPT(api_key=gpt_api_key)
+        bot = telegram.Bot(self.bot_token)
         try:
-            while context.content:
-                if context.dtype == 'img':
-                    await asyncio.sleep(10)
-                    await bot.send_photo(chat_id=context.botChatId, photo=context.content.pop(0))
-                elif context.dtype == 'msg':
-                    context = self.makeSummary(context)
-                    if context.enable_translate == True:
-                        msg = f"#{context.label}\n{await sgpt.translate_en2kr(sentence_en = context.summary.pop(0))}\n\n{context.content.pop(0)}"
-                        # print(f'translate : {msg}')
+            while context.contents:
+                if context.dtype == 'msg':
+                    # context = self.makeSummary(context)
+                    if context.summary:
+                        msg = f"#{context.label}\n {context.summary.pop(0)}\n\n{context.contents.pop(0)}"
                     else:
-                        msg = f"#{context.label}\n\n{context.content.pop(0)}"
+                        msg = f"#{context.label}\n\n{context.contents.pop(0)}"
                     await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
@@ -61,11 +54,19 @@ class ContentsHandler(list):
         except Exception as e:
             print(f"Error _sendContents: {e}")
             pass
-
-    def makeSummary(self, context:Context):
-        if context.enable_summary==True:
-            if context.label == 'WSJ_NEWS':   #WSJ 기사 요약
-                context.summary = [WSJ_Scraper().summary(url= content) for content in context.content]
-                context.enable_translate=True # 번역할 것인지
-
-        return context
+    #
+    # def makeSummary(self, context:Context):
+    #     if context.enable_summary:
+    #         if context.label == 'WSJ_NEWS':
+    #             # sgpt = SentiGPT(api_key=self.gpt_api_key)
+    #             text_list = []
+    #             for content in context.contents:
+    #                 text = WSJ_Scraper().summary(url=content)
+    #                 text = sgpt.translate_en2kr(sentence_en=text)
+    #                 text_list.append(text)
+    #             context.summary = text_list
+    #
+    #     else:
+    #         context.summary = []
+    #         context.enable_translate = False  # 번역할 것인지
+    #     return context

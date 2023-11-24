@@ -22,7 +22,7 @@ class SrcRss:
                             elif rss.src == 'rss':
                                 url = feed.link
                             if not rss.exceptions or all(exception not in url for exception in rss.exceptions):
-                                yield Context(label = f"{rss.name}", content=[url], botChatId=self._chat_id, dtype='msg')
+                                yield Context(label = f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg')
                                 
                         print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")     
                     except Exception as e:
