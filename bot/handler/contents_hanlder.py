@@ -46,7 +46,7 @@ class ContentsHandler(list):
                     if context.summary:
                         msg = f"#{context.label}\n {context.summary.pop(0)}\n\n{context.contents.pop(0)}"
                     else:
-                        msg = f"#{context.label}\n\n{context.contents.pop(0)}"
+                        msg = f"#{context.label}\n\n{context.summary.pop(0)}"
                     await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
@@ -67,6 +67,6 @@ class ContentsHandler(list):
                 context.summary = text_list
 
         else:
-            context.summary = []
+            context.summary = context.contents
             context.enable_translate = False  # 번역할 것인지
         return context
