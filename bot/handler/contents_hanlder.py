@@ -4,7 +4,7 @@ from info.definition_obj import Context
 from bot.handler.function_handler import FunctionHandler
 import os
 from .summary import WSJ_Scraper
-
+from .sentimentmanager import SentimentManager as SentiGPT
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=10000):
         super().__init__()
@@ -55,18 +55,18 @@ class ContentsHandler(list):
             print(f"Error _sendContents: {e}")
             pass
     #
-    # def makeSummary(self, context:Context):
-    #     if context.enable_summary:
-    #         if context.label == 'WSJ_NEWS':
-    #             # sgpt = SentiGPT(api_key=self.gpt_api_key)
-    #             text_list = []
-    #             for content in context.contents:
-    #                 text = WSJ_Scraper().summary(url=content)
-    #                 text = sgpt.translate_en2kr(sentence_en=text)
-    #                 text_list.append(text)
-    #             context.summary = text_list
-    #
-    #     else:
-    #         context.summary = []
-    #         context.enable_translate = False  # 번역할 것인지
-    #     return context
+    def makeSummary(self, context:Context):
+        if context.enable_summary:
+            if context.label == 'WSJ_NEWS':
+                sgpt = SentiGPT(api_key=self.gpt_api_key)
+                text_list = []
+                for content in context.contents:
+                    text = WSJ_Scraper().summary(url=content)
+                    text = sgpt.translate_tokr(sentence=text)
+                    text_list.append(text)
+                context.summary = text_list
+
+        else:
+            context.summary = []
+            context.enable_translate = False  # 번역할 것인지
+        return context

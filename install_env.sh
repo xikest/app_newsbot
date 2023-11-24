@@ -4,7 +4,7 @@
 pip install --upgrade pip
 
 # Install required Python packages
-pip install -U python-telegram-bot IMAPClient selenium beautifulsoup4 feedparser sentigpt
+pip install -U python-telegram-bot IMAPClient selenium beautifulsoup4 feedparser openai
 # Update apt-get
 apt-get update
 
