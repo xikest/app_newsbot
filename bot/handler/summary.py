@@ -16,23 +16,34 @@ class Summary_scraper:
         soup = BeautifulSoup(html, 'html.parser')
         title = soup.title.text
         sub_title = soup.find('h2').text
-        # paragraphes = soup.find_all('p', attrs={"data-type":"paragraph"})
-        # paragraphes = " ".join([paragraph.text for paragraph in paragraphes])
-        # summary =  f"{title}\n\n{sub_title}\n\n{paragraphes}"
         summary =  f"{title}\n\n{sub_title}"
         driver.close()
         driver.quit()
         return summary
-
+    
+    
     def summary(self, url:str):
         driver = self.web_driver.get_chrome()
         driver.get(url)
         time.sleep(self.wait_time)
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-        title = soup.title.text
-        summary =  f"{title}"
+        # title = soup.title.text
+        sub_title = soup.find('h1').text
+        summary =  f"{sub_title}"
         driver.close()
         driver.quit()
         return summary
+
+    # def summary(self, url:str):
+    #     driver = self.web_driver.get_chrome()
+    #     driver.get(url)
+    #     time.sleep(self.wait_time)
+    #     html = driver.page_source
+    #     soup = BeautifulSoup(html, 'html.parser')
+    #     title = soup.title.text
+    #     summary =  f"{title}"
+    #     driver.close()
+    #     driver.quit()
+    #     return summary
 

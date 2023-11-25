@@ -8,7 +8,7 @@ import sys
 import asyncio
 
 class SrcNews:
-    def __init__(self, newsStand: Generator, chat_id:str=None, verbose=False):
+    def __init__(self, newsStand: Generator, chat_id:str=None, verbose=True):
         self._chat_id:Optional[str]=chat_id
         self._newsStand:Generator =  newsStand
         self.verbose = verbose

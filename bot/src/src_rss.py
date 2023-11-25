@@ -7,7 +7,7 @@ from bot.handler.contents_hanlder import Context
 
 class SrcRss:
 
-    def __init__(self, rssList:Generator, chat_id:Optional[str], verbose = False):
+    def __init__(self, rssList:Generator, chat_id:Optional[str], verbose = True):
         self._chat_id:Optional[str]=chat_id
         self._rssList:Generator = rssList
         self.verbose =  verbose

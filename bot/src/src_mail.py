@@ -13,7 +13,7 @@ import os
 
 
 class SrcMail:
-    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=False):
+    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=True):
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
@@ -62,7 +62,8 @@ class SrcMail:
                 # print(f"{mailing.sender} plain_url before filtering: {url}")
                 if not mailing.url_conditions or all(condition in url for condition in mailing.url_conditions):
                     # print(f"{mailing.sender} plain_url: {url}")
-                    yield Context(label = mailing.box, contents=[url], botChatId=self._chat_id, dtype='msg')
+                    yield Context(label = mailing.box, contents=[url], botChatId=self._chat_id, dtype='msg', enable_summary=True)
+
 
         elif ctype == 'text/html' and 'attachment' not in cdispo:
             soup = bs4.BeautifulSoup(body, 'html.parser')

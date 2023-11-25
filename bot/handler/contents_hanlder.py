@@ -55,22 +55,21 @@ class ContentsHandler(list):
     
     def _make_summary(self, context:Context):
         if context.enable_summary:
+            print("make summary")
             if context.label == 'WSJ_NEWS':
                 sgpt = SentiGPT(api_key=self.gpt_api_key)
                 summary = []
                 for content in context.contents:
                     text = Summary_scraper().wsj_summary(url=content)
-                    print(text)
                     text = sgpt.translate_tokr(sentence=text)
                     summary.append(f"{text}\n{content}")
                 context.summary = summary
                 
-            elif context.label == 'REUTERS':
+            else: 
                 sgpt = SentiGPT(api_key=self.gpt_api_key)
                 summary = []
                 for content in context.contents:
                     text = Summary_scraper().summary(url=content)
-                    print(text)
                     text = sgpt.translate_tokr(sentence=text)
                     summary.append(f"{text}\n{content}")
                 context.summary = summary
