@@ -55,7 +55,6 @@ class ContentsHandler(list):
     
     def _make_summary(self, context:Context):
         if context.enable_summary:
-            print("make summary")
             if context.label == 'WSJ_NEWS':
                 sgpt = SentiGPT(api_key=self.gpt_api_key)
                 summary = []
