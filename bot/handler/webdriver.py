@@ -6,11 +6,11 @@ from selenium.webdriver.chrome.options import Options
 class WebDriver:
     def __init__(self, executable_path:str=None, browser_path:str=None, headless=True):
         if executable_path is None:
-            self.executable_path = "/workspace/research-market-tv/chromedriver/chromedriver"
+            self.executable_path = "/workspace/app_newsbot/chromedriver/chromedriver"
         else:
             self.executable_path = executable_path
         if browser_path is None:
-            self.browser_path = "/workspace/research-market-tv/chrome/chrome"
+            self.browser_path = "/workspace/app_newsbot/chrome/chrome"
         else:
             self.browser_path = browser_path
         self.headless= headless

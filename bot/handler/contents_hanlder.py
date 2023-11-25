@@ -3,8 +3,9 @@ import telegram
 from info.definition_obj import Context
 from bot.handler.function_handler import FunctionHandler
 import os
-from .summary import WSJ_Scraper
+from .summary import Summary_scraper
 from .sentimentmanager import SentimentManager as SentiGPT
+
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=10000):
         super().__init__()
@@ -40,13 +41,10 @@ class ContentsHandler(list):
 
         bot = telegram.Bot(self.bot_token)
         try:
-            while context.contents:
+            context = self._make_summary(context)
+            while context.summary:
                 if context.dtype == 'msg':
-                    context = self.makeSummary(context)
-                    if context.summary:
-                        msg = f"#{context.label}\n {context.summary.pop(0)}\n\n{context.contents.pop(0)}"
-                    else:
-                        msg = f"#{context.label}\n\n{context.summary.pop(0)}"
+                    msg = f"#{context.label}\n\n{context.summary.pop(0)}"
                     await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
@@ -54,19 +52,28 @@ class ContentsHandler(list):
         except Exception as e:
             print(f"Error _sendContents: {e}")
             pass
-    #
-    def makeSummary(self, context:Context):
+    
+    def _make_summary(self, context:Context):
         if context.enable_summary:
             if context.label == 'WSJ_NEWS':
                 sgpt = SentiGPT(api_key=self.gpt_api_key)
                 summary = []
                 for content in context.contents:
-                    text = WSJ_Scraper().summary(url=content)
+                    text = Summary_scraper().wsj_summary(url=content)
+                    print(text)
                     text = sgpt.translate_tokr(sentence=text)
-                    summary.append(text)
+                    summary.append(f"{text}\n{content}")
                 context.summary = summary
-
+                
+            elif context.label == 'REUTERS':
+                sgpt = SentiGPT(api_key=self.gpt_api_key)
+                summary = []
+                for content in context.contents:
+                    text = Summary_scraper().summary(url=content)
+                    print(text)
+                    text = sgpt.translate_tokr(sentence=text)
+                    summary.append(f"{text}\n{content}")
+                context.summary = summary
         else:
             context.summary = context.contents
-            context.enable_translate = False  # 번역할 것인지
         return context
