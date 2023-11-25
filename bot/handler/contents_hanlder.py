@@ -42,7 +42,7 @@ class ContentsHandler(list):
         try:
             while context.contents:
                 if context.dtype == 'msg':
-                    # context = self.makeSummary(context)
+                    context = self.makeSummary(context)
                     if context.summary:
                         msg = f"#{context.label}\n {context.summary.pop(0)}\n\n{context.contents.pop(0)}"
                     else:
@@ -59,12 +59,12 @@ class ContentsHandler(list):
         if context.enable_summary:
             if context.label == 'WSJ_NEWS':
                 sgpt = SentiGPT(api_key=self.gpt_api_key)
-                text_list = []
+                summary = []
                 for content in context.contents:
                     text = WSJ_Scraper().summary(url=content)
                     text = sgpt.translate_tokr(sentence=text)
-                    text_list.append(text)
-                context.summary = text_list
+                    summary.append(text)
+                context.summary = summary
 
         else:
             context.summary = context.contents
