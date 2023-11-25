@@ -13,11 +13,12 @@ import os
 
 
 class SrcMail:
-    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None):
+    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=False):
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
         self._chat_id: Optional[str] = chat_id
+        self.verbose = verbose
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             for mailing in self._mailings:
@@ -39,12 +40,14 @@ class SrcMail:
                     print(f"Finished obtaining the feed from the {mailing.sender}'s : {datetime.datetime.now()}")
                 except Exception as e:
                     time_sleep = datetime.datetime.now()
-                    print(f'Error description -> {e}')
-                    print(f"Raised a feed error from the {mailing.sender}'s @{time_sleep}")
+                    if self.verbose:
+                        print(f'Error description -> {e}')
+                        print(f"Raised a feed error from the {mailing.sender}'s @{time_sleep}")
                     await asyncio.sleep(60 * 10)  #다음 반복까지 대기 시간
                     time_awake = datetime.datetime.now()
-                    print(f"Awakened a feed error from the {mailing.sender}'s @{time_awake}")
-                    print(f'Total sleep time{time_awake - time_sleep}')
+                    if self.verbose:
+                        print(f"Awakened a feed error from the {mailing.sender}'s @{time_awake}")
+                        print(f'Total sleep time{time_awake - time_sleep}')
 
                     
     async def _run_generator(self, ctype, cdispo, body, mailing):
@@ -88,7 +91,8 @@ class SrcMail:
             final_url = response.url
         except requests.exceptions.RequestException as e:
             final_url = ''
-            print(f"Raised URL redirects error: {e}")
+            if self.verbose:
+                print(f"Raised URL redirects error: {e}")
         return final_url
     
     def _get_UIDs_msg(self, usr: str, pid: str, box: str, imap: str = 'imap.naver.com'):

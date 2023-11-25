@@ -8,9 +8,10 @@ import sys
 import asyncio
 
 class SrcNews:
-    def __init__(self, newsStand: Generator, chat_id:str=None):
+    def __init__(self, newsStand: Generator, chat_id:str=None, verbose=False):
         self._chat_id:Optional[str]=chat_id
         self._newsStand:Generator =  newsStand
+        self.verbose = verbose
             
     async def generator(self)-> Context:
                 for news in self._newsStand:
@@ -57,12 +58,14 @@ class SrcNews:
                         print(f"Finished obtaining the feed from the {news.name}'s : {datetime.datetime.now()}")
                     except Exception as e:
                         time_sleep = datetime.datetime.now()
-                        print(f'Error description -> {e}')
-                        print(f"Raised a feed error from the {news.name}'s @{time_sleep}")
+                        if self.verbose:
+                            print(f'Error description -> {e}')
+                            print(f"Raised a feed error from the {news.name}'s @{time_sleep}")
                         await asyncio.sleep(60 * 10)  #다음 반복까지 대기 시간
                         time_awake = datetime.datetime.now()
-                        print(f"Awakened a feed error from the {news.name}'s @{time_awake}")
-                        print(f'Total sleep time{time_awake - time_sleep}')
+                        if self.verbose:
+                            print(f"Awakened a feed error from the {news.name}'s @{time_awake}")
+                            print(f'Total sleep time{time_awake - time_sleep}')
                         
 
             
