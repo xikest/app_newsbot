@@ -13,7 +13,7 @@ class SentimentManager:
     def reset_message(self):
         self.messages_prompt =[]
 
-    def translate_tokr(self, sentence:str) -> float:
+    def translate_tokr(self, sentence:str) -> str:
         try:
             self.add_message("assistant", "Translate the entered language into Korean.")
             self.add_message("user", f"{sentence}")

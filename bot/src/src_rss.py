@@ -7,9 +7,10 @@ from bot.handler.contents_hanlder import Context
 
 class SrcRss:
 
-    def __init__(self, rssList:Generator, chat_id:Optional[str]):
+    def __init__(self, rssList:Generator, chat_id:Optional[str], verbose = False):
         self._chat_id:Optional[str]=chat_id
         self._rssList:Generator = rssList
+        self.verbose =  verbose
 
     async def generator(self)-> Context:
                 url = None
@@ -27,10 +28,12 @@ class SrcRss:
                         print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")     
                     except Exception as e:
                         time_sleep = datetime.datetime.now()
-                        print(f'Error description -> {e}')
-                        print(f"Raised a feed error from the {rss.name}'s @{time_sleep}")
+                        if self.verbose:
+                            print(f'Error description -> {e}')
+                            print(f"Raised a feed error from the {rss.name}'s @{time_sleep}")
                         await asyncio.sleep(60 * 10)  #다음 반복까지 대기 시간
                         time_awake = datetime.datetime.now()
-                        print(f"Awakened a feed error from the {rss.name}'s @{time_awake}")
-                        print(f'Total sleep time{time_awake - time_sleep}')
+                        if self.verbose:
+                            print(f"Awakened a feed error from the {rss.name}'s @{time_awake}")
+                            print(f'Total sleep time{time_awake - time_sleep}')
 
