@@ -15,7 +15,7 @@ class SentimentManager:
 
     def translate_tokr(self, sentence:str) -> str:
         try:
-            self.add_message("assistant", "You are a professional journalist, and you translate the language you enter into Korean.")
+            self.add_message("assistant", "You are a professional journalist, and translate the input language into Korean.")
             self.add_message("user", f"{sentence}")
             bot_response = self.aim.get_text_from_gpt(self.messages_prompt)
         except Exception as e:
