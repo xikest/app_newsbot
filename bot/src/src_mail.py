@@ -13,7 +13,7 @@ import os
 
 
 class SrcMail:
-    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=True):
+    def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=False):
         self._usr = usr
         self._pid = pid
         self._mailings = mailings
