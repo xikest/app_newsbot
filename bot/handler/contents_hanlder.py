@@ -46,7 +46,7 @@ class ContentsHandler(list):
             pass
         
     def _save_contents(self, context: Context, fileName: str = 'contents_list'):
-        sent_list = list(self.loadContents())
+        sent_list = list(self._load_contents())
         sent_list.append(context)
         if len(sent_list) > self.max_buffer_size:
             sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
