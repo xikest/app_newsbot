@@ -27,7 +27,7 @@ class ContentsHandler(list):
                 self._save_contents(context=context)
                 await self._send_contents(context)
         except Exception as e: 
-            print("error sendTo",e)
+            print(f"error sendTo: {e}")
             
     async def _send_contents(self, context: Context):
 
