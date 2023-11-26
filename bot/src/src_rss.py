@@ -2,6 +2,8 @@ from typing import Optional, Generator
 import feedparser
 import datetime
 import asyncio
+import requests
+from bs4 import BeautifulSoup
 
 from bot.handler.contents_hanlder import Context
 
@@ -23,7 +25,9 @@ class SrcRss:
                             elif rss.src == 'rss':
                                 url = feed.link
                             if not rss.exceptions or all(exception not in url for exception in rss.exceptions):
-                                yield Context(label = f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg')
+                                title = self.get_title(url)
+                                if all(exception not in title for exception in rss.exceptions):
+                                    yield Context(label = f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg')
                                 
                         print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")     
                     except Exception as e:
@@ -37,3 +41,19 @@ class SrcRss:
                             print(f"Awakened a feed error from the {rss.name}'s @{time_awake}")
                             print(f'Total sleep time{time_awake - time_sleep}')
 
+
+    def get_title(self, url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.text, 'html.parser')
+            title_tag = soup.find('title')
+            if title_tag:
+                print(title_tag)
+                return title_tag.text.strip().lower()
+            
+            else:
+                return "Title not found on the webpage."
+
+        except requests.exceptions.RequestException as e:
+            return f"Error: {e}"
