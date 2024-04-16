@@ -7,6 +7,11 @@ ps -ef|grep start_bot
 ## 패키지 목록 저장
 pip freeze > requirements.txt
 
+## 환경 변수 등록 
+BOT_TOKEN
+mailid
+ppww
+
 ## 패키지 목록에서 설치
 pip install --upgrade pip
 pip install --upgrade -r requirements.txt
