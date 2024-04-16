@@ -32,8 +32,10 @@ class ContentsHandler(list):
     async def _send_contents(self, context: Context):
 
         bot = telegram.Bot(self.bot_token)
+        print(f"bot token: {self.bot_token}")
         try:
             context = self._make_summary(context)
+            print(f"context: {context}")
             while context.summary:
                 if context.dtype == 'msg':
                     msg = f"#{context.label}\n\n{context.summary.pop(0)}"
