@@ -15,8 +15,8 @@ class Feeder:
                 [
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/48', attr_key='news-list'),
                     # 글로벌 마켓 김현석
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/99', attr_key='news_list'),
-                    # 글로벌 마켓 조재길
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/65', attr_key='news_list'),
+                    # 글로벌 마켓 최진석
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/90', attr_key='news_list'),
                     # 글로벌 마켓 정인설
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/575', attr_key='news-list'),
@@ -25,8 +25,8 @@ class Feeder:
                     # 한경 박신영
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/417', attr_key='news-list'),
                     # 글로벌 마켓 이지훈
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/432', attr_key='news-list'),
-                    # 글로벌 마켓 정영효
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/111', attr_key='news-list'),
+                    # 글로벌 마켓 김일규
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/847', attr_key='news-list'),
                     # 한경 김리안
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/globalmarket/news-market',
