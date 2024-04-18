@@ -26,3 +26,10 @@ sudo apt update
 ## 설치 하기
 chmod +x install_env.sh
 ./install_env.sh
+
+
+## github 클론
+git clone https://github.com/xikest/app_newsbot.git
+## 클론 삭제
+rm -rf app_newsbot
+
