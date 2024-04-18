@@ -19,6 +19,7 @@ class SrcMail:
         self._mailings = mailings
         self._chat_id: Optional[str] = chat_id
         self.verbose = verbose
+        print(usr, pid)
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             for mailing in self._mailings:
