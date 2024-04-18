@@ -6,6 +6,7 @@ import gzip
 from pathlib import Path
 
 from info.definition_obj import Context
+from info.sender import Sender
 # from .summary import Summary_scraper
 # from .sentimentmanager import SentimentManager as SentiGPT
 
@@ -15,7 +16,10 @@ class ContentsHandler(list):
         self.append(context)
         self.max_buffer_size = max_buffer_size
         self.gpt_api_key = os.environ.get("GPT_API_KEY")
-        self.bot_token = os.environ.get("BOT_TOKEN")
+        try:
+            self.bot_token = os.environ.get("BOT_TOKEN")
+        except:
+            self.bot_token = Sender.get_token()
         
     async def sendTo(self, token: str) -> None:
         try: 
