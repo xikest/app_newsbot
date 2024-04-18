@@ -30,9 +30,8 @@ class ContentsHandler(list):
             print(f"error sendTo: {e}")
             
     async def _send_contents(self, context: Context):
-
-        bot = telegram.Bot(self.bot_token)
         print(f"bot token: {self.bot_token}")
+        bot = telegram.Bot(self.bot_token)
         try:
             context = self._make_summary(context)
             print(f"context: {context}")
