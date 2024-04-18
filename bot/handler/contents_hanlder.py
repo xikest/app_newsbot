@@ -16,10 +16,8 @@ class ContentsHandler(list):
         self.append(context)
         self.max_buffer_size = max_buffer_size
         self.gpt_api_key = os.environ.get("GPT_API_KEY")
-        try:
-            self.bot_token = os.environ.get("BOT_TOKEN")
-        except:
-            self.bot_token = Sender.get_token()
+        # self.bot_token = os.environ.get("BOT_TOKEN")
+        self.bot_token = Sender.get_token()
         
     async def sendTo(self, token: str) -> None:
         try: 
