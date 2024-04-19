@@ -1,45 +1,40 @@
 import asyncio
 import telegram
-import os
 import pickle
 import gzip
 from pathlib import Path
-
 from info.definition_obj import Context
-from info.sender import Sender
-# from .summary import Summary_scraper
-# from .sentimentmanager import SentimentManager as SentiGPT
+from .summary import Summary_scraper
+from .sentimentmanager import SentimentManager as SentiGPT
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=100000):
         super().__init__()
         self.append(context)
         self.max_buffer_size = max_buffer_size
-        self.gpt_api_key = os.environ.get("GPT_API_KEY")
-        # self.bot_token = os.environ.get("BOT_TOKEN")
-        self.bot_token = Sender().get_token()
-        
-    async def sendTo(self, token: str) -> None:
+
+
+    async def sendTo(self, token: str, gpt:str) -> None:
         try: 
             context = self.pop()
             if not context:
                 return  # 컨텐츠가 없으면 아무 것도 하지 않음
-
             if context not in self._load_contents():
                 self._save_contents(context=context)
-                await self._send_contents(context)
+                await self._send_contents(context, token, gpt)
         except Exception as e: 
             print(f"error sendTo: {e}")
             
-    async def _send_contents(self, context: Context):
-        print(f"bot token: {self.bot_token}")
-        bot = telegram.Bot(self.bot_token)
+    async def _send_contents(self, context: Context, bot_token: str, gpt_key:str):
+        # print(f"bot token: {self.bot_token}")
+        bot = telegram.Bot(bot_token)
         try:
-            context = self._make_summary(context)
-            print(f"context: {context}")
+            context = self._make_summary(context, gpt_key)
+            # print(f"context: {context}")
             while context.summary:
                 if context.dtype == 'msg':
-                    msg = f"#{context.label}\n\n{context.summary.pop(0)}"
+                    msg = f"{context.summary.pop(0)}"
+                    # msg = f"#{context.label}\n{context.summary.pop(0)}"
                     # await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
@@ -62,31 +57,33 @@ class ContentsHandler(list):
             yield from []
             
     
-    def _make_summary(self, context:Context):
-        # if context.enable_summary:
-        #     if context.label == 'WSJ_NEWS':
-        #         sgpt = SentiGPT(api_key=self.gpt_api_key)
-        #         summary = []
-        #         for content in context.contents:
-        #             text = Summary_scraper().wsj_summary(url=content)
-        #             text = sgpt.translate_tokr(sentence=text)
-        #             summary.append(f"{text}\n{content}")
-        #         context.summary = summary
-        #
-        #     else:
-        #         sgpt = SentiGPT(api_key=self.gpt_api_key)
-        #         summary = []
-        #         for content in context.contents:
-        #             text = Summary_scraper().summary(url=content)
-        #             text = sgpt.translate_tokr(sentence=text)
-        #             summary.append(f"{text}\n{content}")
-        #         context.summary = summary
-        # else:
-        #     context.summary = context.contents
-        # return context
+    def _make_summary(self, context:Context, gpt_key:str):
+        if context.enable_summary:
+            if context.label == 'WSJ_NEWS':
+                sgpt = SentiGPT(api_key=gpt_key)
+                summary = []
+                for content in context.contents:
+                    print("content")
+                    print(content)
+                    text = Summary_scraper().wsj_summary(url=content)
+                    text = sgpt.translate_tokr(sentence=text)
+                    summary.append(f"{text}\n{content}")
+                context.summary = summary
 
-        context.summary = context.contents
+            else:
+                sgpt = SentiGPT(api_key=gpt_key)
+                summary = []
+                for content in context.contents:
+                    text = Summary_scraper().summary(url=content)
+                    text = sgpt.translate_tokr(sentence=text)
+                    summary.append(f"{text}\n{content}")
+                context.summary = summary
+        else:
+            context.summary = context.contents
         return context
+
+        # context.summary = context.contents
+        # return context
 
     def save_to_pickle(self, data, file_name, data_path: Path = Path.cwd()):
         with gzip.open(f"{data_path}/{file_name}.pickle", 'wb') as f:

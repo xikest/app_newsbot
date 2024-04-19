@@ -11,11 +11,16 @@ class Bot_Alert():
 
   def __init__(self):
     self._TOKEN = Sender().get_token()
+    self._GPT = Sender().get_gptkey()
     self.src = Src_Alert()
     pass
   @property
   def getToken(self):
     return self._TOKEN
+
+  @property
+  def getGpt(self):
+    return self._GPT
 
   # @getToken.setter
   # def setToken(self, token:str = None):
@@ -36,7 +41,7 @@ class Bot_Alert():
             start = time.time()
             async for context in generatorForContext(): 
                       # print(f"bot alert: {context}")
-                      await ContentsHandler(context).sendTo(self.getToken)
+                      await ContentsHandler(context).sendTo(self.getToken, self._GPT)
             end = time.time()
             print(f'context time taken: {(end - start)}')
             await asyncio.sleep(5)

@@ -44,13 +44,13 @@ class Feeder:
                     # 집코노미 전형진
                 ],
 
-            'rss_visualization_chatid': '-1001854256703',
-            'rss_visualization':
-                [
-                    News(name='visualcapitalist', src='rss',
-                         url='https://feeds.feedburner.com/visualcapitalist',
-                         exceptions=['introducing-voronoi-waitlist-now-open']),
-                ],
+            # 'rss_visualization_chatid': '-1001854256703',
+            # 'rss_visualization':
+            #     [
+            #         News(name='visualcapitalist', src='rss',
+            #              url='https://feeds.feedburner.com/visualcapitalist',
+            #              exceptions=['introducing-voronoi-waitlist-now-open']),
+            #     ],
 
             # 'rss_articles_chatid': '-1001686311222',
             # 'rss_articles':
@@ -62,19 +62,7 @@ class Feeder:
             #         News(name='유튜브_지식플레이', src='rss',
             #              url='https://www.youtube.com/feeds/videos.xml?channel_id=UCXql5C57vS4ogUt6CPEWWHA')
             #     ],
-            # 'rss_sonytv_chatid': '-1002093329277',
-            # 'rss_sonytv':
-            #     [
-            #         News(name='SONY + BRAVIA  + OLED -deal -deals -price', src='googleAlert',
-            #              url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10534109714214468206'),
-            #         News(name='소니 global IR', src='googleAlert',
-            #              url='"https://www.sony.com/en/SonyInfo/IR/rss/rss.xml"'),
-            #         News(name='소니 global youtube', src='rss',
-            #              url='https://www.youtube.com/feeds/videos.xml?channel_id=UCVjS9AuBloqJJjhsy3vIfug',
-            #              # exceptions = ["headset", "buds","headphones","car","audio"]
-            #              )
 
-                # ],
 
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
@@ -112,7 +100,9 @@ class Feeder:
             'mail_wsj':
                 [
                     Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                         url_conditions=['www.wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
+                         url_conditions=['wsj.com'], filter_linktext="Read More"),
+                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+                    #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
                     # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
                     #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
                     # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
@@ -140,34 +130,34 @@ class Feeder:
             #         Mail(box='STATISTA', sender='Statista Daily Data - Early Edition', url_conditions=['statista.com', 'chart'])
             #     ],
 
-            'rss_bok_chatid': '-1001558520951',
-            'rss_bok':
-                [
-                    News(name='경제전망보고서', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
-                    News(name='금융안정보고서', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
-                    News(name='통화신용정책보고서', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
-                    News(name='뉴욕사무소 ', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
-                    News(name='워싱턴주재원', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
-                    News(name='프랑크푸르트사무소', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
-                    News(name='동경사무소', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
-                    News(name='런던사무소', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
-                    News(name='북경사무소', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
-                    News(name='홍콩주재원', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
-                    News(name='상해주재원 ', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
-                    News(name='이슈및관련자료 ', src='rss',
-                         url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
-                ],
+            # 'rss_bok_chatid': '-1001558520951',
+            # 'rss_bok':
+            #     [
+            #         News(name='경제전망보고서', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
+            #         News(name='금융안정보고서', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
+            #         News(name='통화신용정책보고서', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
+            #         News(name='뉴욕사무소 ', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
+            #         News(name='워싱턴주재원', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
+            #         News(name='프랑크푸르트사무소', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
+            #         News(name='동경사무소', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
+            #         News(name='런던사무소', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
+            #         News(name='북경사무소', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
+            #         News(name='홍콩주재원', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
+            #         News(name='상해주재원 ', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
+            #         News(name='이슈및관련자료 ', src='rss',
+            #              url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
+            #     ],
 
 
 

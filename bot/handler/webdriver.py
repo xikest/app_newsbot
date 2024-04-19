@@ -1,16 +1,28 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+import os
+
 
 
 class WebDriver:
     def __init__(self, executable_path:str=None, browser_path:str=None, headless=True):
+        current_directory = os.getcwd()
+        print("현재 디렉토리:", current_directory)
+        # chromedriver 경로 추가
+        # chromedriver_path = os.path.join(current_directory, "chromedriver", "chromedriver")
+        # print("chromedriver 경로:", chromedriver_path)
+
         if executable_path is None:
-            self.executable_path = "/workspace/app_newsbot/chromedriver/chromedriver"
+            self.executable_path = os.path.join(current_directory, "chromedriver", "chromedriver.exe")  # 리눅스에서는 . exe 삭제
+            print(self.executable_path)
+            # self.executable_path = "./chromedriver/chromedriver"
         else:
             self.executable_path = executable_path
         if browser_path is None:
-            self.browser_path = "/workspace/app_newsbot/chrome/chrome"
+            self.browser_path = os.path.join(current_directory, "chrome", "chrome.exe") # 리눅스에서는 . exe 삭제
+            print(self.browser_path)
+            # self.browser_path = "./chrome/chrome"
         else:
             self.browser_path = browser_path
         self.headless= headless
