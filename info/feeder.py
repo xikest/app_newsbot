@@ -109,19 +109,19 @@ class Feeder:
                     #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
                 ],
 
-            # 'mail_reuters_chatid': '-1001585250010',
-            # 'mail_reuters':
-            #     [
-            #         Mail(box='REUTERS', sender='Reuters Business',
-            #              url_conditions=['www.reuters.com', 'Reuters', 'Business'],
-            #              filter_linktext="Read More"),
-            #         Mail(box='REUTERS', sender='Reuters Global Investor',
-            #              url_conditions=['www.reuters.com', 'Investor'],
-            #              filter_linktext="Read More"),
-            #         Mail(box='REUTERS', sender='Reuters Technology Roundup',
-            #              url_conditions=['www.reuters.com', 'Technology', 'Roundup'],
-            #              filter_linktext="Read More")
-            #     ],
+            'mail_reuters_chatid': '-1001585250010',
+            'mail_reuters':
+                [
+                    Mail(box='REUTERS', sender='Reuters Business',
+                         url_conditions=['www.reuters.com', 'Reuters', 'Business'],
+                         filter_linktext="Read More"),
+                    Mail(box='REUTERS', sender='Reuters Global Investor',
+                         url_conditions=['www.reuters.com', 'Investor'],
+                         filter_linktext="Read More"),
+                    Mail(box='REUTERS', sender='Reuters Technology Roundup',
+                         url_conditions=['www.reuters.com', 'Technology', 'Roundup'],
+                         filter_linktext="Read More")
+                ],
 
             # 'mail_statista_chatid': '-1001854256703',
             # 'mail_statista':
@@ -130,34 +130,34 @@ class Feeder:
             #         Mail(box='STATISTA', sender='Statista Daily Data - Early Edition', url_conditions=['statista.com', 'chart'])
             #     ],
 
-            # 'rss_bok_chatid': '-1001558520951',
-            # 'rss_bok':
-            #     [
-            #         News(name='경제전망보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
-            #         News(name='금융안정보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
-            #         News(name='통화신용정책보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
-            #         News(name='뉴욕사무소 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
-            #         News(name='워싱턴주재원', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
-            #         News(name='프랑크푸르트사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
-            #         News(name='동경사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
-            #         News(name='런던사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
-            #         News(name='북경사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
-            #         News(name='홍콩주재원', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
-            #         News(name='상해주재원 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
-            #         News(name='이슈및관련자료 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
-            #     ],
+            'rss_bok_chatid': '-1001558520951',
+            'rss_bok':
+                [
+                    News(name='경제전망보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
+                    News(name='금융안정보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
+                    News(name='통화신용정책보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
+                    News(name='뉴욕사무소 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
+                    News(name='워싱턴주재원', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
+                    News(name='프랑크푸르트사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
+                    News(name='동경사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
+                    News(name='런던사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
+                    News(name='북경사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
+                    News(name='홍콩주재원', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
+                    News(name='상해주재원 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
+                    News(name='이슈및관련자료 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
+                ],
 
 
 
