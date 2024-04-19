@@ -6,8 +6,8 @@ import os
 class Feeder:
     def __init__(self):
         self.feeder_mail_info = {
-            'usr': os.environ.get("mailid"),
-            'pid': os.environ.get("ppww")
+            'usr': os.environ.get("MAILID"),
+            'pid': os.environ.get("PPWW")
         }
         self.feeder_web_source = {
             'news_article_chatid': '-1001673032661',

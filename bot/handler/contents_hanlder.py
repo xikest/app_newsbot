@@ -4,8 +4,8 @@ import pickle
 import gzip
 from pathlib import Path
 from info.definition_obj import Context
-from .summary import Summary_scraper
-from .sentimentmanager import SentimentManager as SentiGPT
+# from .summary import Summary_scraper
+# from .sentimentmanager import SentimentManager as SentiGPT
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=100000):
@@ -58,32 +58,32 @@ class ContentsHandler(list):
             
     
     def _make_summary(self, context:Context, gpt_key:str):
-        if context.enable_summary:
-            if context.label == 'WSJ_NEWS':
-                sgpt = SentiGPT(api_key=gpt_key)
-                summary = []
-                for content in context.contents:
-                    print("content")
-                    print(content)
-                    text = Summary_scraper().wsj_summary(url=content)
-                    text = sgpt.translate_tokr(sentence=text)
-                    summary.append(f"{text}\n{content}")
-                context.summary = summary
-
-            else:
-                sgpt = SentiGPT(api_key=gpt_key)
-                summary = []
-                for content in context.contents:
-                    text = Summary_scraper().summary(url=content)
-                    text = sgpt.translate_tokr(sentence=text)
-                    summary.append(f"{text}\n{content}")
-                context.summary = summary
-        else:
-            context.summary = context.contents
-        return context
-
-        # context.summary = context.contents
+        # if context.enable_summary:
+        #     if context.label == 'WSJ_NEWS':
+        #         sgpt = SentiGPT(api_key=gpt_key)
+        #         summary = []
+        #         for content in context.contents:
+        #             print("content")
+        #             print(content)
+        #             text = Summary_scraper().wsj_summary(url=content)
+        #             text = sgpt.translate_tokr(sentence=text)
+        #             summary.append(f"{text}\n{content}")
+        #         context.summary = summary
+        #
+        #     else:
+        #         sgpt = SentiGPT(api_key=gpt_key)
+        #         summary = []
+        #         for content in context.contents:
+        #             text = Summary_scraper().summary(url=content)
+        #             text = sgpt.translate_tokr(sentence=text)
+        #             summary.append(f"{text}\n{content}")
+        #         context.summary = summary
+        # else:
+        #     context.summary = context.contents
         # return context
+
+        context.summary = context.contents
+        return context
 
     def save_to_pickle(self, data, file_name, data_path: Path = Path.cwd()):
         with gzip.open(f"{data_path}/{file_name}.pickle", 'wb') as f:
