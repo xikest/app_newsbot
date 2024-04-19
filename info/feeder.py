@@ -109,19 +109,19 @@ class Feeder:
                     #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
                 ],
 
-            'mail_reuters_chatid': '-1001585250010',
-            'mail_reuters':
-                [
-                    Mail(box='REUTERS', sender='Reuters Business',
-                         url_conditions=['www.reuters.com', 'Reuters', 'Business'],
-                         filter_linktext="Read More"),
-                    Mail(box='REUTERS', sender='Reuters Global Investor',
-                         url_conditions=['www.reuters.com', 'Investor'],
-                         filter_linktext="Read More"),
-                    Mail(box='REUTERS', sender='Reuters Technology Roundup',
-                         url_conditions=['www.reuters.com', 'Technology', 'Roundup'],
-                         filter_linktext="Read More")
-                ],
+            # 'mail_reuters_chatid': '-1001585250010',
+            # 'mail_reuters':
+            #     [
+            #         Mail(box='REUTERS', sender='Reuters Business',
+            #              url_conditions=['www.reuters.com', 'Reuters', 'Business'],
+            #              filter_linktext="Read More"),
+            #         Mail(box='REUTERS', sender='Reuters Global Investor',
+            #              url_conditions=['www.reuters.com', 'Investor'],
+            #              filter_linktext="Read More"),
+            #         Mail(box='REUTERS', sender='Reuters Technology Roundup',
+            #              url_conditions=['www.reuters.com', 'Technology', 'Roundup'],
+            #              filter_linktext="Read More")
+            #     ],
 
             # 'mail_statista_chatid': '-1001854256703',
             # 'mail_statista':
