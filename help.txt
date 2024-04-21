@@ -2,7 +2,7 @@
 nohup python3 -u app_newsbot.py > log_bot.log 2>&1
 
 #실행 중인 쉘 확인 아래는 bot 키워드
-ps -ef|grep start_bot
+ps -ef|grep bot
 
 ## 패키지 목록 저장
 pip freeze > requirements.txt
