@@ -1,5 +1,5 @@
 ## 실행하기
-nohup python3 -u start_bot.py > bot_alert.log 2>&1 
+nohup python3 -u app_newsbot.py > log_bot.log 2>&1
 
 #실행 중인 쉘 확인 아래는 bot 키워드
 ps -ef|grep start_bot
