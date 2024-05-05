@@ -109,6 +109,22 @@ class Feeder:
                     #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
                 ],
 
+            'mail_economist_chatid': '-1001754209136',
+            'mail_economist':
+                [
+                    Mail(box='ECONOMIST', sender='The Economist today',
+                         url_conditions=['economist.com'], filter_linktext="Read in browser"),
+                    Mail(box='ECONOMIST', sender='The Economist',
+                         url_conditions=['economist.com'], filter_linktext="Read in browser"),
+                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+                    #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
+                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+                    #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
+                    # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
+                    #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
+                ],
+
+
             # 'mail_reuters_chatid': '-1001585250010',
             # 'mail_reuters':
             #     [
