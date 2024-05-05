@@ -6,9 +6,7 @@ from bot.src_alert import Src_Alert
 from info.sender import Sender
 
 class Bot_Alert():
-  STATUS = True
-  STOP = False
-
+    
   def __init__(self):
     self._TOKEN = Sender().get_token()
     self._GPT = Sender().get_gptkey()
@@ -28,7 +26,6 @@ class Bot_Alert():
   #       self._TOKEN = token if token is not None else ''
 
   async def start(self, waitTime:int = 1800):
-            while Bot_Alert.STATUS != Bot_Alert.STOP:
                 try:
                     await self.update(self.src.generator)
                     print(f'cycle finish, sleep {time.time()}')

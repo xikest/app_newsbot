@@ -18,7 +18,7 @@ class SrcMail:
         self.verbose = verbose
         self.redirection_url = redirection_url
         self.enable_summary = enable_summary
-        print(f"idpw {usr}, {pid}")
+        # print(f"idpw {usr}, {pid}")
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             for mailing in self._mailings:
