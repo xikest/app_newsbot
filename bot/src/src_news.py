@@ -39,7 +39,7 @@ class WebScraper:
     def __init__(self, base_url=None):
         self.base_url = base_url
 
-    @staticmethod
+    @classmethod
     def web_scraping_decorator(func):
         @wraps(func)
         def wrapper(self, url, *args, **kwargs):
