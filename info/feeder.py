@@ -13,36 +13,50 @@ class Feeder:
             'news_article_chatid': '-1001673032661',
             'news_article':
                 [
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/48', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/48', class_key='news-list'),
                     # 글로벌 마켓 김현석
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/65', attr_key='news_list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/65', class_key='news_list'),
                     # 글로벌 마켓 최진석
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/90', attr_key='news_list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/90', class_key='news_list'),
                     # 글로벌 마켓 정인설
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/575', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/575', class_key='news-list'),
                     # 글로벌 마켓 나수지
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/109', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/109', class_key='news-list'),
                     # 한경 박신영
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/417', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/417', class_key='news-list'),
                     # 글로벌 마켓 이지훈
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/111', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/111', class_key='news-list'),
                     # 글로벌 마켓 김일규
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/847', attr_key='news-list'),
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/847', class_key='news-list'),
                     # 한경 김리안
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/globalmarket/news-market',
-                         attr_key='news-list'),
-                    News(name='한경', src='web', url='https://www.hankyung.com/economy', attr_key='main-headline'),
+                         class_key='news-list'),
+                    News(name='한경', src='web', url='https://www.hankyung.com/economy', class_key='main-headline'),
                     News(name='한경', src='web', url='https://www.hankyung.com/financial-market',
-                         attr_key='main-headline'),
-                    News(name='한경', src='web', url='https://www.hankyung.com/realestate', attr_key='main-headline'),
+                         class_key='main-headline'),
+                    News(name='한경', src='web', url='https://www.hankyung.com/realestate', class_key='main-headline'),
+                    # MK 강계만
+                    News(name='MK', src='web', url='https://www.mk.co.kr/author/207',
+                         class_key='news_list latest_news_list type_desc'),
+                    # MK 이승훈
+                    News(name='MK', src='web', url='https://www.mk.co.kr/author/265',
+                         class_key='news_list latest_news_list type_desc'),
+                    # MK 윤원섭
+                    News(name='MK', src='web', url='https://www.mk.co.kr/author/322',
+                         class_key='news_list latest_news_list type_desc'),
+
                 ],
 
-            'news_realestate_chatid': '-1001645400224',
-            'news_realestate':
-                [
-                    News(name='한경_집코노미', src='web', url='https://www.hankyung.com/reporter/531', attr_key='news-list'),
-                    # 집코노미 전형진
-                ],
+
+
+
+            #
+            # 'news_realestate_chatid': '-1001645400224',
+            # 'news_realestate':
+            #     [
+            #         News(name='한경_집코노미', src='web', url='https://www.hankyung.com/reporter/531', class_key='news-list'),
+            #         # 집코노미 전형진
+            #     ],
 
             # 'rss_visualization_chatid': '-1001854256703',
             # 'rss_visualization':
