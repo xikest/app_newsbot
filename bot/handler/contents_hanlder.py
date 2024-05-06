@@ -43,14 +43,14 @@ class ContentsHandler(list):
             print(f"Error _sendContents: {e}")
             pass
         
-    def _save_contents(self, context: Context, fileName: str = 'contents_list'):
+    def _save_contents(self, context: Context, fileName: str = 'app_newsbot_contents'):
         sent_list = list(self._load_contents())
         sent_list.append(context)
         if len(sent_list) > self.max_buffer_size:
             sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
         self.save_to_pickle(sent_list, fileName)
         
-    def _load_contents(self, fileName: str = 'contents_list'):
+    def _load_contents(self, fileName: str = 'app_newsbot_contents'):
         try:
             yield from self.load_from_pickle(fileName)
         except FileNotFoundError:
@@ -85,10 +85,10 @@ class ContentsHandler(list):
         context.summary = context.contents
         return context
 
-    def save_to_pickle(self, data, file_name, data_path: Path = Path.cwd()):
+    def save_to_pickle(self, data, file_name, data_path: Path = Path.cwd().parent):
         with gzip.open(f"{data_path}/{file_name}.pickle", 'wb') as f:
             pickle.dump(data, f)
 
-    def load_from_pickle(self, file_name, data_path: Path = Path.cwd()):
+    def load_from_pickle(self, file_name, data_path: Path = Path.cwd().parent):
         with gzip.open(f"{data_path}/{file_name}.pickle", 'rb') as f:
             return pickle.load(f)
