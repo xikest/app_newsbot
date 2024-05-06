@@ -32,29 +32,15 @@ class SrcNews:
                         if self.verbose:
                             print(f"Awakened a feed error from the {news.name}'s @{time_awake}")
                             print(f'Total sleep time{time_awake - time_sleep}')
-                        
 
 
 class WebScraper:
     def __init__(self, base_url=None):
         self.base_url = base_url
 
-    @classmethod
-    def web_scraping_decorator(func):
-        @wraps(func)
-        def wrapper(self, url, *args, **kwargs):
-            full_url = self.base_url + url if self.base_url else url
-            soup = BeautifulSoup(urlopen(full_url), 'html.parser')
-            return func(self, soup, *args, **kwargs)
-        return wrapper
-
-    def link_filter(self, link, prefix=None, condition=lambda x: True):
-        href = link.attrs.get('href', '')
-        if condition(href):
-            return prefix + href if prefix else href
-
-    @web_scraping_decorator
-    def get_links_general(self, soup, class_key:str=None, prefix=None, condition=lambda href: True):
+    def get_links_general(self, url, class_key:str=None, prefix=None, condition=lambda href: True):
+        full_url = self.base_url + url if self.base_url else url
+        soup = BeautifulSoup(urlopen(full_url), 'html.parser')
         elements = soup.find_all(attrs={'class': f'{class_key}'})
         for element in elements[::-1]:
             for link in element.find_all('a'):
@@ -62,6 +48,10 @@ class WebScraper:
                 print(result)
                 if result:
                     yield result
+    def link_filter(self, link, prefix=None, condition=lambda x: True):
+        href = link.attrs.get('href', '')
+        if condition(href):
+            return prefix + href if prefix else href
 
     def starts_with_condition(self, href, startswith='http'):
         return href.startswith(startswith)
