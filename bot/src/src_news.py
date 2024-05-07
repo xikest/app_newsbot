@@ -45,7 +45,6 @@ class WebScraper:
         for element in elements[::-1]:
             for link in element.find_all('a'):
                 result = self.link_filter(link, prefix, condition)
-                print(result)
                 if result:
                     yield result
     def link_filter(self, link, prefix=None, condition=lambda x: True):
