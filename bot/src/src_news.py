@@ -3,7 +3,7 @@ from bot.handler.contents_hanlder import Context
 import datetime
 import asyncio
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from functools import wraps
 
 
@@ -42,7 +42,10 @@ class WebScraper:
 
     def get_links_general(self, url, class_key: str = None, prefix=None, condition=lambda href: True):
         full_url = self.base_url + url if self.base_url else url
-        soup = BeautifulSoup(urlopen(full_url), 'html.parser')
+        request = Request(full_url, headers={'User-Agent': 'Mozilla/5.0'})
+        response = urlopen(request).read()
+        content = response
+        soup = BeautifulSoup(content, 'html.parser')
         elements = soup.find_all(attrs={'class': f'{class_key}'})
         for element in elements[::-1]:
             for link in element.find_all('a'):

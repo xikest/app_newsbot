@@ -50,13 +50,13 @@ class Feeder:
 
 
 
-            #
-            # 'news_realestate_chatid': '-1001645400224',
-            # 'news_realestate':
-            #     [
-            #         News(name='한경_집코노미', src='web', url='https://www.hankyung.com/reporter/531', class_key='news-list'),
-            #         # 집코노미 전형진
-            #     ],
+
+            'news_realestate_chatid': '-1001558520951',
+            'news_realestate':
+                [
+                    News(name='한경_집코노미', src='web', url='https://www.hankyung.com/reporter/531', class_key='news-list'),
+                    # 집코노미 전형진
+                ],
 
             # 'rss_visualization_chatid': '-1001854256703',
             # 'rss_visualization':
@@ -81,8 +81,8 @@ class Feeder:
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
                 [
-                    # News(name='snpGlobal_Insights', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/blogs'),
+                    News(name='snpGlobal_Insights', src='rss',
+                         url='https://www.spglobal.com/commodityinsights/en/rss-feed/blogs'),
                     # News(name='snpGlobal_Oil', src='googleAlert',
                     #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/oil'),
                     # News(name='snpGlobal_Shipping', src='googleAlert',
@@ -107,8 +107,8 @@ class Feeder:
                     #      url='http://fredblog.stlouisfed.org/feed/'),
                     News(name='EIA_today_energy', src='rss',
                     url='https://www.eia.gov/rss/todayinenergy.xml'),
-                    News(name='EIA_thisweek_petroleum', src='rss',
-                         url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml'),
+                    # News(name='EIA_thisweek_petroleum', src='rss',
+                    #      url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml'),
                 ],
             'mail_wsj_chatid': '-1001754209136',
             'mail_wsj':
@@ -123,20 +123,20 @@ class Feeder:
                     #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
                 ],
 
-            'mail_economist_chatid': '-1001754209136',
-            'mail_economist':
-                [
-                    Mail(box='ECONOMIST', sender='The Economist today',
-                         url_conditions=['economist.com'], filter_linktext="Read in browser"),
-                    Mail(box='ECONOMIST', sender='The Economist',
-                         url_conditions=['economist.com'], filter_linktext="Read in browser"),
-                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                    #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
-                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                    #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
-                    # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
-                    #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
-                ],
+            # 'mail_economist_chatid': '-1001754209136',
+            # 'mail_economist':
+            #     [
+            #         Mail(box='ECONOMIST', sender='The Economist today',
+            #              url_conditions=['economist.com'], filter_linktext="Read in browser"),
+            #         Mail(box='ECONOMIST', sender='The Economist',
+            #              url_conditions=['economist.com'], filter_linktext="Read in browser"),
+            #         # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+            #         #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
+            #         # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+            #         #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
+            #         # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
+            #         #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
+            #     ],
 
 
             # 'mail_reuters_chatid': '-1001585250010',
