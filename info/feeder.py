@@ -15,8 +15,8 @@ class Feeder:
                 [
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/48', class_key='news-list'),
                     # 글로벌 마켓 김현석
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/65', class_key='news_list'),
-                    # 글로벌 마켓 최진석
+                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/843', class_key='news_list'),
+                    # 글로벌 마켓 송영찬
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/90', class_key='news_list'),
                     # 글로벌 마켓 정인설
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/575', class_key='news-list'),
