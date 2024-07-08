@@ -10,6 +10,8 @@ class Feeder:
             'pid': os.environ.get("PPWW")
         }
         self.feeder_web_source = {
+
+
             'news_article_chatid': '-1001673032661',
             'news_article':
                 [
@@ -78,11 +80,13 @@ class Feeder:
             #     ],
 
 
+
+
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
                 [
-                    News(name='snpGlobal_Insights', src='rss',
-                         url='https://www.spglobal.com/commodityinsights/en/rss-feed/blogs'),
+                    # News(name='snpGlobal_Insights', src='rss',
+                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/blogs'),
                     # News(name='snpGlobal_Oil', src='googleAlert',
                     #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/oil'),
                     # News(name='snpGlobal_Shipping', src='googleAlert',
