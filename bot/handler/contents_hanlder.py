@@ -33,8 +33,8 @@ class ContentsHandler(list):
             # print(f"context: {context}")
             while context.summary:
                 if context.dtype == 'msg':
-                    msg = f"{context.summary.pop(0)}"
-                    # msg = f"#{context.label}\n{context.summary.pop(0)}"
+                    # msg = f"{context.summary.pop(0)}"
+                    msg = f"#{context.label}\n{context.summary.pop(0)}"
                     # await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
