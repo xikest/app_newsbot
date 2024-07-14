@@ -20,7 +20,7 @@ class SrcRss:
         for rss in self._rssList:
             try:
                 print(f"Start getting the feed from the {rss.name}'s: {datetime.datetime.now()}")
-                for feed in feedparser.parse(rss.url).entries[-10:]:
+                for feed in feedparser.parse(rss.url).entries[:5]:
                     if rss.src == 'googleAlert':
 
                         url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]

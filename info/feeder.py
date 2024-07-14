@@ -49,10 +49,6 @@ class Feeder:
 
                 ],
 
-
-
-
-
             'news_realestate_chatid': '-1001558520951',
             'news_realestate':
                 [
@@ -60,49 +56,22 @@ class Feeder:
                     # 집코노미 전형진
                 ],
 
-            # 'rss_visualization_chatid': '-1001854256703',
-            # 'rss_visualization':
-            #     [
-            #         News(name='visualcapitalist', src='rss',
-            #              url='https://feeds.feedburner.com/visualcapitalist',
-            #              exceptions=['introducing-voronoi-waitlist-now-open']),
-            #     ],
 
-            # 'rss_articles_chatid': '-1001686311222',
-            # 'rss_articles':
-            #     [
-            #         # News(name='중동_소식', src='googleAlert',
-            #         #      url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11337432206170594787'),
-            #         # News(name='한국은행', src='googleAlert',
-            #         #      url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4192372648562102053'),
-            #         News(name='유튜브_지식플레이', src='rss',
-            #              url='https://www.youtube.com/feeds/videos.xml?channel_id=UCXql5C57vS4ogUt6CPEWWHA')
-            #     ],
-
-
+            'mail_wsj_chatid': '-1001754209136',
+            'mail_wsj':
+                [
+                    Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
+                         url_conditions=['wsj.com'], filter_linktext="Read More")
+                ],
 
 
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
                 [
-                    # News(name='snpGlobal_Insights', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/blogs'),
-                    # News(name='snpGlobal_Oil', src='googleAlert',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/oil'),
-                    # News(name='snpGlobal_Shipping', src='googleAlert',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/shipping'),
-                    # News(name='snpGlobal_Electronic_power', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/electric-power'),
-                    # News(name='snpGlobal_Gas', src='googleAlert',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/natural-gas'),
-                    # News(name='snpGlobal_Metals', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/metals'),
-                    # News(name='snpGlobal_Agriculture', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/agriculture'),
-                    # News(name='snpGlobal_LNG', src='googleAlert',
-                    #      url='hhttps://www.spglobal.com/commodityinsights/en/rss-feed/lng'),
-                    # News(name='snpGlobal_Energy-transition', src='rss',
-                    #      url='https://www.spglobal.com/commodityinsights/en/rss-feed/energy-transition'),
+                    News(name='snpGlobal_Infographic', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
+                    News(name='snpGlobal_Interactive', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
                     # News(name='GDP_NOW', src='rss',
                     #      url='https://www.atlantafed.org/rss/GDPNow'),
                     # News(name='US_census', src='rss',
@@ -114,84 +83,56 @@ class Feeder:
                     # News(name='EIA_thisweek_petroleum', src='rss',
                     #      url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml'),
                 ],
-            'mail_wsj_chatid': '-1001754209136',
-            'mail_wsj':
+
+
+
+            'rss_bok_chatid': '-1001918946467',
+            'rss_bok':
                 [
-                    Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                         url_conditions=['wsj.com'], filter_linktext="Read More"),
-                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                    #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
-                    # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-                    #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
-                    # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
-                    #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
+                    News(name='BOK 의결사항', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000093/news.rss?menuNo=200789'),
+
+                    News(name='경제전망보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
+                    News(name='금융안정보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
+                    News(name='통화신용정책보고서', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002353/news.rss?menuNo=200433'),
+
+                    News(name='BOK 이슈노트', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
+                    News(name='BOK 경제연구(국문)', src='rss',
+                         url='	https://www.bok.or.kr/imer/bbs/P0002455/news.rss?menuNo=500788'),
+                    News(name='경제분석', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000556/news.rss?menuNo=200440'),
+                    News(name='이슈및관련자료 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
+
+                    News(name='해외경제포커스', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000545/news.rss?menuNo=200437'),
+                    News(name='국제경제리뷰', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0000528/news.rss?menuNo=200434'),
+                    News(name='경제상황 평가', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002105/news.rss?menuNo=200439'),
+
+                    News(name='뉴욕사무소 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
+                    News(name='워싱턴주재원', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
+                    News(name='프랑크푸르트사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
+                    News(name='동경사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
+                    News(name='런던사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
+                    News(name='북경사무소', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
+                    News(name='홍콩주재원', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
+                    News(name='상해주재원 ', src='rss',
+                         url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
+
                 ],
-
-            # 'mail_economist_chatid': '-1001754209136',
-            # 'mail_economist':
-            #     [
-            #         Mail(box='ECONOMIST', sender='The Economist today',
-            #              url_conditions=['economist.com'], filter_linktext="Read in browser"),
-            #         Mail(box='ECONOMIST', sender='The Economist',
-            #              url_conditions=['economist.com'], filter_linktext="Read in browser"),
-            #         # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-            #         #      url_conditions=['wsj.com', 'wsj_author_alert'], filter_linktext="Read More"),
-            #         # Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
-            #         #      url_conditions=['www.wsj.com', 'panda_wsj_digest']),
-            #         # Mail(box='WSJ_NEWS', sender='WSJ Follow Alert',
-            #         #      url_conditions=['www.wsj.com', 'wsj_author_alert'])
-            #     ],
-
-
-            # 'mail_reuters_chatid': '-1001585250010',
-            # 'mail_reuters':
-            #     [
-            #         Mail(box='REUTERS', sender='Reuters Business',
-            #              url_conditions=['www.reuters.com', 'Reuters', 'Business'],
-            #              filter_linktext="Read More"),
-            #         Mail(box='REUTERS', sender='Reuters Global Investor',
-            #              url_conditions=['www.reuters.com', 'Investor'],
-            #              filter_linktext="Read More"),
-            #         Mail(box='REUTERS', sender='Reuters Technology Roundup',
-            #              url_conditions=['www.reuters.com', 'Technology', 'Roundup'],
-            #              filter_linktext="Read More")
-            #     ],
-
-            # 'mail_statista_chatid': '-1001854256703',
-            # 'mail_statista':
-            #     [
-            #         Mail(box='STATISTA', sender='Statista Daily Data - Late Edition', url_conditions=['statista.com', 'chart']),
-            #         Mail(box='STATISTA', sender='Statista Daily Data - Early Edition', url_conditions=['statista.com', 'chart'])
-            #     ],
-
-            # 'rss_bok_chatid': '-1001558520951',
-            # 'rss_bok':
-            #     [
-            #         News(name='경제전망보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
-            #         News(name='금융안정보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0000593/news.rss?menuNo=200769'),
-            #         News(name='통화신용정책보고서', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754'),
-            #         News(name='뉴욕사무소 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002017/news.rss?menuNo=200365'),
-            #         News(name='워싱턴주재원', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002223/news.rss?menuNo=200082'),
-            #         News(name='프랑크푸르트사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002226/news.rss?menuNo=200083'),
-            #         News(name='동경사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002229/news.rss?menuNo=200084'),
-            #         News(name='런던사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002231/news.rss?menuNo=200085'),
-            #         News(name='북경사무소', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002232/news.rss?menuNo=200086'),
-            #         News(name='홍콩주재원', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002233/news.rss?menuNo=200087'),
-            #         News(name='상해주재원 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002234/news.rss?menuNo=200088'),
-            #         News(name='이슈및관련자료 ', src='rss',
-            #              url='https://www.bok.or.kr/portal/bbs/P0002897/news.rss?menuNo=200788'),
-            #     ],
 
 
 
