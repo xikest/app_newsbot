@@ -56,8 +56,12 @@ class Feeder:
                     # 집코노미 전형진
                 ],
 
-
-
+            'news_imf_chatid': '-1001528926673',
+            'news_imf':
+                [
+                    News(name='imf_chart', src='web', url='https://www.imf.org/en/Blogs/chart-of-the-weeka', class_key='chart-box'),
+                    # CHART OF THE WEEK
+                ],
 
             
             'mail_wsj_chatid': '-1001754209136',
@@ -75,6 +79,24 @@ class Feeder:
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
                     News(name='snpGlobal_Interactive', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
+
+                    News(name='iea_report', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653'),
+                    News(name='icap_carbon', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233'),
+
+                    News(name='에너지경제연구원', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9149245140850105928'),
+
+                    News(name='bridgewater', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11339801458445339786'),
+
+                    News(name='외교안보연구소', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2986537493935566887'),
+
+                    News(name='economist_graphic"', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17123702878352093280'),
+
                     # News(name='GDP_NOW', src='rss',
                     #      url='https://www.atlantafed.org/rss/GDPNow'),
                     # News(name='US_census', src='rss',
@@ -85,6 +107,10 @@ class Feeder:
                     url='https://www.eia.gov/rss/todayinenergy.xml'),
                     # News(name='EIA_thisweek_petroleum', src='rss',
                     #      url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml'),
+
+
+
+
                 ],
 
 
