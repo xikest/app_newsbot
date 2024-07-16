@@ -57,6 +57,9 @@ class Feeder:
                 ],
 
 
+
+
+            
             'mail_wsj_chatid': '-1001754209136',
             'mail_wsj':
                 [
@@ -85,6 +88,28 @@ class Feeder:
                 ],
 
 
+
+            'rss_news_chatid': '-1001673032661',
+            'rss_news':
+                [
+                    News(name='한경_한경제', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9180843931580834263'),
+                    News(name='한경_차이나스톡', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4858968756427596008'),
+                    News(name='한경_원자재 이슈탐구', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9036013775263201261'),
+                    News(name='한경_워싱턴나우', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4858968756427597753'),
+                    News(name='한경_오늘의 유가', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/8817692926258482559'),   
+                    News(name='한경_에네르기파WAR', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10051269404088993743'),
+                    News(name='한경_글로벌마켓 A/S', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2323969111153995290'),   
+                ],
+
+
+            
 
             'rss_bok_chatid': '-1001918946467',
             'rss_bok':
