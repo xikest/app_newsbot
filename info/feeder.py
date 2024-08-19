@@ -71,6 +71,33 @@ class Feeder:
                          url_conditions=['wsj.com'], filter_linktext="Read More")
                 ],
 
+            'rss_economist_chatid': '-1001754209136',
+            'rss_economist':
+                [
+                    News(name='the-world-this-week', src='rss',
+                         url='https://www.economist.com/the-world-this-week/rss.xml'),
+                    News(name='special-report', src='rss',
+                         url='https://www.economist.com/special-report/rss.xml'),
+                    News(name='briefing', src='rss',
+                         url='https://www.economist.com/briefing/rss.xml'),
+                    News(name='economist-explains', src='rss',
+                         url='https://www.economist.com/the-economist-explains/rss.xml'),
+                    News(name='indicators', src='rss',
+                         url='https://www.economist.com/economic-and-financial-indicators/rss.xml')
+                ],
+                
+            'rss_wsj_chatid': '-1001754209136',
+            'rss_wsj':
+                [
+                    News(name='world', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml'),
+                    News(name='USBusiness', src='rss',
+                         url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml'),
+                    News(name='Markets', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSMarketsMain.xml'),
+                    News(name='technology', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSWSJD.xml')
+                ],
 
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
@@ -84,35 +111,18 @@ class Feeder:
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653'),
                     News(name='icap_carbon', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233'),
+                    
+                    News(name='imf chart', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262'),      
+     
 
-                    News(name='에너지경제연구원', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9149245140850105928'),
+                    News(name='economist_graphic"', src='rss',
+                         url='https://www.economist.com/graphic-detail/rss.xml'),
 
-                    News(name='bridgewater', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11339801458445339786'),
-
-                    News(name='외교안보연구소', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2986537493935566887'),
-
-                    News(name='economist_graphic"', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17123702878352093280'),
-
-                    # News(name='GDP_NOW', src='rss',
-                    #      url='https://www.atlantafed.org/rss/GDPNow'),
-                    # News(name='US_census', src='rss',
-                    # url='https://www.census.gov/economic-indicators/indicator.xml'),
-                    # News(name='fred_blog', src='rss',
-                    #      url='http://fredblog.stlouisfed.org/feed/'),
                     News(name='EIA_today_energy', src='rss',
                     url='https://www.eia.gov/rss/todayinenergy.xml'),
-                    # News(name='EIA_thisweek_petroleum', src='rss',
-                    #      url='https://www.eia.gov/petroleum/weekly/includes/week_in_petroleum_rss.xml'),
-
-
-
 
                 ],
-
 
 
             'rss_news_chatid': '-1001673032661',
@@ -132,10 +142,10 @@ class Feeder:
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10051269404088993743'),
                     News(name='한경_글로벌마켓AS', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2323969111153995290'),   
+                    News(name='중동 천일야화', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11030838220576993937')   
                 ],
 
-
-            
 
             'rss_bok_chatid': '-1001918946467',
             'rss_bok':
