@@ -59,7 +59,8 @@ class ContentsHandler(list):
         if context.enable_translate:
             try:
                 sgpt = SentiGPT(api_key=gpt_key, gpt_model='gpt-4o-mini')
-                context.label = sgpt.translate_tokr(context.label)
+                context.summary = sgpt.translate_tokr(context.summary)
+                f"{context.summary}/n{context.contents}"
             except:
                 pass
             

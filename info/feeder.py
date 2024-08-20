@@ -75,52 +75,52 @@ class Feeder:
             'rss_economist':
                 [
                     News(name='the-world-this-week', src='rss',
-                         url='https://www.economist.com/the-world-this-week/rss.xml'),
+                         url='https://www.economist.com/the-world-this-week/rss.xml', enable_translate=True),
                     News(name='special-report', src='rss',
-                         url='https://www.economist.com/special-report/rss.xml'),
+                         url='https://www.economist.com/special-report/rss.xml', enable_translate=True),
                     News(name='briefing', src='rss',
-                         url='https://www.economist.com/briefing/rss.xml'),
+                         url='https://www.economist.com/briefing/rss.xml', enable_translate=True),
                     News(name='economist-explains', src='rss',
-                         url='https://www.economist.com/the-economist-explains/rss.xml'),
+                         url='https://www.economist.com/the-economist-explains/rss.xml', enable_translate=True),
                     News(name='indicators', src='rss',
-                         url='https://www.economist.com/economic-and-financial-indicators/rss.xml')
+                         url='https://www.economist.com/economic-and-financial-indicators/rss.xml', enable_translate=True)
                 ],
                 
             'rss_wsj_chatid': '-1001754209136',
             'rss_wsj':
                 [
                     News(name='world', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml'),
+                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
                     News(name='USBusiness', src='rss',
-                         url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml'),
+                         url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml', enable_translate=True),
                     News(name='Markets', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSMarketsMain.xml'),
+                         url='https://feeds.a.dj.com/rss/RSSMarketsMain.xml', enable_translate=True),
                     News(name='technology', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSWSJD.xml')
+                         url='https://feeds.a.dj.com/rss/RSSWSJD.xml', enable_translate=True),
                 ],
 
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
                 [
                     News(name='snpGlobal_Infographic', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149', enable_translate=True),
                     News(name='snpGlobal_Interactive', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673', enable_translate=True),
 
                     News(name='iea_report', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653'),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653', enable_translate=True),
                     News(name='icap_carbon', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233'),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233', enable_translate=True),
                     
                     News(name='imf chart', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262'),      
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262', enable_translate=True),    
      
 
                     News(name='economist_graphic"', src='rss',
-                         url='https://www.economist.com/graphic-detail/rss.xml'),
+                         url='https://www.economist.com/graphic-detail/rss.xml', enable_translate=True),
 
                     News(name='EIA_today_energy', src='rss',
-                    url='https://www.eia.gov/rss/todayinenergy.xml'),
+                    url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
 
                 ],
 

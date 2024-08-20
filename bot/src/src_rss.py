@@ -27,8 +27,9 @@ class SrcRss:
                         print(f"google rss title: {title}")
                     elif rss.src == 'rss':
                         url = feed.link
+                        title = feed.get("title", '')
                     if not rss.exceptions or all(exception not in url for exception in rss.exceptions):
-                        yield Context(label=f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg', enable_translate=rss.enable_translate)
+                        yield Context(label=f"{rss.name}", summary=title,contents=[url], botChatId=self._chat_id, dtype='msg', enable_translate=rss.enable_translate)
                 print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")
 
             except Exception as e:
