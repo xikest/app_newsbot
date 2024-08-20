@@ -22,6 +22,7 @@ class News:
     startswith: str = 'http'
     class_key: Optional[str] = None
     exceptions:[] = None
+    enable_translate:bool = False
     
 
 @dataclass

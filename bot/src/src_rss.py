@@ -22,14 +22,13 @@ class SrcRss:
                 print(f"Start getting the feed from the {rss.name}'s: {datetime.datetime.now()}")
                 for feed in feedparser.parse(rss.url).entries[:5]:
                     if rss.src == 'googleAlert':
-
                         url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
                         title = self.get_title(url)
                         print(f"google rss title: {title}")
                     elif rss.src == 'rss':
                         url = feed.link
                     if not rss.exceptions or all(exception not in url for exception in rss.exceptions):
-                        yield Context(label=f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg')
+                        yield Context(label=f"{rss.name}", contents=[url], botChatId=self._chat_id, dtype='msg', enable_translate=rss.enable_translate)
                 print(f"Finished obtaining the feed from the {rss.name}'s : {datetime.datetime.now()}")
 
             except Exception as e:

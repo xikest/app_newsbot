@@ -5,7 +5,7 @@ import gzip
 from pathlib import Path
 from info.definition_obj import Context
 # from .summary import Summary_scraper
-# from .sentimentmanager import SentimentManager as SentiGPT
+from .sentimentmanager import SentimentManager as SentiGPT
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=100000):
@@ -33,9 +33,7 @@ class ContentsHandler(list):
             # print(f"context: {context}")
             while context.summary:
                 if context.dtype == 'msg':
-                    # msg = f"{context.summary.pop(0)}"
                     msg = f"#{context.label}\n{context.summary.pop(0)}"
-                    # await asyncio.sleep(10)
                     await bot.send_message(chat_id=context.botChatId, text=msg)
                 else:
                     raise ValueError("Unsupported content type: dtype is not defined.")
@@ -58,6 +56,13 @@ class ContentsHandler(list):
             
     
     def _make_summary(self, context:Context, gpt_key:str):
+        if context.enable_translate:
+            try:
+                sgpt = SentiGPT(api_key=gpt_key, gpt_model='gpt-4o-mini')
+                context.label = sgpt.translate_tokr(context.label)
+            except:
+                pass
+            
         # if context.enable_summary:
         #     if context.label == 'WSJ_NEWS':
         #         sgpt = SentiGPT(api_key=gpt_key)
