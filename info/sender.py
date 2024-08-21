@@ -3,7 +3,7 @@ import os
 class Sender:
     def __init__(self):
         self.bot_token =  os.environ.get("BOT_TOKEN")
-        self.gpt_api_key = os.environ.get("GPT_KEY")
+        self.gpt_api_key = os.environ.get("GPT_API_KEY")
 
     def get_token(self)->str:
         return self.bot_token

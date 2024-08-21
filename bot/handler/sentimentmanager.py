@@ -30,6 +30,8 @@ class SentimentManager:
 
 class AIManager:
     def __init__(self, api_key, gpt_model="gpt-3.5-turbo-1106"):
+        if api_key is None:
+            raise ValueError
         self.client = OpenAI(api_key=api_key)
         self.messages_prompt = []
         self.gpt_model=gpt_model

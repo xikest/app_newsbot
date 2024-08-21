@@ -35,7 +35,7 @@ class Bot_Alert():
             start = time.time()
             async for context in generatorForContext(): 
                       # print(f"bot alert: {context}")
-                      await ContentsHandler(context).sendTo(self.getToken, self._GPT)
+                      await ContentsHandler(context).send_to(self.getToken, self._GPT)
             end = time.time()
             print(f'context time taken: {(end - start)}')
             await asyncio.sleep(5)
