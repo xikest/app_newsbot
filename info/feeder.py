@@ -80,8 +80,6 @@ class Feeder:
                          url='https://www.economist.com/special-report/rss.xml', enable_translate=True),
                     News(name='briefing', src='rss',
                          url='https://www.economist.com/briefing/rss.xml', enable_translate=True),
-                    News(name='economist_explains', src='rss',
-                         url='https://www.economist.com/the-economist-explains/rss.xml', enable_translate=True),
                     News(name='indicators', src='rss',
                          url='https://www.economist.com/economic-and-financial-indicators/rss.xml', enable_translate=True)
                 ],
