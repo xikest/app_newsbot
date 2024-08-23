@@ -84,13 +84,73 @@ class Feeder:
                          url='https://www.economist.com/economic-and-financial-indicators/rss.xml', enable_translate=True)
                 ],
                 
+            'rss_cnbc_chatid': '-1001754209136',
+            'rss_cnbc':
+                [   News(name='cnbc_top_news', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114', enable_translate=True),
+                    
+                    News(name='cnbc_Economy', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258', enable_translate=True),
+                   
+                    News(name='cnbc_world_news', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362', enable_translate=True),
+                    
+                    News(name='cnbc_Finance', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664', enable_translate=True),
+                                
+                    News(name='cnbc_Earnings', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135', enable_translate=True),
+
+                    News(name='cnbc_Business_News', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147', enable_translate=True),
+                   
+                    News(name='cnbc_Technology', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910', enable_translate=True),
+
+                    News(name='cnbc_Energy', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19836768', enable_translate=True),
+ 
+                    News(name='cnbc_Asia_news', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19832390', enable_translate=True),
+             
+                    News(name='cnbc_Health_and_Scienc', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000108', enable_translate=True),
+                    
+                    News(name='cnbc_Real_Estate', src='rss',
+                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000115', enable_translate=True),
+                    ],
+                
+            'rss_reuter_chatid': '-1001754209136',
+            'rss_reuter':
+                [   News(name='reuter_all_sector', src='rss',
+                       url='https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best', enable_translate=True),
+                    News(name='reuter_all_impact', src='rss',
+                       url='https://www.reutersagency.com/feed/?taxonomy=best-customer-impacts&post_type=best', enable_translate=True),
+                    News(name='reuter_all_region', src='rss',
+                       url='https://www.reutersagency.com/feed/?taxonomy=best-regions&post_type=best', enable_translate=True),
+                    
+                    News(name='reuter_Business_Finance', src='rss',
+                       url='https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best', enable_translate=True),
+                    News(name='reuter_deals', src='rss',
+                       url='https://www.reutersagency.com/feed/?best-topics=deals&post_type=best', enable_translate=True),
+                    
+                    News(name='reuter_Environment ', src='rss',
+                       url='https://www.reutersagency.com/feed/?best-topics=environment&post_type=best', enable_translate=True),
+                    
+                    News(name='reuter_tech', src='rss',
+                       url='https://www.reutersagency.com/feed/?best-topics=tech&post_type=best', enable_translate=True),
+                    
+                    News(name='reuter_Politics ', src='rss',
+                       url='https://www.reutersagency.com/en/reutersbest/article/us-to-target-russia-with-more-sanctions', enable_translate=True),
+                    
+                ],
             'rss_wsj_chatid': '-1001754209136',
             'rss_wsj':
                 [
                     News(name='US_Opinion', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSOpinion.xml', enable_translate=True),
-                    News(name='US_World_News', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
+                    # News(name='US_World_News', src='rss',
+                    #      url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
                     News(name='US_Lifestyle', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSLifestyle.xml', enable_translate=True),
                     News(name='US_business', src='rss',
@@ -125,9 +185,6 @@ class Feeder:
                          url='https://feeds.content.dowjones.io/public/rss/RSSJapanLife', enable_translate=True),
                     News(name='JapanBarrons', src='rss',
                          url='https://feeds.content.dowjones.io/public/rss/RSSJapanBarrons', enable_translate=True), 
-                    
-                    
-                    
                 ],
 
             'rss_blogs_chatid': '-1001528926673',
