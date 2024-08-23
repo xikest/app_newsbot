@@ -87,12 +87,47 @@ class Feeder:
             'rss_wsj_chatid': '-1001754209136',
             'rss_wsj':
                 [
+                    News(name='US_Opinion', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSOpinion.xml', enable_translate=True),
+                    News(name='US_World_News', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
+                    News(name='US_Lifestyle', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSLifestyle.xml', enable_translate=True),
                     News(name='US_business', src='rss',
                          url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml', enable_translate=True),
-                    News(name='Markets', src='rss',
+                    News(name='US_Markets', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSMarketsMain.xml', enable_translate=True),
-                    News(name='technology', src='rss',
+                    News(name='US_technology', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSWSJD.xml', enable_translate=True),
+                    
+                    
+                    News(name='cn_wsj', src='rss',
+                         url='https://cn.wsj.com/zh-hans/rss', enable_translate=True),
+                    
+                    
+                    News(name='JapanMarket', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanMarket', enable_translate=True),
+                    News(name='JapanHeardonTheStreet', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanHeardonTheStreet', enable_translate=True),
+                    News(name='JapanBusiness', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanBusiness', enable_translate=True),
+                    News(name='JapanTechnology', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanTechnology', enable_translate=True),
+                    News(name='JapanPersonalTechnology', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanPersonalTechnology', enable_translate=True),
+                    News(name='JapanNewsWorld', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanNewsWorld', enable_translate=True), 
+                    News(name='JapanCapitalJournal', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanCapitalJournal', enable_translate=True),
+                    News(name='JapanOpinion', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanOpinion', enable_translate=True), 
+                    News(name='JapanLife', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanLife', enable_translate=True),
+                    News(name='JapanBarrons', src='rss',
+                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanBarrons', enable_translate=True), 
+                    
+                    
+                    
                 ],
 
             'rss_blogs_chatid': '-1001528926673',
