@@ -71,7 +71,7 @@ class Feeder:
                          url_conditions=['wsj.com'], filter_linktext="Read More")
                 ],
 
-            'rss_economist_chatid': '-1001754209136',
+            'rss_economist_chatid': '-1001686311222',
             'rss_economist':
                 [
                     News(name='the_world_this_week', src='rss',
@@ -84,7 +84,7 @@ class Feeder:
                          url='https://www.economist.com/economic-and-financial-indicators/rss.xml', enable_translate=True)
                 ],
                 
-            'rss_cnbc_chatid': '-1001754209136',
+            'rss_cnbc_chatid': '-1001854256703',
             'rss_cnbc':
                 [   News(name='cnbc_top_news', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114', enable_translate=True),
@@ -120,7 +120,7 @@ class Feeder:
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000115', enable_translate=True),
                     ],
                 
-            'rss_reuter_chatid': '-1001754209136',
+            'rss_reuter_chatid': '-1001585250010',
             'rss_reuter':
                 [   News(name='reuter_all_sector', src='rss',
                        url='https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best', enable_translate=True),

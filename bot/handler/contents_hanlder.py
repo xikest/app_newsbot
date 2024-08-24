@@ -1,4 +1,5 @@
 import telegram
+import asyncio
 import pickle
 import gzip
 from pathlib import Path
@@ -34,6 +35,7 @@ class ContentsHandler(list):
                     contents += context.contents.pop(0)
                 msg = f"#{context.label}\n{context.summary}\n{contents}"
                 await bot.send_message(chat_id=context.botChatId, text=msg)
+                await asyncio.sleep(1)
             else:
                 raise ValueError("Unsupported content type: dtype is not defined.")
         except Exception as e:
