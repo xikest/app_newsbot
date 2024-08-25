@@ -70,6 +70,9 @@ class Feeder:
                     Mail(box='WSJ_NEWS', sender='The Wall Street Journal.',
                          url_conditions=['wsj.com'], filter_linktext="Read More")
                 ],
+                
+                
+                
 
             'rss_economist_chatid': '-1001686311222',
             'rss_economist':
@@ -120,30 +123,7 @@ class Feeder:
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000115', enable_translate=True),
                     ],
                 
-            'rss_reuter_chatid': '-1001585250010',
-            'rss_reuter':
-                [   News(name='reuter_all_sector', src='rss',
-                       url='https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best', enable_translate=True),
-                    News(name='reuter_all_impact', src='rss',
-                       url='https://www.reutersagency.com/feed/?taxonomy=best-customer-impacts&post_type=best', enable_translate=True),
-                    News(name='reuter_all_region', src='rss',
-                       url='https://www.reutersagency.com/feed/?taxonomy=best-regions&post_type=best', enable_translate=True),
-                    
-                    News(name='reuter_Business_Finance', src='rss',
-                       url='https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best', enable_translate=True),
-                    News(name='reuter_deals', src='rss',
-                       url='https://www.reutersagency.com/feed/?best-topics=deals&post_type=best', enable_translate=True),
-                    
-                    News(name='reuter_Environment ', src='rss',
-                       url='https://www.reutersagency.com/feed/?best-topics=environment&post_type=best', enable_translate=True),
-                    
-                    News(name='reuter_tech', src='rss',
-                       url='https://www.reutersagency.com/feed/?best-topics=tech&post_type=best', enable_translate=True),
-                    
-                    News(name='reuter_Politics ', src='rss',
-                       url='https://www.reutersagency.com/en/reutersbest/article/us-to-target-russia-with-more-sanctions', enable_translate=True),
-                    
-                ],
+            
             'rss_wsj_chatid': '-1001754209136',
             'rss_wsj':
                 [
@@ -232,6 +212,8 @@ class Feeder:
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2323969111153995290'),   
                     News(name='중동 천일야화', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11030838220576993937')   
+                    News(name='교양이를_부탁해', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624')   
                 ],
 
 
@@ -240,7 +222,6 @@ class Feeder:
                 [
                     News(name='BOK 의결사항', src='rss',
                          url='https://www.bok.or.kr/portal/bbs/P0000093/news.rss?menuNo=200789'),
-
                     News(name='경제전망보고서', src='rss',
                          url='https://www.bok.or.kr/portal/bbs/P0002359/news.rss?menuNo=200066'),
                     News(name='금융안정보고서', src='rss',
