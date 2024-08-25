@@ -191,7 +191,12 @@ class Feeder:
                     url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
 
                 ],
-
+                
+            'rss_docu_chatid': '-1001558520951',
+            'rss_docu':
+                [   News(name='EBS_골라듄다큐', src='googleAlert',
+                    url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17463049156731925615'),
+                ],
 
             'rss_news_chatid': '-1001673032661',
             'rss_news':
@@ -211,10 +216,27 @@ class Feeder:
                     News(name='한경_글로벌마켓AS', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/2323969111153995290'),   
                     News(name='중동 천일야화', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11030838220576993937')   
-                    News(name='교양이를_부탁해', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624')   
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11030838220576993937'),    
                 ],
+
+            'rss_youtube_chatid': "-1001585250010",
+            'rss_youtube':
+                [  
+                    News(name='교양이를_부탁해', src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624'),   
+                    News(name="안재광의 대기만성's", src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11855523755355070888'),   
+                    News(name="power to XI_steps", src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4527633836191371134'),   
+                    News(name="ETF 언박싱", src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17136128880933457481'),
+                    News(name="투자 Insight", src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/5647679887656265683'),    
+                    News(name="집코노미 흥청망청", src='googleAlert',
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11249765215830327354'),     
+                ],
+
+
 
 
             'rss_bok_chatid': '-1001918946467',
