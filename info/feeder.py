@@ -194,7 +194,7 @@ class Feeder:
                 
             'rss_docu_chatid': '-1001558520951',
             'rss_docu':
-                [   News(name='EBS_골라듄다큐', src='googleAlert',
+                [   News(name='EBS_골라듄다큐', src='googleAlert', url_original=True,
                     url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17463049156731925615'),
                 ],
 
@@ -222,17 +222,17 @@ class Feeder:
             'rss_youtube_chatid': "-1001585250010",
             'rss_youtube':
                 [  
-                    News(name='교양이를_부탁해', src='googleAlert',
+                    News(name='교양이를_부탁해', src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624'),   
-                    News(name="안재광의 대기만성's", src='googleAlert',
+                    News(name="안재광의 대기만성's", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11855523755355070888'),   
-                    News(name="power to XI_steps", src='googleAlert',
+                    News(name="power to XI_steps", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4527633836191371134'),   
-                    News(name="ETF 언박싱", src='googleAlert',
+                    News(name="ETF 언박싱", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17136128880933457481'),
-                    News(name="투자 Insight", src='googleAlert',
+                    News(name="투자 Insight", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/5647679887656265683'),    
-                    News(name="집코노미 흥청망청", src='googleAlert',
+                    News(name="집코노미 흥청망청", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11249765215830327354'),     
                 ],
 

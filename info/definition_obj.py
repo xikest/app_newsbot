@@ -23,6 +23,7 @@ class News:
     class_key: Optional[str] = None
     exceptions:list = None
     enable_translate:bool = False
+    url_original:bool=False
     
 
 @dataclass

@@ -24,7 +24,12 @@ class SrcRss:
                 for feed in feedparser.parse(rss.url).entries[:5]:
                     
                     if rss.src == 'googleAlert':
-                        url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
+                        
+                        if rss.url_original:
+                            url = feed.link
+                        else:
+                            url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
+                            
                         title = self.get_title(url)
                     elif rss.src == 'rss':
                         url = feed.link

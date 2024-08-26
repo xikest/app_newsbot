@@ -33,7 +33,10 @@ class ContentsHandler(list):
                 contents = ""
                 while context.contents: 
                     contents += context.contents.pop(0)
-                msg = f"#{context.label}\n{context.summary}\n{contents}"
+                if context.summary is not "":
+                    msg = f"#{context.label}\n{context.summary}\n{contents}"
+                else:    
+                    msg = f"#{context.label}\n{contents}"
                 await bot.send_message(chat_id=context.botChatId, text=msg)
                 await asyncio.sleep(1)
             else:
