@@ -171,17 +171,17 @@ class Feeder:
             'rss_blogs':
                 [
                     News(name='snpGlobal_Infographic', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149', enable_translate=True),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
                     News(name='snpGlobal_Interactive', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673', enable_translate=True),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
 
                     News(name='iea_report', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653', enable_translate=True),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653'),
                     News(name='icap_carbon', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233', enable_translate=True),
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233'),
                     
                     News(name='imf_chart', src='googleAlert',
-                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262', enable_translate=True),    
+                         url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262'),    
      
 
                     News(name='economist_graphic"', src='rss',
@@ -222,17 +222,17 @@ class Feeder:
             'rss_youtube_chatid': "-1001585250010",
             'rss_youtube':
                 [  
-                    News(name='교양이를_부탁해', src='googleAlert', url_original=True,
+                    News(name='교양이를_부탁해', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624'),   
-                    News(name="안재광의 대기만성's", src='googleAlert', url_original=True,
+                    News(name="안재광의 대기만성's", src='googleAlert', 
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11855523755355070888'),   
-                    News(name="power to XI_steps", src='googleAlert', url_original=True,
+                    News(name="power to XI_steps", src='googleAlert', 
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4527633836191371134'),   
-                    News(name="ETF 언박싱", src='googleAlert', url_original=True,
+                    News(name="ETF 언박싱", src='googleAlert', 
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17136128880933457481'),
-                    News(name="투자 Insight", src='googleAlert', url_original=True,
+                    News(name="투자 Insight", src='googleAlert', 
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/5647679887656265683'),    
-                    News(name="집코노미 흥청망청", src='googleAlert', url_original=True,
+                    News(name="집코노미 흥청망청", src='googleAlert', 
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11249765215830327354'),     
                 ],
 
