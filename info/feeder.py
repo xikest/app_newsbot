@@ -56,13 +56,6 @@ class Feeder:
                     # 집코노미 전형진
                 ],
 
-            'news_imf_chatid': '-1001528926673',
-            'news_imf':
-                [
-                    News(name='imf_chart', src='web', url='https://www.imf.org/en/Blogs/chart-of-the-weeka', class_key='chart-box'),
-                    # CHART OF THE WEEK
-                ],
-
             
             'mail_wsj_chatid': '-1001754209136',
             'mail_wsj':
@@ -172,6 +165,7 @@ class Feeder:
                 [
                     News(name='snpGlobal_Infographic', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
+                    
                     News(name='snpGlobal_Interactive', src='googleAlert',
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
 
@@ -192,11 +186,6 @@ class Feeder:
 
                 ],
                 
-            'rss_docu_chatid': '-1001558520951',
-            'rss_docu':
-                [   News(name='EBS_골라듄다큐', src='googleAlert', url_original=True,
-                    url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17463049156731925615'),
-                ],
 
             'rss_news_chatid': '-1001673032661',
             'rss_news':

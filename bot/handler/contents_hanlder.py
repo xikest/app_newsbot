@@ -17,8 +17,8 @@ class ContentsHandler(list):
             context = self.pop()
             if not context:
                 return  # 컨텐츠가 없으면 아무 것도 하지 않음
-            if context not in self._load_contents():
-                self._save_contents(context=context)
+            if context.contents[0] not in self._load_contents():
+                self._save_contents(contents=context.contents[0])
                 await self._send_contents(context, token, gpt)
         except Exception as e: 
             print(f"error sendTo: {e}")
@@ -45,9 +45,9 @@ class ContentsHandler(list):
             print(f"Error_send_contents: {e}")
             pass
         
-    def _save_contents(self, context: Context, file_name: str = 'app_newsbot_contents'):
+    def _save_contents(self, contents: str, file_name: str = 'app_newsbot_contents'):
         sent_list = list(self._load_contents())
-        sent_list.append(context)
+        sent_list.append(contents)
         if len(sent_list) > self.max_buffer_size:
             sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
         self.save_to_pickle(sent_list, file_name)
