@@ -29,8 +29,8 @@ class SrcRss:
                             url = feed.link
                         else:
                             url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
-                            
-                        title = self.get_title(url)
+                        title = feed.title 
+                        # title = self.get_title(url)
                     elif rss.src == 'rss':
                         url = feed.link
                         title = feed.get("title", '')

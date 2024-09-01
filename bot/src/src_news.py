@@ -4,7 +4,6 @@ import datetime
 import asyncio
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
-from functools import wraps
 
 
 class SrcNews:

@@ -84,18 +84,12 @@ class Feeder:
             'rss_cnbc':
                 [   News(name='cnbc_top_news', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114', enable_translate=True),
-                    
-                    News(name='cnbc_Economy', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258', enable_translate=True),
                    
                     News(name='cnbc_world_news', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362', enable_translate=True),
                     
                     News(name='cnbc_Finance', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664', enable_translate=True),
-                                
-                    News(name='cnbc_Earnings', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135', enable_translate=True),
 
                     News(name='cnbc_Business_News', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147', enable_translate=True),
@@ -105,27 +99,16 @@ class Feeder:
 
                     News(name='cnbc_Energy', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19836768', enable_translate=True),
- 
-                    News(name='cnbc_Asia_news', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19832390', enable_translate=True),
-             
-                    News(name='cnbc_Health_and_Scienc', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000108', enable_translate=True),
-                    
-                    News(name='cnbc_Real_Estate', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000115', enable_translate=True),
+
                     ],
                 
             
             'rss_wsj_chatid': '-1001754209136',
             'rss_wsj':
                 [
-                    News(name='US_Opinion', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSOpinion.xml', enable_translate=True),
-                    # News(name='US_World_News', src='rss',
-                    #      url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
-                    News(name='US_Lifestyle', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSLifestyle.xml', enable_translate=True),
+
+                    News(name='US_World_News', src='rss',
+                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
                     News(name='US_business', src='rss',
                          url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml', enable_translate=True),
                     News(name='US_Markets', src='rss',
@@ -133,56 +116,34 @@ class Feeder:
                     News(name='US_technology', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSWSJD.xml', enable_translate=True),
                     
-                    
                     News(name='cn_wsj', src='rss',
                          url='https://cn.wsj.com/zh-hans/rss', enable_translate=True),
-                    
-                    
-                    News(name='JapanMarket', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanMarket', enable_translate=True),
-                    News(name='JapanHeardonTheStreet', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanHeardonTheStreet', enable_translate=True),
-                    News(name='JapanBusiness', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanBusiness', enable_translate=True),
-                    News(name='JapanTechnology', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanTechnology', enable_translate=True),
-                    News(name='JapanPersonalTechnology', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanPersonalTechnology', enable_translate=True),
-                    News(name='JapanNewsWorld', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanNewsWorld', enable_translate=True), 
-                    News(name='JapanCapitalJournal', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanCapitalJournal', enable_translate=True),
-                    News(name='JapanOpinion', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanOpinion', enable_translate=True), 
-                    News(name='JapanLife', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanLife', enable_translate=True),
-                    News(name='JapanBarrons', src='rss',
-                         url='https://feeds.content.dowjones.io/public/rss/RSSJapanBarrons', enable_translate=True), 
+
                 ],
 
             'rss_blogs_chatid': '-1001528926673',
             'rss_blogs':
                 [
-                    News(name='snpGlobal_Infographic', src='googleAlert',
+                    News(name='snpGlobal_Infographic', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7612806762062248149'),
                     
-                    News(name='snpGlobal_Interactive', src='googleAlert',
+                    News(name='snpGlobal_Interactive', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10152480852472819673'),
 
-                    News(name='iea_report', src='googleAlert',
+                    News(name='iea_report', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653'),
-                    News(name='icap_carbon', src='googleAlert',
+                    News(name='icap_carbon', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233'),
                     
-                    News(name='imf_chart', src='googleAlert',
+                    News(name='imf_chart', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262'),    
      
 
-                    News(name='economist_graphic"', src='rss',
-                         url='https://www.economist.com/graphic-detail/rss.xml', enable_translate=True),
+                    News(name='economist_graphic"', src='rss', enable_translate=True,
+                         url='https://www.economist.com/graphic-detail/rss.xml'),
 
-                    News(name='EIA_today_energy', src='rss',
-                    url='https://www.eia.gov/rss/todayinenergy.xml', enable_translate=True),
+                    News(name='EIA_today_energy', src='rss', enable_translate=True,
+                    url='https://www.eia.gov/rss/todayinenergy.xml'),
 
                 ],
                 
@@ -211,17 +172,17 @@ class Feeder:
             'rss_youtube_chatid': "-1001585250010",
             'rss_youtube':
                 [  
-                    News(name='교양이를_부탁해', src='googleAlert',
+                    News(name='교양이를_부탁해', src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17195105426376127624'),   
-                    News(name="안재광의 대기만성's", src='googleAlert', 
+                    News(name="안재광의 대기만성's", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11855523755355070888'),   
-                    News(name="power to XI_steps", src='googleAlert', 
+                    News(name="power to XI_steps", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/4527633836191371134'),   
-                    News(name="ETF 언박싱", src='googleAlert', 
+                    News(name="ETF 언박싱", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/17136128880933457481'),
-                    News(name="투자 Insight", src='googleAlert', 
+                    News(name="투자 Insight", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/5647679887656265683'),    
-                    News(name="집코노미 흥청망청", src='googleAlert', 
+                    News(name="집코노미 흥청망청", src='googleAlert', url_original=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/11249765215830327354'),     
                 ],
 
