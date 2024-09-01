@@ -2,7 +2,6 @@ from typing import Optional, Generator
 import feedparser
 import datetime
 import asyncio
-import requests
 from bs4 import BeautifulSoup
 
 from bot.handler.contents_hanlder import Context
@@ -29,7 +28,7 @@ class SrcRss:
                             url = feed.link
                         else:
                             url = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
-                        title = feed.title 
+                        title = clean_title(feed.title)
                         # title = self.get_title(url)
                     elif rss.src == 'rss':
                         url = feed.link
@@ -49,18 +48,12 @@ class SrcRss:
                     print(f"Awakened a feed error from the {rss.name}'s @{time_awake}")
                     print(f'Total sleep time{time_awake - time_sleep}')
 
-    def get_title(self, url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()
-            soup = BeautifulSoup(response.text, 'html.parser')
-            title_tag = soup.find('title')
-            if title_tag:
-                print(title_tag)
-                return title_tag.text.strip().lower()
+def clean_title(title):
+    # BeautifulSoup을 사용하여 HTML 태그 제거
+    soup = BeautifulSoup(title, 'html.parser')
+    clean_title = soup.get_text()
 
-            else:
-                return "Title not found on the webpage."
-
-        except requests.exceptions.RequestException as e:
-            return f"Error: {e}"
+    # HTML 엔티티 변환
+    clean_title = clean_title.replace('&quot;', '"').replace('&#39;', "'")
+    
+    return clean_title
