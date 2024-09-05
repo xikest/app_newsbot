@@ -20,10 +20,6 @@ class Feeder:
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/843', class_key='news_list'),
                     # 글로벌 마켓 송영찬
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/90', class_key='news_list'),
-                    # 글로벌 마켓 정인설
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/575', class_key='news-list'),
-                    # 글로벌 마켓 나수지
-                    News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/109', class_key='news-list'),
                     # 한경 박신영
                     News(name='한경_글로벌마켓', src='web', url='https://www.hankyung.com/reporter/417', class_key='news-list'),
                     # 글로벌 마켓 이지훈
@@ -37,12 +33,6 @@ class Feeder:
                     News(name='한경', src='web', url='https://www.hankyung.com/financial-market',
                          class_key='main-headline'),
                     News(name='한경', src='web', url='https://www.hankyung.com/realestate', class_key='main-headline'),
-                    # MK 강계만
-                    News(name='MK', src='web', url='https://www.mk.co.kr/author/207',
-                         class_key='news_list latest_news_list type_desc'),
-                    # MK 이승훈
-                    News(name='MK', src='web', url='https://www.mk.co.kr/author/265',
-                         class_key='news_list latest_news_list type_desc'),
                     # MK 윤원섭
                     News(name='MK', src='web', url='https://www.mk.co.kr/author/322',
                          class_key='news_list latest_news_list type_desc'),
@@ -85,8 +75,8 @@ class Feeder:
                 [   News(name='cnbc_top_news', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114', enable_translate=True),
                    
-                    News(name='cnbc_world_news', src='rss',
-                       url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362', enable_translate=True),
+                    # News(name='cnbc_world_news', src='rss',
+                    #    url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362', enable_translate=True),
                     
                     News(name='cnbc_Finance', src='rss',
                        url='https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664', enable_translate=True),
@@ -107,15 +97,14 @@ class Feeder:
             'rss_wsj':
                 [
 
-                    News(name='US_World_News', src='rss',
-                         url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
+                    # News(name='US_World_News', src='rss',
+                    #      url='https://feeds.a.dj.com/rss/RSSWorldNews.xml', enable_translate=True),
                     News(name='US_business', src='rss',
                          url='https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml', enable_translate=True),
                     News(name='US_Markets', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSMarketsMain.xml', enable_translate=True),
                     News(name='US_technology', src='rss',
                          url='https://feeds.a.dj.com/rss/RSSWSJD.xml', enable_translate=True),
-                    
                     News(name='cn_wsj', src='rss',
                          url='https://cn.wsj.com/zh-hans/rss', enable_translate=True),
 
@@ -138,7 +127,6 @@ class Feeder:
                     News(name='imf_chart', src='googleAlert', enable_translate=True,
                          url='https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262'),    
      
-
                     News(name='economist_graphic"', src='rss', enable_translate=True,
                          url='https://www.economist.com/graphic-detail/rss.xml'),
 
