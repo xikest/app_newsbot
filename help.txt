@@ -9,8 +9,7 @@ pip freeze > requirements.txt
 
 ## 환경 변수 등록 
 BOT_TOKEN
-mailid
-ppww
+GPT_API_KEY
 
 ## 패키지 목록에서 설치
 pip install --upgrade pip
@@ -23,9 +22,14 @@ python --version
 #리눅스 업데이트
 sudo apt update
 
-## 설치 하기
-chmod +x install_env.sh
-./install_env.sh
+
+## 가상 환경 접속
+source app_bot/bin/activate
+
+## 가상 환경 생성
+
+sudo apt install python3.12-venv
+python3 -m venv app_newsbot
 
 
 ## github 클론
