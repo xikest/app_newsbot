@@ -1,6 +1,8 @@
 ## 실행하기
 nohup python3 -u app_newsbot.py > log_bot.log 2>&1
 
+nohup python3 -u app_newsbot.py > /dev/null 2>&1 &
+
 #실행 중인 쉘 확인 아래는 bot 키워드
 ps -ef|grep app
 
@@ -24,12 +26,12 @@ sudo apt update
 
 
 ## 가상 환경 접속
-source app_bot/bin/activate
+source bot_venv/app_newsbot/bin/activate
 
 ## 가상 환경 생성
-
+sudo apt update
 sudo apt install python3.12-venv
-python3 -m venv app_newsbot
+python3 -m venv bot_venv/app_newsbot
 
 
 ## github 클론
