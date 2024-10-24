@@ -5,20 +5,22 @@ import gzip
 from pathlib import Path
 from info.definition_obj import Context
 from .sentimentmanager import SentimentManager as SentiGPT
+from .db import FirestoreStorage
 
 class ContentsHandler(list):
     def __init__(self, context: Context = None, max_buffer_size=100000):
         super().__init__()
         self.append(context)
-        self.max_buffer_size = max_buffer_size
+        self.firestore_storage = FirestoreStorage(collection_name='app_newsbot_contents', max_buffer_size=max_buffer_size)
 
     async def send_to(self, token: str, gpt:str) -> None:
         try: 
             context = self.pop()
             if not context:
                 return  # 컨텐츠가 없으면 아무 것도 하지 않음
-            if context.contents[0] not in self._load_contents():
-                self._save_contents(contents=context.contents[0])
+            contents = list(self.firestore_storage._load_contents())
+            if context.contents[0] not in contents:
+                self.firestore_storage._save_contents(context.contents[0])
                 await self._send_contents(context, token, gpt)
         except Exception as e: 
             print(f"error sendTo: {e}")
@@ -45,18 +47,18 @@ class ContentsHandler(list):
             print(f"Error_send_contents: {e}")
             pass
         
-    def _save_contents(self, contents: str, file_name: str = 'app_newsbot_contents'):
-        sent_list = list(self._load_contents())
-        sent_list.append(contents)
-        if len(sent_list) > self.max_buffer_size:
-            sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
-        self.save_to_pickle(sent_list, file_name)
+    # def _save_contents(self, contents: str, file_name: str = 'app_newsbot_contents'):
+    #     sent_list = list(self._load_contents())
+    #     sent_list.append(contents)
+    #     if len(sent_list) > self.max_buffer_size:
+    #         sent_list.pop(0)  # 버퍼 크기를 초과하면 가장 오래된 컨텐츠를 제거
+    #     self.save_to_pickle(sent_list, file_name)
         
-    def _load_contents(self, file_name: str = 'app_newsbot_contents'):
-        try:
-            yield from self.load_from_pickle(file_name)
-        except FileNotFoundError:
-            yield from []
+    # def _load_contents(self, file_name: str = 'app_newsbot_contents'):
+    #     try:
+    #         yield from self.load_from_pickle(file_name)
+    #     except FileNotFoundError:
+    #         yield from []
             
     
     def _make_summary(self, context:Context, gpt_key:str):
