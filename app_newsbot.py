@@ -1,18 +1,22 @@
-import asyncio
-import platform
+from fastapi import FastAPI
 import logging
-
 from bot import Bot
+import uvicorn
 
-# Enable logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.ERROR)
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.ERROR)
 
-if platform.system() == 'Windows':
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+app = FastAPI()
+
 async def main():
     bot = Bot()
     await bot.start()
 
-if __name__ == '__main__':
-    asyncio.run(main())
+@app.get("/run_newsbot")
+async def run_calendar():
+    await main()
+    return {"status": "Bot started successfully"}
+    
+
+# if __name__ == "__main__":
+#     uvicorn.run("app_newsbot:app", host="0.0.0.0", port=8008)
+    

@@ -1,17 +1,10 @@
-## 실행하기
-nohup python3 -u app_newsbot.py > log_bot.log 2>&1
-
-python3 app_newsbot.py
-
-#실행 중인 쉘 확인 아래는 bot 키워드
-ps -ef|grep app
-
 ## 패키지 목록 저장
 pip freeze > requirements.txt
 
 ## 환경 변수 등록 
 BOT_TOKEN
 GPT_API_KEY
+secret
 
 ## 패키지 목록에서 설치
 pip install --upgrade pip
@@ -25,17 +18,5 @@ python --version
 sudo apt update
 
 
-## 가상 환경 접속
-source bot_venv/app_newsbot/bin/activate
-
-## 가상 환경 생성
-sudo apt update
-sudo apt install python3.12-venv
-python3 -m venv bot_venv/app_newsbot
-
-
-## github 클론
-git clone https://github.com/xikest/app_newsbot.git
-## 클론 삭제
-rm -rf app_newsbot
-
+gcloud auth login
+gcloud config set project YOUR_PROJECT_ID

@@ -4,6 +4,7 @@ import datetime
 import asyncio
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
+import logging
 
 
 class SrcNews:
@@ -15,24 +16,24 @@ class SrcNews:
     async def generator(self) -> Context:
         for news in self._newsStand:
             try:
-                print(f"Start getting the feed from the {news.name}'s: {datetime.datetime.now()}")
+                logging.info(f"Start getting the feed from the {news.name}'s: {datetime.datetime.now()}")
                 if news.src == 'web':
                     webGenerator = WebScraper().get_links_general(url=news.url, class_key=news.class_key,
                                                                   condition=lambda href: href.startswith(
                                                                       'http') or href.startswith('www'))
                     for content in webGenerator:
                         yield Context(label=f'{news.name}', contents=[content], botChatId=self._chat_id, dtype='msg')
-                print(f"Finished obtaining the feed from the {news.name}'s : {datetime.datetime.now()}")
+                logging.info(f"Finished obtaining the feed from the {news.name}'s : {datetime.datetime.now()}")
             except Exception as e:
                 time_sleep = datetime.datetime.now()
                 if self.verbose:
-                    print(f'Error description -> {e}')
-                    print(f"Raised a feed error from the {news.name}'s @{time_sleep}")
+                    logging.error(f'Error description -> {e}')
+                    logging.error(f"Raised a feed error from the {news.name}'s @{time_sleep}")
                 await asyncio.sleep(60 * 10)  # 다음 반복까지 대기 시간
                 time_awake = datetime.datetime.now()
                 if self.verbose:
-                    print(f"Awakened a feed error from the {news.name}'s @{time_awake}")
-                    print(f'Total sleep time{time_awake - time_sleep}')
+                    logging.error(f"Awakened a feed error from the {news.name}'s @{time_awake}")
+                    logging.error(f'Total sleep time{time_awake - time_sleep}')
 
 
 class WebScraper:
