@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import logging
-from bot import Bot
+from bot import NewsBot
 import uvicorn
 
 logging.basicConfig(level=logging.ERROR)
@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.ERROR)
 app = FastAPI()
 
 async def main():
-    bot = Bot()
+    bot = NewsBot()
     await bot.start()
 
 @app.get("/run_newsbot")

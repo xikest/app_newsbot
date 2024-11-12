@@ -7,9 +7,9 @@ import asyncio
 import datetime
 import bs4
 import requests
-from bot.handler.contents_hanlder import Context
+from bot.definition_obj import Context
 
-class SrcMail:
+class MAIL:
     def __init__(self, usr: str, pid: str, mailings: Generator, chat_id: Optional[str] = None, verbose=False, redirection_url=True, enable_summary=False):
         self._usr = usr
         self._pid = pid

@@ -1,1 +1,1 @@
-from bot.bot_alert import Bot_Alert as Bot
+from bot.news_bot import NewsBot as NewsBot
