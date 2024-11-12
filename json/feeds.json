@@ -198,13 +198,13 @@
         },
         {
         "chat_id": "-1001918946467",
-        "name": "BOK 이슈노트",
+        "name": "BOK_이슈노트",
         "src": "rss",
         "url": "https://www.bok.or.kr/portal/bbs/B0000156/news.rss?menuNo=200754"
         },
         {
         "chat_id": "-1001918946467",
-        "name": "BOK 경제연구(국문)",
+        "name": "BOK_경제연구(국문)",
         "src": "rss",
         "url": "https://www.bok.or.kr/imer/bbs/P0002455/news.rss?menuNo=500788"
         },
@@ -234,7 +234,7 @@
         },
         {
         "chat_id": "-1001918946467",
-        "name": "경제상황 평가",
+        "name": "경제상황_평가",
         "src": "rss",
         "url": "https://www.bok.or.kr/portal/bbs/P0002105/news.rss?menuNo=200439"
         },
@@ -306,55 +306,55 @@
         },
         {
         "chat_id": "-1001585250010",
-        "name": "안재광의 대기만성's",
+        "name": "안재광의 대기만성",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWjZECMTA-bx14SEKzpsJi-"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "power to XI_steps",
+        "name": "power_to_XI_steps",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "ETF 언박싱",
+        "name": "ETF_언박싱",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEX8sGPDze7pWis4mRmfRgmI"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "투자 Insight",
+        "name": "투자_Insight",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL_8dl5rgert5NCSg9on7CQsZKozfGO0Kc"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "집코노미 흥청망청",
+        "name": "집코노미_흥청망청",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV5aTdl51WcHLGxpw0lFq2xP"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "집코노미 오마카세",
+        "name": "집코노미_오마카세",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV4rtLaPSarnw6mRUJ7wayHd"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "집코노미 총총견문록",
+        "name": "집코노미_총총견문록",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV54z04pd1Pj8UPark_Tk0jX"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "미국주식 전쟁",
+        "name": "미국주식_전쟁",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbQW8eSZDKNhYjzNYqKKG99W"
         },
         {
         "chat_id": "-1001585250010",
-        "name": "ETF의 모든 것",
+        "name": "ETF의_모든_것",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWa7AdDgoxihlLkaAU59tOm"
         },
@@ -408,7 +408,7 @@
         },
         {
         "chat_id": "-1001673032661",
-        "name": "중동 천일야화",
+        "name": "중동_천일야화",
         "src": "googleAlert",
         "url": "https://www.google.co.kr/alerts/feeds/11305193269230284098/11030838220576993937"
         },

@@ -1,9 +1,10 @@
 import json
+import requests
+import logging
 from typing import AsyncGenerator
 from .feed_rss import RSS
 from .feed_news import NEWS
 from .feed_mail import MAIL
-import requests
 
  
 class Feeder:
@@ -22,7 +23,7 @@ class Feeder:
             if response.status_code == 200:
                 self.src_json = json.loads(response.text)
             else:
-                print(f"Error: {response.status_code}")
+                logging.error(f"Error: {response.status_code}")
 
 
     async def generator(self) -> AsyncGenerator:

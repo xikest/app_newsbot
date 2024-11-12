@@ -1,4 +1,5 @@
 from openai import OpenAI
+import logging
 
 class Summerizer:
     def __init__(self, api_key=None, gpt_model="gpt-3.5-turbo-1106"):
@@ -20,7 +21,7 @@ class Summerizer:
             self.add_message("user", f"{sentence}")
             bot_response = self.get_text_from_gpt(self.messages_prompt)
         except Exception as e:
-            print("Analysis error occurred: Returning default value.")
+            logging.error("Analysis error occurred: Returning default value.")
             bot_response = sentence
         self.reset_message()  # 리셋
         return bot_response

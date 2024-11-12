@@ -34,8 +34,8 @@ class NewsBot():
         logging.info(f'bot start err.{e}')
 
   async def update(self, context_generator_from_feed:AsyncGenerator):
-            async for context in context_generator_from_feed(): 
-                      await Handler(context, self.bot_token, self.gpt_api_key).send_content(storage_name='app_newsbot_contents')
+            async for context in context_generator_from_feed():
+                    await Handler(context, self.bot_token, self.gpt_api_key).send_content(storage_name='app_newsbot_contents')
 
 
         
