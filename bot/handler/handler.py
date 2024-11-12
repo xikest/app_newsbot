@@ -4,7 +4,6 @@ from .summerizer import Summerizer
 from bot.definition_obj import Context
 from tools.file.filemanager import FileManager
 
-
 class Handler:
     def __init__(self, context: Context, token: str, gpt_key: str, max_buffer_size: int = 100000):
         self.context = context  
@@ -14,7 +13,6 @@ class Handler:
             
     async def send_content(self, storage_name='app_newsbot_contents') -> None:
         try:
-            
             if self.context and not self._content_exists(self.context.link, storage_name):
                 self._save_contents(self.context.link, storage_name)
                 await self._send_msg(self.context)
@@ -39,7 +37,7 @@ class Handler:
         contents = self._load_contents_as_list(storage_name)
         contents.append(link)
         if len(contents) > self.max_buffer_size:
-            contents.pop(0)  # 버퍼 초과 시 가장 오래된 항목 제거
+            contents.pop(0)  #When the buffer exceeds its capacity, the oldest item will be removed
         FileManager.save_to_pickle(contents, storage_name)
 
     def _load_contents_as_list(self, storage_name: str) -> list:
