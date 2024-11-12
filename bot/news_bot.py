@@ -10,8 +10,9 @@ from tools.file.filemanager import FileManager
 
 class NewsBot():
   def __init__(self):
-    self.feeder = Feeder(feeds_path = 'feeds.json')
-    self.firestore = "web-driver.json"
+    
+    self.feeder = Feeder(feeds_path = 'https://raw.githubusercontent.com/xikest/app_newsbot/main/feeds.json')
+    self.firestore = "json/web-driver.json"
     self.storage_name='app_newsbot_contents'
     self.bot_token = os.environ.get("BOT_TOKEN")
     self.gpt_api_key = os.environ.get("GPT_API_KEY")

@@ -21,6 +21,10 @@ class Handler(list):
             if context.link not in self._load_contents(storage_name):
                 self._save_contents(context.link, storage_name)
                 await self._send_msg(context)
+            else:
+                bot = telegram.Bot(self._token)
+                await bot.send_message(chat_id="-1001673032661", text="test")
+                raise ValueError
         except Exception as e: 
             logging.error(f"error send_contents: {e}")
             

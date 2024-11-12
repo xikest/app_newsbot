@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import logging
 from bot import NewsBot
-import uvicorn
+# import uvicorn
 
 logging.basicConfig(level=logging.ERROR)
 
