@@ -118,6 +118,48 @@
       },
       {
         "chat_id": "-1001686311222",
+        "name": "economist_china",
+        "src": "rss",
+        "url": "https://www.economist.com/china/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
+        "name": "economist_europe",
+        "src": "rss",
+        "url": "https://www.economist.com/europe/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
+        "name": "economist_usa",
+        "src": "rss",
+        "url": "https://www.economist.com/united-states/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
+        "name": "economist_Middle_East_and_Africa",
+        "src": "rss",
+        "url": "https://www.economist.com/middle-east-and-africa/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
+        "name": "economist_Business",
+        "src": "rss",
+        "url": "https://www.economist.com/business/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
+        "name": "economist_Finance&economics",
+        "src": "rss",
+        "url": "https://www.economist.com/finance-and-economics/rss.xml",
+        "enable_translate": true
+      },
+      {
+        "chat_id": "-1001686311222",
         "name": "economist_indicators",
         "src": "rss",
         "url": "https://www.economist.com/economic-and-financial-indicators/rss.xml",
