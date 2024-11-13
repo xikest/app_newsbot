@@ -4,16 +4,12 @@ from bot import NewsBot
 # import uvicorn
 
 logging.basicConfig(level=logging.ERROR)
-
 app = FastAPI()
 
-async def main():
+@app.get("/run_newsbot")
+async def run_newsbot():
     bot = NewsBot()
     await bot.start()
-
-@app.get("/run_newsbot")
-async def run_calendar():
-    await main()
     return {"status": "Bot started successfully"}
     
 
