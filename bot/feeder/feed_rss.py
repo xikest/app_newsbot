@@ -13,21 +13,19 @@ class RSS:
         self.verbose = verbose
         self.name = name
         self.url = url
-        self.enable_translate = kwargs.get("enable_translate", 'false').lower() == 'true'
+        self.enable_translate = kwargs.get("enable_translate", 'False')
         self.verbose = verbose
-
+        
     async def generator(self) -> AsyncGenerator:
         try:
             logging.info(f"Start getting the feed from the {self.name}'s: {datetime.datetime.now()}")
             for feed in feedparser.parse(self.url).entries[:5]:
-                
                 if self.src == 'googleAlert':
                     article_link = feed.link.replace('https://www.google.com/url?rct=j&sa=t&url=', '').split('&ct=ga&cd')[0]
                     title = clean_title(feed.title)
                 elif self.src == 'rss':
                     article_link = feed.link
-                    title = feed.get("title", '')
-                
+                    title = feed.get("title", '')                    
                 yield Context(label=f"{self.name}", summary=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
             logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
         except Exception as e:

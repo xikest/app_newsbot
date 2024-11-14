@@ -23,8 +23,10 @@ class Handler:
     async def _send_msg(self, context: Context):
         bot = telegram.Bot(self._token)
         try:
+            print(context)
             context = self._make_summary(context)
             message = f"#{context.label}\n{context.summary or ''}\n{context.link}"
+            print(message)
             await bot.send_message(chat_id=context.bot_chat_id, text=message)
         except Exception as e:
             logging.error(f"[send_msg] Message sending error: {e}")

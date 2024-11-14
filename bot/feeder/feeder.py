@@ -9,7 +9,7 @@ from .feed_mail import MAIL
  
 class Feeder:
     def __init__(self, feeds_path:json):
-        self.feeds_dict = {
+        self.feeder_dict = {
             # 'mail': 'MAIL',
             'rss': RSS,
             'news': NEWS,
@@ -28,9 +28,9 @@ class Feeder:
 
     async def generator(self) -> AsyncGenerator:
         for category in list(self.src_json.keys()):
-            feeder = self.feeds_dict.get(category)
             for src_params in self.src_json.get(category):
                 try:
+                    feeder = self.feeder_dict.get(category)
                     async for context in feeder(**src_params).generator():
                         yield context  
                 except:
