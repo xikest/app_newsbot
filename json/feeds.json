@@ -353,11 +353,10 @@
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWjZECMTA-bx14SEKzpsJi-"
         },
         {
-        "chat_id": "-1001585250010",
-        "name": "power_to_XI_steps",
-        "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c
-"
+          "chat_id": "-1001585250010",
+          "name": "power_to_XI_steps",
+          "src": "rss",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c"
         },
         {
         "chat_id": "-1001585250010",
