@@ -13,7 +13,7 @@ class RSS:
         self.verbose = verbose
         self.name = name
         self.url = url
-        self.enable_translate = kwargs.get("enable_translate", 'False')
+        self.enable_translate = kwargs.get("enable_translate", False)
         self.verbose = verbose
         
     async def generator(self) -> AsyncGenerator:
