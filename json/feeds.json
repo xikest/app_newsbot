@@ -356,7 +356,8 @@
         "chat_id": "-1001585250010",
         "name": "power_to_XI_steps",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c
+"
         },
         {
         "chat_id": "-1001585250010",
@@ -371,19 +372,19 @@
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL_8dl5rgert5NCSg9on7CQsZKozfGO0Kc"
         },
         {
-        "chat_id": "-1001585250010",
+        "chat_id": "-1001558520951",
         "name": "집코노미_흥청망청",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV5aTdl51WcHLGxpw0lFq2xP"
         },
         {
-        "chat_id": "-1001585250010",
+        "chat_id": "-1001558520951",
         "name": "집코노미_오마카세",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV4rtLaPSarnw6mRUJ7wayHd"
         },
         {
-        "chat_id": "-1001585250010",
+        "chat_id": "-1001558520951",
         "name": "집코노미_총총견문록",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV54z04pd1Pj8UPark_Tk0jX"
@@ -523,7 +524,35 @@
               "src": "rss",
               "enable_translate": true,
               "url": "https://www.census.gov/economic-indicators/indicator.xml"
-              }                 
+              },
+              {
+                "chat_id": "-1001854256703",
+                "name": "reuters_equities",
+                "src": "rss",
+                "enable_translate": true,
+                "url": "https://www.reutersagency.com/feed/?best-sectors=equities&post_type=best"
+              },     
+              {
+                "chat_id": "-1001854256703",
+                "name": "reuters_fx_income",
+                "src": "rss",
+                "enable_translate": true,
+                "url": "https://www.reutersagency.com/feed/?best-sectors=foreign-exchange-fixed-income&post_type=best"
+              },      
+              {
+                "chat_id": "-1001854256703",
+                "name": "reuters_economy",
+                "src": "rss",
+                "enable_translate": true,
+                "url": "https://www.reutersagency.com/feed/?best-sectors=economy&post_type=best"
+              },   
+              {
+                "chat_id": "-1001854256703",
+                "name": "reuters_energy",
+                "src": "rss",
+                "enable_translate": true,
+                "url": "https://www.reutersagency.com/feed/?best-sectors=commodities-energy&post_type=bestt"
+              }       
     ]
   }
   
