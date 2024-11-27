@@ -503,20 +503,7 @@
       "enable_translate": true,
       "url": "https://www.eia.gov/rss/todayinenergy.xml"
       },
-      {
-        "chat_id": "-1001528926673",
-        "name": "미상무부_Blog_posts",
-        "src": "rss",
-        "enable_translate": true,
-        "url": "https://www.commerce.gov/feeds/blog"
-        },
-        {
-          "chat_id": "-1001528926673",
-          "name": "미상무부_images",
-          "src": "rss",
-          "enable_translate": true,
-          "url": "https://www.commerce.gov/feeds/files/images"
-          },
+
           {
             "chat_id": "-1001528926673",
             "name": "Census_indicator",
