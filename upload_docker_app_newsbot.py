@@ -10,3 +10,4 @@ if __name__ == '__main__':
     docker_manager = DockerImageManager(GCP_PROJECT_ID, IMAGE_NAME, TAG)
     docker_manager.build_image()
     docker_manager.push_image()
+.

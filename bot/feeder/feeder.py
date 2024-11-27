@@ -12,7 +12,7 @@ class Feeder:
         self.feeder_dict = {
             # 'mail': 'MAIL',
             'rss': RSS,
-            'news': NEWS,
+            # 'news': NEWS,
         }
         
         try: 
