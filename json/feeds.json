@@ -239,6 +239,30 @@
       "url": "https://feeds.bloomberg.com/green/news.rss",
       "enable_translate": true
     },
+
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_bview",
+      "src": "rss",
+      "url": " https://feeds.bloomberg.com/bview/news.rss",
+      "enable_translate": true
+    },
+
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_business",
+      "src": "rss",
+      "url": " https://feeds.bloomberg.com/business/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_crypto",
+      "src": "rss",
+      "url": " https://feeds.bloomberg.com/crypto/news.rss",
+      "enable_translate": true
+    },
+    
     
     {
       "chat_id": "-1001528926673",
