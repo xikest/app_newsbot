@@ -10,9 +10,9 @@ from .feed_mail import MAIL
 class Feeder:
     def __init__(self, feeds_path:json):
         self.feeder_dict = {
-            # 'mail': 'MAIL',
+            # 'mail': MAIL,
             'rss': RSS,
-            # 'news': NEWS,
+            'news': NEWS,
         }
         
         try: 

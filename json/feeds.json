@@ -88,11 +88,14 @@
   "mail": [
     {
       "chat_id": "-1001754209136",
-      "box": "WSJ_NEWS",
+      "box_name": "WSJ_NEWS",
       "sender": "The Wall Street Journal.",
       "url_conditions": ["wsj.com"],
-      "filter_linktext": "Read More"
+      "filter_linktext": "Read More",
+      "enable_translate":true
     }
+
+
   ],
   "rss": [
     {
@@ -174,13 +177,6 @@
     },
     {
       "chat_id": "-1001754209136",
-      "name": "wsj_us_Markets",
-      "src": "rss",
-      "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-      "enable_translate": true
-    },
-    {
-      "chat_id": "-1001754209136",
       "name": "wsj_us_technology",
       "src": "rss",
       "url": "https://feeds.a.dj.com/rss/RSSWSJD.xml",
@@ -193,6 +189,57 @@
       "url": "https://cn.wsj.com/zh-hans/rss",
       "enable_translate": true
     },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_market",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/markets/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_politics",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/politics/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_technology",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/technology/news.rss",
+      "enable_translate": true
+    },
+
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_wealth",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/wealth/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_economics",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/economics/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_industries",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/industries/news.rss",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001854256703",
+      "name": "bloomburg_green",
+      "src": "rss",
+      "url": "https://feeds.bloomberg.com/green/news.rss",
+      "enable_translate": true
+    },
+    
     {
       "chat_id": "-1001528926673",
       "name": "snpGlobal_Infographic",
@@ -504,13 +551,13 @@
       "url": "https://www.eia.gov/rss/todayinenergy.xml"
       },
 
-          {
-            "chat_id": "-1001528926673",
-            "name": "Census_indicator",
-            "src": "rss",
-            "enable_translate": true,
-            "url": "https://www.census.gov/economic-indicators/indicator.xml"
-            }
+      {
+        "chat_id": "-1001528926673",
+        "name": "Census_indicator",
+        "src": "rss",
+        "enable_translate": true,
+        "url": "https://www.census.gov/economic-indicators/indicator.xml"
+        }
   
   ]
 }
