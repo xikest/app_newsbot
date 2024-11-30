@@ -184,6 +184,13 @@
     },
     {
       "chat_id": "-1001754209136",
+      "name": "wsj_us_Markets",
+      "src": "rss",
+      "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
+      "enable_translate": true
+    },
+    {
+      "chat_id": "-1001754209136",
       "name": "wsj_cn_wsj",
       "src": "rss",
       "url": "https://cn.wsj.com/zh-hans/rss",
