@@ -448,6 +448,51 @@
       "src": "rss",
       "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL_8dl5rgert5NCSg9on7CQsZKozfGO0Kc"
       },
+
+      {
+        "chat_id": "-1001585250010",
+        "name": "김현석_월스트리트나우",
+        "src": "rss",
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO274jKRcOLTGrLyXN7umky"
+        },
+        {
+          "chat_id": "-1001585250010",
+          "name": "월가에서_듣는다",
+          "src": "rss",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwMWeAE7PwAoyBV-IW-hgMPy"
+          },
+          {
+            "chat_id": "-1001585250010",
+            "name": "오늘장_10분만",
+            "src": "rss",
+            "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwN7kMLkQudcJHbmA_TgTEzd"
+            },
+            {
+              "chat_id": "-1001585250010",
+              "name": "워싱턴나우",
+              "src": "rss",
+              "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwNA1D0id_ymujsqsTZHFqlM"
+              },
+              {
+                "chat_id": "-1001585250010",
+                "name": "도쿄나우",
+                "src": "rss",
+                "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO5rMIoVsQSwLGX7T68KOvH"
+                },
+                {
+                "chat_id": "-1001585250010",
+                "name": "실리콘밸리나우",
+                "src": "rss",
+                "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwM0PCPjOnVFLc9dx0dTMGoq"
+                },
+                {
+                  "chat_id": "-1001585250010",
+                  "name": "삼프로_국제정세",
+                  "src": "rss",
+                  "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLQvqXcm97CTBKRam5OUvL4B93btPOQDtx"
+                  },
+
+
       {
       "chat_id": "-1001558520951",
       "name": "집코노미_흥청망청",
