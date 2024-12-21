@@ -11,9 +11,9 @@ from tools.file.filemanager import FileManager
 class NewsBot():
   def __init__(self):
     
-    # self.feeder = Feeder(feeds_path = 'https://raw.githubusercontent.com/xikest/app_newsbot/main/json/feeds.json')
+    self.feeder = Feeder(feeds_path = 'https://raw.githubusercontent.com/xikest/app_newsbot/main/json/feeds.json')
     
-    self.feeder = Feeder(feeds_path = 'json/feeds.json')
+    # self.feeder = Feeder(feeds_path = 'json/feeds.json')
     
     self.firestore = "json/web-driver.json"
     self.storage_name='app_newsbot_contents'
