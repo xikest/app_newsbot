@@ -593,27 +593,6 @@
       },
       {
       "chat_id": "-1001528926673",
-      "name": "iea_report",
-      "src": "googleAlert",
-      "enable_translate": true,
-      "url": "https://www.google.co.kr/alerts/feeds/11305193269230284098/7382274396628814653"
-      },
-      {
-      "chat_id": "-1001528926673",
-      "name": "icap_carbon",
-      "src": "googleAlert",
-      "enable_translate": true,
-      "url": "https://www.google.co.kr/alerts/feeds/11305193269230284098/9987650578008654233"
-      },
-      {
-      "chat_id": "-1001528926673",
-      "name": "imf_chart",
-      "src": "googleAlert",
-      "enable_translate": true,
-      "url": "https://www.google.co.kr/alerts/feeds/11305193269230284098/10686972103545313262"
-      },
-      {
-      "chat_id": "-1001528926673",
       "name": "economist_graphic",
       "src": "rss",
       "enable_translate": true,
