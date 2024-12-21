@@ -15,8 +15,7 @@ from bot.definition_obj import Context
 class MAIL:
     def __init__(self, chat_id:str, verbose:bool=False, *args, **kwargs):
         
-        # self.user = os.getenv("USER")
-        self.user = 'taest12'
+        self.user = os.getenv("USER")
         self.pid = os.getenv("PID") 
         self.chat_id = chat_id
         self.verbose = verbose
