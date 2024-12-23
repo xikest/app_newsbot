@@ -90,6 +90,7 @@ class MAIL:
                     url = link.get('href')
                     url = follow_url_redirects(url)
                     title = find_title(soup)
+                    title = title.strip().lower()
                     if not self.url_conditions or all(condition in url for condition in self.url_conditions):
                         yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
@@ -108,5 +109,6 @@ class MAIL:
                                 url = follow_url_redirects(url)
                                 # print(f"{self.sender} html_url after redirection: {url}")
                                 title = find_title(soup)
+                                title = title.strip().lower()
                                 if not self.url_conditions or all(condition in url for condition in self.url_conditions):
                                     yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)

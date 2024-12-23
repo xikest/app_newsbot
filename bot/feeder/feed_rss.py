@@ -25,7 +25,8 @@ class RSS:
                     title = clean_title(feed.title)
                 elif self.src == 'rss':
                     article_link = feed.link
-                    title = feed.get("title", '')  
+                    title = feed.get("title", '') 
+                    title = title.strip().lower()
                 logging.info(f"{title} : {article_link}")                  
                 yield Context(label=f"{self.name}", summary=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
             logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
