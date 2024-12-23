@@ -14,7 +14,7 @@ class Handler:
     async def send_content(self, storage_name='app_newsbot_contents') -> None:
         try:
             if self.context and not self._content_exists(self.context.link, storage_name):
-                self._save_contents(self.context.link, storage_name)
+                self._save_contents(self.context.summary, storage_name)
                 await self._send_msg(self.context)
         except Exception as e:
             logging.error(f"[send_content] Transmission error: {e}")
@@ -33,9 +33,9 @@ class Handler:
     def _content_exists(self, link: str, storage_name: str) -> bool:
         return link in self._load_contents_as_list(storage_name)
     
-    def _save_contents(self, link: str, storage_name: str):
+    def _save_contents(self, title: str, storage_name: str):
         contents = self._load_contents_as_list(storage_name)
-        contents.append(link)
+        contents.append(title)
         if len(contents) > self.max_buffer_size:
             contents.pop(0)  #When the buffer exceeds its capacity, the oldest item will be removed
         FileManager.save_to_pickle(contents, storage_name)

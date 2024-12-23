@@ -91,7 +91,7 @@ class MAIL:
                     url = follow_url_redirects(url)
                     title = find_title(soup)
                     if not self.url_conditions or all(condition in url for condition in self.url_conditions):
-                        yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg')
+                        yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
         elif ctype == 'multipart/alternative' and 'attachment' not in cdispo:
                 for subpart in part.get_payload():
@@ -109,4 +109,4 @@ class MAIL:
                                 # print(f"{self.sender} html_url after redirection: {url}")
                                 title = find_title(soup)
                                 if not self.url_conditions or all(condition in url for condition in self.url_conditions):
-                                    yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg')
+                                    yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
