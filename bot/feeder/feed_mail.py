@@ -25,7 +25,6 @@ class MAIL:
         self.enable_translate:bool = kwargs.get("enable_translate", False)
         self.url_conditions:list = kwargs.get("url_conditions", [])
         self.filter_linktext:str = kwargs.get("filter_linktext", None)
-        self.temp = set()
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             def _get_UIDs_msg( user: str, pid: str, mail_box: str, imap: str = 'imap.naver.com'):
@@ -89,30 +88,25 @@ class MAIL:
             for link in links:
                 if link.text.strip() == self.filter_linktext:
                     url = link.get('href')
-                    if url not in self.temp:
-                        url = follow_url_redirects(url)
-                        self.temp.add(url)
-                        title = find_title(soup)
-                        title = title.strip().lower()
-                        if not self.url_conditions or all(condition in url for condition in self.url_conditions):
-                            yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
+                    url = follow_url_redirects(url)
+                    title = find_title(soup)
+                    if not self.url_conditions or all(condition in url for condition in self.url_conditions):
+                        yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
-        elif ctype == 'multipart/alternative' and 'attachment' not in cdispo:
-                for subpart in part.get_payload():
-                    sub_ctype = subpart.get_content_type()
-                    # sub_cdispo = str(subpart.get('Content-Disposition'))
-                    if sub_ctype == 'text/plain' or sub_ctype == 'text/html':
-                        body = subpart.get_payload(decode=True)
-                        soup = bs4.BeautifulSoup(body, 'html.parser')
-                        links = soup.find_all('a')
-                        for link in links:
-                            if link.text.strip() == self.filter_linktext:
-                                url = link.get('href')
-                                if url not in self.temp:
-                                    url = follow_url_redirects(url)
-                                    self.temp.add(url)
-                                    # print(f"{self.sender} html_url after redirection: {url}")
-                                    title = find_title(soup)
-                                    title = title.strip().lower()
-                                    if not self.url_conditions or all(condition in url for condition in self.url_conditions):
-                                        yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
+        # elif ctype == 'multipart/alternative' and 'attachment' not in cdispo:
+        #         for subpart in part.get_payload():
+        #             sub_ctype = subpart.get_content_type()
+        #             # sub_cdispo = str(subpart.get('Content-Disposition'))
+        #             if sub_ctype == 'text/plain' or sub_ctype == 'text/html':
+        #                 body = subpart.get_payload(decode=True)
+        #                 soup = bs4.BeautifulSoup(body, 'html.parser')
+        #                 links = soup.find_all('a')
+        #                 for link in links:
+        #                     if link.text.strip() == self.filter_linktext:
+        #                         url = link.get('href')
+    #                             url = follow_url_redirects(url)
+    #                             # print(f"{self.sender} html_url after redirection: {url}")
+    #                             title = find_title(soup)
+    #                             title = title.strip().lower()
+    #                             if not self.url_conditions or all(condition in url for condition in self.url_conditions):
+    #                                 yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
