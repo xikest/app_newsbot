@@ -2,10 +2,11 @@ from openai import OpenAI
 import logging
 
 class Summerizer:
-    def __init__(self, api_key=None, gpt_model='gpt-4o-mini'):
+    def __init__(self, api_key=None, gpt_model="gemini-1.5-flash"):
         if api_key is None: raise ValueError
         else: self.api_key = api_key
-        self.client = OpenAI(api_key=api_key)
+        self.client = OpenAI(api_key=api_key,
+                             base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
         self.gpt_model=gpt_model
         self.messages_prompt = []
 

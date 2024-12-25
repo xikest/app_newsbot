@@ -14,7 +14,7 @@ class Handler:
     async def send_content(self, storage_name='app_newsbot_contents') -> None:
         try:
             if self.context and not self._content_exists(self.context.link, storage_name):
-                self._save_contents(self.context.link, storage_name)
+                self._save_contents(self.context.summary, storage_name)
                 await self._send_msg(self.context)
         except Exception as e:
             logging.error(f"[send_content] Transmission error: {e}")
