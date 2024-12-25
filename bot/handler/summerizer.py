@@ -18,7 +18,7 @@ class Summerizer:
 
     def translate_tokr(self, sentence:str) -> str:
         try:
-            self.add_message("assistant", "You are a professional journalist, and translate the input language into Korean.")
+            self.add_message("assistant", "Translate the input language into Korean. Provide only the result.")
             self.add_message("user", f"{sentence}")
             bot_response = self.get_text_from_gpt(self.messages_prompt)
         except Exception as e:

@@ -14,7 +14,7 @@ class Handler:
     async def send_content(self, storage_name='app_newsbot_contents') -> None:
         try:
             if self.context and not self._content_exists(self.context.link, storage_name):
-                self._save_contents(self.context.summary, storage_name)
+                self._save_contents(self.context.link, storage_name)
                 await self._send_msg(self.context)
         except Exception as e:
             logging.error(f"[send_content] Transmission error: {e}")
@@ -50,7 +50,7 @@ class Handler:
     def _make_summary(self, context: Context) -> Context:
         if context.enable_translate:
             try:
-                summerizer = Summerizer(api_key=self._gpt_key, gpt_model='gpt-4o-mini')
+                summerizer = Summerizer(api_key=self._gpt_key, gpt_model='gemini-1.5-flash')
                 context.summary = summerizer.translate_tokr(context.summary)
             except Exception as e:
                 logging.error(f"[make_summary] Summary generation error: {e}")
