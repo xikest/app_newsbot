@@ -25,7 +25,7 @@ class MAIL:
         self.enable_translate:bool = kwargs.get("enable_translate", False)
         self.url_conditions:list = kwargs.get("url_conditions", [])
         self.filter_linktext:str = kwargs.get("filter_linktext", None)
-        self.extract_title:str = kwargs.get("extract_title", None)
+        self.extract_title_from_content:str = kwargs.get("extract_title_from_content", None)
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             def _get_UIDs_msg( user: str, pid: str, mail_box: str, imap: str = 'imap.naver.com'):
@@ -45,7 +45,7 @@ class MAIL:
                     subject = message.get('Subject')
                     mail_subject = decode_header(subject)[0][0] if subject else "No title"
                     mail_subject = mail_subject.decode() if isinstance(mail_subject, bytes) else mail_subject
-                    
+
                     fr = decode_header(message.get('From'))
                     if self.sender in str(fr):
                         for part in message.walk():
@@ -85,7 +85,7 @@ class MAIL:
             else: 
                 final_url = url
             return final_url
-        
+
         if ctype == 'text/html' and 'attachment' not in cdispo:
             body = part.get_payload(decode=True)
             soup = bs4.BeautifulSoup(body, 'html.parser')
@@ -94,12 +94,10 @@ class MAIL:
                 if link.text.strip() == self.filter_linktext:
                     url = link.get('href')
                     url = follow_url_redirects(url)
-                    if self.extract_title:
+                    if self.extract_title_from_content:
                         title = find_title(soup)
                     else:
-                        title = mail_subject
-                        
-                    print(title)    
+                        title = mail_subject  
                     if not self.url_conditions or all(condition in url for condition in self.url_conditions):
                         yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
