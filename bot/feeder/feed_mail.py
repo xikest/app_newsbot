@@ -25,6 +25,7 @@ class MAIL:
         self.enable_translate:bool = kwargs.get("enable_translate", False)
         self.url_conditions:list = kwargs.get("url_conditions", [])
         self.filter_linktext:str = kwargs.get("filter_linktext", None)
+        self.extract_title:str = kwargs.get("extract_title", None)
 
     async def generator(self) -> AsyncGenerator[Context, None]:
             def _get_UIDs_msg( user: str, pid: str, mail_box: str, imap: str = 'imap.naver.com'):
@@ -41,19 +42,23 @@ class MAIL:
                 UIDs, raw_msg = _get_UIDs_msg(self.user, self.pid, self.box_name)
                 for UID in UIDs[-20:]:
                     message = email.message_from_bytes(raw_msg[UID][b'BODY[]'])
+                    subject = message.get('Subject')
+                    mail_subject = decode_header(subject)[0][0] if subject else "No title"
+                    mail_subject = mail_subject.decode() if isinstance(mail_subject, bytes) else mail_subject
+                    
                     fr = decode_header(message.get('From'))
                     if self.sender in str(fr):
                         for part in message.walk():
                             ctype = part.get_content_type()
                             cdispo = str(part.get('Content-Disposition'))
-                            async for context in self._run_generator(ctype, cdispo, part):
+                            async for context in self._run_generator(ctype, cdispo, part, mail_subject):
                                 yield context
                 logging.info(f"Finished obtaining the feed from the {self.sender}'s")
             except Exception as e:
                 if self.verbose:
                     logging.error(f'Error description -> {e}')
                     
-    async def _run_generator(self, ctype, cdispo, part):
+    async def _run_generator(self, ctype, cdispo, part, mail_subject):
         def find_title(soup):
             title_div = soup.find("div", style=lambda value: value and "font-family: Times New Roman" in value)
             if title_div:
@@ -89,7 +94,12 @@ class MAIL:
                 if link.text.strip() == self.filter_linktext:
                     url = link.get('href')
                     url = follow_url_redirects(url)
-                    title = find_title(soup)
+                    if self.extract_title:
+                        title = find_title(soup)
+                    else:
+                        title = mail_subject
+                        
+                    print(title)    
                     if not self.url_conditions or all(condition in url for condition in self.url_conditions):
                         yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 

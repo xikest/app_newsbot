@@ -86,14 +86,26 @@
     }
   ],
   "mail": [
+
     {
-      "chat_id": "-1001754209136",
-      "box_name": "WSJ_NEWS",
-      "sender": "The Wall Street Journal.",
-      "url_conditions": ["wsj.com"],
-      "filter_linktext": "Read More",
-      "enable_translate":true
+      "chat_id": "-1001528926673",
+      "box_name": "Economist",
+      "sender": "The Economist.",
+      "url_conditions": ["economist.com"],
+      "filter_linktext": "Read in browser",
+      "enable_translate":true,
+      "extract_title":true
+    },
+    {
+      "chat_id": "-1001528926673",
+      "box_name": "Bloomberg",
+      "sender": "Trump takes on tech monopolies",
+      "url_conditions": ["bloomberg.com"],
+      "filter_linktext": "View in browser",
+      "enable_translate":true,
+      "extract_title":true
     }
+
 
   ],
   "rss": [

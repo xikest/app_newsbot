@@ -11,8 +11,8 @@ class Feeder:
     def __init__(self, feeds_path:json):
         self.feeder_dict = {
             'mail': MAIL,
-            'rss': RSS,
-            'news': NEWS,
+            # 'rss': RSS,
+            # 'news': NEWS,
         }
         
         try: 
