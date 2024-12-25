@@ -10,12 +10,8 @@ import bs4
 import requests
 import os
 import base64
-from urllib.parse import urlparse
-import base64
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, urlsplit, parse_qs
 import urllib.parse
-from urllib.parse import urlsplit
-import base64
 from bot.definition_obj import Context
 
 
