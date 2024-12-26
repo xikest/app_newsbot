@@ -227,21 +227,24 @@
       "name": "bloomburg_market",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/markets/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_politics",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/politics/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_technology",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/technology/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
 
     {
@@ -249,36 +252,41 @@
       "name": "bloomburg_wealth",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/wealth/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_economics",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/economics/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_industries",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/industries/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_green",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/green/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
 
     {
-      "chat_id": "-1001854256703",
+      "chat_id": "-1001528926673",
       "name": "bloomburg_bview",
       "src": "rss",
       "url": " https://feeds.bloomberg.com/bview/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
 
     {
@@ -286,14 +294,16 @@
       "name": "bloomburg_business",
       "src": "rss",
       "url": " https://feeds.bloomberg.com/business/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     {
       "chat_id": "-1001854256703",
       "name": "bloomburg_crypto",
       "src": "rss",
       "url": " https://feeds.bloomberg.com/crypto/news.rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "url_skips": ["news/videos", "news/audio"]
     },
     
     

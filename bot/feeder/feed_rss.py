@@ -14,6 +14,7 @@ class RSS:
         self.name = name
         self.url = url
         self.enable_translate = kwargs.get("enable_translate", False)
+        self.url_skips:list = kwargs.get("url_skips", None)
         self.verbose = verbose
         
     async def generator(self) -> AsyncGenerator:
@@ -27,8 +28,9 @@ class RSS:
                     article_link = feed.link
                     title = feed.get("title", '') 
                     title = title.strip().lower()
-                logging.info(f"{title} : {article_link}")                  
-                yield Context(label=f"{self.name}", summary=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
+                logging.info(f"{title} : {article_link}")  
+                if not any(url_skip in article_link for url_skip in self.url_skips):                    
+                    yield Context(label=f"{self.name}", summary=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
             logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
         except Exception as e:
             if self.verbose:
