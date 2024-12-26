@@ -25,7 +25,7 @@ class NEWS:
                                                                   condition=lambda href: href.startswith(
                                                                       'http') or href.startswith('www'))
                     for article_link in web_generator:
-                        yield Context(label=f'{self.name}', link=article_link, summary=article_link, bot_chat_id=self.chat_id, dtype='msg')
+                        yield Context(label=f'{self.name}', link=article_link, bot_chat_id=self.chat_id, dtype='msg')
                 logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
             except Exception as e:
                 if self.verbose:
