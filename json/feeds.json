@@ -114,7 +114,7 @@
       "box_name": "Bloomberg",
       "sender": "Bloomberg",
       "url_condition": "bloomberg.com",
-      "url_skip": ["news/videos", "news/audio"],
+      "url_skips": ["news/videos", "news/audio"],
       "filter_linktext": "View in browser",
       "enable_translate":true,
       "extract_url": "decode&extract",
