@@ -28,10 +28,9 @@ class MAIL:
         self.enable_translate:bool = kwargs.get("enable_translate", False)
         self.url_condition:str = kwargs.get("url_condition", None)
         self.filter_linktext:str = kwargs.get("filter_linktext", None)
-        self.url_prefix:str = kwargs.get("url_prefix", None)
+        self.url_skip:list = kwargs.get("url_skip", None)
         self.extract_url:str = kwargs.get("extract_url", None)
         self.extract_title_from:str = kwargs.get("extract_title_from", None)
-        
         
     async def generator(self) -> AsyncGenerator[Context, None]:
             def _get_UIDs_msg( user: str, pid: str, mail_box: str, imap: str = 'imap.naver.com'):
@@ -145,7 +144,7 @@ class MAIL:
                     elif self.extract_title_from == "no":
                         title = mail_subject 
                     title = title.strip()
-                    if not self.url_condition or self.url_condition in url:
+                    if not self.url_condition or self.url_condition in url and all(url_skip not in url for url_skip in self.url_skip):
                         yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
         # elif ctype == 'multipart/alternative' and 'attachment' not in cdispo:

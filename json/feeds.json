@@ -92,6 +92,7 @@
       "box_name": "WSJ_NEWS",
       "sender": "The Wall Street Journal.",
       "url_condition": "wsj.com",
+
       "filter_linktext": "Read More",
       "enable_translate":true,
       "extract_url":"decode",
@@ -113,6 +114,7 @@
       "box_name": "Bloomberg",
       "sender": "Bloomberg",
       "url_condition": "bloomberg.com",
+      "url_skip": ["news/videos", "news/audio"],
       "filter_linktext": "View in browser",
       "enable_translate":true,
       "extract_url": "decode&extract",
