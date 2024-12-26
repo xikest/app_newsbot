@@ -28,7 +28,7 @@ class MAIL:
         self.enable_translate:bool = kwargs.get("enable_translate", False)
         self.url_condition:str = kwargs.get("url_condition", None)
         self.filter_linktext:str = kwargs.get("filter_linktext", None)
-        self.url_skips:list = kwargs.get("url_skips", None)
+        self.url_skips:list = kwargs.get("url_skips", [])
         self.extract_url:str = kwargs.get("extract_url", None)
         self.extract_title_from:str = kwargs.get("extract_title_from", None)
         

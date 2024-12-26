@@ -14,7 +14,7 @@ class RSS:
         self.name = name
         self.url = url
         self.enable_translate = kwargs.get("enable_translate", False)
-        self.url_skips:list = kwargs.get("url_skips", None)
+        self.url_skips:list = kwargs.get("url_skips", [])
         self.verbose = verbose
         
     async def generator(self) -> AsyncGenerator:
