@@ -249,33 +249,9 @@
 
     {
       "chat_id": "-1001854256703",
-      "name": "bloomburg_wealth",
-      "src": "rss",
-      "url": "https://feeds.bloomberg.com/wealth/news.rss",
-      "enable_translate": true,
-      "url_skips": ["news/videos", "news/audio"]
-    },
-    {
-      "chat_id": "-1001854256703",
       "name": "bloomburg_economics",
       "src": "rss",
       "url": "https://feeds.bloomberg.com/economics/news.rss",
-      "enable_translate": true,
-      "url_skips": ["news/videos", "news/audio"]
-    },
-    {
-      "chat_id": "-1001854256703",
-      "name": "bloomburg_industries",
-      "src": "rss",
-      "url": "https://feeds.bloomberg.com/industries/news.rss",
-      "enable_translate": true,
-      "url_skips": ["news/videos", "news/audio"]
-    },
-    {
-      "chat_id": "-1001854256703",
-      "name": "bloomburg_green",
-      "src": "rss",
-      "url": "https://feeds.bloomberg.com/green/news.rss",
       "enable_translate": true,
       "url_skips": ["news/videos", "news/audio"]
     },
