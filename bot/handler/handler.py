@@ -1,5 +1,6 @@
 import telegram
 import logging
+import os 
 from .summerizer import Summerizer
 from bot.definition_obj import Context
 from tools.file.filemanager import FileManager
@@ -50,7 +51,8 @@ class Handler:
     def _make_summary(self, context: Context) -> Context:
         if context.enable_translate:
             try:
-                summerizer = Summerizer(api_key=self._gpt_key, gpt_model='gemini-1.5-flash')
+                gpt_model = os.getenv("GPT_MODEL", "gemini-2.0-flash-exp")
+                summerizer = Summerizer(api_key=self._gpt_key, gpt_model = gpt_model)
                 context.summary = summerizer.translate_tokr(context.summary)
             except Exception as e:
                 logging.error(f"[make_summary] Summary generation error: {e}")
