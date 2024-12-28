@@ -199,28 +199,32 @@
       "name": "wsj_us_business",
       "src": "rss",
       "url": "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml",
-      "enable_translate": true
+      "enable_translate": true,
+      "extract_url": "original"
     },
     {
       "chat_id": "-1001754209136",
       "name": "wsj_us_technology",
       "src": "rss",
       "url": "https://feeds.a.dj.com/rss/RSSWSJD.xml",
-      "enable_translate": true
+      "enable_translate": true,
+      "extract_url": "original"
     },
     {
       "chat_id": "-1001754209136",
       "name": "wsj_us_Markets",
       "src": "rss",
       "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-      "enable_translate": true
+      "enable_translate": true,
+      "extract_url": "original"
     },
     {
       "chat_id": "-1001754209136",
       "name": "wsj_cn_wsj",
       "src": "rss",
       "url": "https://cn.wsj.com/zh-hans/rss",
-      "enable_translate": true
+      "enable_translate": true,
+      "extract_url": "original"
     },
     {
       "chat_id": "-1001854256703",
