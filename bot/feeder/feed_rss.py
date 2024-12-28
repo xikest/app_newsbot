@@ -2,6 +2,7 @@ from typing import AsyncGenerator
 import feedparser
 import datetime
 from bs4 import BeautifulSoup
+from urllib.parse import urlsplit
 import logging
 from bot.definition_obj import Context
 
@@ -28,6 +29,7 @@ class RSS:
                     article_link = feed.link
                     title = feed.get("title", '') 
                     title = title.strip().lower()
+                article_link = urlsplit(article_link)._replace(query="").geturl()
                 logging.info(f"{title} : {article_link}")  
                 if not any(url_skip in article_link for url_skip in self.url_skips):                    
                     yield Context(label=f"{self.name}", summary=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
