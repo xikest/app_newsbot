@@ -146,7 +146,7 @@ class MAIL:
                     title = title.strip()
                     if not self.url_condition or self.url_condition in url:
                         if not any(url_skip in url for url_skip in self.url_skips):    
-                            yield Context(label=f'{self.box_name}', summary=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
+                            yield Context(label=f'{self.box_name}', title=title, link=url,  bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
 
         # elif ctype == 'multipart/alternative' and 'attachment' not in cdispo:
         #         for subpart in part.get_payload():

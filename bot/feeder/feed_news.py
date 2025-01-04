@@ -3,6 +3,8 @@ import datetime
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import logging
+import requests
+from bs4 import BeautifulSoup
 from bot.definition_obj import Context
 
 
@@ -25,7 +27,8 @@ class NEWS:
                                                                   condition=lambda href: href.startswith(
                                                                       'http') or href.startswith('www'))
                     for article_link in web_generator:
-                        yield Context(label=f'{self.name}', link=article_link, bot_chat_id=self.chat_id, dtype='msg')
+                        title = get_page_title(article_link)
+                        yield Context(label=f'{self.name}', title=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg')
                 logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
             except Exception as e:
                 if self.verbose:
@@ -55,3 +58,28 @@ class WebScraper:
 
     def starts_with_condition(self, href, startswith='http'):
         return href.startswith(startswith)
+    
+def get_page_title( url):
+    """
+    주어진 URL에서 웹 페이지의 제목을 추출합니다.
+
+    Args:
+        url (str): 웹 페이지 URL.
+
+    Returns:
+        str: 페이지 제목. 오류 시 None 반환.
+    """
+    try:
+        # HTTP 요청
+        response = requests.get(url)
+        response.raise_for_status()  # 상태 코드 확인
+
+        # HTML 파싱
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # 타이틀 추출
+        title = soup.find('title').text
+        return title
+    except requests.exceptions.RequestException as e:
+        print(f"오류 발생: {e}")
+        return url

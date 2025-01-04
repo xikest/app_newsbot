@@ -8,4 +8,4 @@ class Context:
     bot_chat_id: str = None
     enable_summary:bool = False
     enable_translate:bool = False
-    summary:str =""
+    title:str = None

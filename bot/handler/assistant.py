@@ -2,7 +2,7 @@ from openai import OpenAI
 import logging
 
 
-class Summerizer:
+class Assistant:
     def __init__(self, api_key=None, gpt_model="gemini-2.0-flash-exp"):
         if api_key is None: raise ValueError
         else: self.api_key = api_key

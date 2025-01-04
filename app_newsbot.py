@@ -3,7 +3,7 @@ import logging
 from bot import NewsBot
 import uvicorn
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 app = FastAPI()
 
 @app.get("/run_newsbot")
