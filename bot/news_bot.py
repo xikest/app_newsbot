@@ -26,7 +26,7 @@ class NewsBot():
 
   async def update(self, context_generator_from_feed:AsyncGenerator):
             async for context in context_generator_from_feed():
-                    await Handler(context, self.bot_token, self.gpt_api_key, self.firestore).send_content(storage_name='app_newsbot_contents')
+                    await Handler(context, self.bot_token, self.gpt_api_key, self.firestore).send_content(storage_name='news_collection')
 
 
         
