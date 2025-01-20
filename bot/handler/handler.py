@@ -46,12 +46,15 @@ class Handler:
             logging.error(f"[send_msg] Message sending error: {e}")
                 
     def _processing_with_assistant(self, context: Context) -> Context:
+        gpt_model = os.getenv("GPT_MODEL", "gemini-2.0-flash-exp")
+        assistant = Assistant(api_key=self._gpt_key, gpt_model = gpt_model)
         if context.enable_translate:
             try:
-                gpt_model = os.getenv("GPT_MODEL", "gemini-2.0-flash-exp")
-                assistant = Assistant(api_key=self._gpt_key, gpt_model = gpt_model)
                 context.title = assistant.translate_tokr(context.title)
             except Exception as e:
                 logging.error(f"[make_summary] Summary generation error: {e}")
+        if context.enable_script_from_video_yt:
+            script = assistant.get_text_from_video_yt(context.link)
+            context.title = script
         return context
     
