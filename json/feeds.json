@@ -451,6 +451,37 @@
       },
       {
         "chat_id": "-1001585250010",
+        "name": "매경 다섯가지 결정적 순간",
+        "src": "rss",
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7Cgmsxaqk6tqd9Iyn2cyy3V",
+        "enable_script_from_video_yt": true
+        },
+        {
+          "chat_id": "-1001585250010",
+          "name": "매경 불앤베어",
+          "src": "rss",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7DPSdYkUSDWc8dLR9oiSab_",
+          "enable_script_from_video_yt": true
+          },
+          {
+            "chat_id": "-1001585250010",
+            "name": "매경 월가뉴스",
+            "src": "rss",
+            "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7CaQlp5QxIiF4bI1EnuXKyy",
+            "enable_script_from_video_yt": true
+            },
+            {
+              "chat_id": "-1001585250010",
+              "name": "매경 어바웃뉴욕",
+              "src": "rss",
+              "url": "https://www.youtube.com/playlist?list=PLF5Fz9qlNg7Aknod0AZJ8MQxc1vniuo7g",
+              "enable_script_from_video_yt": true
+              },
+
+
+            
+      {
+        "chat_id": "-1001585250010",
         "name": "power_to_XI_steps",
         "src": "rss",
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c",
@@ -536,6 +567,20 @@
       "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV54z04pd1Pj8UPark_Tk0jX",
       "enable_script_from_video_yt": true
       },
+      {
+        "chat_id": "-1001558520951",
+        "name": "매부리 주간부동산리뷰",
+        "src": "rss",
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266dK0O7nvTgX7x4nF-5z-ZX",
+        "enable_script_from_video_yt": true
+        },
+          {
+            "chat_id": "-1001558520951",
+            "name": "매부리 청약약",
+            "src": "rss",
+            "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266EE8JRJXezb4fUlro5jxTu",
+            "enable_script_from_video_yt": true
+            },
       {
       "chat_id": "-1001585250010",
       "name": "미국주식_전쟁",
