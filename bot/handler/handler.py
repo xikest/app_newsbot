@@ -41,17 +41,19 @@ class Handler:
         bot = telegram.Bot(self._token)
         try:
             context = self._processing_with_assistant(context)
-            special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
-    
-            def escape_markdown(text: str) -> str:
-                return re.sub(special_chars, r'\\\1', text)
-            
-            url = escape_markdown(context.link)
-            label = escape_markdown(context.label)
-            label = label.replace(" ","_")
-            title = escape_markdown(context.title or '')
 
-            message = f"\\#{label} [Link]({url}\n{title})"
+            special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
+            def escape_markdown(text: str) -> str:
+                    """MarkdownV2에서 특수 문자를 escape"""
+                    return re.sub(special_chars, r'\\\1', text)
+                
+            url = url = escape_markdown(context.link)
+            label = context.label
+            label = label.replace(" ","_")
+            title = context.title
+            title = escape_markdown(title)
+
+            message = f"\\#{label}\n[{title}]({url})"
         
             await bot.send_message(chat_id=context.bot_chat_id, text=message, parse_mode="MarkdownV2")
 
