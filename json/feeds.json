@@ -424,159 +424,173 @@
       },
       {
       "chat_id": "-1001585250010",
-      "name": "Statista",
-      "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLpV7l7rprSPsHbJOtil987oI7cGDGPW4v"
-      },
-      {
-      "chat_id": "-1001585250010",
       "name": "지식Play",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXql5C57vS4ogUt6CPEWWHA"
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXql5C57vS4ogUt6CPEWWHA",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "교양이를_부탁해",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLq8zNPMaG8KeOje-DrA2i6PixCderPWUg"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLq8zNPMaG8KeOje-DrA2i6PixCderPWUg",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "안재광의 대기만성",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWjZECMTA-bx14SEKzpsJi-"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWjZECMTA-bx14SEKzpsJi-",
+      "trx_mp3":true
       },
       {
         "chat_id": "-1001585250010",
         "name": "매경 다섯가지 결정적 순간",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7Cgmsxaqk6tqd9Iyn2cyy3V"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7Cgmsxaqk6tqd9Iyn2cyy3V",
+        "trx_mp3":true
+        },
+      {
+        "chat_id": "-1001585250010",
+        "name": "매경 불앤베어",
+        "src": "rss",
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7DPSdYkUSDWc8dLR9oiSab_",
+        "trx_mp3":true
+        },
+      {
+        "chat_id": "-1001585250010",
+        "name": "매경 월가뉴스",
+        "src": "rss",
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7CaQlp5QxIiF4bI1EnuXKyy",
+        "trx_mp3":true
         },
         {
           "chat_id": "-1001585250010",
-          "name": "매경 불앤베어",
+          "name": "매경 어바웃뉴욕",
           "src": "rss",
-          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7DPSdYkUSDWc8dLR9oiSab_"
+          "url": "https://www.youtube.com/playlist?list=PLF5Fz9qlNg7Aknod0AZJ8MQxc1vniuo7g",
+          "trx_mp3":true
           },
-          {
-            "chat_id": "-1001585250010",
-            "name": "매경 월가뉴스",
-            "src": "rss",
-            "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLF5Fz9qlNg7CaQlp5QxIiF4bI1EnuXKyy"
-            },
-            {
-              "chat_id": "-1001585250010",
-              "name": "매경 어바웃뉴욕",
-              "src": "rss",
-              "url": "https://www.youtube.com/playlist?list=PLF5Fz9qlNg7Aknod0AZJ8MQxc1vniuo7g"
-              },
 
-
-            
       {
         "chat_id": "-1001585250010",
         "name": "power_to_XI_steps",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbRKELcV4CxDueaIZZvr6D0c",
+        "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "ETF_언박싱",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEX8sGPDze7pWis4mRmfRgmI"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEX8sGPDze7pWis4mRmfRgmI",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "투자_Insight",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL_8dl5rgert5NCSg9on7CQsZKozfGO0Kc"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL_8dl5rgert5NCSg9on7CQsZKozfGO0Kc",
+      "trx_mp3":true
       },
 
       {
         "chat_id": "-1001585250010",
         "name": "김현석_월스트리트나우",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO274jKRcOLTGrLyXN7umky"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO274jKRcOLTGrLyXN7umky",
+        "trx_mp3":true
         },
       {
         "chat_id": "-1001585250010",
         "name": "월가에서_듣는다",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwMWeAE7PwAoyBV-IW-hgMPy"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwMWeAE7PwAoyBV-IW-hgMPy",
+        "trx_mp3":true
         },
       {
         "chat_id": "-1001585250010",
         "name": "오늘장_10분만",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwN7kMLkQudcJHbmA_TgTEzd"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwN7kMLkQudcJHbmA_TgTEzd",
+        "trx_mp3":true
         },
       {
         "chat_id": "-1001585250010",
         "name": "워싱턴나우",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwNA1D0id_ymujsqsTZHFqlM"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwNA1D0id_ymujsqsTZHFqlM",
+        "trx_mp3":true
         },
       {
         "chat_id": "-1001585250010",
         "name": "도쿄나우",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO5rMIoVsQSwLGX7T68KOvH"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwO5rMIoVsQSwLGX7T68KOvH",
+        "trx_mp3":true
         },
       {
       "chat_id": "-1001585250010",
       "name": "실리콘밸리나우",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwM0PCPjOnVFLc9dx0dTMGoq"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwM0PCPjOnVFLc9dx0dTMGoq",
+      "trx_mp3":true
       },
-
-
       {
       "chat_id": "-1001558520951",
       "name": "집코노미_흥청망청",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV5aTdl51WcHLGxpw0lFq2xP"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV5aTdl51WcHLGxpw0lFq2xP",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001558520951",
       "name": "집코노미_오마카세",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV4rtLaPSarnw6mRUJ7wayHd"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV4rtLaPSarnw6mRUJ7wayHd",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001558520951",
       "name": "집코노미_총총견문록",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV54z04pd1Pj8UPark_Tk0jX"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZtm8tjZjNV54z04pd1Pj8UPark_Tk0jX",
+      "trx_mp3":true
       },
       {
         "chat_id": "-1001558520951",
-        "name": "매부리 주간부동산리뷰",
+        "name": "매부리_주간부동산리뷰",
         "src": "rss",
-        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266dK0O7nvTgX7x4nF-5z-ZX"
+        "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266dK0O7nvTgX7x4nF-5z-ZX",
+        "trx_mp3":true
         },
-          {
-            "chat_id": "-1001558520951",
-            "name": "매부리 청약약",
-            "src": "rss",
-            "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266EE8JRJXezb4fUlro5jxTu"
-            },
+        {
+          "chat_id": "-1001558520951",
+          "name": "매부리_청약",
+          "src": "rss",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL25QkwpEp266EE8JRJXezb4fUlro5jxTu",
+          "trx_mp3":true
+          },
       {
       "chat_id": "-1001585250010",
       "name": "미국주식_전쟁",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbQW8eSZDKNhYjzNYqKKG99W"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PL93pjPb4DDbQW8eSZDKNhYjzNYqKKG99W",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "ETF의_모든_것",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWa7AdDgoxihlLkaAU59tOm"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEWa7AdDgoxihlLkaAU59tOm",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001585250010",
       "name": "딥코노미",
       "src": "rss",
-      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEVEadSGnXvzZnh4ckyis-YK"
+      "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLVups02-DZEVEadSGnXvzZnh4ckyis-YK",
+      "trx_mp3":true
       },
       {
       "chat_id": "-1001673032661",
@@ -645,6 +659,7 @@
       "name": "economist_graphic",
       "src": "rss",
       "enable_translate": true,
+      
       "url": "https://www.economist.com/graphic-detail/rss.xml"
       },
       {

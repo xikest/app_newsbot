@@ -15,6 +15,7 @@ class RSS:
         self.name = name
         self.url = url
         self.enable_translate = kwargs.get("enable_translate", False)
+        self.trx_mp3 = kwargs.get("trx_mp3", False)
         self.extract_url:str = kwargs.get("extract_url", None)
         self.url_skips:list = kwargs.get("url_skips", [])
         self.verbose = verbose
@@ -34,7 +35,8 @@ class RSS:
                     article_link = urlsplit(article_link)._replace(query="").geturl()
                 logging.info(f"{title} : {article_link}")  
                 if not any(url_skip in article_link for url_skip in self.url_skips):                    
-                    yield Context(label=f"{self.name}", title=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', enable_translate=self.enable_translate)
+                    yield Context(label=f"{self.name}", title=title, link=article_link, bot_chat_id=self.chat_id, dtype='msg', 
+                                  enable_translate=self.enable_translate, trx_mp3= self.trx_mp3)
             logging.info(f"Finished obtaining the feed from the {self.name}'s : {datetime.datetime.now()}")
         except Exception as e:
             if self.verbose:

@@ -9,3 +9,4 @@ class Context:
     enable_summary:bool = False
     enable_translate:bool = False
     title:str = None
+    trx_mp3:bool=False

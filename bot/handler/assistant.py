@@ -1,16 +1,20 @@
 from openai import OpenAI
 import logging
-
+import requests
+import re
+import os
 
 class Assistant:
-    def __init__(self, api_key=None, gpt_model="gemini-2.0-flash-exp"):
+    def __init__(self, api_key:str, gpt_model:str, ydown_apiurl:str):
         if api_key is None: raise ValueError
         else: self.api_key = api_key
         self.client = OpenAI(api_key=api_key,
                              base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
         self.gpt_model=gpt_model
         self.messages_prompt = []
-
+        self.ydown_apiurl=ydown_apiurl
+        
+        
     def add_message(self, role, content):
         self.messages_prompt.append({"role": role, "content": content})
 
@@ -33,3 +37,19 @@ class Assistant:
         answer = response.choices[0].message.content
         return answer
 
+
+    def get_mp3_url(self, url):
+        yt_type = 'mp3'
+        data = {
+            "url": f"{url}",
+            "file_type": f"{yt_type}"
+        }
+        response = requests.post(self.ydown_apiurl, json=data)
+        
+        if response.status_code == 200:
+            url = response.json()['file_name']
+            return url
+        else:
+            return None  
+
+       

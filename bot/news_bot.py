@@ -15,6 +15,9 @@ class NewsBot():
     self.storage_name='app_newsbot_contents'
     self.bot_token = os.environ.get("BOT_TOKEN")
     self.gpt_api_key = os.environ.get("GPT_API_KEY")
+    self.gpt_model = os.getenv("GPT_MODEL", "gpt-4o-mini")
+    self._ydown_url = os.getenv("ydown_url")
+
     pass
 
 
@@ -23,10 +26,12 @@ class NewsBot():
         await self.update(self.feeder.generator)
     except Exception as e:
         logging.info(f'bot start err.{e}')
-
+    
   async def update(self, context_generator_from_feed:AsyncGenerator):
             async for context in context_generator_from_feed():
-                    await Handler(context, self.bot_token, self.gpt_api_key, self.firestore).send_content(storage_name='news_collection')
+                    await Handler(context=context, token=self.bot_token, 
+                                  gpt_key=self.gpt_api_key, gpt_model=self.gpt_model, 
+                                  firestore_auth=self.firestore, ydown_url= self._ydown_url).send_content(storage_name='news_collection')
 
 
         
