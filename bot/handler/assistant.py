@@ -10,7 +10,8 @@ class Assistant:
         if api_key is None: raise ValueError
         else: self.api_key = api_key
         self.client = OpenAI(api_key=api_key,
-                             base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
+                            #  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                             )
         self.gpt_model=gpt_model
         self.messages_prompt = []
         self.ydown_apiurl=ydown_apiurl
@@ -40,7 +41,7 @@ class Assistant:
         return answer
 
 
-    def get_mp3_url(self, url):
+    def get_mp3_url(self, url) -> set:
         yt_type = 'mp3'
         data = {
             "url": f"{url}",
@@ -51,8 +52,10 @@ class Assistant:
         response = requests.post(self.ydown_apiurl, json=data)
         
         if response.status_code == 200:
-            url = response.json()['file_name']
-            return url
+            response_json = response.json()
+            label = response_json['label']
+            url = response_json['url']
+            return (label, url)
         else:
             return None  
 

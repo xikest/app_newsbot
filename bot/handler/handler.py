@@ -66,17 +66,18 @@ class Handler:
         
         assistant = Assistant(api_key=self._gpt_key, gpt_model = self._gpt_model, ydown_apiurl=self._ydown_url,
                               storage_name=self._storage_name)
+
+        if context.trx_mp3:
+            try:    
+                context.title, context.link = assistant.get_mp3_url(context.link)      
+            except Exception as e:
+                logging.error(f"[trx_mp3] trx_mp3 error: {e}")
+                
         if context.enable_translate:
             try:
                 context.title = assistant.translate_tokr(context.title)
             except Exception as e:
                 logging.error(f"[make_summary] Summary generation error: {e}")
        
-        if context.trx_mp3:
-            try:    
-                context.link = assistant.get_mp3_url(context.link)      
-            except Exception as e:
-                logging.error(f"[trx_mp3] trx_mp3 error: {e}")
-                
         return context
     
