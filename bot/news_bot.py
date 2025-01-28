@@ -12,12 +12,11 @@ class NewsBot():
     # self.feeder = Feeder(feeds_path = 'json/feeds.json')
     
     self.firestore = "json/web-driver.json"
-    self.storage_name='app_newsbot_contents'
     self.bot_token = os.environ.get("BOT_TOKEN")
     self.gpt_api_key = os.environ.get("GPT_API_KEY")
     self.gpt_model = os.getenv("GPT_MODEL", "gpt-4o-mini")
-    self._ydown_url = os.getenv("ydown_url")
-
+    self.ydown_url = os.getenv("ydown_url")
+    self.storage_name = os.getenv("news_bot_storage_name")
     pass
 
 
@@ -31,7 +30,8 @@ class NewsBot():
             async for context in context_generator_from_feed():
                     await Handler(context=context, token=self.bot_token, 
                                   gpt_key=self.gpt_api_key, gpt_model=self.gpt_model, 
-                                  firestore_auth=self.firestore, ydown_url= self._ydown_url).send_content(storage_name='news_collection')
+                                  firestore_auth=self.firestore, ydown_url= self.ydown_url,
+                                  storage_name = self.storage_name).send_content(storage_name='news_collection')
 
 
         

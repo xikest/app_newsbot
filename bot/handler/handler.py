@@ -13,13 +13,14 @@ def get_today_date():
 
 
 class Handler:
-    def __init__(self, context: Context, token: str, gpt_key: str, gpt_model:str, firestore_auth:str, ydown_url:str):
+    def __init__(self, context: Context, token: str, gpt_key: str, gpt_model:str, firestore_auth:str, ydown_url:str, storage_name:str):
         self.context = context  
         # self.max_buffer_size = max_buffer_size          
         self._token = token
         self._gpt_key = gpt_key    
         self._gpt_model = gpt_model
         self._ydown_url = ydown_url
+        self._storage_name = storage_name
         self.firestore = FirestoreManager(firestore_auth)
             
     async def send_content(self, storage_name) -> None:
@@ -49,7 +50,8 @@ class Handler:
                 
             url = url = escape_markdown(context.link)
             label = context.label
-            label = label.replace(" ","_")
+            label = label.replace(" ","")
+            label = escape_markdown(label)
             title = context.title
             title = escape_markdown(title)
 
@@ -62,7 +64,8 @@ class Handler:
                 
     def _processing_with_assistant(self, context: Context) -> Context:
         
-        assistant = Assistant(api_key=self._gpt_key, gpt_model = self._gpt_model, ydown_apiurl=self._ydown_url)
+        assistant = Assistant(api_key=self._gpt_key, gpt_model = self._gpt_model, ydown_apiurl=self._ydown_url,
+                              storage_name=self._storage_name)
         if context.enable_translate:
             try:
                 context.title = assistant.translate_tokr(context.title)

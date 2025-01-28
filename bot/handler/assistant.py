@@ -5,7 +5,8 @@ import re
 import os
 
 class Assistant:
-    def __init__(self, api_key:str, gpt_model:str, ydown_apiurl:str):
+    def __init__(self, api_key:str, gpt_model:str, ydown_apiurl:str,
+                 storage_name:str ):
         if api_key is None: raise ValueError
         else: self.api_key = api_key
         self.client = OpenAI(api_key=api_key,
@@ -13,6 +14,7 @@ class Assistant:
         self.gpt_model=gpt_model
         self.messages_prompt = []
         self.ydown_apiurl=ydown_apiurl
+        self.storage_name = storage_name
         
         
     def add_message(self, role, content):
@@ -42,7 +44,9 @@ class Assistant:
         yt_type = 'mp3'
         data = {
             "url": f"{url}",
-            "file_type": f"{yt_type}"
+            "file_type": f"{yt_type}",
+            "storage_name" : self.storage_name 
+            
         }
         response = requests.post(self.ydown_apiurl, json=data)
         
