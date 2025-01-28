@@ -30,10 +30,10 @@ class Handler:
         doc_key = url_to_doc_key_sha256(self.context.link)
         try:
             if not self.firestore.is_doc_key_exist(doc_key=doc_key, collection_name = storage_name):
-                self.firestore.save_db(doc_key=doc_key, 
-                                       data_dict={"title": self.context.title, "date":get_today_date(), "link":self.context.link}, 
-                                       collection_name= storage_name)
                 await self._send_msg(self.context)
+                self.firestore.save_db(doc_key=doc_key, 
+                        data_dict={"title": self.context.title, "date":get_today_date(), "link":self.context.link}, 
+                        collection_name= storage_name)
         except Exception as e:
             logging.error(f"[send_content] Transmission error: {e}")
 
