@@ -1,2 +1,3 @@
 web-driver.json
 upload_docker_app_newsbot.py
+delete_cell_on_db.py
