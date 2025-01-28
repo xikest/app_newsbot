@@ -42,21 +42,35 @@ class Assistant:
 
 
     def get_mp3_url(self, url) -> set:
-        yt_type = 'mp3'
         data = {
             "url": f"{url}",
-            "file_type": f"{yt_type}",
-            "storage_name" : self.storage_name 
-            
+            "file_type": 'mp3',
+            "storage_name" : self.storage_name,
+            "options": {
+                    'format': 'bestaudio/best',  # 최고 품질의 오디오 다운로드
+                    'outtmpl': '%(title)s.%(ext)s',  # 다운로드 파일 이름 포맷
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',  # 오디오 추출 및 변환
+                        'preferredcodec': 'mp3',  # mp3로 변환
+                        'preferredquality': '128',  # 128kbps로 설정
+                    }],
+                    'postprocessor_args': [
+                        '-ar', '44100',  # 오디오 샘플링 주파수 44.1kHz
+                        '-ac', '2',      # 스테레오 설정
+                        '-ab', '128k',   # 비트레이트 128kbps
+                    ],
+                    'noplaylist': True,  # 재생목록 다운로드를 방지
+                }
         }
         response = requests.post(self.ydown_apiurl, json=data)
-        
         if response.status_code == 200:
             response_json = response.json()
-            label = response_json['label']
+            # label = response_json['label']
             url = response_json['url']
-            return (label, url)
+            return url
         else:
             return None  
 
        
+       
+

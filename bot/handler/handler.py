@@ -14,8 +14,7 @@ def get_today_date():
 
 class Handler:
     def __init__(self, context: Context, token: str, gpt_key: str, gpt_model:str, firestore_auth:str, ydown_url:str, storage_name:str):
-        self.context = context  
-        # self.max_buffer_size = max_buffer_size          
+        self.context = context         
         self._token = token
         self._gpt_key = gpt_key    
         self._gpt_model = gpt_model
@@ -42,23 +41,17 @@ class Handler:
         bot = telegram.Bot(self._token)
         try:
             context = self._processing_with_assistant(context)
-
-            special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
-            def escape_markdown(text: str) -> str:
-                    """MarkdownV2에서 특수 문자를 escape"""
-                    return re.sub(special_chars, r'\\\1', text)
                 
-            url = url = escape_markdown(context.link)
+            url = context.link
             label = context.label
             label = label.replace(" ","")
-            label = escape_markdown(label)
             title = context.title
-            title = escape_markdown(title)
-
-            message = f"\\#{label}\n[{title}]({url})"
-        
-            await bot.send_message(chat_id=context.bot_chat_id, text=message, parse_mode="MarkdownV2")
-
+            
+            if context.trx_mp3:
+                await bot.send_audio(chat_id=context.bot_chat_id,  audio=url)
+            else:
+                message = f"#{label}\n{title}\n{url}"     
+                await bot.send_message(chat_id=context.bot_chat_id, text=message)
         except Exception as e:
             logging.error(f"[send_msg] Message sending error: {e}")
                 
@@ -69,7 +62,7 @@ class Handler:
 
         if context.trx_mp3:
             try:    
-                context.title, context.link = assistant.get_mp3_url(context.link)      
+                context.link = assistant.get_mp3_url(context.link)      
             except Exception as e:
                 logging.error(f"[trx_mp3] trx_mp3 error: {e}")
                 
@@ -80,4 +73,6 @@ class Handler:
                 logging.error(f"[make_summary] Summary generation error: {e}")
        
         return context
+    
+
     
