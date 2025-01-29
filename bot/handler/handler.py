@@ -50,13 +50,18 @@ class Handler:
             url = url = escape_markdown(context.link)
             label = context.label
             label = label.replace(" ","")
-            label = escape_markdown(label)
             title = context.title
-            title = escape_markdown(title)
-
-            message = f"\\#{label}\n[{title}]({url})"
-        
-            await bot.send_message(chat_id=context.bot_chat_id, text=message, parse_mode="MarkdownV2")
+            
+            if context.trx_mp3:
+                label = escape_markdown(label)
+                title = escape_markdown(title)
+                message = f"\\#{label}\n[{title}]({url})"
+                parse_mode="MarkdownV2"
+            else:
+                message = f"\\#{label}\n{title}\n{url}"
+                parse_mode=None
+                
+            await bot.send_message(chat_id=context.bot_chat_id, text=message, parse_mode=parse_mode)
 
         except Exception as e:
             logging.error(f"[send_msg] Message sending error: {e}")
