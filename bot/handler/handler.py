@@ -40,7 +40,7 @@ class Handler:
     async def _send_msg(self, context: Context):
         bot = telegram.Bot(self._token)
         try:
-            context = self._processing_with_assistant(context)
+            context = await self._processing_with_assistant(context)
             def escape_markdown(text: str) -> str:
                 special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
                 return re.sub(special_chars, r'\\\1', text)
@@ -65,14 +65,14 @@ class Handler:
         except Exception as e:
             logging.error(f"[send_msg] Message sending error: {e}")
                 
-    def _processing_with_assistant(self, context: Context) -> Context:
+    async def _processing_with_assistant(self, context: Context) -> Context:
         
         assistant = Assistant(api_key=self._gpt_key, gpt_model = self._gpt_model, ydown_apiurl=self._ydown_url,
                               storage_name=self._storage_name)
 
         if context.trx_mp3:
             try:    
-                context.title, context.link = assistant.get_mp3_url(context.link)  
+                context.title, context.link = await assistant.get_mp3_url(context.link)  
                 context.title = context.title.rsplit('.', 1)[0] ## remove format type
             except Exception as e:
                 logging.error(f"[trx_mp3] trx_mp3 error: {e}")

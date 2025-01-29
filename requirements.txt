@@ -16,5 +16,5 @@ google-auth-oauthlib>=1.2.1
 google-auth-httplib2>=0.2.0
 google-auth>=2.34.0
 xik_tools>=0.68
-
+aiohttp>=3.11.11
 

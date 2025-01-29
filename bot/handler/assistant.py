@@ -1,8 +1,6 @@
 from openai import OpenAI
 import logging
-import requests
-import re
-import os
+import aiohttp
 
 class Assistant:
     def __init__(self, api_key:str, gpt_model:str, ydown_apiurl:str,
@@ -40,25 +38,22 @@ class Assistant:
         answer = response.choices[0].message.content
         return answer
 
-
-
-    def get_mp3_url(self, url) -> set:
+    async def get_mp3_url(self, url) -> set:
         yt_type = 'mp3'
         data = {
             "url": f"{url}",
             "file_type": f"{yt_type}",
             "storage_name" : self.storage_name 
-            
         }
         
         ydown_download_url = self.ydown_apiurl+"/download/"
-        response = requests.post(ydown_download_url, json=data)
-        print(data)
-        print(response.json())
-        if response.status_code == 200:
-            response_json = response.json()
-            label = response_json['label']
-            url = response_json['url']
-            return (label, url)
-        else:
-            return None  
+        timeout = aiohttp.ClientTimeout(total=None)  
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(ydown_download_url, json=data) as response:
+                if response.status == 200:
+                    response_json = await response.json()  
+                    label = response_json['label']
+                    url = response_json['url']
+                    return (label, url)
+                else:
+                    return None  
