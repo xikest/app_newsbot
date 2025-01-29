@@ -41,24 +41,23 @@ class Handler:
         bot = telegram.Bot(self._token)
         try:
             context = self._processing_with_assistant(context)
-
-            
             def escape_markdown(text: str) -> str:
                 special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
                 return re.sub(special_chars, r'\\\1', text)
                 
-            url = url = escape_markdown(context.link)
             label = context.label
             label = label.replace(" ","")
             title = context.title
-            
+            url =context.link
+
             if context.trx_mp3:
                 label = escape_markdown(label)
                 title = escape_markdown(title)
+                url = escape_markdown(url)
                 message = f"\\#{label}\n[{title}]({url})"
                 parse_mode="MarkdownV2"
             else:
-                message = f"\\#{label}\n{title}\n{url}"
+                message = f"#{label}\n{title}\n{url}"
                 parse_mode=None
                 
             await bot.send_message(chat_id=context.bot_chat_id, text=message, parse_mode=parse_mode)
