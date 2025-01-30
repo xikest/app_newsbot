@@ -47,13 +47,18 @@ class Assistant:
         }
         
         ydown_download_url = self.ydown_apiurl+"/download/"
+        
         timeout = aiohttp.ClientTimeout(total=None)  
-        async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.post(ydown_download_url, json=data) as response:
-                if response.status == 200:
-                    response_json = await response.json()  
-                    label = response_json['label']
-                    url = response_json['url']
-                    return (label, url)
-                else:
-                    return None  
+        try:
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.post(ydown_download_url, json=data) as response:
+                    if response.status == 200:
+                        response_json = await response.json()
+                        return response_json.get('label'), response_json.get('url')
+                    else:
+                        print(f"Error: Received status code {response.status}")
+                        return None
+        except aiohttp.ClientError as e:
+            print(f"Request failed: {e}")
+            return None
+        

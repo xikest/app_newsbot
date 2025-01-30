@@ -31,7 +31,7 @@ class NewsBot():
                     await Handler(context=context, token=self.bot_token, 
                                   gpt_key=self.gpt_api_key, gpt_model=self.gpt_model, 
                                   firestore_auth=self.firestore, ydown_url= self.ydown_url,
-                                  storage_name = self.storage_name).send_content(storage_name='news_collection')
+                                  storage_name = self.storage_name).send_content(collection_name='news_collection')
 
 
         
