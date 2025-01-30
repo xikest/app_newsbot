@@ -40,7 +40,6 @@ class Handler:
     async def _send_msg(self, context: Context):
         bot = telegram.Bot(self._token)
         try:
-            
             context = await self._processing_with_assistant(context)
             def escape_markdown(text: str) -> str:
                 special_chars = r'([_*\[\]()~`>#+\-=|{}.!\\])'
