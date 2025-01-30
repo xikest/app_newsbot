@@ -69,7 +69,6 @@ class Handler:
         
         assistant = Assistant(api_key=self._gpt_key, gpt_model = self._gpt_model, ydown_apiurl=self._ydown_url,
                               storage_name=self._storage_name)
-
         if context.trx_mp3:
             try:
                 result = await assistant.get_mp3_url(context.link)
