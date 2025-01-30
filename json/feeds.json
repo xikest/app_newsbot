@@ -86,6 +86,14 @@
         "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwMWeAE7PwAoyBV-IW-hgMPy",
         "trx_mp3":true
         },
+        {
+          "chat_id": "-1001585250010",
+          "name": "빈틈_없는_월가",
+          "src": "rss",
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLAddSCfY5PwNZXKsCxHCuIleQacL4VAB9",
+          "trx_mp3":true
+          },
+
       {
         "chat_id": "-1001585250010",
         "name": "오늘장_10분만",
