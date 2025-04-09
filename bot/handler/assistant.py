@@ -9,7 +9,7 @@ class Assistant:
         if api_key is None: raise ValueError
         else: self.api_key = api_key
         self.client = OpenAI(api_key=api_key,
-                            #  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                             base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
                              )
         self.gpt_model=gpt_model
         self.messages_prompt = []
