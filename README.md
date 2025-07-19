@@ -1,10 +1,74 @@
-# Bot-Alert
+# 🤖 AI-Powered Daily News Briefing System
 
-## 프로젝트 소개
-**Bot-Alert**는 실시간 정보 수집과 Telegram 알림을 결합한 콘텐츠 알림 봇입니다. <br>
-asyncio 및 웹 크롤링 기술을 사용하여 다양한 정보 소스로부터 데이터를 수집하고 Telegram 메시지로 사용자에게 알림을 보내줍니다. <br>
-Bot은 주요 정보 소스(뉴스, 메일, RSS 피드 등)로부터 데이터를 수집하고, 설정된 주기에 따라 업데이트합니다. <br>
+> This project is an automated system that collects news headlines throughout the day, then uses an AI model to generate a single, comprehensive "Daily Briefing" that analyzes the day's key trends, topics, and market sentiment.
 
-## 주요 기능
-1. **다양한 정보 소스 수집**: `뉴스 웹 사이트` `이메일` `RSS 피드`에서 데이터를 수집합니다.
-2. **Telegram 알림**: Telegram 메신저를 통해 사용자에게 `텍스트 메시지` `이미지` 정보를 실시간으로 알립니다..
+The goal is to connect the dots between scattered headlines, transforming raw data into actionable insights.
+
+---
+
+### 🤔 How It Works: The Core Logic
+
+This system operates on a "collect-then-analyze" principle, ensuring you receive a high-signal, low-noise summary once a day.
+
+1.  **24/7 Headline Collection:** It silently monitors and aggregates headlines from a predefined list of RSS feeds throughout the day.
+
+2.  **End-of-Day AI Analysis:** After midnight, all collected headlines from the day are bundled together and sent to an AI for a holistic analysis.
+
+3.  **A Single, Consolidated Briefing:** The AI generates a comprehensive report covering the day's key events, major topics, and overall market sentiment. This final briefing is then delivered to a designated Telegram channel.
+
+---
+
+### ✨ Example of the Final Output
+
+Every morning, you will receive a "Daily Briefing" report like the one below.
+
+> **[📈 Daily Briefing: July 20, 2025]**
+>
+> ---
+>
+> **🤖 Today's Key Insight (AI Summary):**
+>
+> The market was primarily driven by a surge in semiconductor stocks and easing concerns over U.S. interest rate hikes. This fueled positive sentiment, especially in the tech sector. However, emerging warnings about the real estate market in the second half of the year introduced a note of caution.
+>
+> ---
+>
+> **📊 Top Topics & Trend Analysis:**
+>
+> * **Most Mentioned Topics:** #Semiconductors, #InterestRates, #TechStocks, #RealEstate
+> * **Upward Momentum:** Headlines such as "Wall St. Says Tech Stock Rally Isn't a Bubble, Earnings Prove It" pointed to the potential for continued growth in the tech sector.
+> * **Downward Pressure:** Headlines like "Real Estate PF Loan Crisis Looms, Could Trigger Downturn in H2" highlighted potential risks in the construction and financial sectors.
+>
+> ---
+>
+> **🚨 Today's Risk Assessment: "Cautiously Optimistic"**
+>
+> * **Positive Factors:** Solid market sentiment led by the tech industry.
+> * **Potential Risks:** The unresolved issue of real estate project financing (PF) could become a systemic risk. While the short-term outlook is positive, close monitoring of real estate news is advised.
+
+---
+
+### 🛠️ Key Technologies & Design Philosophy
+
+This project was built with stability and scalability in mind, utilizing modern technologies and design patterns.
+
+* **Asynchronous Processing:**
+    The entire system is built on an asynchronous architecture using `asyncio` and `aiohttp`. This allows for efficient, non-blocking I/O operations, making it capable of handling a large number of data sources simultaneously.
+
+* **AI-Powered Analysis:**
+    Instead of just listing data, this project focuses on deriving context and insight from it. It leverages Large Language Models from AI services to analyze the collective meaning behind dozens of headlines.
+
+* **Scalability & Maintainability:**
+    Designed for robust operation, it separates sensitive credentials via environment variables (`.env`), uses `Google Firestore` for persistent data storage to prevent duplicate alerts, and is structured for containerized deployment with `Docker`.
+
+* **API-Driven:**
+    The system is wrapped in a `FastAPI` server, allowing it to be triggered by scheduled tasks (like cron jobs) or other external API calls.
+
+---
+
+### ☕️ Like this project?
+
+> If you find this project interesting or useful, consider buying me a coffee!
+>
+> Your support is greatly appreciated.
+>
+> **[ Your "Buy Me a Coffee" or other sponsorship link here ]**
