@@ -4,13 +4,11 @@ import logging
 from typing import AsyncGenerator
 from .feed_rss import RSS
 from .feed_news import NEWS
-from .feed_mail import MAIL
 
  
 class Feeder:
     def __init__(self, feeds_path:json):
         self.feeder_dict = {
-            'mail': MAIL,
             'rss': RSS,
             'news': NEWS,
         }
